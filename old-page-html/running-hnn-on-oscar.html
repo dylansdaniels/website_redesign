@@ -1,0 +1,57 @@
+<!-- This was manually copied from the "Fullwidth Code" block of the corresponding Page on the Wordpress site for https://hnn.brown.edu on 2024-12-17. -->
+
+<div class="srj-header hnn-header darken-header">
+<div class="srj-headertext">
+Running HNN on Oscar
+</div>
+</div>
+<!-- -->
+<!-- -->
+<br><br> 
+<div class="srj m-width srj-spacious">
+<img class="srj-small-icon" src="https://hnn.brown.edu/wp-content/uploads/2019/06/Gears.png" />
+<br>
+<h1 class="srj-center hnn-violet">
+Setting up an Account with Oscar
+</h1>
+First, make sure you have an account with Brown's computing cluster, <a href="https://docs.ccv.brown.edu/oscar/">Oscar</a>. If you do not have an account, you can create one <a href="https://brown.co1.qualtrics.com/jfe/form/SV_0GtBE8kWJpmeG4B">here</a> using your Brown email address and ID number. 
+<br>
+<br>
+<div class="srj m-width srj-spacious">
+<img class="srj-small-icon" src="https://hnn.brown.edu/wp-content/uploads/2019/06/Gears.png" />
+<br>
+<h1 class="srj-center hnn-violet">
+To Run HNN
+</h1>
+1. Go to <a href="https://ood.ccv.brown.edu/pun/sys/dashboard">Oscar-on-Demand</a>. Choose the Desktop application and launch a new session (pick 6 cores).
+<br>
+<br>
+2. Once the Desktop is launched, open the Terminal Emulator and enter the following command. Note that after you have installed and run HNN for the first time, you no longer need to run this line.
+<br>
+<br>
+<code> singularity pull docker://jonescompneurolab/hnn </code>
+<br>
+<br>
+3. To open the HNN graphical user interface (GUI), run:
+<br>
+<br>
+<code> singularity shell hnn_latest.sif
+<br> 
+source /home/hnn_user/hnn_envs
+<br>
+cd /home/hnn_user/hnn_source_code
+<br>
+python3 hnn.py
+</code> 
+<br>
+<br>
+4. HNN should open with two windows, and you should be able to click the "Run Simulation" button and see a small dialogue box appear displaying the time steps of the simulation appear in real-time.  
+
+
+
+
+
+
+
+
+
