@@ -85,14 +85,14 @@
                 </p>
             </div>
             <div class="gallery">
-                <div class="card">
-                  <a href="your-link.html">
+                <div class="card" data-popup="popup1">
+                  <!-- <a href="your-link.html"> -->
                     <div class="image" style="background-image: url('https://raw.githubusercontent.com/jonescompneurolab/hnn-under_the_hood/master/html-styling/images/bridging-scales-V7.png');"></div>
                     <div class="overlay">
                       <h1>Biophysical modeling<h1>
                       <p>HNN uses a biophysically-principled neocortical column model</p>
                     </div>
-                  </a>
+                  <!-- </a> -->
                 </div>
                 <div class="card">
                     <a href="your-link.html">
@@ -140,6 +140,18 @@
                       </a>
                   </div>
             </div> <!-- close gallery-->
+            <!-- Popup Containers -->
+            <div class="popup-container" id="popup1">
+                <div class="popup-box">
+                    <div class="popup-close-wrapper">
+                        <button class="popup-close">&times;</button>
+                    </div>
+                    <h2>Biophysical Modeling</h2>
+                    <p>Details about biophysical modeling...</p>
+                    <div style="height: 800px;"></div>
+                    <p>More text</p>
+                </div>
+            </div>
         </div> <!-- close content -->
     </div> <!-- close content wrapper -->
 </div> <!-- close main -->
@@ -255,6 +267,51 @@
                 }
             });
         }
+    });
+
+    // ------------------- //
+    // --- Card Popups --- //
+    // ------------------- //
+    const cards = document.querySelectorAll('.card');
+    const popups = document.querySelectorAll('.popup-container');
+
+    // Show popup on card click
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const popupId = card.getAttribute('data-popup');
+            const popup = document.getElementById(popupId);
+            if (popup) {
+                popup.classList.add('show'); // add 'show' class to display the popup
+                document.body.style.overflow = 'hidden'; // disable body scrolling
+
+                // Reset scroll position when the popup is opened
+                const popupBox = popup.querySelector('.popup-box');
+                if (popupBox) {
+                    popupBox.scrollTop = 0; // Set scroll position to the top
+                }
+            }
+        });
+    });
+
+    // Close popup on close button click
+    document.querySelectorAll('.popup-close').forEach(button => {
+        button.addEventListener('click', () => {
+            const popupContainer = button.closest('.popup-container');
+            if (popupContainer) {
+                popupContainer.classList.remove('show'); // Remove 'show' class to hide the popup
+                document.body.style.overflow = ''; // Re-enable body scrolling
+            }
+        });
+    });
+
+    // Close popup on outside click
+    popups.forEach(popup => {
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) { // Check if the click is outside the popup content
+                popup.classList.remove('show'); // Remove 'show' class to hide the popup
+                document.body.style.overflow = ''; // Re-enable body scrolling
+            }
+        });
     });
 
 </script>

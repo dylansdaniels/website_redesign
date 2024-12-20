@@ -68,14 +68,15 @@ a:hover {
 
 #content-wrapper {
     width: 100%;
-    max-width: 920px;
-    padding: 0 40px;
+    max-width: var(--content-max-width);
+    padding: 0px 0px;
     box-sizing: border-box;
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    margin-top: 90px;
 }
 
 #content {
-    padding: 10px;
+    padding: 10px 0px;
     width: 100%;
     font-size: 20px;
 
@@ -135,6 +136,7 @@ code {
 
 .topbar {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    background-color: #fff;
     height: 70px;
     display: flex;
     align-items: center;
@@ -142,6 +144,7 @@ code {
     width: 100%;
     flex-direction: column;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle drop shadow */
+    position: fixed;
 }
 
 #topbar-wrapper {
@@ -296,7 +299,7 @@ code {
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto; /* Center gallery */
-    padding: 20px; /* Optional padding */
+    padding: 20px 0px; /* Optional padding */
   }
   
   /* Card */
@@ -388,7 +391,80 @@ code {
       width: 100%; /* Full width on mobile */
     }
   }
-  
+
+/* 
+# --------------------
+# Card Popups 
+# -------------------- 
+*/
+
+/* Popup Container */
+.popup-container {
+    display: flex; /* hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+
+    /* Initial state for transition */
+    opacity: 0; 
+    visibility: hidden; 
+    transition: opacity 0.3s ease, visibility 0s 0.3s; /* fade out */
+}
+
+.popup-container.show {
+    opacity: 1; 
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0s 0s; /* fade in */
+}
+
+/* Popup Box */
+.popup-box {
+    /* border-box => width/height includes content area, padding, borders */
+    box-sizing: border-box; 
+    margin-top: 90px;
+    margin-bottom: 40px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: calc(var(--content-max-width) + (var(--content-max-width) * 0.2));
+    height: calc(100vh - 110px);
+    /* height: 100%; */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+    overflow-y: auto; /* add scrolling */
+}
+
+.popup-close-wrapper {
+    position: absolute;  /* Position it relative to the popup box */
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+}
+
+/* Close Button */
+.popup-close {
+    position: fixed;
+    background: #ccc;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 18px;
+    /* z-index: 2001; */
+    cursor: pointer;
+}
+
+.popup-close:hover {
+    background: #aaa;
+}
 
 /* 
 # --------------------
@@ -468,6 +544,10 @@ code {
 # Variables 
 # -------------------- 
 */
+
+:root {
+    --content-max-width: 920px;
+}
 
 /* Custom HNN colors */
 /* ----------------- */
