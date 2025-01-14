@@ -61,7 +61,7 @@ a:hover {
     font-weight: normal !important;
     text-align: center !important;
     color: #636363 !important;
-    font-size: 24px !important;
+    font-size: 23px !important;
     line-height: 1.2 !important;
     margin: 15px !important;
 }
@@ -72,7 +72,7 @@ a:hover {
     padding: 0px 0px;
     box-sizing: border-box;
     /* margin: 0 auto; */
-    margin-top: 90px;
+    margin-top: 70px;
 }
 
 #content {
@@ -526,6 +526,66 @@ code {
 .sidebar-list .submenu.open {
     display: block;  /* show the submenu when the 'open' class is added */
     transition: max-height 0.3s ease-in-out; /* smooth transition */
+}
+
+/*
+# --------------------
+# Developers table
+# --------------------
+*/
+
+/* Wrapper for the entire table */
+.developers-table {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Title styling for the developers table */
+/* .developers-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+} */
+
+/* Grid container for profiles */
+.profile-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Individual profile container */
+.profile {
+    text-align: center;
+}
+
+/* Profile image styling */
+.profile-img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect for profile image */
+.profile-img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Link styling */
+.profile-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    margin-top: 10px;
 }
 
 /* 

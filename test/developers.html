@@ -75,113 +75,15 @@
 
             <div id="logo-subtitle">
                 <p>
-                    Open-source software for developing and testing hypotheses on the cellular and circuit-level mechanisms underlying magneto- and electro-encephalography (M/EEG) signals.
+                    Developers...
                 </p>
             </div>
-            <!-- start gallery -->
-            <div class="gallery">
-                <div class="card" data-popup="popup1">
-                    <div class="image" style="background-image: url('https://raw.githubusercontent.com/jonescompneurolab/hnn-under_the_hood/master/html-styling/images/bridging-scales-V7.png');"></div>
-                    <div class="overlay">
-                      <h1>Getting Started<h1>
-                      <p>HNN uses a biophysically-principled neocortical column model</p>
-                    </div>
-                </div>
-                <div class="card" data-popup="popup2">
-                      <div class="image" style="background-image: url('https://raw.githubusercontent.com/jonescompneurolab/hnn-under_the_hood/master/html-styling/images/current-source.png');"></div>
-                      <div class="overlay">
-                        <h1>The Biophysical Challenge<h1>
-                        <p>Simulate the primary electrical currents in the neocortex that create EEG/MEG signals</p>
-                      </div>
-                </div>
-                <div class="card" data-popup="popup3">
-                      <div class="image" style="background-image: url('https://jonescompneurolab.github.io/hnn-core/stable/_images/sphx_glr_plot_simulate_gamma_006.png');"></div>
-                      <div class="overlay">
-                        <h1>ERPs and Rhythms</h1>
-                        <p>Visualize current dipoles, cell spiking, frequency domain oscillations, and more</p>
-                    </div>
-                </div>
-                <div class="card" data-popup="popup4">
-                      <div class="image" style="background-image: url('https://raw.githubusercontent.com/jonescompneurolab/hnn-core/acbcc4a598610dc3be5d4b0b7c59f98251ea7690/.github/images/hnn_gui.png');"></div>
-                      <div class="overlay">
-                        <h1>Multi-Scale Visualization<h1>
-                        <p>Much fancy 🤩</p>
-                      </div>
-                  </div>
-                  <div class="card" data-popup="popup5">
-                        <div class="image" style="background-image: url('https://jonescompneurolab.github.io/hnn-core/stable/_images/sphx_glr_plot_batch_simulate_001.png');"></div>
-                        <div class="overlay">
-                          <h1>Fitting to Data<h1>
-                          <p>Big wow 😮</p>
-                        </div>
-                  </div>
-                  <div class="card" data-popup="popup6">
-                        <div class="image" style="background-image: url('https://raw.githubusercontent.com/jonescompneurolab/hnn-under_the_hood/master/html-styling/images/beta-events.png');"></div>
-                        <div class="overlay">
-                          <h1>Multi-Scale Validation</h1>
-                          <p>Verily convinced 😊</p>
-                      </div>
-                  </div>
-            </div> 
-            <!-- close gallery -->
-            <!-- start popup containers -->
-            <div class="popup-container" id="popup1">
-                <div class="popup-box">
-                    <div class="popup-close-wrapper">
-                        <button class="popup-close">&times;</button>
-                    </div>
-                    <h2>Biophysical Modeling</h2>
-                    <p>Details about biophysical modeling...</p>
-                    <div style="height: 800px;"></div>
-                    <p>More text</p>
+            <div class="developers-table">
+                <div class="profile-grid" id="profiles">
+                    <!-- Pictures will be added here dynamically -->
                 </div>
             </div>
-            <div class="popup-container" id="popup2">
-                <div class="popup-box">
-                    <div class="popup-close-wrapper">
-                        <button class="popup-close">&times;</button>
-                    </div>
-                    <h2>Popup for card #2</h2>
-                    <p>Details</p>
-                </div>
-            </div>
-            <div class="popup-container" id="popup3">
-                <div class="popup-box">
-                    <div class="popup-close-wrapper">
-                        <button class="popup-close">&times;</button>
-                    </div>
-                    <h2>Popup for card #3</h2>
-                    <p>Details</p>
-                </div>
-            </div>
-            <div class="popup-container" id="popup4">
-                <div class="popup-box">
-                    <div class="popup-close-wrapper">
-                        <button class="popup-close">&times;</button>
-                    </div>
-                    <h2>Popup for card #4</h2>
-                    <p>Details</p>
-                </div>
-            </div>
-            <div class="popup-container" id="popup5">
-                <div class="popup-box">
-                    <div class="popup-close-wrapper">
-                        <button class="popup-close">&times;</button>
-                    </div>
-                    <h2>Popup for card #5</h2>
-                    <p>Details</p>
-                </div>
-            </div>
-            <div class="popup-container" id="popup6">
-                <div class="popup-box">
-                    <div class="popup-close-wrapper">
-                        <button class="popup-close">&times;</button>
-                    </div>
-                    <h2>Popup for card #6</h2>
-                    <p>Details</p>
-                </div>
-            </div>
-            <!-- end popup containers -->
+
         </div> <!-- close content -->
     </div> <!-- close content wrapper -->
 </div> <!-- close main -->
@@ -343,6 +245,56 @@
             }
         });
     });
+
+    // --------------------
+    // Dynamic Developers Table
+    // --------------------
+    async function fetchGitHubProfile(username) {
+            const response = await fetch(`https://api.github.com/users/${username}`);
+            if (!response.ok) {
+                console.error(`Failed to fetch profile for ${username}`);
+                return null;
+            }
+            return await response.json();
+        }
+
+        async function populateProfilePictures() {
+            const usernames = [
+                'stephanie-r-jones', 'jasmainak', 'ntolley',  'dylansdaniels',
+                'asoplata', 'rythorpe', 'samnemo', 'blakecaldwell', 
+                'ramcdougal', 'cjayb', 'gtdang', 'kmilo9999', 'chenghuzi', 
+                'carolinafernandezp', 'katduecker'
+            ]; 
+            const profiles = await Promise.all(usernames.map(fetchGitHubProfile));
+
+            const profilesGrid = document.getElementById('profiles');
+            profiles.forEach(profile => {
+                if (profile) {
+                    const profileDiv = document.createElement('div');
+                    profileDiv.className = 'profile';
+
+                    // Create link
+                    const link = document.createElement('a');
+                    link.href = profile.html_url;
+                    link.target = '_blank'; // Open in a new tab
+
+                    // Add profile picture
+                    const img = document.createElement('img');
+                    img.src = profile.avatar_url;
+                    img.alt = `${profile.login}'s avatar`;
+
+                    // Append image to link, and link to profileDiv
+                    link.appendChild(img);
+                    profileDiv.appendChild(link);
+
+                    // Append profileDiv to the grid
+                    profilesGrid.appendChild(profileDiv);
+                }
+            });
+        }
+
+        // Populate the pictures grid
+        populateProfilePictures();
 
 </script>
 
