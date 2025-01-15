@@ -145,6 +145,7 @@ code {
     flex-direction: column;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle drop shadow */
     position: fixed;
+    z-index: 9999;
 }
 
 #topbar-wrapper {
@@ -300,26 +301,29 @@ code {
     max-width: 1200px;
     margin: 0 auto; /* Center gallery */
     padding: 20px 0px; /* Optional padding */
-  }
+}
   
-  /* Card */
-  .card {
+/* Card */
+.card {
     position: relative;
-    border-radius: 10px; /* round corners */
-    width: calc(33.333% - 20px); /* Three cards per row with spacing */
+    border-radius: 10px; 
+    /* round corners */
+    width: calc(33.333% - 20px); 
+    /* three cards per row with spacing */
     max-width: 300px;
-    height: 180px; /* Explicit height */
+    height: 180px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    /* hides content (e.g., background) outside of card */
     transition: transform 0.2s ease-in-out;
-  }
+}
   
-  .card:hover {
+.card:hover {
     transform: scale(1.05); /* Subtle zoom on hover */
-  }
+}
   
-  /* Image as Background */
-  .card .image {
+/* Image as Background */
+.card .image {
     position: absolute;
     top: 0;
     left: 0;
@@ -328,69 +332,84 @@ code {
     background-size: cover; /* preserve aspect ratio of img */
     background-position: center;
     background-repeat: no-repeat;
+    transition: transform 0.3s ease;
     z-index: 1;
-  }
+}
   
-  /* Overlay - Text Visible by Default */
-  .overlay {
+/* Overlay - Text Visible by Default */
+.overlay {
     position: relative;
     z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
     width: 100%;
     height: 100%;
     padding: 15px;
-    /* white transparent background behind overlay */
     background: rgba(255, 255, 255, 0.9);
     text-align: left;
     line-height: 1.4;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-    box-sizing: border-box; /* include padding in dimensions */
-  }
+    box-sizing: border-box; 
+    /* border-box to include padding in the dimensions */
+    display: block;
+    overflow: hidden;
+    overflow-wrap: break-word; 
+}
   
-  /* Hide Text on Hover */
-  .card:hover .overlay {
-    opacity: 0; /* make overlay transparent */
-    visibility: hidden; /* ensure it's not focusable */
-  }
+/* Hide Text on Hover */
+.card:hover .overlay {
+    opacity: 100%; 
+    /* visibility: hidden; */
+    /* ensure it's not focusable */
+}
 
-  .overlay h1, .overlay p {
+/* Hover Effect */
+.card:hover .image {
+    transform: scale(1.2); 
+}
+
+.overlay h1 {
     font-family: 'Inter', sans-serif !important;
     color: #636363 !important;
     font-weight: normal;
-    font-size: clamp(0.8rem, 1vw, 1.2rem); /* Responsive font scaling */
+    font-size: 20px;
     margin: 0;
-    line-height: 1.2; /* Prevent excessive line spacing */
-    overflow-wrap: break-word; /* Ensure long words wrap */
-  }
-  
-  .overlay p {
-    font-size: 16px !important;
-    color: #8b8b8b !important;
-  }
+    line-height: 1.2;
+}
 
-  .overlay h1 {
+.overlay p {
+    font-family: 'Inter', sans-serif !important;
+    color: #8b8b8b !important;
+    font-size: 16px !important;
+    margin: 0;
+
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important; 
+}
+
+.overlay h1 {
     font-size: 20px;
     margin-bottom: 10px;
-  }
+}
 
-  .card a {
+.card a {
     text-decoration: none !important; /* Remove underline from links inside the overlay */
-  }
+}
   
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
+/* Responsive Adjustments */
+@media (max-width: 768px) {
     .card {
-      width: calc(50% - 20px); /* Two cards per row on smaller screens */
+        width: calc(50% - 20px); /* Two cards per row on smaller screens */
     }
-  }
-  
-  @media (max-width: 576px) {
+}
+
+@media (max-width: 576px) {
     .card {
-      width: 100%; /* Full width on mobile */
+        width: 100%; /* Full width on mobile */
     }
-  }
+}
 
 /* 
 # --------------------
@@ -442,6 +461,20 @@ code {
     overflow-y: auto; /* add scrolling */
 }
 
+.popup-box h2 {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-weight: 400 !important;
+}
+
+.popup-box p {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    text-align: justify !important;
+    font-size: 20px !important;
+    padding-left: 100px !important;
+    padding-right: 100px !important;
+    padding-bottom: 50px !important;
+}
+
 .popup-close-wrapper {
     position: absolute;  /* Position it relative to the popup box */
     top: 20px;
@@ -464,6 +497,51 @@ code {
 
 .popup-close:hover {
     background: #aaa;
+}
+
+/* 
+# --------------------
+# Funders sections
+# -------------------- 
+*/
+
+#funders p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji" !important;
+    font-weight: 500 !important;
+    text-align: center !important;
+    color: #000000 !important;
+    font-size: 23px !important;
+    line-height: 1.2 !important;
+    margin: 15px !important;
+}
+
+/* Container to center the whole grid horizontally */
+.logo-container {
+    display: flex;
+    justify-content: center; /* Horizontally center the grid */
+    padding: 20px; /* Optional padding around the grid */
+}
+
+/* Responsive Grid */
+.logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Dynamic columns, no empty space */
+    gap: 10px; /* Space between cells */
+    max-width: 100%; /* Ensure it doesn't exceed the container width */
+    justify-items: center; /* Ensures logos are centered within their cells */
+}
+
+/* Logo Cells */
+.logo {
+    height: 65px; /* Fixed height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img {
+    max-height: 100%;
+    object-fit: contain; /* Keeps logos proportional */
 }
 
 /* 
