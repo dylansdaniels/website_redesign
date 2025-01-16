@@ -1,0 +1,7 @@
+name: website-redesign
+dependencies:
+  - python=3.12
+  - beautifulsoup4
+  - pip
+  - pypandoc
+
