@@ -1,5 +1,5 @@
 <!--
-# Title: 1.2 Calculation of Primary Electric Currents
+# Title: 3.2 Cortical Column Structure
 # Updated: 2024-11-14
 #
 # Contributors:

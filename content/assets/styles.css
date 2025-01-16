@@ -112,9 +112,17 @@ code {
     left: 0;
     background-color: #88548c;
     /* overflow-x: hidden; */
-    overflow: hidden; 
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overflow-x: hidden; 
     transition: 0.3s;
     padding-top: 10px;
+}
+
+/* hide scrollbar for WebKit browsers (Chrome, Safari) */
+.sidebar::-webkit-scrollbar {
+    display: none;
 }
 
 .sidebar a, p {

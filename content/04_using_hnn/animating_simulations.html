@@ -11,28 +11,107 @@
 <body>
 
 	<div id="mySidebar" class="sidebar">
-		<p style="color:#e5a734">
+		<a>
 			Human Neocortical Neurosolver
-		</p>
+		</a>
 		<br>
 		<a href="/website_redesign/content/preface.html">Preface</a>
 		<div class="sidebar-list">
 			<a id="sidebar-header" onclick="toggleSubmenu(event)">
 		<span class="toggle-icon">+</span>
-				1. Under the Hood
+				1. Overview
 			</a>
 			<div class="submenu">
-				<a href="/website_redesign/content/01_under_the_hood/cortical_column_structure.html">1.1 Cortical Column Structure</a>
-				<a href="/website_redesign/content/01_under_the_hood/primary_electric_currents.html">1.2 Calculation of Primary Electric Currents</a>
+				<a href="/website_redesign/content/01_overview/challange.html">1.1 Challenge in Connecting EEG MEG to Neural Circuits </a>
+				<a href="/website_redesign/content/01_overview/using_hnn.html">1.2 How HNN solve the Challenge by Bridging Scales</a>
+				<a href="/website_redesign/content/01_overview/sample_workflow.html">1.3 Overview of the Simulation Workflow</a>
 			</div>
 		</div>
 		<div class="sidebar-list">
 			<a id="sidebar-header" onclick="toggleSubmenu(event)">
 		<span class="toggle-icon">+</span>
-				2 Simulating ERPs
+				2. Background
 			</a>
 			<div class="submenu">
-				<a href="/website_redesign/content/02_simulating_erps/overview_of_erps.html">2.1 Review of ERPs</a>
+				<a href="/website_redesign/content/02_background/biophysical_modeling.html">2.1 Challenge in Connecting EEG MEG to Neural Circuits </a>
+				<a href="/website_redesign/content/02_background/signal_origins.html">2.2 The Origins of Source Localize MEG/EEG Primary Currents</a>
+				<a href="/website_redesign/content/02_background/glossary.html">2.3 Glossary of Terms</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				3. Assumptions and Validation
+			</a>
+			<div class="submenu">
+				<a href="/website_redesign/content/03_assumptions/template_model.html">3.1 Template Model</a>
+				<a href="/website_redesign/content/03_assumptions/cortical_column_structure.html">3.2 Cortical Column Structure</a>
+				<a href="/website_redesign/content/03_assumptions/primary_electric_currents.html">3.3 Primary Electrical Currents</a>
+				<a href="/website_redesign/content/03_assumptions/neuron_morphology.html">3.4 Neuron Morphology and Physiology</a>
+				<a href="/website_redesign/content/03_assumptions/synaptic_connectivity.html">3.5 Synaptic Connectivity</a>
+				<a href="/website_redesign/content/03_assumptions/evoked_rhythmic_inputs.html">3.6 Evoked and Rhythmic Driving Inputs</a>
+				<a href="/website_redesign/content/03_assumptions/tonic_noisy.html">3.7 Tonic and Noisy Driving Inputs</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				4. Using HNN
+			</a>
+			<div class="submenu">
+				<a href="/website_redesign/content/04_using_hnn/installation.html">4.1 Installation</a>
+				<a href="/website_redesign/content/04_using_hnn/network_parameters.html">4.2 Network Parameters</a>
+				<a href="/website_redesign/content/04_using_hnn/drive_parameters.html">4.3 Drive Parameters</a>
+				<a href="/website_redesign/content/04_using_hnn/loading_data.html">4.4 Loading Data</a>
+				<a href="/website_redesign/content/04_using_hnn/running_simulations.html">4.5 Running Simulations</a>
+				<a href="/website_redesign/content/04_using_hnn/plotting_firing_patterns.html">4.6 Plotting Firing Patterns</a>
+				<a href="/website_redesign/content/04_using_hnn/recording_lfp.html">4.7 Recording and Plotting LFP</a>
+				<a href="/website_redesign/content/04_using_hnn/animating_simulations.html">4.8 Animating Simulations</a>
+				<a href="/website_redesign/content/04_using_hnn/more_visualizations.html">4.9 Additional Visualizations</a>
+				<a href="/website_redesign/content/04_using_hnn/parallelizing.html">4.10 Running Parallel Simulations</a>
+				<a href="/website_redesign/content/04_using_hnn/optimization.html">4.11 Optimizing Evoked Responses and Rhythms</a>
+				<a href="/website_redesign/content/04_using_hnn/batch_simulation.html">4.12 Running Batch Simulations</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				5. Simulating ERPs
+			</a>
+			<div class="submenu">
+				<a href="/website_redesign/content/05_erps/overview_of_erps.html">2.1 Review of ERPs</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				6. Simulating Alpha/Beta Rhythms
+			</a>
+			<div class="submenu">
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				7. Simulating Gamma Rhythms
+			</a>
+			<div class="submenu">
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				8. From Data to Simulation
+			</a>
+			<div class="submenu">
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				9. Feature Demos
+			</a>
+			<div class="submenu">
 			</div>
 		</div>
 	</div>
@@ -56,8 +135,8 @@
     <div id="content">
 
 <!--
-# Title: 1.1 Cortical Column Structure
-# Updated: 2024-11-14
+# Title: 4.8 Animating Simulations
+# Updated: 2024-01-16
 #
 # Contributors:
     # Dylan Daniels

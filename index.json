@@ -1,16 +1,70 @@
 {
     "00_preface.md": "Preface",
-    "01_under_the_hood": [
-        "1. Under the Hood",
+    "01_overview": [
+        "1. Overview",
         {
-            "01_cortical_column_structure.md": "1.1 Cortical Column Structure",
-            "02_primary_electric_currents.md": "1.2 Calculation of Primary Electric Currents"
+            "01_challange.md": "1.1 Challenge in Connecting EEG MEG to Neural Circuits ",
+            "02_using_hnn.md": "1.2 How HNN solve the Challenge by Bridging Scales",
+            "03_sample_workflow.md": "1.3 Overview of the Simulation Workflow"
         }
     ],
-    "02_simulating_erps": [
-        "2 Simulating ERPs",
+    "02_background": [
+        "2. Background",
+        {
+            "01_biophysical_modeling.md": "2.1 Challenge in Connecting EEG MEG to Neural Circuits ",
+            "02_signal_origins.md": "2.2 The Origins of Source Localize MEG/EEG Primary Currents",
+            "03_glossary.md": "2.3 Glossary of Terms"
+        }
+    ],
+    "03_assumptions": [
+        "3. Assumptions and Validation",
+        {
+            "01_template_model.md": "3.1 Template Model",
+            "02_cortical_column_structure.md": "3.2 Cortical Column Structure",
+            "03_primary_electric_currents.md": "3.3 Primary Electrical Currents",
+            "04_neuron_morphology.md": "3.4 Neuron Morphology and Physiology",
+            "05_synaptic_connectivity.md": "3.5 Synaptic Connectivity",
+            "06_evoked_rhythmic_inputs.md": "3.6 Evoked and Rhythmic Driving Inputs",
+            "07_tonic_noisy.md": "3.7 Tonic and Noisy Driving Inputs"
+        }
+    ],
+    "04_using_hnn": [
+        "4. Using HNN",
+        {
+            "01_installation.md": "4.1 Installation",
+            "02_network_parameters.md": "4.2 Network Parameters",
+            "03_drive_parameters.md": "4.3 Drive Parameters",
+            "04_loading_data.md": "4.4 Loading Data",
+            "05_running_simulations.md": "4.5 Running Simulations",
+            "06_plotting_firing_patterns.md": "4.6 Plotting Firing Patterns",
+            "07_recording_lfp.md": "4.7 Recording and Plotting LFP",
+            "08_animating_simulations.md": "4.8 Animating Simulations",
+            "09_more_visualizations.md": "4.9 Additional Visualizations",
+            "10_parallelizing.md": "4.10 Running Parallel Simulations",
+            "11_optimization.md": "4.11 Optimizing Evoked Responses and Rhythms",
+            "12_batch_simulation.md": "4.12 Running Batch Simulations"
+        }
+    ],
+    "05_erps": [
+        "5. Simulating ERPs",
         {
             "01_overview_of_erps.md": "2.1 Review of ERPs"
         }
+    ],
+    "06_alpha_beta": [
+        "6. Simulating Alpha/Beta Rhythms",
+        {}
+    ],
+    "07_gamma": [
+        "7. Simulating Gamma Rhythms",
+        {}
+    ],
+    "08_data_to_simulation": [
+        "8. From Data to Simulation",
+        {}
+    ],
+    "09_feature_demos": [
+        "9. Feature Demos",
+        {}
     ]
 }

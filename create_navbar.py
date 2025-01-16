@@ -12,9 +12,9 @@ def generate_navbar_html():
     indent = '\t\t'
 
     html = '\t<div id="mySidebar" class="sidebar">' + \
-           f'\n{indent}<p style="color:#e5a734">' + \
+           f'\n{indent}<a>' + \
            f'\n\t{indent}Human Neocortical Neurosolver' + \
-           f'\n{indent}</p>\n{indent}<br>'
+           f'\n{indent}</a>\n{indent}<br>'
 
     # load page index .json file
     index_path = os.getcwd() + "/index.json"

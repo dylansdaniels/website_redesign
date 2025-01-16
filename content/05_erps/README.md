@@ -1,5 +1,5 @@
 <!--
-# Title: 1.1 Cortical Column Structure
+# Title: 5. Simulating ERPs
 # Updated: 2024-11-14
 #
 # Contributors:
