@@ -186,29 +186,60 @@ code {
 
 }
 
-.topbar img {
+#topbar-logo {
     height: 30px;
     width: auto;
+
     /* Center img around topbar */
     position: absolute;
         /* requires 'position: relative' in .topbar */
     left: 50%;
     transform: translateX(-50%);
         /*  'transform' offsets the image's width */
+
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-.topbar:hover img {
-    opacity: 1; /* Make the image visible when hovering over the topbar */
+.topbar:hover #topbar-logo {
+    opacity: 1; 
 }
 
 /* Social media icons */
 /* ------------------ */
 
 .socials-container {
-    margin-left: auto;
+    display: flex;
     height: inherit;
+    gap: 15px;
+    padding: 20px;
+    margin-left: auto;
+}
+
+/* Social icons styles */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    padding: 0px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease; /* zoom transition */
+}
+
+.social-icons a img {
+    width: auto;
+    height: 20px;
+    object-fit: contain;
+    display: block;
+    filter: grayscale(100%) brightness(150%) !important;
+}
+
+.social-icons a:hover {
+    transform: scale(1.1); /* zoom on hover */
 }
 
 

@@ -162,8 +162,37 @@
             </div>
         </div>
         <img 
+            id="topbar-logo"
             src="https://hnn.brown.edu/wp-content/uploads/hnn-medium.png"
         />
+        <div class="socials-container">
+            <div class="social-icons">
+                <a 
+                    href="https://github.com/jonescompneurolab/hnn-core" 
+                    target="_blank" 
+                    aria-label="GitHub">
+                    <img 
+                        src="/website_redesign/content/assets/icons/github.png"
+                        alt="GitHub">
+                </a>
+                <a 
+                    href="https://bsky.app/profile/hnnsolver.bsky.social" 
+                    target="_blank"
+                    aria-label="BlueSky">
+                    <img 
+                        src="/website_redesign/content/assets/icons/bluesky.png"
+                        alt="BlueSky">
+                </a>
+                <a 
+                    href="https://www.linkedin.com/company/human-neocortical-neurosolver/" 
+                    target="_blank"
+                    aria-label="LinkedIn">
+                    <img 
+                        src="/website_redesign/content/assets/icons/linkedin.png"
+                        alt="LinkedIn">
+                </a>
+            </div>
+        </div>
     </div>
 
     <div id="content-wrapper">
@@ -288,6 +317,19 @@
                     // prepend root path to link
                     const resolvedHref = "file://" + rootPath + href;
                     link.setAttribute("href", resolvedHref);
+                }
+            });
+            // Update image sources for social icons
+            const images = document.querySelectorAll(".social-icons img");
+            images.forEach(img => {
+                const src = img.getAttribute("src");
+
+                if (src && src.startsWith("/")) {
+                    // extract the local root directory
+                    const rootPath = currentDir.split("/website_redesign/")[0];
+                    // prepend root path to image source
+                    const resolvedSrc = "file://" + rootPath + src;
+                    img.setAttribute("src", resolvedSrc);
                 }
             });
         }

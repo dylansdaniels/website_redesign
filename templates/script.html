@@ -112,6 +112,19 @@
                     link.setAttribute("href", resolvedHref);
                 }
             });
+            // Update image sources for social icons
+            const images = document.querySelectorAll(".social-icons img");
+            images.forEach(img => {
+                const src = img.getAttribute("src");
+
+                if (src && src.startsWith("/")) {
+                    // extract the local root directory
+                    const rootPath = currentDir.split("/website_redesign/")[0];
+                    // prepend root path to image source
+                    const resolvedSrc = "file://" + rootPath + src;
+                    img.setAttribute("src", resolvedSrc);
+                }
+            });
         }
     });
 
