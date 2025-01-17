@@ -181,14 +181,44 @@ code {
     padding: 0 0px;
     border-bottom: 2.5px solid lightgrey;
     width: 100%;
+    /* relative position is needed for the img positioning */
+    position: relative; 
+
 }
 
 .topbar img {
     height: 30px;
     width: auto;
-    margin-left: auto;
-    padding: 0px 20px;
+
+    /* Center img around topbar */
+    /* ------------------------ */
+    position: absolute;
+    left: 50%;
+        /* 'left: 50%' centers the around the topbar */
+    transform: translateX(-50%);
+        /*  the transform offset the images width */
+
+    /* Center img around remaining space */
+    /* --------------------------------- */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+
+    /* Center img around whole page */
+    /* ---------------------------- */
+    /* position: absolute; */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
 }
+
+/* Social media icons */
+/* ------------------ */
+
+.socials-container {
+    margin-left: auto;
+    height: inherit;
+}
+
+
 
 /* Collapse navbar */
 /* --------------- */

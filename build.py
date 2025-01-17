@@ -4,7 +4,7 @@ import os
 import pypandoc
 from create_page_index import update_page_index
 from create_navbar import generate_navbar_html
-from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 
 
 # %% ######################################################################
