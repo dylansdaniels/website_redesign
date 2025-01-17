@@ -54,7 +54,7 @@ a:hover {
 #content p {
     font-family: 'Merriweather', Georgia, serif;
     display: block;
-    color: #333;
+    color: inherit;
     font-size: inherit;
     padding: 0px;
     line-height: 1.6;
@@ -74,6 +74,8 @@ a:hover {
 code {
     color: var(--hnn-violet);
     background-color: #f6f8fa;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
     display: inline;
     padding: 0.2em 0.4em;
     border-radius: 6px;
@@ -196,13 +198,83 @@ code {
     cursor: pointer;
     background: none;
     color: #bababa;
-    padding: 0px 10px 2px 20px;
+    padding: 0px 5px 3px 20px;
     border: none;
     height: inherit;
 }
 
 .openbtn:hover {
     color: #444;
+}
+
+/* Home button */
+/* ----------- */
+
+.home-link {
+    display: inline-flex;
+    text-decoration: none;
+    height: inherit;
+    padding: 0px 5px;
+  }
+
+.home-icon-container {
+    height: inherit;
+    align-items: center;
+    position: relative;
+    display: inline-flex;
+
+}
+
+.home-icon {
+    fill: #bababa; /* Default color */
+    height: 22px;
+    width: auto;
+    /* transition: fill 0.3s ease; */
+}
+
+/* Light versus dark mode */
+/* ---------------------- */
+
+.theme-toggle {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto; 
+    height: inherit; 
+    border: none; 
+    background: none;
+    padding: 0 5px; 
+    /* transition: transform 0.3s ease; */
+}
+
+.theme-toggle svg {
+    width: 20px; 
+    height: 20px;
+    fill: #bababa; 
+}
+
+body.dark-mode {
+    background-color: #14181e;
+    color: #d3d3d3;
+}
+
+body.dark-mode #content-wrapper a {
+    color: var(--hnn-yellow);
+}
+
+body.dark-mode #content-wrapper a:hover {
+    color: var(--hnn-violet);
+}
+
+body.dark-mode code {
+    color: var(--hnn-violet);
+    background-color: #d3d3d3;
+}
+
+.sidebar.dark-mode {
+    background-color: #313438;
+    border-right: 2px solid #d3d3d3 !important;
 }
 
 /* Change font size */
@@ -218,7 +290,7 @@ code {
     background: none;
     color: #bababa;
     border: none;
-  }
+}
 
 .dropdown-button {
     all: unset;  /* Remove default button styles */

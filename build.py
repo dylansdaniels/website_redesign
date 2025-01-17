@@ -6,21 +6,6 @@ from create_page_index import update_page_index
 from create_navbar import generate_navbar_html
 from bs4 import BeautifulSoup
 
-# %%
-# test_path = os.getcwd()+'/content'
-# test_file = '/00_preface.md'
-
-# %%
-# test_out = '/test_preface.html'
-
-# converted = pypandoc.convert_file(test_path+test_file, 'html')
-# converted = BeautifulSoup(converted, 'html.parser').prettify()
-
-# %%
-# with open(test_path+test_out, 'w') as f:
-#     for line in converted:
-#         f.write(line)
-
 
 # %% ######################################################################
 def compile_page_components():
@@ -120,17 +105,25 @@ def generate_page_html(page_paths):
 
         # use pypandoc to convert md to html
         try:
-            converted = pypandoc.convert_file(path, 'html')
+            converted = pypandoc.convert_file(
+                path,
+                to='html',
+                # format='md',
+            )
         except Exception as ex:
             # download Pandoc dependency if needed
             if "No pandoc was found" in ex:
                 print("Downloading pandoc dependency")
                 pypandoc.download_pandoc()
-                converted = pypandoc.convert_file(path, 'html')
+                converted = pypandoc.convert_file(
+                    path,
+                    to='html',
+                    # format='md',
+                )
             else:
                 raise ex
         # format html for readability
-        converted = BeautifulSoup(converted, 'html.parser').prettify()
+        # converted = BeautifulSoup(converted, 'html.parser').prettify()
         page_components['body'] = converted
 
         file_contents = ""
