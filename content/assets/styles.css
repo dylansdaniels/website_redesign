@@ -181,33 +181,26 @@ code {
     padding: 0 0px;
     border-bottom: 2.5px solid lightgrey;
     width: 100%;
-    /* relative position is needed for the img positioning */
     position: relative; 
+        /* 'relative' needed for the img centering */
 
 }
 
 .topbar img {
     height: 30px;
     width: auto;
-
     /* Center img around topbar */
-    /* ------------------------ */
     position: absolute;
+        /* requires 'position: relative' in .topbar */
     left: 50%;
-        /* 'left: 50%' centers the around the topbar */
     transform: translateX(-50%);
-        /*  the transform offset the images width */
+        /*  'transform' offsets the image's width */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 
-    /* Center img around remaining space */
-    /* --------------------------------- */
-    /* margin-left: auto; */
-    /* margin-right: auto; */
-
-    /* Center img around whole page */
-    /* ---------------------------- */
-    /* position: absolute; */
-    /* left: 50%; */
-    /* transform: translateX(-50%); */
+.topbar:hover img {
+    opacity: 1; /* Make the image visible when hovering over the topbar */
 }
 
 /* Social media icons */
