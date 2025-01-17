@@ -286,6 +286,10 @@ code {
     /* transition: fill 0.3s ease; */
 }
 
+.home-icon:hover {
+    fill: #444;
+}
+
 /* Light versus dark mode */
 /* ---------------------- */
 
@@ -306,6 +310,10 @@ code {
     width: 20px; 
     height: 20px;
     fill: #bababa; 
+}
+
+.theme-toggle svg:hover {
+    fill: #444; 
 }
 
 body.dark-mode {
@@ -355,6 +363,10 @@ body.dark-mode code {
     justify-content: center;
     cursor: pointer;
     padding: 0px 10px;
+}
+
+.dropdown-button:hover {
+    color: #444;
 }
   
 .dropdown-content {
