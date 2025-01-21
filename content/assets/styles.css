@@ -26,7 +26,7 @@ a {
 
 a:hover {
     color: var(--hnn-purple);
-  }
+}
 
 #main {
     transition: margin-left 0.5s;
@@ -83,7 +83,7 @@ code {
     font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; 
     font-weight: normal;
     border: 1px solid #e1e4e8;
-  }
+}
   
   /* Block code (triple backticks) */
   pre code {
@@ -96,7 +96,7 @@ code {
     font-size: 85%;
     font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
     border: 1px solid #e1e4e8; /* Consistent border style */
-  }
+}
 
 /* 
 # --------------------
@@ -199,10 +199,18 @@ code {
 
     opacity: 0;
     transition: opacity 0.3s ease;
+    z-index: -1;
 }
 
 .topbar:hover #topbar-logo {
     opacity: 1; 
+}
+
+/* Hide the logo on smaller screens */
+@media (max-width: 600px) {
+    #topbar-logo {
+        display: none;
+    }
 }
 
 /* Social media icons */
@@ -211,15 +219,13 @@ code {
 .socials-container {
     display: flex;
     height: inherit;
-    gap: 15px;
-    padding: 20px;
+    padding: 0px 20px 0px 0px;
     margin-left: auto;
 }
 
-/* Social icons styles */
 .social-icons {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     padding: 0px;
 }
 
@@ -235,13 +241,43 @@ code {
     height: 20px;
     object-fit: contain;
     display: block;
-    filter: grayscale(100%) brightness(150%) !important;
+    filter: grayscale(100%) brightness(70%);
 }
 
 .social-icons a:hover {
-    transform: scale(1.1); /* zoom on hover */
+    transform: scale(1.1);
+    filter: grayscale(100%) brightness(50%);
 }
 
+/* Topbar menu icons */
+/* ------------------ */
+
+.menu-container {
+    display: flex;
+    height: inherit;
+    padding: 0px 0px 0px 25px;
+}
+
+.menu-icons {
+    display: flex;
+    gap: 15px;
+    padding: 0px;
+}
+
+.menu-icons img {
+    width: auto;
+    height: 20px;
+    padding: 0px;
+    object-fit: contain;
+    display: block;
+    filter: grayscale(100%) brightness(70%);
+}
+
+.menu-icons img:hover {
+    transform: scale(1.15);
+    transition: transform 0.2s ease;
+    filter: grayscale(100%) brightness(30%);
+}
 
 
 /* Collapse navbar */
@@ -252,12 +288,14 @@ code {
     cursor: pointer;
     background: none;
     color: #bababa;
-    padding: 0px 5px 3px 20px;
+    padding: 0px 0px 3px 0px;
     border: none;
     height: inherit;
+    transition: transform 0.2s ease;
 }
 
 .openbtn:hover {
+    transform: scale(1.1);
     color: #444;
 }
 
@@ -268,8 +306,8 @@ code {
     display: inline-flex;
     text-decoration: none;
     height: inherit;
-    padding: 0px 5px;
-  }
+    padding: 0px 0px;
+}
 
 .home-icon-container {
     height: inherit;
@@ -283,15 +321,16 @@ code {
     fill: #bababa; /* Default color */
     height: 22px;
     width: auto;
-    /* transition: fill 0.3s ease; */
+    transition: transform 0.2s ease;
 }
 
 .home-icon:hover {
+    transform: scale(1.15);
     fill: #444;
 }
 
-/* Light versus dark mode */
-/* ---------------------- */
+/* Light/dark button */
+/* ----------------- */
 
 .theme-toggle {
     cursor: pointer;
@@ -302,19 +341,24 @@ code {
     height: inherit; 
     border: none; 
     background: none;
-    padding: 0 5px; 
+    padding: 0 0px; 
     /* transition: transform 0.3s ease; */
 }
 
 .theme-toggle svg {
     width: 20px; 
-    height: 20px;
+    height: 19px;
     fill: #bababa; 
+    transition: transform 0.2s ease;
 }
 
 .theme-toggle svg:hover {
+    transform: scale(1.1);
     fill: #444; 
 }
+
+/* Dark mode theme */
+/* --------------- */
 
 body.dark-mode {
     background-color: #14181e;
@@ -339,6 +383,23 @@ body.dark-mode code {
     border-right: 2px solid #d3d3d3 !important;
 }
 
+body.dark-mode .dropdown-content {
+    background-color: #313438;
+}
+
+body.dark-mode .dropdown-content::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 15px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 8px solid #313438;
+}
+
+
 /* Change font size */
 /* ---------------- */
 
@@ -347,22 +408,21 @@ body.dark-mode code {
     align-items: center;
     position: relative;
     display: inline-flex;
-    font-size: 20px;
     cursor: pointer;
     background: none;
-    color: #bababa;
     border: none;
 }
 
 .dropdown-button {
-    all: unset;  /* Remove default button styles */
+    all: unset;
+        /* Remove default button styles */
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    padding: 0px 10px;
+    padding: 0px 0px;
 }
 
 .dropdown-button:hover {
@@ -372,25 +432,54 @@ body.dark-mode code {
 .dropdown-content {
     display: none;
     position: absolute;
+    width: auto;
+    white-space: nowrap;
     top: 100%;
-    background-color: #f9f9f9;
-    min-width:  95px;
-    box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.2);
+    left: -12px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
     padding: 5px 5px;
-  }
+    border: 3px solid #ba83be;
+}
 
-#dropdownButton span {
-    font-family: 'Merriweather', Georgia, serif;
+/* Triangle pointing to pressed button */
+.dropdown-content::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 15px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 8px solid #f9f9f9;
+}
+
+/* Second triangle to act as a border */
+.dropdown-content::after {
+    content: "";
+    position: absolute;
+    top: -12px; 
+        /* align vertically */
+    left: 11px;
+        /* align horizontally */
+    border-left: 10px solid transparent; 
+        /* larger side */
+    border-right: 10px solid transparent; 
+        /* larger side */
+    border-bottom: 12px solid #ba83be; 
+        /* larger triangle */
+    z-index: -1; 
 }
 
 .fontsize-btn {
-    font-family: 'Merriweather', Georgia, serif;
-    font-size: 20px;
+    display: inline-flex;
     cursor: pointer;
     background: none;
-    color: #bababa;
-    padding: 5px 10px;
+    padding: 5px 7px;
     border: none;
+    margin: 0px;
 }
 
 .fontsize-btn:hover {

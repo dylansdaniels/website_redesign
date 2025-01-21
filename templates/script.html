@@ -113,7 +113,7 @@
                 }
             });
             // Update image sources for social icons
-            const images = document.querySelectorAll(".social-icons img");
+            const images = document.querySelectorAll(".social-icons img, .menu-icons img");
             images.forEach(img => {
                 const src = img.getAttribute("src");
 
@@ -163,6 +163,13 @@
             sidebar.classList.toggle('dark-mode', isDarkMode);
             localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
         });
+    });
+
+    // Remove the +/- symbols from the tooltip
+    // ----------------------------------------
+    document.querySelectorAll('.sidebar a').forEach(anchor => {
+        const cleanedText = anchor.textContent.replace(/[+\-]/g, '').trim();
+        anchor.setAttribute('title', cleanedText);
     });
 
 </script>
