@@ -869,11 +869,6 @@ projections signal conscious touch sensation. Exp. Brain Res. 84,
         }
     }
 
-    // This function will add the full text to the title attribute for all anchor tags
-    document.querySelectorAll('.sidebar a').forEach(anchor => {
-        anchor.setAttribute('title', anchor.textContent);
-    });
-
     // This function will update the sidebar links when a page is loaded
     // locally so that sidebar naivagation remains functional without the
     // need for a server
@@ -896,7 +891,8 @@ projections signal conscious touch sensation. Exp. Brain Res. 84,
                     link.setAttribute("href", resolvedHref);
                 }
             });
-            // Update image sources for social icons
+
+            // Update image sources for icons
             const images = document.querySelectorAll(".social-icons img, .menu-icons img");
             images.forEach(img => {
                 const src = img.getAttribute("src");
@@ -949,11 +945,73 @@ projections signal conscious touch sensation. Exp. Brain Res. 84,
         });
     });
 
-    // Remove the +/- symbols from the tooltip
-    // ----------------------------------------
+    // -------------------------------
+    // Custom tooltips for the sidebar
+    // -------------------------------
+
+    // Flag to track tooltip visibility
+    let isTooltipVisible = false;
+
+    // Add text to the 'sidebar-tooltip' attribute for sidebar anchor tags
     document.querySelectorAll('.sidebar a').forEach(anchor => {
         const cleanedText = anchor.textContent.replace(/[+\-]/g, '').trim();
-        anchor.setAttribute('title', cleanedText);
+        anchor.setAttribute('sidebar-tooltip', cleanedText);
+    });
+
+    // Handle sidebar tooltips
+    document.querySelectorAll('.sidebar a').forEach(function(link) {
+        link.addEventListener('mouseenter', function(event) {
+            const tooltipText = event.target.getAttribute('sidebar-tooltip');
+            
+            if (!tooltipText || isTooltipVisible) return; // Only show tooltip if none is visible
+
+            // Check if the text is overflowing
+            if (event.target.scrollWidth > event.target.offsetWidth) {
+                const delay = 500; // Set the delay time (in ms), adjust as needed
+
+                // Create the tooltip after the delay
+                setTimeout(function() {
+                    // Remove any existing tooltips
+                    const existingTooltip = document.querySelector('.sidebar-tooltip');
+                    if (existingTooltip) {
+                        existingTooltip.remove();
+                    }
+
+                    // Create the tooltip element dynamically
+                    const tooltip = document.createElement('div');
+                    tooltip.classList.add('sidebar-tooltip');  // Use the existing class
+                    tooltip.innerText = tooltipText;
+
+                    // Append the tooltip to the body (outside sidebar)
+                    document.body.appendChild(tooltip);
+
+                    // Get the position of the link
+                    const rect = event.target.getBoundingClientRect();
+                    
+                    // Position the tooltip based on the link's position
+                    tooltip.style.position = 'absolute';
+                    tooltip.style.left = `${rect.left + window.scrollX + 20}px`;
+                    tooltip.style.top = `${rect.bottom + window.scrollY}px`;  // Adjust with spacing
+
+                    // Make sure the tooltip is visible
+                    tooltip.style.opacity = '1';
+
+                    // Set the flag to true indicating that the tooltip is visible
+                    isTooltipVisible = true;
+                }, delay); // Delay the tooltip creation
+            }
+        });
+
+        link.addEventListener('mouseleave', function(event) {
+            // Remove the tooltip when the mouse leaves
+            const tooltip = document.querySelector('.sidebar-tooltip');
+            if (tooltip) {
+                tooltip.remove();
+            }
+
+            // Reset the flag to false when the tooltip is removed
+            isTooltipVisible = false;
+        });
     });
 
 </script>
