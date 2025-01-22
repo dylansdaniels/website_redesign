@@ -192,7 +192,6 @@ code {
     z-index: -1;
 }
 
-
 .sidebar .toggle-icon {
     float: right;
     font-weight: bold;
@@ -212,6 +211,29 @@ code {
 .sidebar-list .submenu.open {
     display: block;  /* show the submenu when the 'open' class is added */
     transition: max-height 0.3s ease-in-out; /* smooth transition */
+}
+
+/* collapse all button */
+.navbar-header {
+    display: flex;
+    padding: 5px 0px 20px 0px;
+    align-items: center;
+
+}
+
+/* Styling for the SVG icon */
+.collapse-icon {
+    display: block;
+    margin-left: auto;
+    padding-right: 20px;
+    width: 20px; 
+    fill: #fff; 
+    cursor: pointer;
+    transition: fill 0.3s ease-in-out; 
+}
+
+.collapse-icon:hover {
+    fill: var(--hnn-yellow);
 }
 
 /* 

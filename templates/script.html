@@ -230,4 +230,31 @@
         });
     });
 
+    // Function to close all open submenus in the navbar
+    // --------------------------------------------------
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to close all open submenus in the navbar
+        function closeAllSubmenus() {
+            const allSubmenus = document.querySelectorAll('.submenu.open'); // Select all open submenus
+            allSubmenus.forEach(submenu => {
+                submenu.classList.remove('open'); // Remove 'open' class to collapse
+                const toggleIcon = submenu.previousElementSibling.querySelector('.toggle-icon');
+                if (toggleIcon) {
+                    toggleIcon.textContent = '+'; // Reset icon to '+'
+                }
+            });
+        }
+
+        // Add functionality to collapse button (SVG icon)
+        const collapseIcon = document.querySelector('.collapse-icon');
+        if (collapseIcon) {
+            collapseIcon.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent event propagation to avoid unwanted behavior
+                closeAllSubmenus(); // Close all open submenus when the icon is clicked
+            });
+        }
+    });
+
+
+
 </script>

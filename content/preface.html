@@ -11,10 +11,16 @@
 <body>
 
 	<div id="mySidebar" class="sidebar">
+		<div class="navbar-header">
 		<a>
 			Human Neocortical Neurosolver
 		</a>
 		<br>
+			<svg class="collapse-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+				<path d="M9 9H4v1h5V9z"/>
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M5 3l1-1h7l1 1v7l-1 1h-2v2l-1 1H3l-1-1V6l1-1h2V3zm1 2h4l1 1v4h2V3H6v2zm4 1H3v7h7V6z"/>
+			</svg>
+		</div>
 		<a href="/website_redesign/content/preface.html">Preface</a>
 		<div class="sidebar-list">
 			<a id="sidebar-header" onclick="toggleSubmenu(event)">
@@ -457,6 +463,33 @@ Dr. Stephanie Jones at Brown University</p>
             isTooltipVisible = false;
         });
     });
+
+    // Function to close all open submenus in the navbar
+    // --------------------------------------------------
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to close all open submenus in the navbar
+        function closeAllSubmenus() {
+            const allSubmenus = document.querySelectorAll('.submenu.open'); // Select all open submenus
+            allSubmenus.forEach(submenu => {
+                submenu.classList.remove('open'); // Remove 'open' class to collapse
+                const toggleIcon = submenu.previousElementSibling.querySelector('.toggle-icon');
+                if (toggleIcon) {
+                    toggleIcon.textContent = '+'; // Reset icon to '+'
+                }
+            });
+        }
+
+        // Add functionality to collapse button (SVG icon)
+        const collapseIcon = document.querySelector('.collapse-icon');
+        if (collapseIcon) {
+            collapseIcon.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent event propagation to avoid unwanted behavior
+                closeAllSubmenus(); // Close all open submenus when the icon is clicked
+            });
+        }
+    });
+
+
 
 </script>
 
