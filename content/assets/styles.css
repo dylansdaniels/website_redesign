@@ -127,9 +127,15 @@ code {
     display: none;
 }
 
-.sidebar a, p {
+/* Add bottom space to the last element when scrolling */
+.sidebar .sidebar-list:last-child {
+    margin-bottom: 40px;
+}
+
+.sidebar a {
     position: relative;
-    padding: 8px 24px 8px 24px;
+    padding: 4px 24px;
+    margin: 8px 0px;
     text-decoration: none;
     font-size: 17px;
     color: #ffffff;
@@ -138,10 +144,6 @@ code {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.sidebar p {
-    margin: 0px;
 }
 
 .sidebar a:hover {
@@ -216,9 +218,13 @@ code {
 /* collapse all button */
 .navbar-header {
     display: flex;
-    padding: 5px 0px 20px 0px;
+    padding: 10px 0px 20px 0px;
     align-items: center;
 
+}
+
+.navbar-header a {
+    margin: 0px;
 }
 
 /* Styling for the SVG icon */
