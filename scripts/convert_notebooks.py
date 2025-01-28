@@ -114,8 +114,8 @@ def convert_notebooks_to_html(input_folder, output_folder):
 # %%
 def test_nb_conversion():
 
-    input_folder = "../content/05_erps"
-    output_folder = "../content/05_erps"
+    input_folder = "../tests"
+    output_folder = "../tests"
 
     convert_notebooks_to_html(input_folder, output_folder)
 
