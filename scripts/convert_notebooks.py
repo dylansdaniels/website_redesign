@@ -1,8 +1,9 @@
 # %%
 import os
+import base64
+import html
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
-import html
 
 
 def execute_notebook(notebook_path):
@@ -18,52 +19,78 @@ def execute_notebook(notebook_path):
     return notebook
 
 
-def extract_html_from_notebook(notebook):
+def save_plot_as_image(img_data, img_filename, output_dir):
+    """Saves the plot image to the specified directory."""
+    img_path = os.path.join(output_dir, img_filename)
+    with open(img_path, "wb") as img_file:
+        img_file.write(base64.b64decode(img_data))
+    return
+
+
+def extract_html_from_notebook(notebook, output_dir, use_base64=False):
     """Extracts HTML for cell contents and outputs,
     including code and markdown."""
     html_output = []
     for cell in notebook["cells"]:
         if cell["cell_type"] == "code":
-            # Add the code cell
+            # add code cell contents
             html_output.append(
                 f"<div class='code-cell'><pre>{cell['source']}</pre></div>"
             )
 
-            # Add outputs
+            # add code cell outputs
             for output in cell.get("outputs", []):
-                # Handle text/plain outputs (e.g., print statements,
-                # function returns)
+                # handle plain outputs (e.g., function returns)
                 if "text/plain" in output.get("data", {}):
                     text_output = output["data"]["text/plain"]
-                    # Escape < and > characters
+                    # escape the '<' and '>' characters which can be
+                    # incorrectly interpreted as HTML tags
                     escaped_text_output = html.escape(text_output)
                     html_output.append(
                         "<div class='output-cell'><pre>"
                         f"{escaped_text_output}</pre></div>"
                     )
 
-                # Handle stdout (stream output from print statements)
+                # handle stdout (e.g., outputs from print statements)
                 if output.get("output_type") == "stream" \
                         and output.get("name") == "stdout":
                     stream_output = output.get("text", "")
-                    # Escape < and > characters
+                    # escape < and > characters
                     escaped_stream_output = html.escape(stream_output)
                     html_output.append(
                         "<div class='output-cell'><pre>"
                         f"{escaped_stream_output}</pre></div>"
                     )
 
-                # Handle image outputs (e.g., plots)
-                # with Base64-encoded images
+                # handle image outputs (e.g., plots) using either Base64
+                # encoding or .png files
                 if "image/png" in output.get("data", {}):
                     img_data = output["data"]["image/png"]
-                    html_output.append(
-                        "<div class='output-cell'>"
-                        "<img src='data:image/png;base64,"
-                        f"{img_data}'/></div>"
-                    )
 
-                # Handle errors (tracebacks)
+                    if use_base64:
+                        # optional Base64 encoding for image embedding
+                        html_output.append(
+                            "<div class='output-cell'>"
+                            "<img src='data:image/png;base64,"
+                            f"{img_data}'/></div>"
+                        )
+                    else:
+                        # save the image as a file and reference it in HTML
+                        img_filename = (
+                            f"{output.get('metadata', {}).get('name', 'plot')}"
+                            ".png"
+                        )
+                        save_plot_as_image(
+                            img_data,
+                            img_filename,
+                            output_dir
+                        )
+                        html_output.append(
+                            "<div class='output-cell'>"
+                            f"<img src='{img_filename}'/></div>"
+                        )
+
+                # handle errors
                 if output.get("output_type") == "error":
                     error_message = "\n".join(output.get("traceback", []))
                     html_output.append(
@@ -72,8 +99,7 @@ def extract_html_from_notebook(notebook):
                     )
 
         elif cell["cell_type"] == "markdown":
-            # Add the markdown cell content
-            # Escape < and > characters
+            # escape < and > characters
             markdown_content = html.escape(cell["source"])
             html_output.append(
                 "<div class='markdown-cell'>"
@@ -83,7 +109,11 @@ def extract_html_from_notebook(notebook):
     return "\n".join(html_output)
 
 
-def convert_notebooks_to_html(input_folder, output_folder):
+def convert_notebooks_to_html(
+    input_folder,
+    output_folder,
+    use_base64=False,
+):
     """Executes and converts .ipynb files in the input folder to HTML."""
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -92,14 +122,14 @@ def convert_notebooks_to_html(input_folder, output_folder):
         path = os.path.join(input_folder, filename)
         if filename.endswith(".ipynb"):
             print(f"Processing notebook: {filename}")
-
-            # Execute the notebook
             executed_notebook = execute_notebook(path)
 
-            # Extract HTML content
-            html_content = extract_html_from_notebook(executed_notebook)
+            html_content = extract_html_from_notebook(
+                executed_notebook,
+                output_folder,
+                use_base64
+            )
 
-            # Save to HTML file
             output_file = os.path.join(
                 output_folder, f"{os.path.splitext(filename)[0]}.html"
             )
@@ -117,7 +147,11 @@ def test_nb_conversion():
     input_folder = "../tests"
     output_folder = "../tests"
 
-    convert_notebooks_to_html(input_folder, output_folder)
+    convert_notebooks_to_html(
+        input_folder,
+        output_folder,
+        use_base64=False,
+    )
 
 
 test_nb_conversion()
