@@ -1,16 +1,83 @@
 <html><body>
-<div class='markdown-cell'><pre># Section A</pre></div>
-<div class='code-cell'><pre>print("hello world")</pre></div>
-<div class='output-cell'><pre>hello world
-</pre></div>
-<div class='markdown-cell'><pre>## Subsection i</pre></div>
-<div class='code-cell'><pre>import matplotlib.pyplot as plt
+<div class='markdown-cell'>
+	<h1>
+		Section A
+	</h1>
+</div>
+<div class='code-cell'>
+	<code class='language-python'>
+		print("hello world")
+	</code>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		hello world
+	</div>
+</div>
+<div class='markdown-cell'>
+	<h2>
+		Subsection i
+	</h2>
+</div>
+<div class='code-cell'>
+	<code class='language-python'>
+		import matplotlib.pyplot as plt
 import numpy as np
 
 x = np.linspace(0, 2 * np.pi, 100)
 y = np.sin(x)
-plt.plot(x, y)</pre></div>
-<div class='output-cell'><pre>[&lt;matplotlib.lines.Line2D at 0x12c7bebd0&gt;]</pre></div>
-<div class='output-cell'><pre>&lt;Figure size 640x480 with 1 Axes&gt;</pre></div>
-<div class='output-cell'><img src='plot.png'/></div>
+plt.plot(x, y)
+	</code>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		[&lt;matplotlib.lines.Line2D at 0x17bac1e50&gt;]
+	</div>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		&lt;Figure size 640x480 with 1 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='../tests/output_nb_test/fig_01.png'/>
+</div>
+<div class='code-cell'>
+	<code class='language-python'>
+		x = '## Test'
+header_level = x.count("#")
+x = x.split("# ")[-1]
+
+print(
+    x,
+    header_level
+)
+	</code>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		Test 2
+	</div>
+</div>
+<div class='markdown-cell'>
+	<h4>
+		header
+	</h4>
+</div>
+<div class='markdown-cell'>
+	### test
+
+markdown cell spanning multiple lines
+</div>
+<div class='markdown-cell'>
+	standalone markdown text
+</div>
 </body></html>

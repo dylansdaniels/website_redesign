@@ -2,8 +2,11 @@
 import os
 import base64
 import html
+import re
+import json
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
+from bs4 import BeautifulSoup
 
 
 def execute_notebook(notebook_path):
@@ -27,15 +30,61 @@ def save_plot_as_image(img_data, img_filename, output_dir):
     return
 
 
-def extract_html_from_notebook(notebook, output_dir, use_base64=False):
+def html_to_hierarchical_json(
+        html: str,
+        filename: str,
+        ):
+    soup = BeautifulSoup(html, 'html.parser')
+    hierarchy = {filename: {}}
+    stack = []
+
+    for tag in soup.find_all(re.compile(r'h[1-6]')):
+        level = int(tag.name[1])
+        title = tag.get_text(strip=True)
+        contents = str(tag) + ''.join(
+            str(sibling) for sibling in tag.find_next_siblings()
+            if not re.match(r'h[1-6]', sibling.name)
+        )
+        section = {"contents": contents}
+
+        while stack and stack[-1][1] >= level:
+            stack.pop()
+
+        if stack:
+            parent = stack[-1][0]
+            if "sections" not in parent:
+                parent["sections"] = {}
+            parent["sections"][title] = section
+        else:
+            hierarchy[filename][title] = section
+
+        stack.append((section, level))
+
+    return hierarchy
+
+
+def extract_html_from_notebook(
+        notebook,
+        input_dir,  # changed
+        filename,
+        use_base64=False
+        ):
     """Extracts HTML for cell contents and outputs,
     including code and markdown."""
+
     html_output = []
+    fig_id = 0
+    delim = os.path.sep
+
     for cell in notebook["cells"]:
         if cell["cell_type"] == "code":
             # add code cell contents
             html_output.append(
-                f"<div class='code-cell'><pre>{cell['source']}</pre></div>"
+                "<div class='code-cell'>"
+                "\n\t<code class='language-python'>"
+                f"\n\t\t{cell['source']}"
+                "\n\t</code>"
+                "\n</div>"
             )
 
             # add code cell outputs
@@ -47,8 +96,14 @@ def extract_html_from_notebook(notebook, output_dir, use_base64=False):
                     # incorrectly interpreted as HTML tags
                     escaped_text_output = html.escape(text_output)
                     html_output.append(
-                        "<div class='output-cell'><pre>"
-                        f"{escaped_text_output}</pre></div>"
+                        "<div class='output-cell'>"
+                        "<div class='output-label'>"
+                        "\n\tOut:"
+                        "\n</div>"
+                        "\n\t<div class='output-code'>"
+                        f"\n\t\t{escaped_text_output}"
+                        "\n\t</div>"
+                        "\n</div>"
                     )
 
                 # handle stdout (e.g., outputs from print statements)
@@ -58,8 +113,14 @@ def extract_html_from_notebook(notebook, output_dir, use_base64=False):
                     # escape < and > characters
                     escaped_stream_output = html.escape(stream_output)
                     html_output.append(
-                        "<div class='output-cell'><pre>"
-                        f"{escaped_stream_output}</pre></div>"
+                        "<div class='output-cell'>"
+                        "<div class='output-label'>"
+                        "\n\tOut:"
+                        "\n</div>"
+                        "\n\t<div class='output-code'>"
+                        f"\n\t\t{escaped_stream_output}"
+                        "\t</div>"
+                        "\n</div>"
                     )
 
                 # handle image outputs (e.g., plots) using either Base64
@@ -71,23 +132,34 @@ def extract_html_from_notebook(notebook, output_dir, use_base64=False):
                         # optional Base64 encoding for image embedding
                         html_output.append(
                             "<div class='output-cell'>"
-                            "<img src='data:image/png;base64,"
-                            f"{img_data}'/></div>"
+                            "\n\t<img src='data:image/png;base64,"
+                            f"{img_data}'/>"
+                            "\n</div>"
                         )
                     else:
                         # save the image as a file and reference it in HTML
-                        img_filename = (
-                            f"{output.get('metadata', {}).get('name', 'plot')}"
-                            ".png"
-                        )
+                        fig_id += 1
+                        if fig_id <= 10:
+                            img_filename = f"fig_0{fig_id}.png"
+                        else:
+                            img_filename = f"fig_{fig_id}.png"
+
+                        output_dir = f"{input_dir}{delim}output_nb_" + \
+                            f"{filename.split('.ipynb')[0]}"
+
+                        if not os.path.exists(output_dir):
+                            os.makedirs(output_dir)
+
                         save_plot_as_image(
                             img_data,
                             img_filename,
-                            output_dir
+                            output_dir,
                         )
                         html_output.append(
                             "<div class='output-cell'>"
-                            f"<img src='{img_filename}'/></div>"
+                            f"\n\t<img src='{output_dir}{delim}"
+                            f"{img_filename}'/>"
+                            "\n</div>"
                         )
 
                 # handle errors
@@ -95,28 +167,65 @@ def extract_html_from_notebook(notebook, output_dir, use_base64=False):
                     error_message = "\n".join(output.get("traceback", []))
                     html_output.append(
                         "<div class='output-cell error'>"
-                        f"<pre>{error_message}</pre></div>"
+                        "\n\t<pre>"
+                        f"\n\t\t{error_message}"
+                        "\n\t</pre>"
+                        "\n</div>"
                     )
 
         elif cell["cell_type"] == "markdown":
             # escape < and > characters
             markdown_content = html.escape(cell["source"])
-            html_output.append(
-                "<div class='markdown-cell'>"
-                f"<pre>{markdown_content}</pre></div>"
-            )
 
-    return "\n".join(html_output)
+            # Identify header sections
+            # -------------------------
+            # Assume a header cell will only contain the header text
+            # and no additional text content, though there may be extra
+            # new lines or spaces that should be removed when determining
+            # if a cell is a header cell
+
+            # get lines with content, removing empty new lines
+            lines = [
+                line.strip() for line in markdown_content.splitlines()
+                if line.strip()
+            ]
+
+            # handle header sections
+            if (len(lines) == 1) and lines[0].startswith("#"):
+
+                header_level = markdown_content.count("#")
+                markdown_content = markdown_content.split("# ")[-1]
+
+                html_output.append(
+                    "<div class='markdown-cell'>"
+                    f"\n\t<h{header_level}>"
+                    f"\n\t\t{markdown_content}"
+                    f"\n\t</h{header_level}>"
+                    "\n</div>"
+                )
+
+            # handle non-header sections
+            else:
+                html_output.append(
+                    "<div class='markdown-cell'>"
+                    f"\n\t{markdown_content}"
+                    "\n</div>"
+                )
+
+    html_output = "\n".join(html_output)
+
+    return html_output
 
 
 def convert_notebooks_to_html(
     input_folder,
-    output_folder,
+    # output_folder,
     use_base64=False,
+    write_html=False,
 ):
     """Executes and converts .ipynb files in the input folder to HTML."""
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
+    # if not os.path.exists(output_folder):
+    #     os.makedirs(output_folder)
 
     for filename in os.listdir(input_folder):
         path = os.path.join(input_folder, filename)
@@ -126,31 +235,44 @@ def convert_notebooks_to_html(
 
             html_content = extract_html_from_notebook(
                 executed_notebook,
-                output_folder,
+                input_folder,  # changed
+                filename,
                 use_base64
             )
 
-            output_file = os.path.join(
-                output_folder, f"{os.path.splitext(filename)[0]}.html"
-            )
-            with open(output_file, "w", encoding="utf-8") as f:
-                f.write("<html><body>\n")
-                f.write(html_content)
-                f.write("\n</body></html>")
+            if write_html:
+                output_file = os.path.join(
+                    input_folder, f"{os.path.splitext(filename)[0]}.html"
+                )
+                with open(output_file, "w", encoding="utf-8") as f:
+                    f.write("<html><body>\n")
+                    f.write(html_content)
+                    f.write("\n</body></html>")
 
-            print(f"Converted: {filename} -> {output_file}")
+            nb_html_json = html_to_hierarchical_json(
+                html_content,
+                filename,
+            )
+
+            output_json = os.path.join(
+                input_folder, f"{os.path.splitext(filename)[0]}.json"
+            )
+
+            with open(output_json, "w") as f:
+                json.dump(nb_html_json, f)
+
+            print(f"Successfully converted '{filename}'")
 
 
 # %%
 def test_nb_conversion():
 
     input_folder = "../tests"
-    output_folder = "../tests"
 
     convert_notebooks_to_html(
         input_folder,
-        output_folder,
         use_base64=False,
+        write_html=True,
     )
 
 

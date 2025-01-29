@@ -559,6 +559,122 @@ body.dark-mode .dropdown-content::before {
 .fontsize-btn:hover {
     color: #444;
 }
+
+/* 
+# --------------------
+# Notebook html 
+# -------------------- 
+*/
+
+/* markdown cells */
+.markdown-cell {
+    margin: 10px 0px;
+    padding: 0px;
+    /* background-color: #f2f2f2; */
+    /* color: #333; */
+    /* border: 1px solid #ddd; */
+}
+
+.code-cell {
+    font-family: 'Courier New', monospace;
+    word-wrap: break-word;
+    margin: 10px 0;
+    padding: 0px;
+    border-radius: 5px;
+    border: solid 2px #ba83be;
+}
+
+/* code cells */
+.code-cell code.language-python {
+    box-sizing: border-box !important;
+    display: block !important;
+    /* background-color: #f4f3f3; */
+    background-color: #fff;
+    color: #3b3b3b;
+    /* white-space: pre-line; */
+    white-space: pre-wrap;
+    padding: 15px 30px;
+    margin: 0px;
+    font-size: 0.85em;
+    border: none;
+}
+
+body.dark-mode .code-cell code.language-python{
+    background-color: #313438;
+    color: #fff;
+    text-shadow: none;
+}
+
+/* Styling for the output cell */
+.output-cell {
+    display: flex;
+    align-items: flex-start;
+    font-family: 'Courier New', monospace;
+    margin: 10px 0;
+}
+
+.output-label {
+    font-family: 'Courier New', monospace;
+    /* font-weight: bold; */
+    /* color: #ba83be; */
+    color: #fe6565;
+    font-size: 0.9em;
+}
+
+body.dark-mode .output-label {
+    font-weight: bold;
+}
+
+.output-code {
+    flex-grow: 1; 
+        /* Allow code ouput to fill available space */
+    white-space: pre-line;
+    /* background-color: #fbfae1; */
+    color: #333 !important;
+    margin: 0px 10px;
+    margin-top: 0px;
+    padding: 0px 10px;
+    font-size: 0.9em;
+}
+
+body.dark-mode .output-code {
+    color: #fff !important;
+    font-weight: 500;
+}
+
+/* output images */
+.output-cell img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    padding: 20px;
+
+}
+
+/* Target specific syntax elements */
+.code-cell code .token {
+    background: none !important;
+}
+
+body.dark-mode .code-cell code .token.number {
+    color: #ef9f43;
+}
+
+body.dark-mode .code-cell code .token.string {
+    color: #56d131;
+}
+
+body.dark-mode .code-cell code .token.keyword {
+    color: #038dfd;
+}
+
+body.dark-mode .code-cell code .token.operator {
+    color: #decf03;
+}
+
+body.dark-mode .code-cell code .token.punctuation {
+    color: #ba83be;
+}
     
 /* 
 # --------------------

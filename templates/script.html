@@ -255,6 +255,44 @@
         }
     });
 
-
-
 </script>
+
+<!------------------------ #
+# Code syntax highlighting #
+# ------------------------->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+
+<script>
+    // Remove the leading whitespace/newlines around code blocks 
+    // caused by the html structure used for readability
+    document.addEventListener("DOMContentLoaded", function() {
+        // Select all code blocks
+        const codeBlocks = document.querySelectorAll('.code-cell code.language-python');
+
+        codeBlocks.forEach(function(block) {
+            // Apply syntax highlighting to the code block
+            // Note: The below line is not needed with this setup
+            //  but may be useful in the case that the method
+            //  is later changed
+            // Prism.highlightElement(block);
+
+            // Get the code with highlighted classes
+            const highlightedHTML = block.innerHTML;
+
+            // Remove leading/trailing whitespace/newlines
+            block.innerHTML = highlightedHTML.trim();
+        });
+
+        // Select all output-code blocks
+        const outputBlocks = document.querySelectorAll('.output-cell .output-code');
+
+        outputBlocks.forEach(function(block) {
+            // Remove unwanted leading/trailing whitespace or newlines
+            block.textContent = block.textContent.trim();
+        });
+    });
+
