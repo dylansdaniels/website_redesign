@@ -75,6 +75,7 @@ def extract_html_from_notebook(
     html_output = []
     fig_id = 0
     delim = os.path.sep
+    aggregated_output = ""
 
     for cell in notebook["cells"]:
         if cell["cell_type"] == "code":
@@ -95,16 +96,9 @@ def extract_html_from_notebook(
                     # escape the '<' and '>' characters which can be
                     # incorrectly interpreted as HTML tags
                     escaped_text_output = html.escape(text_output)
-                    html_output.append(
-                        "<div class='output-cell'>"
-                        "<div class='output-label'>"
-                        "\n\tOut:"
-                        "\n</div>"
-                        "\n\t<div class='output-code'>"
-                        f"\n\t\t{escaped_text_output}"
-                        "\n\t</div>"
-                        "\n</div>"
-                    )
+
+                    # Aggregate plain text outputs
+                    aggregated_output += f"\n\t\t{escaped_text_output}"
 
                 # handle stdout (e.g., outputs from print statements)
                 if output.get("output_type") == "stream" \
@@ -112,20 +106,26 @@ def extract_html_from_notebook(
                     stream_output = output.get("text", "")
                     # escape < and > characters
                     escaped_stream_output = html.escape(stream_output)
-                    html_output.append(
-                        "<div class='output-cell'>"
-                        "<div class='output-label'>"
-                        "\n\tOut:"
-                        "\n</div>"
-                        "\n\t<div class='output-code'>"
-                        f"\n\t\t{escaped_stream_output}"
-                        "\t</div>"
-                        "\n</div>"
-                    )
+
+                    aggregated_output += f"\n\t\t{escaped_stream_output}"
 
                 # handle image outputs (e.g., plots) using either Base64
                 # encoding or .png files
                 if "image/png" in output.get("data", {}):
+                    # If there are accumulated outputs, output them first
+                    if aggregated_output:
+                        html_output.append(
+                            "<div class='output-cell'>"
+                            "<div class='output-label'>"
+                            "\n\tOut:"
+                            "\n</div>"
+                            "\n\t<div class='output-code'>"
+                            f"{aggregated_output}"
+                            "\n\t</div>"
+                            "\n</div>"
+                        )
+                        aggregated_output = ""
+
                     img_data = output["data"]["image/png"]
 
                     if use_base64:
@@ -146,7 +146,7 @@ def extract_html_from_notebook(
 
                         output_folder = "output_nb_" + \
                             f"{filename.split('.ipynb')[0]}"
-                        
+
                         output_dir = f"{input_dir}{delim}{output_folder}"
 
                         if not os.path.exists(output_dir):
@@ -174,6 +174,21 @@ def extract_html_from_notebook(
                         "\n\t</pre>"
                         "\n</div>"
                     )
+
+            # If there are any accumulated outputs after processing all
+            # outputs for the cell
+            if aggregated_output:
+                html_output.append(
+                    "<div class='output-cell'>"
+                    "<div class='output-label'>"
+                    "\n\tOut:"
+                    "\n</div>"
+                    "\n\t<div class='output-code'>"
+                    f"{aggregated_output}"
+                    "\n\t</div>"
+                    "\n</div>"
+                )
+                aggregated_output = ""
 
         elif cell["cell_type"] == "markdown":
             # escape < and > characters

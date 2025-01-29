@@ -582,21 +582,23 @@ body.dark-mode .dropdown-content::before {
     padding: 0px;
     border-radius: 5px;
     border: solid 2px #ba83be;
+    overflow: hidden;
+    /* overflow-y: hidden;
+    overflow-x: scroll; */
 }
 
 /* code cells */
 .code-cell code.language-python {
-    box-sizing: border-box !important;
-    display: block !important;
-    /* background-color: #f4f3f3; */
+    /* box-sizing: border-box !important; */
+    display: block;
     background-color: #fff;
     color: #3b3b3b;
-    /* white-space: pre-line; */
-    white-space: pre-wrap;
     padding: 15px 30px;
     margin: 0px;
     font-size: 0.85em;
     border: none;
+    white-space: pre;
+    overflow-x: auto;
 }
 
 body.dark-mode .code-cell code.language-python{
@@ -626,6 +628,11 @@ body.dark-mode .output-label {
 }
 
 .output-code {
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: calc(1em * 10);
+        /* 10 lines max before scroll, adjust as needed */
     flex-grow: 1; 
         /* Allow code ouput to fill available space */
     white-space: pre-line;
