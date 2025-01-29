@@ -5,6 +5,7 @@ import html
 import re
 import json
 import nbformat
+import markdown
 from nbconvert.preprocessors import ExecutePreprocessor
 from bs4 import BeautifulSoup
 
@@ -194,40 +195,13 @@ def extract_html_from_notebook(
             # escape < and > characters
             markdown_content = html.escape(cell["source"])
 
-            # Identify header sections
-            # -------------------------
-            # Assume a header cell will only contain the header text
-            # and no additional text content, though there may be extra
-            # new lines or spaces that should be removed when determining
-            # if a cell is a header cell
+            html_content = markdown.markdown(markdown_content)
 
-            # get lines with content, removing empty new lines
-            lines = [
-                line.strip() for line in markdown_content.splitlines()
-                if line.strip()
-            ]
-
-            # handle header sections
-            if (len(lines) == 1) and lines[0].startswith("#"):
-
-                header_level = markdown_content.count("#")
-                markdown_content = markdown_content.split("# ")[-1]
-
-                html_output.append(
-                    "<div class='markdown-cell'>"
-                    f"\n\t<h{header_level}>"
-                    f"\n\t\t{markdown_content}"
-                    f"\n\t</h{header_level}>"
-                    "\n</div>"
-                )
-
-            # handle non-header sections
-            else:
-                html_output.append(
-                    "<div class='markdown-cell'>"
-                    f"\n\t{markdown_content}"
-                    "\n</div>"
-                )
+            html_output.append(
+                "<div class='markdown-cell'>"
+                f"\n\t{html_content}"
+                "\n</div>"
+            )
 
     html_output = "\n".join(html_output)
 
