@@ -144,8 +144,10 @@ def extract_html_from_notebook(
                         else:
                             img_filename = f"fig_{fig_id}.png"
 
-                        output_dir = f"{input_dir}{delim}output_nb_" + \
+                        output_folder = "output_nb_" + \
                             f"{filename.split('.ipynb')[0]}"
+                        
+                        output_dir = f"{input_dir}{delim}{output_folder}"
 
                         if not os.path.exists(output_dir):
                             os.makedirs(output_dir)
@@ -157,7 +159,7 @@ def extract_html_from_notebook(
                         )
                         html_output.append(
                             "<div class='output-cell'>"
-                            f"\n\t<img src='{output_dir}{delim}"
+                            f"\n\t<img src='{output_folder}{delim}"
                             f"{img_filename}'/>"
                             "\n</div>"
                         )
@@ -267,7 +269,7 @@ def convert_notebooks_to_html(
 # %%
 def test_nb_conversion():
 
-    input_folder = "../tests"
+    input_folder = "../content/05_erps"
 
     convert_notebooks_to_html(
         input_folder,
