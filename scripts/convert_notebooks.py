@@ -7,7 +7,6 @@ import json
 import nbformat
 import markdown
 from nbconvert.preprocessors import ExecutePreprocessor
-from bs4 import BeautifulSoup
 
 
 def execute_notebook(notebook_path):
@@ -31,37 +30,56 @@ def save_plot_as_image(img_data, img_filename, output_dir):
     return
 
 
-def html_to_hierarchical_json(
-        html: str,
-        filename: str,
-        ):
-    soup = BeautifulSoup(html, 'html.parser')
-    hierarchy = {filename: {}}
-    stack = []
+def html_to_hierarchical_json(html: str, filename: str):
+    """
+    Convert html into hierarchical json
+    """
+    # variable for processed json output
+    contents = {filename: {}}
 
-    for tag in soup.find_all(re.compile(r'h[1-6]')):
-        level = int(tag.name[1])
-        title = tag.get_text(strip=True)
-        contents = str(tag) + ''.join(
-            str(sibling) for sibling in tag.find_next_siblings()
-            if not re.match(r'h[1-6]', sibling.name)
-        )
-        section = {"contents": contents}
+    # variable to track section content and metadata
+    current_html = None
+    current_title = None
+    current_level = None
 
-        while stack and stack[-1][1] >= level:
-            stack.pop()
+    # split html into lines while removing empty lines
+    lines = [line.strip() for line in html.splitlines() if line.strip()]
 
-        if stack:
-            parent = stack[-1][0]
-            if "sections" not in parent:
-                parent["sections"] = {}
-            parent["sections"][title] = section
-        else:
-            hierarchy[filename][title] = section
+    for i, line in enumerate(lines):
+        # identify lines with header tags
+        line_match = re.match(r'(<h[1-6]>)(.*?)(</h[1-6]>)', line)
 
-        stack.append((section, level))
+        if line_match:
+            # when a new header is found, save the previous section
+            if current_title:
+                contents[filename][current_title] = {}
+                contents[filename][current_title]['level'] = current_level
+                contents[filename][current_title]['html'] = \
+                    '\n'.join(current_html)
 
-    return hierarchy
+            # get the title, level of the new section
+            current_level = line_match.group(1).strip()
+            current_title = line_match.group(2).strip()
+
+            # start a new section with the previous line
+            current_html = [lines[i-1]]
+
+        elif current_html is not None:
+            # add new html lines
+            current_html.append(lines[i-1])
+
+    # save the last section
+    if current_title:
+        # append the last line
+        current_html.append(line)
+
+        # update contants
+        contents[filename][current_title] = {}
+        contents[filename][current_title]['level'] = current_level
+        contents[filename][current_title]['html'] = \
+            '\n'.join(current_html)
+
+    return contents
 
 
 def extract_html_from_notebook(
@@ -258,7 +276,7 @@ def convert_notebooks_to_html(
 # %%
 def test_nb_conversion():
 
-    input_folder = "../content/05_erps"
+    input_folder = "../tests"
 
     convert_notebooks_to_html(
         input_folder,
