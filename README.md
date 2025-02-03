@@ -1,5 +1,9 @@
 # Website Redesign
 
+## Where to access the deployed verison of this website?
+
+Click here: https://dylansdaniels.github.io/website_redesign/content/preface.html
+
 ## How to use this repository
 
 1. Content creation step: First, you add or edit the actual content. Specifically, this means adding to or editing the various Markdown (filetype `.md`) files located in `content/`.
