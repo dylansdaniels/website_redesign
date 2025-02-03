@@ -30,7 +30,7 @@ def save_plot_as_image(img_data, img_filename, output_dir):
     return
 
 
-def html_to_hierarchical_json(html: str, filename: str):
+def html_to_json(html: str, filename: str):
     """
     Convert html into hierarchical json
     """
@@ -59,6 +59,7 @@ def html_to_hierarchical_json(html: str, filename: str):
 
             # get the title, level of the new section
             current_level = line_match.group(1).strip()
+            current_level = int(current_level.lstrip('<h').rstrip('>'))
             current_title = line_match.group(2).strip()
 
             # start a new section with the previous line
@@ -80,6 +81,90 @@ def html_to_hierarchical_json(html: str, filename: str):
             '\n'.join(current_html)
 
     return contents
+
+
+def structure_json(contents):
+    """
+    Determine the hierarchy of sections based on levels without adding content.
+    Returns a list of sections in order of their hierarchy.
+    """
+    hierarchy = {}
+
+    for filename, sections in contents.items():
+        hierarchy[filename] = {}
+
+        # list to track parent sections for potential nesting
+        parent_stack = []
+
+        for section_title, section_data in sections.items():
+            level = section_data['level']
+            html_contents = section_data['html']
+
+            # Create a section dict with 'title', 'level', and 'sub-sections'
+            section_info = {
+                'title': section_title,
+                'level': level,
+                'html': html_contents,
+                'sub-sections': []
+            }
+
+            # Ensure only sections with a level greater than the current
+            # section remain in the stack as potential parents
+            while parent_stack and parent_stack[-1]['level'] >= level:
+                parent_stack.pop()
+
+            if parent_stack:
+                # Add the section as a child of the last parent
+                parent_stack[-1]['sub-sections'].append(section_info)
+            else:
+                # Add the section as a top-level section
+                hierarchy[filename][section_title] = section_info
+
+            # Add the current section to the parent stack for future nesting
+            parent_stack.append(section_info)
+
+    def remove_blank_subsections(sections):
+        seek = 'sub-sections'
+
+        for k, v in list(sections.items()):
+            print('key:', k)
+            print('value:', v)
+            print('-' * 30)
+
+            if isinstance(v, dict):
+                # check for 'sub-sections' key in dict
+                if seek in v:
+                    print('Subsections present:', (seek in v))
+                    print('Subsection value:', v[seek])
+
+                    # delete empty sub-sections
+                    if v[seek] == []:
+                        print('Blank section found')
+                        del v[seek]
+
+                    # Recursively check all sub-sections
+                    else:
+                        print('Checking sub-sections recursively...')
+                        for sub_section in v[seek]:
+                            remove_blank_subsections(sub_section)
+
+                print('#' * 30)
+
+            elif isinstance(v, list):
+                # if v is an empty list, delete it
+                if v == []:
+                    print('Blank section found in list')
+                    del sections[k]
+                # if v is a list of dicts, iterate through the dicts
+                else:
+                    for dictionary in v:
+                        remove_blank_subsections(dictionary)
+
+        return sections
+
+    hierarchy[filename] = remove_blank_subsections(hierarchy[filename])
+
+    return hierarchy
 
 
 def extract_html_from_notebook(
@@ -258,9 +343,15 @@ def convert_notebooks_to_html(
                     f.write(html_content)
                     f.write("\n</body></html>")
 
-            nb_html_json = html_to_hierarchical_json(
+            # flat json
+            nb_html_json = html_to_json(
                 html_content,
                 filename,
+            )
+
+            # nested json
+            nb_html_json = structure_json(
+                nb_html_json
             )
 
             output_json = os.path.join(
@@ -268,7 +359,7 @@ def convert_notebooks_to_html(
             )
 
             with open(output_json, "w") as f:
-                json.dump(nb_html_json, f)
+                json.dump(nb_html_json, f, indent=4)
 
             print(f"Successfully converted '{filename}'")
 
@@ -277,6 +368,7 @@ def convert_notebooks_to_html(
 def test_nb_conversion():
 
     input_folder = "../tests"
+    input_folder = "../content/05_erps"
 
     convert_notebooks_to_html(
         input_folder,
@@ -286,5 +378,3 @@ def test_nb_conversion():
 
 
 test_nb_conversion()
-
-# %%
