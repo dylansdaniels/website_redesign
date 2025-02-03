@@ -1,3 +1,18 @@
-references
-__pycache__
 home
+references
+
+# OS, run, and IDE artifacts
+__pycache__
+.idea/
+.ipynb_checkpoints
+.DS_Store
+.vscode/
+tags
+*.pyc
+
+# Virtual environments
+.venv
+env/
+venv/
+ENV/
+VENV/
