@@ -22,10 +22,10 @@
             "01_template_model.md": "3.1 Template Model",
             "02_cortical_column_structure.md": "3.2 Cortical Column Structure",
             "03_primary_electric_currents.md": "3.3 Primary Electrical Currents",
-            "04_neuron_morphology.md": "3.4 Neuron Morphology and Physiology",
+            "04_neurons_morphology_and_physiology.md": "3.4 Neurons: Morphology and Physiology",
             "05_synaptic_connectivity.md": "3.5 Synaptic Connectivity",
-            "06_evoked_rhythmic_inputs.md": "3.6 Evoked and Rhythmic Driving Inputs",
-            "07_tonic_noisy.md": "3.7 Tonic and Noisy Driving Inputs"
+            "06_evoked_and_rhythmic_driving_inputs.md": "3.6 Evoked and Rhythmic Driving Inputs",
+            "07_tonic_and_noisy_driving_inputs.md": "3.7 Tonic and Noisy Driving Inputs"
         }
     ],
     "04_using_hnn": [

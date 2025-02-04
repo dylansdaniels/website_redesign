@@ -53,10 +53,10 @@
 				<a href="/website_redesign/content/03_assumptions/template_model.html">3.1 Template Model</a>
 				<a href="/website_redesign/content/03_assumptions/cortical_column_structure.html">3.2 Cortical Column Structure</a>
 				<a href="/website_redesign/content/03_assumptions/primary_electric_currents.html">3.3 Primary Electrical Currents</a>
-				<a href="/website_redesign/content/03_assumptions/neuron_morphology.html">3.4 Neuron Morphology and Physiology</a>
+				<a href="/website_redesign/content/03_assumptions/neurons_morphology_and_physiology.html">3.4 Neurons: Morphology and Physiology</a>
 				<a href="/website_redesign/content/03_assumptions/synaptic_connectivity.html">3.5 Synaptic Connectivity</a>
-				<a href="/website_redesign/content/03_assumptions/evoked_rhythmic_inputs.html">3.6 Evoked and Rhythmic Driving Inputs</a>
-				<a href="/website_redesign/content/03_assumptions/tonic_noisy.html">3.7 Tonic and Noisy Driving Inputs</a>
+				<a href="/website_redesign/content/03_assumptions/evoked_and_rhythmic_driving_inputs.html">3.6 Evoked and Rhythmic Driving Inputs</a>
+				<a href="/website_redesign/content/03_assumptions/tonic_and_noisy_driving_inputs.html">3.7 Tonic and Noisy Driving Inputs</a>
 			</div>
 		</div>
 		<div class="sidebar-list">
@@ -223,12 +223,168 @@
     <div id="content">
 
 <!--
-# Title: 3.6 Evoked and Rhythmic Driving Inputs
+# Title: 3.4 Neurons: Morphology and Physiology
 # Updated: 2024-01-16
 #
 # Contributors:
     # Dylan Daniels
 -->
+<!-- compare original: https://jonescompneurolab.github.io/hnn-under_the_hood/02_morphology-physiology/02_morphology-physiology -->
+<h1 id="neurons-morphology-and-physiology">3.4 Neurons: Morphology and
+Physiology</h1>
+<p>The template cortical column model contains the following types of
+neurons:</p>
+<ol type="1">
+<li>L2/3 multi-compartment pyramidal neurons (PN)</li>
+<li>L2/3 single compartment inhibitory neurons</li>
+<li>L5 multi-compartment pyramidal neurons</li>
+<li>L5 single compartment inhibitory neurons</li>
+</ol>
+<p>Membrane voltages in each simulated compartment are calculated using
+the standard Hodgkin-Huxley parallel conductance equations. Current flow
+between compartments are calculated using properties of the cable
+equation <a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>.</p>
+<h3 id="morphology">Morphology</h3>
+<ul>
+<li>Layer 2/3:
+<ul>
+<li>PN: 7 compartments including 3 apical dendrites, 3 basal dendrites,
+1 soma</li>
+<li>Inhibitory basket neurons: single compartment (soma)</li>
+</ul></li>
+<li>Layer 5:
+<ul>
+<li>PN: 9 compartments including 5 apical dendrites, 3 basal dendrites,
+1 soma.</li>
+<li>As shown below, L5 PNs have longer dendrites than L2/3 PNs. L5 PN
+somas based in L5 with long apical dendrites reaching into L2/3.</li>
+<li>Inhibitory Basket neurons: single compartment (soma).</li>
+<li>L2/3 and L5 basket interneurons are identical but their synaptic
+parameters and local circuit connectivity differs.</li>
+</ul></li>
+</ul>
+<div style="display:block; width:50%; margin: 0 auto;">
+<p><img src="./images/detailed-connectivity.png" /></p>
+</div>
+<table style="border:none">
+<tr>
+<td style="border:none" width>
+<img src="./images/morph-params-01.png" />
+</td>
+<td style="border:none; vertical-align:middle;">
+<img src="./images/morph-params-02.png" />
+</td>
+</tr>
+</table>
+<h3 id="physiology">Physiology</h3>
+<p>The following table displays the ion channels and mechanisms in each
+cell type in the model (<strong>X</strong> indicates the presence of the
+channel/mechanism in the cell type; for advanced modelers: to see the
+NEURON simulator equations used in the channel/mechanism, click on the
+links in the table).</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 10%" />
+<col style="width: 9%" />
+<col style="width: 3%" />
+<col style="width: 4%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 11%" />
+<col style="width: 4%" />
+<col style="width: 5%" />
+<col style="width: 7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Cell Type</th>
+<th style="text-align: right;">Na (fast)</th>
+<th style="text-align: center;">K (fast)</th>
+<th style="text-align: center;">Km</th>
+<th style="text-align: center;">KCa</th>
+<th style="text-align: center;">Ca (L-type)</th>
+<th style="text-align: center;">Ca (T-type)</th>
+<th style="text-align: center;">Ca (decay)</th>
+<th style="text-align: center;">HCN</th>
+<th style="text-align: center;">Leak</th>
+<th style="text-align: center;">Dipole</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Basket</td>
+<td style="text-align: right;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">L2/3 Pyramidal</td>
+<td style="text-align: right;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">P5 Pyramidal</td>
+<td style="text-align: right;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+</tbody>
+</table>
+<p>In the table above, Na (fast) / K (fast) are the fast sodium and
+potassium channels responsible for generating action potentials. Km is
+the muscarine sensitive potassium channel, with a relatively slow
+time-constant and KCa is the calcium-dependent potassium channel, which
+contributes to hyperpolarization after calcium influx into the cell. The
+L- and T-type calcium (Ca) channels represent the high-threshold and
+low-threshold activated calcium channels which together with the
+hyperpolarization-activated cyclic nucleotide gated channel (HCN)
+contribute to bursting. Ca decay represents the calcium extrusion pump,
+which causes intracellular calcium to decay towards a baseline level.
+Leak represents the passive channel, with constant conductance. Dipole
+represents the mechanism that takes into account the primary axial
+current flow within pyramidal neuron dendrites, responsible for the
+generation of simulated signals comparable to MEG/EEG recordings. For
+more details see <a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a>.</p>
+<h2 id="tutorial-references">Tutorial References</h2>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Dayan, P. &amp; Abbott, L. F. Theoretical neuroscience.
+806, (Cambridge, MA: MIT Press, 2001).<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Jones, S. R. et al. Quantitative analysis and
+biophysically realistic neural modeling of the MEG mu rhythm:
+rhythmogenesis and modulation of sensory-evoked responses. J.
+Neurophysiol. 102, 3554–3572 (2009).<a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
     </div> <!-- close content wrapper -->
     </div> <!-- close content -->
 </div> <!-- close main -->

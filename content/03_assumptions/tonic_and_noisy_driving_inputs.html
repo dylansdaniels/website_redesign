@@ -53,10 +53,10 @@
 				<a href="/website_redesign/content/03_assumptions/template_model.html">3.1 Template Model</a>
 				<a href="/website_redesign/content/03_assumptions/cortical_column_structure.html">3.2 Cortical Column Structure</a>
 				<a href="/website_redesign/content/03_assumptions/primary_electric_currents.html">3.3 Primary Electrical Currents</a>
-				<a href="/website_redesign/content/03_assumptions/neuron_morphology.html">3.4 Neuron Morphology and Physiology</a>
+				<a href="/website_redesign/content/03_assumptions/neurons_morphology_and_physiology.html">3.4 Neurons: Morphology and Physiology</a>
 				<a href="/website_redesign/content/03_assumptions/synaptic_connectivity.html">3.5 Synaptic Connectivity</a>
-				<a href="/website_redesign/content/03_assumptions/evoked_rhythmic_inputs.html">3.6 Evoked and Rhythmic Driving Inputs</a>
-				<a href="/website_redesign/content/03_assumptions/tonic_noisy.html">3.7 Tonic and Noisy Driving Inputs</a>
+				<a href="/website_redesign/content/03_assumptions/evoked_and_rhythmic_driving_inputs.html">3.6 Evoked and Rhythmic Driving Inputs</a>
+				<a href="/website_redesign/content/03_assumptions/tonic_and_noisy_driving_inputs.html">3.7 Tonic and Noisy Driving Inputs</a>
 			</div>
 		</div>
 		<div class="sidebar-list">
@@ -229,6 +229,20 @@
 # Contributors:
     # Dylan Daniels
 -->
+<!-- compare original: https://jonescompneurolab.github.io/hnn-under_the_hood/05_tonic-noisy-inputs/05_tonic-noisy-inputs -->
+<h1 id="tonic-and-noisy-driving-inputs">3.7 Tonic and Noisy Driving
+Inputs</h1>
+<p>HNN also provides Poisson-distributed inputs as well as tonic current
+clamps. The tonic inputs are modeled as somatic current clamps with a
+fixed current injection. These clamps can be used to adjust the resting
+membrane potential of a neuron, and bring it closer (with positive
+amplitude injection) or further from firing threshold (with a negative
+amplitude injection). You can set the current clamp amplitude, and
+start/stop time for each neuron type. HNN’s Poisson Inputs are
+excitatory AMPAergic synaptic inputs to the somata of different neurons,
+which follow a Poisson Process. You can set the average frequency,
+strength, and timing of these inputs to individual neuron populations.
+See Tour of the GUI for details on how to set these inputs.</p>
     </div> <!-- close content wrapper -->
     </div> <!-- close content -->
 </div> <!-- close main -->
