@@ -150,6 +150,19 @@ code {
     color: var(--hnn-yellow);
 }
 
+/* Style active page in sidebar */
+.sidebar a.active {
+    color: var(--hnn-yellow); 
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+    font-weight: bold; 
+}
+
+.sidebar a.active:hover {
+    color: #fff;
+}
+
 /* Custom tooltip */
 .sidebar-tooltip {
     font-family: "Lato", sans-serif;;
@@ -241,6 +254,8 @@ code {
 .collapse-icon:hover {
     fill: var(--hnn-yellow);
 }
+
+
 
 /* 
 # --------------------

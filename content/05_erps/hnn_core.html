@@ -532,6 +532,25 @@
         });
     });
 
+    document.addEventListener("DOMContentLoaded", function () {
+        const currentPage = window.location.pathname.split("/").pop(); // Get current page filename
+
+        // Find the active link
+        const activeLink = document.querySelector(`#mySidebar a[href$='${currentPage}']`);
+        if (activeLink) {
+            activeLink.classList.add("active"); // Apply the active class
+
+            const submenu = activeLink.closest('.submenu'); // Find the closest submenu
+            if (submenu) {
+                submenu.classList.add('open'); // Keep the submenu open
+                const toggleIcon = submenu.previousElementSibling.querySelector('.toggle-icon');
+                if (toggleIcon) {
+                    toggleIcon.textContent = '-'; // Ensure the toggle icon reflects the open state
+                }
+            }
+        }
+    });
+
 </script>
 
 </body>
