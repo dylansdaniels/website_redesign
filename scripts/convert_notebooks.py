@@ -357,32 +357,37 @@ def convert_notebooks_to_html(
     for root, list_folders, list_files in os.walk(input_folder):
         for filename in list_files:
             if filename.endswith(".ipynb"):
+                print(
+                    f"Processing notebook: {filename}"
+                )
+
+                # get current hash of the notebook
                 nb_path = os.path.join(root, filename)
-                print(f"Processing notebook: {filename}")
                 current_hash = hash_notebook(nb_path)
 
-                # skip execution if the notebook hasn't changed
+                # skip execution if the notebook hasn't changed, comparing
+                # the current hash with the previously-saved hash
                 if (filename in notebook_hashes) and \
                         (notebook_hashes[filename] == current_hash):
                     print(
-                        f"Skipping execution on unchanged notebook: {filename}"
+                        f"Skipping execution of unchanged notebook: {filename}"
                     )
-                    # get notebook without executing it
                     executed_notebook = get_notebook(
                         nb_path,
                         execute=False,
                     )
+                # if the file has been changed or a hash hasn't yet been
+                # recorded, execute the notebook and update the hash dict
                 else:
                     print(
                         "New or changed notebook detected. Executing "
                         f"the notebook: {filename}"
                     )
-                    # get and execute the notebook
                     executed_notebook = get_notebook(
                         nb_path,
                         execute=True,
                     )
-                    # update the hash
+                    # update the hash dictionary
                     updated_hashes[filename] = current_hash
 
                 html_content = extract_html_from_notebook(
@@ -401,23 +406,31 @@ def convert_notebooks_to_html(
                         f.write(html_content)
                         f.write("\n</body></html>")
 
+                # ----------------------------------------
+                # generated structured json output
+                # ----------------------------------------
+                # Note: this section pertains to a planned enhancement
+                # to enable inserting sections of a notebook into an
+                # html file by specifing the headers to include; e.g.,
+                # including [[notebook][start header][end header]] in your
+                # .md file would inject only the .html for those header
+                # sections into your html output file
+
                 # flat json
                 nb_html_json = html_to_json(
                     html_content,
                     filename,
                 )
-
                 # nested json
                 nb_html_json = structure_json(
                     nb_html_json
                 )
-
                 output_json = os.path.join(
                     input_folder, f"{os.path.splitext(filename)[0]}.json"
                 )
-
                 with open(output_json, "w") as f:
                     json.dump(nb_html_json, f, indent=4)
+                # ----------------------------------------
 
                 print(f"Successfully converted '{filename}'to html\n")
 
@@ -426,6 +439,8 @@ def convert_notebooks_to_html(
         updated_hashes,
         hash_path
     )
+
+    return html
 
 
 # %%
@@ -438,4 +453,4 @@ def test_nb_conversion(input_folder=None):
     )
 
 
-test_nb_conversion()
+_ = test_nb_conversion()
