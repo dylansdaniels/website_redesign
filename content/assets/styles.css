@@ -28,6 +28,13 @@ a:hover {
     color: var(--hnn-purple);
 }
 
+.stylefig {
+  text-align:center;
+  max-width:650px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
 #main {
     transition: margin-left 0.5s;
     padding: 0px;
