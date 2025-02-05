@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HNN Textbook</title>
+    <!-- <base href="/website_redesign/"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+	<div id="mySidebar" class="sidebar">
+		<div class="navbar-header">
+		<a>
+			Human Neocortical Neurosolver
+		</a>
+		<br>
+			<svg class="collapse-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+				<path d="M9 9H4v1h5V9z"/>
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M5 3l1-1h7l1 1v7l-1 1h-2v2l-1 1H3l-1-1V6l1-1h2V3zm1 2h4l1 1v4h2V3H6v2zm4 1H3v7h7V6z"/>
+			</svg>
+		</div>
+		<a href="/website_redesign/content/preface.html">Preface</a>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				1. Overview
+			</a>
+			<div class="submenu">
+				<a href="/website_redesign/content/01_overview/challange.html">1.1 Challenge in Connecting EEG MEG to Neural Circuits </a>
+				<a href="/website_redesign/content/01_overview/using_hnn.html">1.2 How HNN solve the Challenge by Bridging Scales</a>
+				<a href="/website_redesign/content/01_overview/sample_workflow.html">1.3 Overview of the Simulation Workflow</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				2. Background
+			</a>
+			<div class="submenu">
+				<a href="/website_redesign/content/02_background/biophysical_modeling.html">2.1 Challenge in Connecting EEG MEG to Neural Circuits </a>
+				<a href="/website_redesign/content/02_background/signal_origins.html">2.2 The Origins of Source Localize MEG/EEG Primary Currents</a>
+				<a href="/website_redesign/content/02_background/glossary.html">2.3 Glossary of Terms</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				3. Assumptions and Validation
+			</a>
+			<div class="submenu">
+				<a href="/website_redesign/content/03_assumptions/template_model.html">3.1 Template Model</a>
+				<a href="/website_redesign/content/03_assumptions/cortical_column_structure.html">3.2 Cortical Column Structure</a>
+				<a href="/website_redesign/content/03_assumptions/primary_electric_currents.html">3.3 Primary Electrical Currents</a>
+				<a href="/website_redesign/content/03_assumptions/neurons_morphology_and_physiology.html">3.4 Neurons: Morphology and Physiology</a>
+				<a href="/website_redesign/content/03_assumptions/synaptic_connectivity.html">3.5 Synaptic Connectivity</a>
+				<a href="/website_redesign/content/03_assumptions/evoked_and_rhythmic_driving_inputs.html">3.6 Evoked and Rhythmic Driving Inputs</a>
+				<a href="/website_redesign/content/03_assumptions/tonic_and_noisy_driving_inputs.html">3.7 Tonic and Noisy Driving Inputs</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				4. Using HNN
+			</a>
+			<div class="submenu">
+				<a href="/website_redesign/content/04_using_hnn/installation.html">4.1 Installation</a>
+				<a href="/website_redesign/content/04_using_hnn/network_parameters.html">4.2 Network Parameters</a>
+				<a href="/website_redesign/content/04_using_hnn/drive_parameters.html">4.3 Drive Parameters</a>
+				<a href="/website_redesign/content/04_using_hnn/loading_data.html">4.4 Loading Data</a>
+				<a href="/website_redesign/content/04_using_hnn/running_simulations.html">4.5 Running Simulations</a>
+				<a href="/website_redesign/content/04_using_hnn/plotting_firing_patterns.html">4.6 Plotting Firing Patterns</a>
+				<a href="/website_redesign/content/04_using_hnn/recording_lfp.html">4.7 Recording and Plotting LFP</a>
+				<a href="/website_redesign/content/04_using_hnn/animating_simulations.html">4.8 Animating Simulations</a>
+				<a href="/website_redesign/content/04_using_hnn/more_visualizations.html">4.9 Additional Visualizations</a>
+				<a href="/website_redesign/content/04_using_hnn/parallelizing.html">4.10 Running Parallel Simulations</a>
+				<a href="/website_redesign/content/04_using_hnn/optimization.html">4.11 Optimizing Evoked Responses and Rhythms</a>
+				<a href="/website_redesign/content/04_using_hnn/batch_simulation.html">4.12 Running Batch Simulations</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				5. Simulating ERPs
+			</a>
+			<div class="submenu">
+				<a href="/website_redesign/content/05_erps/overview_of_erps.html">2.1 Review of ERPs</a>
+				<a href="/website_redesign/content/05_erps/hnn_core.html">2.2 Simulating ERPs in hnn-core</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				6. Simulating Alpha/Beta Rhythms
+			</a>
+			<div class="submenu">
+				<a href="/website_redesign/content/06_alpha_beta/gui.html">6.1 GUI Tutorial of Alpha/Beta Rhythms</a>
+				<a href="/website_redesign/content/06_alpha_beta/api.html">6.2 API Tutorial of Alpha/Beta Rhythms</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				7. Simulating Gamma Rhythms
+			</a>
+			<div class="submenu">
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				8. From Data to Simulation
+			</a>
+			<div class="submenu">
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				9. Feature Demos
+			</a>
+			<div class="submenu">
+			</div>
+		</div>
+	</div>
+
+<div id="main">
+    <div class="topbar">
+
+        <!-- Topbar menu -->
+        <div class="menu-container">
+            <div class="menu-icons">
+                <button class="openbtn" onclick="toggleNav()">
+                    ☰
+                </button>
+                <a href="" class="home-link">
+                    <div class="home-icon-container">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24" 
+                            height="24"
+                            viewBox="0 0 24 24" 
+                            class="home-icon">
+                            <path
+                                d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"
+                            />
+                        </svg>
+                    </div>
+                </a>
+                <button class="theme-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"></path>
+                    </svg>
+                </button>
+                <div class="dropdown">
+                    <button 
+                        id="dropdownButton" 
+                        class="dropdown-button">
+                            <img
+                                src="/website_redesign/content/assets/icons/fontsize.png"
+                                alt="fontsize"
+                            />
+                    </button>
+                    <div class="dropdown-content">
+                        <button 
+                            class="fontsize-btn" 
+                            onclick="decreaseFontSize()">
+                            <img
+                                src="/website_redesign/content/assets/icons/fontminus.png"
+                                alt="fontminus"
+                            />
+                        </button>
+                        <button 
+                            class="fontsize-btn" 
+                            onclick="increaseFontSize()">
+                            <img
+                                src="/website_redesign/content/assets/icons/fontplus.png"
+                                alt="fontplus"
+                            />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Topbar image -->
+        <img 
+            id="topbar-logo"
+            src="https://hnn.brown.edu/wp-content/uploads/hnn-medium.png"
+        />
+
+        <!-- Right side of topbar -->
+        <div class="socials-container">
+            <div class="social-icons">
+                <a 
+                    href="https://github.com/jonescompneurolab/hnn-core" 
+                    target="_blank" 
+                    aria-label="GitHub">
+                    <img 
+                        src="/website_redesign/content/assets/icons/github.png"
+                        alt="GitHub">
+                </a>
+                <a 
+                    href="https://bsky.app/profile/hnnsolver.bsky.social" 
+                    target="_blank"
+                    aria-label="BlueSky">
+                    <img 
+                        src="/website_redesign/content/assets/icons/bluesky.png"
+                        alt="BlueSky">
+                </a>
+                <a 
+                    href="https://www.linkedin.com/company/human-neocortical-neurosolver/" 
+                    target="_blank"
+                    aria-label="LinkedIn">
+                    <img 
+                        src="/website_redesign/content/assets/icons/linkedin.png"
+                        alt="LinkedIn">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="content-wrapper">
+    <div id="content">
+
+<!--
+# Title: 6.1 GUI Tutorial of Alpha/Beta Rhythms
+# Updated: 2025-02-04
+#
+# Contributors:
+    # Dylan Daniels
+-->
+<p>DEBUG: this markdown file and images originally adapted from
+https://github.com/jonescompneurolab/hnn-tutorials/tree/core-gui/coregui_alpha_and_beta</p>
+<h1 id="alpha-7-14-hz-and-beta-15-29-hz-rhythms-the-mu-complex">Alpha
+(7-14 Hz) and Beta (15-29 Hz) Rhythms: The Mu-Complex</h1>
+<h2 id="getting-started">Getting Started</h2>
+<p>In order to understand the workflow and initial parameter sets
+provided with this tutorial, we must first briefly describe prior
+studies that led to the creation of the data you will aim to simulate.
+This tutorial is based on results from (Jones et al. 2009)<a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+where, using MEG, we recorded spontaneous (pre-stimulus) alpha (7-14 Hz)
+and beta (15-20 Hz) rhythms that arise as part of the mu-complex from
+the primary somatosensory cortex (S1)<a href="#fn2" class="footnote-ref"
+id="fnref2" role="doc-noteref"><sup>2</sup></a>. (<a
+href="#figure-1">Figure 1</a>. See also <a href="#fn3"
+class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, <a
+href="#fn4" class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a>, <a href="#fn5" class="footnote-ref"
+id="fnref5" role="doc-noteref"><sup>5</sup></a>.)</p>
+<section id="figure-1" class="stylefig">
+<h3>Figure 1</h3>
+<img src="images/image03.png" />
+<p align="justify">
+<strong>Figure 1 Left:</strong> Spectrogram of spontaneous activity from
+current dipole source in SI averaged across 100 trials, from an example
+subject, shows nearly continuous prestimulus alpha and beta
+oscillations. At time zero, a brief tap was given to the contralateral
+finger tip and the spontaneous oscillations briefly desynchronized.
+</p>
+<p align="justify">
+<strong>Figure 1 Right:</strong> A closer look at the prestimulus
+waveform and spectrogram from spontaneous activity during example signal
+trials, shows that the alpha and beta oscillations occur intermittently
+and primarily non-overlapping.
+</p>
+</section>
+<p>Our goal was to use our neocortical model to reproduce features of
+the waveform and spectrogram observed on single unaveraged trials (<a
+href="#figure-2">Figure 2</a> top panel, right) where the alpha and beta
+components emerge briefly and intermittently in time. On any individual
+trial (i.e., 1 second of spontaneous data), the presence of alpha and
+beta activity is not time locked and representative of so-called
+“induced” activity. Seemingly continuous bands of activity occur only
+when averaging the spectrograms across trials (<a
+href="#figure-2">Figure 2</a> top panel, left), and this is due to the
+fact that the spectrograms values are strictly positive and the alpha
+and beta events accumulate without cancellation <a href="#fn6"
+class="footnote-ref" id="fnref6"
+role="doc-noteref"><sup>6</sup></a>.</p>
+<section id="figure-2" class="stylefig">
+<h3>Figure 2</h3>
+<img src="images/old-image29.png" />
+<p align="justify">
+Key features of the spontaneous non-average SI alpha/beta complex
+include, intermittent transient bouts of alpha/beta activity, a waveform
+that oscillates around 0 nAm, PSD with peaks in the alpha and beta
+bands, primarily non-overlapping alpha and beta events, and a symmetric
+waveform oscillation. The model was able to reproduce each of these
+features.
+</p>
+</section>
+<p>We found that a sequence of exogenous subthreshold excitatory
+synaptic drive could activate the network in a manner that reproduced
+important features of the SI rhythms in the model (<a
+href="#figure-2">Figure 2</a>). This drive consisted of two
+nearly-synchronous 10 Hz rhythmic drives that contacted the network
+through proximal and distal projection pathways (<a
+href="#figure-3">Figure 3</a>). The drives were simulated as population
+“bursts” of action potentials that contacted the network every 100ms
+with the mean delay between the proximal and distal burst of 0ms.
+Specifically, as shown schematically in <a href="#figure-3">Figure
+3</a>, the population bursts consisted of 10, 2-spike bursts Gaussian
+distributed in time. We presumed that during such spontaneous activity,
+these drives may be provided by leminscial and non-lemniscal thalamic
+nuclei, which contact proximal and distal pyramidal neurons
+respectively, and they are know to burst fire at ~10 Hz frequencies in
+spontaneous states <a href="#fn7" class="footnote-ref" id="fnref7"
+role="doc-noteref"><sup>7</sup></a>, <a href="#fn8" class="footnote-ref"
+id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p>
+<section id="figure-3" class="stylefig">
+<h3>Figure 3</h3>
+<img src="images/image04.png" />
+<p align="justify">
+Schematic illustration of exogenous 10 Hz burst drive through proximal
+and distal projection pathways. “Population bursts”, consisting of a set
+number of “burst units” (10, 2-spike bursts shown) drive post-synaptic
+conductances in the local network with a set frequency (100 ms ISI) and
+mean delay between proximal and distal.
+</p>
+</section>
+<p>We assumed that the macroscale rhythms generating the observed alpha
+and beta activity arose from subthreshold current flow in a large
+population of neurons, as opposed to being generated by local spiking
+interaction. As such, the effective strengths of the exogenous driving
+inputs were tuned so that the cells in the network remained subthreshold
+(all other parameters were tuned and fixed base on the morphology,
+physiology and connectivity within layered neocortical circuits, see
+(Jones et al. 2009)<a href="#fn9" class="footnote-ref" id="fnref9"
+role="doc-noteref"><sup>9</sup></a> for details). The inputs drove
+subthreshold currents up and down the pyramidal neurons to reproduce
+accurate waveform and spectrogram features (see <a
+href="#figure-3">Figure 3</a>). A scaling factor of 3000 was multiplied
+by the model waveform to reproduce nAm units comparable to the recorded
+data, suggesting on the order 200 x 3000 = 600,000 pyramidal neurons
+contributed to this signal.</p>
+<p>We further found that decreasing the delay between the drives to
+~50ms created a pure alpha oscillation, while applying an ~0ms delay
+caused beta events to emerge and increased the strength of the distal
+drive, creating stronger beta activity (data not shown; see parameter
+exploration below). This result led to the novel prediction that brief
+beta events emerge from a broad proximal drive disrupted by a
+simultaneous strong distal drive that lasted 50ms (i.e., one beta
+period). Support for this prediction was found invasively with laminar
+recordings in mice and monkeys <a href="#fn10" class="footnote-ref"
+id="fnref10" role="doc-noteref"><sup>10</sup></a>.</p>
+<p>In this tutorial, we will explore parameter changes that illustrate
+these results. We will walk you step-by-step through simulations with
+various combinations of rhythmic proximal and distal drives to describe
+how each contributes to the alpha and beta components of the SI
+alpha/beta complex rhythm. We will begin by simulating only rhythmic
+proximal alpha frequency inputs (Step 1), followed by simulating only
+distal alpha frequency inputs (Step 2), followed by various combinations
+of proximal and distal drive to generate alpha and beta rhythms. We’ll
+show you how HNN can plot waveforms, time-frequency spectrograms, and
+power spectral density plots of the simulated data, as well as for
+imported recorded data.</p>
+<h2 id="tutorial-table-of-contents">Tutorial Table of Contents</h2>
+<ol type="1">
+<li><p><a href="#toc_one">Simulating Rhythmic Proximal Inputs: Alpha
+only</a></p></li>
+<li><p><a href="#toc_two">Simulation Rhythmic Distal Inputs: Alpha
+only</a></p></li>
+<li><p><a href="#toc_three">Simulating Combined Rhythmic Proximal and
+Distal Inputs: Alpha/Beta Complex</a></p></li>
+<li><p><a href="#toc_four">Calculating and Viewing Power Spectral
+Density (PSD)</a></p></li>
+</ol>
+<!-- 5. [Comparing model output and recorded data](#toc_five) -->
+<!-- 6. [Adjusting parameters](#toc_six) -->
+<ol start="5" type="1">
+<li><a href="#toc_six">Adjusting parameters</a></li>
+</ol>
+<!-- 7. [Have fun exploring your own data!](#toc_seven) -->
+<ol start="6" type="1">
+<li><a href="#toc_seven">Have fun exploring your own data!</a></li>
+</ol>
+<!-- -->
+<!-- -->
+<!-- the above lines of text have been reviewed -->
+<!-- -->
+<!-- -->
+<p><a id="toc_one"></a></p>
+<h2 id="simulating-rhythmic-proximal-inputs-alpha-only">1. Simulating
+Rhythmic Proximal Inputs: Alpha Only</h2>
+<p>Note that before running/loading new simulations, we will increase
+the run time of the simulation. Find the box labeled
+<code>tstop (ms)</code> under the <code>Simulation</code> tab and type
+in <code>700</code> as the value. This will enable us to see simulated
+oscillations as they evolve over longer time periods.</p>
+<h3
+id="loadview-parameters-to-define-the-network-structure-to-activate-the-network.">1.1
+Load/view parameters to define the network structure &amp; to “activate”
+the network.</h3>
+<p>As described in the “Getting Started” section, low-frequency alpha
+and beta rhythms can be simulated by a combination of rhythmic
+subthreshold proximal and distal ~10Hz inputs. Here, we begin by
+describing the impact of proximal inputs only. An initial parameter set
+that will simulate the effect of ~10 Hz subthreshold proximal drive is
+provided in the file <a
+href="https://raw.githubusercontent.com/jonescompneurolab/hnn-data/refs/heads/main/network-configurations/OnlyRhythmicProx.json">OnlyRhythmicProx.json</a>.</p>
+<p>The template cortical column networks structure for this simulation
+is described in the <a
+href="../03_assumptions/template_model.html">Template Model section</a>.
+Several of the network parameter can be adjusted via the HNN GUI
+(e.g. local excitatory and inhibitory connection strengths), but we will
+leave them fixed for this tutorial and only adjust the inputs the
+“activate” the network.</p>
+<p>To load the initial parameter set, navigate to the HNN GUI and click
+the tab labeled: (TODO AES, no idea why this wasn’t updated as well)</p>
+<pre><code>External drives</code></pre>
+<p>Then inside of the inside of the tab, click the button</p>
+<pre><code>Load external drives (0)</code></pre>
+<p>And select the file <a
+href="https://raw.githubusercontent.com/jonescompneurolab/hnn-data/refs/heads/main/network-configurations/OnlyRhythmicProx.json">OnlyRhythmicProx.json</a>
+from HNN’s param subfolder or from your local machine.</p>
+<p>To view the parameters that “activate” the network via rhythmic
+proximal input, click the dropdown menu labeled:</p>
+<pre><code>bursty1 (proximal)</code></pre>
+<div class="stylefig">
+<table>
+<h3 id="figure-4">Figure 4</h3>
+<tr>
+<td>
+<img src="images/image05.png" />
+</td>
+<td>
+<img src="images/image06.png" />
+</td>
+<td>
+<img src="images/image11.png" />
+</td>
+</tr>
+</table>
+</div>
+<p>You should see the values of adjustable parameters displayed as in
+the dialog boxes below. There are 4 sections, one regulating the timing
+statistics of the driving input, one regulating the post-synaptic
+conductances onto the Layer 2/3 neurons, and one regulating the
+post-synaptic conductances onto the Layer 5 neurons, and one regulating
+the synaptic delays. We describe adjustable parameters in each dialog
+box separately.</p>
+<div class="stylefig">
+<table>
+<h3 id="figure-5">Figure 5</h3>
+<tr>
+<td>
+<img src="images/image08.png" />
+</td>
+<td>
+<img src="images/image09.png" />
+</td>
+<td>
+<img src="images/image10.png" />
+</td>
+</tr>
+</table>
+</div>
+<p>Timing tab: The rhythmic proximal inputs drive excitatory synapses in
+the neocortical network in a proximal projection pattern, as shown at
+the bottom of the dialog box. For further details on the connectivity
+structure of the network, see the Under the Hoodsection of the HNN
+website. Rhythmic proximal input occurs through stochastic, presynaptic
+bursts of action potentials from a population of bursting cells (set
+with “Number bursts”; see <a href="#figure-3">Figure 3</a>) onto
+postsynaptic neurons of the modelled network. Stochasticity is
+introduced in two places: the spike train start time for each bursting
+cell is sampled from a normal distribution with mean “Start time mean
+(ms)” and standard deviation “Start time stdev (ms)” and the inter-burst
+intervals for each bursting cell are sampled from a normal distribution
+of mean
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mfrac><mn>1</mn><mrow><mi>B</mi><mi>u</mi><mi>r</mi><mi>s</mi><mi>t</mi><mi>f</mi><mi>r</mi><mi>e</mi><mi>q</mi><mi>u</mi><mi>e</mi><mi>n</mi><mi>c</mi><mi>y</mi></mrow></mfrac><annotation encoding="application/x-tex">\frac{1}{Burst frequency}</annotation></semantics></math>
+(e.g., a 100 ms inter-burst interval corresponds to a “Burst frequency”
+of 10 Hz) and standard deviation “Burst stdev (ms)” (see <a
+href="#figure-3">Figure 3</a>). Also note that the number of spikes per
+burst unit is set with “Spikes/burst” (currently, only values of 1 and 2
+with a fixed 10ms delay can be used) and the final stop time for the
+entire population of rhythmic proximal inputs is set with “Stop time
+(ms)”.</p>
+<p>Layer 2/3, and Layer 5 tabs: This dialog box allows you to set the
+postsynaptic conductance of each of the excitatory synapses in the
+networks. There are AMPA and NMDA receptors on each cell type (pyramidal
+and basket cells). There is also a delay parameter to control the
+arrival time of each spike to the network. In this example, the delay to
+the layer 2/3 cells is 0.1 ms, with a slightly longer delay to the layer
+5 cells of 1 ms. For further details on the connectivity structure of
+the network, see Under the Hood.</p>
+<h3 id="run-the-simulation-and-visualize-net-current-dipole">1.2 Run the
+simulation and visualize net current dipole</h3>
+<p>To run this simulation, navigate to the main GUI window and
+click:</p>
+<pre><code>Start Simulation</code></pre>
+<p>This simulation runs for 700 ms of simulation time, so will take a
+little longer to run than the ERP simulations. Once completed, you will
+see output similar to that shown below.</p>
+<section id="figure-6" class="stylefig">
+<h3>Figure 6</h3>
+<p><img src="images/OnlyRhythmicProx.png" /></p>
+</section>
+<!-- As shown in the red histogram in the top panel of [Figure 6][] above, with this parameter set, a burst of proximal input spikes is provided to the network ~10 Hz (i.e., every 100 ms). Due to the stochastic nature of the inputs (controlled by the start time stdev and Burst stdev parameters, there is some variability in the histogram of proximal input times. Note that a decrease in the Burst stdev would create shorter duration bursts (i.e., more synchronous bursts); this will be explored further in step 6.1 below. -->
+<p>As shown in the red histogram in the top panel of <a
+href="#figure-6">Figure 6</a> above, with this parameter set, a burst of
+proximal input spikes is provided to the network ~10 Hz (i.e., every 100
+ms). Due to the stochastic nature of the inputs (controlled by the start
+time stdev and Burst stdev parameters, there is some variability in the
+histogram of proximal input times. Note that a decrease in the Burst
+stdev would create shorter duration bursts (i.e., more synchronous
+bursts); this will be explored further in step 5.1 below.</p>
+<p>The ~10 Hz bursts of proximal drive induces current flow up the
+pyramidal neuron dendrites increasing the signal above the 0 nAm
+baseline, which then relaxes back to zero, approximately every 100 ms.
+This is observed in the black current dipole waveform in the GUI
+window.</p>
+<p>To view the time-frequency spectrogram for this waveform, click on
+the <code>Visualization</code> tab. Then click on the
+<code>Layout template</code> dropdown menu and select
+<code>Drive-Dipole-Spectrogram</code>. Finally click the
+<code>Make Figure</code> button.</p>
+<!-- The bottom panel shows the corresponding time-frequency spectrogram for this waveform that exhibits a high-power continuous 10 Hz signal. Importantly, in this example the strength of the proximal input was titrated to be subthreshold (i.e., cells do not spike) under the assumption that macroscale oscillations are generated primarily by subthreshold current flow across large populations of synchronous pyramidal neurons. In step 6.2 below, we explore differences in the signal when the cells are driven to spike (see also ERP tutorial). -->
+<p>The bottom panel shows the corresponding time-frequency spectrogram
+for this waveform that exhibits a high-power continuous 10 Hz signal.
+Importantly, in this example the strength of the proximal input was
+titrated to be subthreshold (i.e., cells do not spike) under the
+assumption that macroscale oscillations are generated primarily by
+subthreshold current flow across large populations of synchronous
+pyramidal neurons. In step 5.2 below, we explore differences in the
+signal when the cells are driven to spike (see also ERP tutorial).</p>
+<p>To better see the 10 Hz signal, we can adjust the y-axis of the
+spectrogram. Under the options for <code>ax2</code> which corresponds to
+the spectrogram on the bottom panel, change the values for
+<code>Min Spectral Frequency (Hz)</code> to <code>0.1</code> and
+<code>Max Spectral Frequency (Hz)</code> to <code>40.0</code>.</p>
+<p>Finally click <code>Clear axis</code> and then <code>Add plot</code>
+to regenerate the spectrogram. You should see the signal corresponding
+to the alpha rhthym much more clearly like in the figure below:</p>
+<section id="figure-7" class="stylefig">
+<h3>Figure 7</h3>
+<p><img src="images/OnlyRhythmicProx_Spect.png" /></p>
+</section>
+<p>While this exploration with proximal drive is only useful in
+understanding how subthreshold rhythmic inputs impact the current dipole
+produced by the circuit, several features of the waveform and
+spectrogram of the signal do not match the recorded data shown in <a
+href="#figure-1">Figure 1</a> and <a href="#figure-2">Figure 2</a>.
+Next, we explore the impact of rhythmic distal inputs only (step 2), and
+then a combination of the two (step 3).</p>
+<p><a id="toc_two"></a></p>
+<h3
+id="loadview-parameters-to-define-the-network-structure-to-activate-the-network">2.1
+Load/view parameters to define the network structure &amp; to “activate”
+the network</h3>
+<p>We will use a param file that generates bursts of distal inputs
+provided at the alpha frequency (10 Hz; <a
+href="https://raw.githubusercontent.com/jonescompneurolab/hnn-data/refs/heads/main/network-configurations/OnlyRhythmicDist.json">OnlyRhythmicDist.json</a>).</p>
+<p>The template cortical column networks structure for this simulation
+is described in the Overview and What’s Under the Hood sections. Several
+of the network parameter can be adjusted via the HNN GUI (e.g. local
+excitatory and inhibitory connection strengths), but we will leave them
+fixed for this tutorial and only adjust the inputs the “activate” the
+network.</p>
+<p>To load the initial parameter set, navigate to the HNN GUI and click
+the tab labeled:</p>
+<pre><code>External drives</code></pre>
+<p>Then inside of the inside of the tab, click the button</p>
+<pre><code>Load external drives (0)</code></pre>
+<p>Then select the file <a
+href="https://raw.githubusercontent.com/jonescompneurolab/hnn-data/refs/heads/main/network-configurations/OnlyRhythmicDist.json">OnlyRhythmicDist.json</a>
+from HNN’s param subfolder or from your local machine.</p>
+<p>To view the parameters that “activate” the network via rhythmic
+distal input, click the dropdown menu labeled:</p>
+<pre><code>bursty2 (distal)</code></pre>
+<p>You should see the values of adjustable parameters displayed as in
+the dialog boxes below. Notice that these parameters are the same as
+those regulating the proximal drive in step (1). However, in this case
+the parameters define bursts of synaptic inputs that drive the network
+in a distal project pattern, shown schematically at the bottom of the
+dialog box.</p>
+<div class="stylefig">
+<table>
+<h3 id="figure-8">Figure 8</h3>
+<tr>
+<td>
+<img src="images/image15.png" />
+</td>
+<td>
+<img src="images/image16.png" />
+</td>
+<td>
+<img src="images/image17.png" />
+</td>
+</tr>
+</table>
+</div>
+<p>To run this simulation, navigate to the main GUI window and
+click:</p>
+<pre><code>Start Simulation</code></pre>
+<p>Once completed, you will see output similar to that shown below.</p>
+<section id="figure-9" class="stylefig">
+<h3>Figure 9</h3>
+<p><img src="images/OnlyRhythmicDist.png" /></p>
+</section>
+<p>As shown in the green histogram in the top panel of the HNN GUI
+above, with this parameter set, a burst of distal input spikes is
+provided to the network ~10 Hz (i.e., every 100 ms). Due to the
+stochastic nature of the inputs (controlled by the start time stdev, and
+Burst stdev parameters), there is some variability in the histogram of
+proximal input times. The ~10 Hz bursts of distal input induces current
+flow down the pyramidal neuron dendrites decreasing the signal below the
+0 nAm baseline, which then relaxes back to zero, approximately every 100
+ms. This is observed in the black current dipole waveform in the GUI
+window.</p>
+<p>Once again we will create time-frequency spectrogram for this
+waveform by first clicking on the <code>Visualization</code> tab. Then
+click on the <code>Layout template</code> dropdown menu and select
+<code>Drive-Dipole-Spectrogram</code>. Finally click the
+<code>Make Figure</code> button.</p>
+<section id="figure-10" class="stylefig">
+<h3>Figure 10</h3>
+<p><img src="images/OnlyRhythmicDist_Spect.png" /></p>
+</section>
+<p>The bottom panel shows the corresponding time-frequency spectrogram
+for this waveform that exhibits a high power continuous 10 Hz signal.
+Importantly, in this example the strength of the distal input was also
+titrated to be subthreshold (i.e., cells do not spike) under the
+assumption that macroscale oscillations are generated primarily by
+subthreshold current flow across large populations of synchronous
+pyramidal neurons.</p>
+<p>While instructional, this simulation also does not produce waveform
+and spectral features that match the experimental data in <a
+href="#figure-1">Figure 1</a> and <a href="#figure-2">Figure 2</a>. In
+the next step (step 3), we describe how combining both the 10 Hz
+proximal and distal drives can produce an oscillation with many
+characteristic features of the spontaneous SI signal <a href="#fn11"
+class="footnote-ref" id="fnref11"
+role="doc-noteref"><sup>11</sup></a>.</p>
+<p><a id="toc_three"></a></p>
+<h2
+id="simulating-combined-rhythmic-proximal-and-distal-inputs-alphabeta-complex">3.
+Simulating Combined Rhythmic Proximal and Distal Inputs: Alpha/Beta
+Complex</h2>
+<h3
+id="loadview-parameters-to-define-the-network-structure-to-activate-the-network.-1">3.1
+Load/view parameters to define the network structure &amp; to “activate”
+the network.</h3>
+<p>In this example, we provide a parameter set (<a
+href="https://raw.githubusercontent.com/jonescompneurolab/hnn-data/refs/heads/main/network-configurations/AlphaAndBeta.json">AlphaAndBeta.json</a>)
+that produces many of the waveform and spectral features observed in our
+SI data (<a href="#figure-2">Figure 2</a>).</p>
+<p>The template cortical column networks structure for this simulation
+is described in the Overview and What’s Under the Hood sections. Several
+of the network parameter can be adjusted via the HNN GUI (e.g. local
+excitatory and inhibitory connection strengths), but we will leave them
+fixed for this tutorial and only adjust the inputs the “activate” the
+network.</p>
+<p>To load the initial parameter set, navigate to the HNN GUI and click
+the tab labeled:</p>
+<pre><code>External drives</code></pre>
+<p>Then inside of the inside of the tab, click the button</p>
+<pre><code>Load external drives (0)</code></pre>
+<p>Then select the file <a
+href="https://raw.githubusercontent.com/jonescompneurolab/hnn-data/refs/heads/main/network-configurations/AlphaAndBeta.json">AlphaAndBeta.json</a>
+from HNN’s param subfolder or from your local machine.</p>
+<p>To view the new parameters that “activate” the network via both
+rhythmic proximal and rhythmic distal input, click the dropdown menus
+labeled:</p>
+<pre><code>bursty1 (proximal)
+bursty2 (distal)</code></pre>
+<p>You should see the values displayed in the dialogue boxes below.</p>
+<section id="figure-11" class="stylefig">
+<h3>Figure 11</h3>
+<p><img src="images/image20.png" /></p>
+</section>
+<p>In this simulation, the Start time mean (ms) values for both proximal
+and distal inputs are set to 50.0 ms, and all other parameters are the
+same. Note that the synaptic weights are the same as used in the
+previous two simulations (not shown in dialog boxes above, click on
+Layer 2/3 and Layer 5 to see them). The equal start time implies that
+the proximal and distal input bursts will arrive nearly synchronously to
+the network on each cycle of the 10 Hz input. Due to the stochasticity
+in the parameters (start time stdev, and Burst stdev) sometimes the
+bursts will arrive together and sometimes there will be a slight delay.
+As will be described further below, this stochasticity creates
+intermittent alpha and beta events.</p>
+<h3 id="run-the-simulation-and-visualize-net-current-dipole-1">3.2 Run
+the simulation and visualize net current dipole</h3>
+<p>To run this simulation, navigate to the main GUI window by clicking
+the <code>Simulation</code> tab and then click:</p>
+<pre><code>Run</code></pre>
+<p>Once completed, you will see output similar to that shown below.</p>
+<section id="figure-12" class="stylefig">
+<h3>Figure 12</h3>
+<p><img src="images/AlphaAndBeta.png" /></p>
+</section>
+<p>Follow the steps in the previous sections to create a time-frequency
+spectrogram for this waveform. The output will look similar to the
+figure below:</p>
+<section id="figure-13" class="stylefig">
+<h3>Figure 13</h3>
+<p><img src="images/AlphaAndBeta_Spect.png" /></p>
+</section>
+<p>As shown in the green and red histogram in the top panel of the HNN
+GUI above, with this parameter set, bursts of both proximal and distal
+input spikes are provided to the network ~10 Hz (i.e., every 100 ms).
+Due to the stochastic nature of the inputs, there is some variability in
+the timing and duration of the input bursts such that sometimes they
+arrive at the same time and sometimes there is a slight offset between
+them. As a result, intermittent transient alpha and beta events emerge
+in the time-frequency spectrogram. Alpha events are produced when the
+inputs occur slightly out of phase and current flow is pushed
+alternately up and down the dendrites for ~50 ms duration each (set by
+the length of the bursts inputs). Beta events occur when the burst
+inputs arrive more synchronously and the upward current flow is
+disrupted by downward current flow for ~50 ms to effectively cut the
+oscillation period in half. As such, the relative alpha to beta
+expression can be controlled by the delay between the inputs and their
+relative burst strengths. We will detail this further below (see step 6
+below).</p>
+<p>In contrast to the results from only proximal or distal input, since
+the current in the pyramidal neurons is pushed both upward and downward
+in this simulation, the current dipole signal oscillates above and below
+0 nAm, which qualitatively matches the experimental data (see <a
+href="#figure-1">Figure 1</a> and <a href="#figure-2">Figure 2</a> in
+“Getting Started”). Additionally, this simulation reproduces the
+transient nature of the alpha and beta activity and several other
+features of the waveform and spectrogram can be quantified to show close
+agreement between model and experimental results (see <a
+href="#figure-2">Figure 2</a> above, and (Jones et al. 2009)<a
+href="#fn12" class="footnote-ref" id="fnref12"
+role="doc-noteref"><sup>12</sup></a>, for further details).</p>
+<p>We note that here we do not directly compare the spontaneous current
+dipole waveform to recorded data, as was done in the ERP tutorial with a
+root mean squared error. This is due to the fact that the spontaneous SI
+signal we are simulating is not time locked to alpha or beta events on
+any given trial, and the stochastic nature of the driving inputs causes
+variability in the timing of the alpha or beta activity, making it
+difficult to align recorded data and simulated results. However, a
+direct comparison can be made between time averaged recorded and
+simulated signals by comparing power spectral density waveforms. An
+example of comparison is shown in step 5 below.</p>
+<h3
+id="simulating-and-averaging-multiple-trials-with-jittered-start-times-creates-the-impression-of-continuous-oscillations">3.3
+Simulating and averaging multiple trials with jittered start times
+creates the impression of continuous oscillations</h3>
+<p>As described in the “Getting Started” section above, our simulation
+goal was to study the mechanisms that reproduce features of spontaneous
+alpha and beta rhythms observed in un-averaged data, where the alpha and
+beta components are transient and intermittent (<a
+href="#figure-1">Figure 1</a>, right panel). Each tutorial step up to
+this point was based on simulating un-averaged data. Here, we describe
+how to run and average multiple “trials” (700 ms epochs of spontaneous
+activity). We show that, due to the stochastic nature of the proximal
+and distal rhythmic input, controlled by the standard deviation (stdev)
+of the start times, and the stdev of the input bursts), when running
+multiple trials, the precise timing of the input bursts on each trial is
+jittered, and hence the alpha and beta activity in the spectrograms on
+each trial is jittered. This is akin to simulating induced rhythms
+rather than time-locked evoked rhythms. In the averaged spectrogram
+across trials, the alpha and beta events accumulate without cancellation
+(due to the fact that spectrogram value are purely positive) creating
+the impression of a continuous oscillation (<a href="#figure-1">Figure
+1</a>, left panel).</p>
+<p>Below we illustrate the effects of “jitter” in the proximal and
+distal rhythmic inputs across trials in two ways. First, we examine the
+effects of “jitter” due to the “Burst stdev”, and second due to the
+“Start time stdev”.</p>
+<p>To first test the effects of jittering due to “Burst stdev” and
+averaging across trials, we will use a param file (<a
+href="https://raw.githubusercontent.com/jonescompneurolab/hnn-data/refs/heads/main/network-configurations/AlphaAndBetaJitter0.json">AlphaAndBetaJitter0.json</a>)
+with rhythmic proximal and distal inputs provided at 10 Hz, with
+proximal and distal inputs in phase. These are the same parameters as in
+the AlphaAndBeta.json file (Step 3.2 above), but now with 10 trials
+instead of 1.</p>
+<p>To load the initial parameter set, navigate to the HNN GUI and click
+the tab labeled:</p>
+<pre><code>External drives</code></pre>
+<p>Then inside of the inside of the tab, click the button</p>
+<pre><code>Load external drives (0)</code></pre>
+<p>Then select the file <a
+href="https://raw.githubusercontent.com/jonescompneurolab/hnn-data/refs/heads/main/network-configurations/OnlyRhythmicDist.json">OnlyRhythmicDist.json</a>
+from HNN’s param subfolder or from your local machine.</p>
+<p>To view the new parameters, click:</p>
+<pre><code>bursty1 (proximal)
+bursty2 (distal)</code></pre>
+<p>You should see the values displayed in the dialog boxes below.</p>
+<div class="stylefig">
+<table>
+<h3 id="figure-14">Figure 14</h3>
+<tr>
+<td>
+<img src="images/image21.png" />
+</td>
+<td>
+<img src="images/image22.png" />
+</td>
+</tr>
+</table>
+</div>
+<p>Notice that the Start time stdev (ms) is set to 0.0 for both proximal
+and distal inputs, while the Burst stdev (ms) is 20.</p>
+<p>To run this simulation, navigate to the <code>Simulation</code> tab
+and click</p>
+<pre><code>Run</code></pre>
+<p>This simulation will take longer to run because it uses 10 trials.
+Once completed, you will see output similar to that shown below.</p>
+<section id="figure-15" class="stylefig">
+<h3>Figure 15</h3>
+<p><img src="images/AlphaAndBetaJitter0_3trials.png" /></p>
+</section>
+<p>Follow the previous steps from section (1) or (2) to create a
+time-frequency spectrogram. The output will look like the following:</p>
+<section id="figure-16" class="stylefig">
+<h3>Figure 16</h3>
+<p><img src="images/AlphaAndBetaJitter0_3trials_spect.png" /></p>
+</section>
+<p>Notice that the input histograms for distal (green) and proximal
+(red) input accumulated across the 10 trials, now have higher values
+than before (up to ~20 compared to 5 in Step 3.2) and the burst inputs
+are slightly broader on each cycle, since these histograms represent the
+accumulated activity from 10 simulations, where the standard deviation
+in the Burst duration across trials is 20 ms. Approximately 10 Hz
+rhythmicity in the timing of the distal and proximal inputs can be
+clearly visualized (note also the symmetric profile of the histograms).
+However, on any individual trial, the coincidence of inputs leading to
+alpha or beta events displays some variability due to the stochastic
+parameter value (Burst stdev=20 ms). This is observed in the dipole
+waveforms shown for each trial (example shown below).</p>
+<p>In the next simulation, we will jitter the start times of rhythmic
+inputs across trials with the Start time stdev, in addition to a
+non-zero Burst stdev. This will add additional variability to the timing
+of the transient alpha and beta events on each trial, and hence produce
+even more continuous bands of activity in the averaged spectrogram.</p>
+<p>First, navigate to the <code>External drives</code> tab and open the
+<code>bursty1 (proximal)</code> and <code>bursty2 (distal)</code>
+dropdown menus. Change the start time stdev from 0 ms to 50 ms in the
+timing tabs. The dialog boxes should now look as follows.</p>
+<div class="stylefig">
+<table>
+<h3 id="figure-17">Figure 17</h3>
+<tr>
+<td>
+<img src="images/image23.png" />
+</td>
+<td>
+<img src="images/image24.png" />
+</td>
+</tr>
+</table>
+</div>
+<p>To run this simulation, click Start Simulation from the main GUI
+window. Follow the steps from either section 1 or 2 to create a
+time-frequency spectrogram.</p>
+<p>Once completed, you will see output similar to that shown below.</p>
+<section id="figure-18" class="stylefig">
+<h3>Figure 18</h3>
+<p><img src="images/AlphaAndBetaJitter50_3trials_spect.png" /></p>
+</section>
+<p>Notice that the input histograms for distal (green) and proximal
+(red) input accumulated across the 10 trials now show little rhythmicity
+due to the jitter in the rhythmic input start times across trials (Start
+time stdv (ms) = 50), in addition to jitter due to the Burst stdev (ms)
+= 20. However, if we were to visualize histograms on each individual
+trial (using the View spectrograms tab), they would show the ~10 Hz and
+20 Hz (alpha and beta) rhythmicity. It is also difficult to visualize
+rhythmicity in any of the overlaid dipole waveforms. However, on each
+trial, alpha and beta rhythmicity is present, and even more continuous
+bands of alpha and beta activity are observed (compare to averaged data
+in <a href="#figure-1">Figure 1</a> left panel; n=100 trials) when the
+spectrograms from individual trials are averaged. Running more trials
+will further increase the continuous nature of alpha and beta activity
+across time.</p>
+<h3 id="viewing-network-spiking-activity">3.4 Viewing network spiking
+activity</h3>
+<p>Importantly, as stated above in this example the strength of the
+proximal and distal input were titrated to be subthreshold (cells do not
+spike) under the assumption that macroscale oscillations are generated
+primarily by subthreshold current flow across large populations of
+synchronous pyramidal neurons. We can verify the subthreshold nature of
+the inputs by viewing the spiking activity in the network.</p>
+<p>Return to the single-trial parameter set as in Steps 3.1 and 3.2, by
+loading the AlphaAndBeta.json file and run the simulation. Then navigate
+to the <code>Visualization</code> tab, click the
+<code>Layout template</code> dropdown menu select
+<code>Dipole-Spikes (2x1)</code>. Finally click
+<code>Make figure</code>.</p>
+<p>You should see the following window.</p>
+<section id="figure-19" class="stylefig">
+<h3>Figure 19</h3>
+<p><img src="images/AlphaAndBeta_Spikes.png" /></p>
+</section>
+<p>In this window, the rhythmic distal (green/top) and proximal
+(red/middle) inputs bursts histograms are shown along with the spiking
+activity in each population of cells (bottom panel). In this case, the
+alpha and beta events are indeed produced through subthreshold processes
+and there is no spiking produced in any cell in the network (no dots
+present in the bottom raster plot).</p>
+<h3 id="exercises-for-further-exploration">3.5 Exercises for further
+exploration</h3>
+<p>Try decreasing or increasing the number of trials in the above
+simulations to see how these changes impact the continuity of alpha/beta
+power over time. View some of the individual spectrograms to see that
+alpha/beta are maintained on individual trials.</p>
+<p><a id="toc_four"></a></p>
+<h2 id="calculating-and-viewing-power-spectral-density-psd">4.
+Calculating and Viewing Power Spectral Density (PSD)</h2>
+<p>HNN provides a feature to calculate and view the power spectral
+density (PSD) of the simulated signal and imported data (Note: the PSD
+is calculated as the time average of the spectrogram, in the simulation
+examples).</p>
+<p>To calculate and view the PSD, navigate to the
+<code>Visualization</code> tab, click on the
+<code>Layout template</code> dropdown, and select
+<code>PSD Layers (3x1)</code></p>
+<p>You should see something similar to the following window.</p>
+<section id="figure-20" class="stylefig">
+<h3>Figure 20</h3>
+<p><img src="images/AlphaAndBetaJitter50_3trials_PSD.png" /></p>
+</section>
+<p>The PSD Viewer window shows the net current dipole (bottom panel) and
+contribution from each layer in the network separately (top panels).
+This example was run using the parameter set described in Step 3. PSD
+from the simulation shows a strong peak in the alpha (~10 Hz) band, with
+a lower peak power in beta band (~20 Hz).</p>
+<p><a id="toc_five"></a></p>
+<!-- ## 5. Comparing model output and recorded data -->
+<!-- Work in progress! -->
+<p><a id="toc_six"></a></p>
+<h2 id="adjusting-parameters">5. Adjusting parameters</h2>
+<p>Parameter adjustments will be key to developing and testing
+hypotheses on the circuit origin of your own low-frequency rhythmic
+data. HNN is designed so that many of the parameters in the model can be
+adjusted from the GUI (see the Tour of the GUI tutorial).</p>
+<p>Here, we’ll walk through examples of how to adjust several “Rhythmic
+Proximal/Distal Input” parameters to investigate how they impact the
+alpha and beta rhythms described above. We end with some suggested
+exercises for further exploration.</p>
+<h3
+id="changing-the-strength-post-synaptic-conductance-and-synchrony-of-the-distal-drive-increases-beta-activity">5.1
+Changing the strength (post-synaptic conductance) and synchrony of the
+distal drive increases beta activity</h3>
+<p>We described above (Step 3) that the timing of proximal and distal
+inputs can lead to either alpha events (when the bursts arrive to the
+local network out of phase) or beta events (when the bursts arrive in
+phase).</p>
+<p>We have also found that other factors that contribute to the
+prevalence of beta activity are the strengthand synchrony of the distal
+inputs; beta activity is increased with stronger and more synchronous
+subthreshold drive, where the beta frequency is set by the duration of
+the driving bursts (~50ms) (Jones et al. 2009<a href="#fn13"
+class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>,
+Sherman et al. 2016<a href="#fn14" class="footnote-ref" id="fnref14"
+role="doc-noteref"><sup>14</sup></a>). The strength is controlled by the
+postsynaptic conductance, and the synchrony is controlled by the Burst
+stdev in the “Rhythmic Distal Inputs” dialog box. We will demonstrate
+this here.</p>
+<p>Open the <code>External drives</code> tab and click on the dropdown
+menu <code>bursty2 (distal)</code></p>
+<p>Reduce the Burst stdev (Hz) value from 20 ms to 10 ms. This will
+create higher synchrony in the timing of the distal input bursts. Under
+both the Layer 2/3 and Layer 5 tabs, increase the postsynaptic condances
+weights of the AMPA synapses onto the Layer 2/3 and Layer 5 pyramidal
+neurons from 5.4e-5
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mi>S</mi></mrow><annotation encoding="application/x-tex">\mu S</annotation></semantics></math>
+to 6e-5
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mi>S</mi></mrow><annotation encoding="application/x-tex">\mu S</annotation></semantics></math>.
+Both of these changes will cause the distal input burst to push a
+greater amount of current flow down the pyramidal neuron dendrites. The
+“Rhythmic Distal Input” dialog windows should look as shown below.</p>
+<div class="stylefig">
+<table>
+<h3 id="figure-21">Figure 21</h3>
+<tr>
+<td>
+<img src="images/image28.png" />
+</td>
+<td>
+<img src="images/image29.png" />
+</td>
+<td>
+<img src="images/image30.png" />
+</td>
+</tr>
+</table>
+</div>
+<p>Next, we will test how these parameter changes affect the simulation.
+Select the <code>Simulation</code> tab and click the <code>Run</code>
+button. Then follow the steps from section 1 or 2 to create a
+time-frequency spectrogram Once completed, you will see output in the
+GUI similar to that shown below.</p>
+<section id="figure-22" class="stylefig">
+<h3>Figure 22</h3>
+<p><img src="images/sec6pt1-oldFig20-nonspect.png" /></p>
+</section>
+<section id="figure-23" class="stylefig">
+<h3>Figure 23</h3>
+<p><img src="images/sec6pt1-oldFig20-spect.png" /></p>
+</section>
+<p>First, notice that the histogram profile of the distal input bursts
+(green) are narrower corresponding to more synchronous input than in the
+prior simulation (Step 3). Second, notice that the waveform of the
+oscillation is different with a sharper downward deflecting signal, due
+to to the stronger distal input. These deflections increased ~20 Hz beta
+activity, as seen in the corresponding spectrogram (compare to
+spectrogram in Step 3). The 20 Hz frequency is set by the duration of
+the downward current flow, which with this parameter set is
+approximately 50 ms (see Sherman et al. 2016<a href="#fn15"
+class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>
+for further details).</p>
+<h3 id="exercise-for-further-exploration">5.1.1 Exercise for further
+exploration</h3>
+<p>Try changing the frequency of the rhythmic distal drive from 10 Hz to
+20 Hz. Try other frequencies for the proximal and distal rhythmic drive.
+How do the rhythms change? See how changes in the Burst stdev effects
+the rhythms expressed.</p>
+<h3
+id="increasing-the-strength-post-synaptic-conductance-of-the-distal-drive-further-creates-high-frequency-responses-due-to-induced-spiking-activity">5.2
+Increasing the strength (post-synaptic conductance) of the distal drive
+further creates high frequency responses due to induced spiking
+activity</h3>
+<p>Recall that in the above simulations, the strength of the rhythmic
+proximal and distal inputs were chosen so that the cells remained
+subthreshold (no spiking). We will now demonstrate what happens if we
+increase the strength of the inputs far enough to induce spikes. Instead
+of simulating subthreshold alpha/beta events, we will see that the
+dipole signals are dominated by higher-frequency events created by
+spiking activity. We note that the produced waveforms of activity are,
+to our knowledge, not typically observed in MEG or EEG data, supporting
+the notion that alpha/beta rhythms are created through subthreshold
+processes.</p>
+<p>To test this, select the <code>External drives</code> tab, open the
+<code>bursty2 (distal)</code> dropdown menu, and change the parameters
+as follows. Under the timing tab, change the Burst stdev value back to
+20 ms. Under both the Layer 2/3 and Layer 5 tabs, increase the
+postsynaptic conductance weights of the AMPA synapses onto the Layer 2/3
+and Layer 5 pyramidal neurons from 6e-5
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mi>S</mi></mrow><annotation encoding="application/x-tex">\mu S</annotation></semantics></math>
+to 40e-5
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mi>S</mi></mrow><annotation encoding="application/x-tex">\mu S</annotation></semantics></math>
+(a big change that will provide enough current to cause the cells to
+spike). The “Rhythmic Distal Input” dialog windows should look as shown
+below.</p>
+<section id="figure-24" class="stylefig">
+<h3>Figure 24</h3>
+<p><img src="images/image25.png" /></p>
+</section>
+<p>Next, run the simulation. Click on Start Simulation from the main GUI
+window. Once completed, you will see output similar to that shown
+below.</p>
+<section id="figure-25" class="stylefig">
+<h3>Figure 25</h3>
+<p><img src="images/sec6pt2-oldFig23-nonspect.png" /></p>
+</section>
+<p>Notice that the histogram profile of the distal input bursts (green)
+are once again wider corresponding to less synchronous input and
+comparable to those shown in the example in Step 3. However, in this
+case the postsynaptic conductance of these driving spike is
+significantly larger (40e-5
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mi>S</mi></mrow><annotation encoding="application/x-tex">\mu S</annotation></semantics></math>).
+This strong input induces spiking activity in the pyramidal neuron on
+several cycles of the drive (2.5 shown here) resulting in a sharp and
+rapidly oscillating dipole waveform. The corresponding dipole
+spectrogram shows broadband spiking from ~60-120 Hz. This type of
+activity is not typically seen in EEG or MEG data, and hence unlikely to
+underlie macroscale recordings.</p>
+<p>We can verify that the neurons are spiking by looking at the spiking
+raster plots. To do so, navigate to <code>Visualization</code> tab,
+click the <code>Layout template</code> dropdown menu and select
+<code>PSD Layers (3x1)</code>. Then click <code>Make figure</code>.</p>
+<section id="figure-26" class="stylefig">
+<h3>Figure 26</h3>
+<p><img src="images/sec6pt2-oldFig25.png" /></p>
+</section>
+<p>Notice that highly synchronous neuronal spiking in each population
+coincides with the high-frequency events seen in the waveform and
+spectrogram. The waveform response is induced by the pyramidal neuron
+spiking which creates rapid back-propagating action potentials and
+repolarization of the dendrites.</p>
+<p>Hypothesis testing:This simulation demonstrates that HNN can be used
+to test the limits of physiological variables and to see how, as
+parameters are varied, simulations results can be similar or dissimilar
+to experimental data.</p>
+<h3 id="exercise-for-further-exploration-1">5.2.1 Exercise for further
+exploration</h3>
+<p>View the contribution of Layer 2/3 and Layer 5 to the net current
+dipole waveform and compare with the spiking activity in each
+population. How do each contribute? Try also to change the proximal
+input parameters instead of the distal input parameters.</p>
+<p>Adjust one of the parameter regulating the local network connections.
+What happens?</p>
+<h3
+id="increasing-the-delay-between-the-proximal-and-distal-inputs-to-anti-phase-50-ms-delay-creates-continuous-alpha-oscillations-without-beta-activity">5.3
+Increasing the delay between the proximal and distal inputs to
+anti-phase (50 ms delay) creates continuous alpha oscillations without
+beta activity</h3>
+<p>We mentioned above that, in addition to parameters controlling the
+strength and synchrony of the distal (or proximal) drive, the relative
+timing of proximal and distal inputs is an important factor in
+determining relative alpha and beta expression in the model. Here we
+will demonstrate that out-of-phase, 10 Hz burst inputs can produce
+continuous alpha activity without any beta events. For this simulation,
+load the <a
+href="https://raw.githubusercontent.com/jonescompneurolab/hnn-data/refs/heads/main/network-configurations/AlphaAndBeta.json">AlphaAndBeta.json</a>
+parameter file as described in Step 3 by clicking Set Parameters From
+File and selecting the file from HNN’s param subfolder. To view the new
+parameters, click on the <code>External drives</code> tab. Next, in the
+<code>bursty1 (proximal)</code> dropdown menu, change the start time
+mean from 50 to 100 ms. The timing tabs in the Rhythmic Proximal and
+Distal Input dialog boxes should look as follows:</p>
+<div class="stylefig">
+<table>
+<h3 id="figure-27">Figure 27</h3>
+<tr>
+<td>
+<img src="images/image26.png" />
+</td>
+<td>
+<img src="images/image27.png" />
+</td>
+</tr>
+</table>
+</div>
+<p>Note that both the proximal and distal input frequency are set to 10
+Hz (bursts of activity every ~100 ms). Since the proximal input Start
+time mean is 50.0 ms and the the distal input Start time mean is 100.0
+ms, the input will, on average, arrive to the network a 1/2 cycle out of
+phase (i.e., in antiphase, every 50 ms).</p>
+<p>Next, we will run the simulation to investigate the impact of this
+parameter change. Click on Start Simulation from the main GUI window.
+Once completed, you will see output similar to that shown below.</p>
+<section id="figure-28" class="stylefig">
+<h3>Figure 28</h3>
+<p><img src="images/sec6pt3-oldFig27-everything-except-spect.png" /></p>
+</section>
+<section id="figure-29" class="stylefig">
+<h3>Figure 29</h3>
+<p><img src="images/sec6pt3-oldFig27-spect.png" /></p>
+</section>
+<p>Notice that the histogram profile of the proximal (red) and distal
+(green) input bursts are generally ½ cycle out-of-phase (antiphase).
+This rhythmic alteration of proximal followed by distal drive induces
+alternating subthreshold current flow up and down the pyramidal neuron
+dendrites to create a continuous alpha oscillation in the current dipole
+waveform that oscillates around 0 nAm. The period of the oscillation is
+set by the duration of each burst (~50 ms, controlled in part by Burst
+stdev) and the 50 ms delay between the inputs on each cycle (due to
+different start times). The corresponding spectrogram shows continuous
+nearly pure alpha activity. This type of strong alpha activity is
+similar to what might be observed over occipital cortex during eyes
+closed conditions.</p>
+<h3 id="exercise-for-further-exploration-2">5.3.1 Exercise for further
+exploration</h3>
+<p>Try changing the delay between the proximal and distal drive by
+varying amounts. What happens to the rhythm expressed?</p>
+<p>Can you create a simulation where other frequencies are expressed?
+How is it created? Are the cells spiking or subthreshold?</p>
+<p><a id="toc_seven"></a></p>
+<h2 id="have-fun-exploring-your-own-data">6. Have fun exploring your own
+data!</h2>
+<!-- Follow steps 1-6 above using your data and parameter adjustments based on your own hypotheses.  -->
+<p>Follow steps 1-5 above using your data and parameter adjustments
+based on your own hypotheses.</p>
+<h2 id="references">References</h2>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Jones, Stephanie R., Dominique L. Pritchett, Michael A.
+Sikora, Steven M. Stufflebeam, Matti Hämäläinen, and Christopher I.
+Moore. 2009. “Quantitative Analysis and Biophysically Realistic Neural
+Modeling of the MEG Mu Rhythm: Rhythmogenesis and Modulation of
+Sensory-Evoked Responses.” Journal of Neurophysiology 102 (6): 3554–72.
+<a href="https://doi.org/10.1152/jn.00535.2009"
+class="uri">https://doi.org/10.1152/jn.00535.2009</a>.<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Jones, Stephanie R., Dominique L. Pritchett, Michael A.
+Sikora, Steven M. Stufflebeam, Matti Hämäläinen, and Christopher I.
+Moore. 2009. “Quantitative Analysis and Biophysically Realistic Neural
+Modeling of the MEG Mu Rhythm: Rhythmogenesis and Modulation of
+Sensory-Evoked Responses.” Journal of Neurophysiology 102 (6): 3554–72.
+<a href="https://doi.org/10.1152/jn.00535.2009"
+class="uri">https://doi.org/10.1152/jn.00535.2009</a>.<a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Ziegler, David A., Dominique L. Pritchett, Paymon
+Hosseini-Varnamkhasti, Suzanne Corkin, Matti Hämäläinen, Christopher I.
+Moore, and Stephanie R. Jones. 2010. “Transformations in Oscillatory
+Activity and Evoked Responses in Primary Somatosensory Cortex in Middle
+Age: A Combined Computational Neural Modeling and MEG Study.” NeuroImage
+52 (3): 897–912. <a
+href="https://doi.org/10.1016/j.neuroimage.2010.02.004"
+class="uri">https://doi.org/10.1016/j.neuroimage.2010.02.004</a>.<a
+href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Sherman, Maxwell A., Shane Lee, Robert Law, Saskia
+Haegens, Catherine A. Thorn, Matti S. Hämäläinen, Christopher I. Moore,
+and Stephanie R. Jones. 2016. “Neural Mechanisms of Transient
+Neocortical Beta Rhythms: Converging Evidence from Humans, Computational
+Modeling, Monkeys, and Mice.” Proceedings of the National Academy of
+Sciences 113 (33): E4885–94. <a
+href="https://doi.org/10.1073/pnas.1604135113"
+class="uri">https://doi.org/10.1073/pnas.1604135113</a>.<a
+href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Jones, Stephanie R. 2016. “When Brain Rhythms Aren’t
+‘Rhythmic’: Implication for Their Mechanisms and Meaning.” Current
+Opinion in Neurobiology, Systems neuroscience, 40 (October):72–80. <a
+href="https://doi.org/10.1016/j.conb.2016.06.010"
+class="uri">https://doi.org/10.1016/j.conb.2016.06.010</a>.<a
+href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Jones, Stephanie R. 2016. “When Brain Rhythms Aren’t
+‘Rhythmic’: Implication for Their Mechanisms and Meaning.” Current
+Opinion in Neurobiology, Systems neuroscience, 40 (October):72–80. <a
+href="https://doi.org/10.1016/j.conb.2016.06.010"
+class="uri">https://doi.org/10.1016/j.conb.2016.06.010</a>.<a
+href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Jones, Edward G. 2001. “The Thalamic Matrix and
+Thalamocortical Synchrony.” Trends in Neurosciences 24 (10): 595–601. <a
+href="https://doi.org/10.1016/S0166-2236(00)01922-6"
+class="uri">https://doi.org/10.1016/S0166-2236(00)01922-6</a>.<a
+href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Hughes, S. W., and Vincenzo Crunelli. 2005. “Thalamic
+Mechanisms of EEG Alpha Rhythms and Their Pathological Implications.”
+The Neuroscientist 11 (4): 357–72. <a
+href="https://doi.org/10.1177/1073858405277450"
+class="uri">https://doi.org/10.1177/1073858405277450</a>.<a
+href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Jones, Stephanie R., Dominique L. Pritchett, Michael A.
+Sikora, Steven M. Stufflebeam, Matti Hämäläinen, and Christopher I.
+Moore. 2009. “Quantitative Analysis and Biophysically Realistic Neural
+Modeling of the MEG Mu Rhythm: Rhythmogenesis and Modulation of
+Sensory-Evoked Responses.” Journal of Neurophysiology 102 (6): 3554–72.
+<a href="https://doi.org/10.1152/jn.00535.2009"
+class="uri">https://doi.org/10.1152/jn.00535.2009</a>.<a href="#fnref9"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Sherman, Maxwell A., Shane Lee, Robert Law, Saskia
+Haegens, Catherine A. Thorn, Matti S. Hämäläinen, Christopher I. Moore,
+and Stephanie R. Jones. 2016. “Neural Mechanisms of Transient
+Neocortical Beta Rhythms: Converging Evidence from Humans, Computational
+Modeling, Monkeys, and Mice.” Proceedings of the National Academy of
+Sciences 113 (33): E4885–94. <a
+href="https://doi.org/10.1073/pnas.1604135113"
+class="uri">https://doi.org/10.1073/pnas.1604135113</a>.<a
+href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Jones, Stephanie R., Dominique L. Pritchett, Michael A.
+Sikora, Steven M. Stufflebeam, Matti Hämäläinen, and Christopher I.
+Moore. 2009. “Quantitative Analysis and Biophysically Realistic Neural
+Modeling of the MEG Mu Rhythm: Rhythmogenesis and Modulation of
+Sensory-Evoked Responses.” Journal of Neurophysiology 102 (6): 3554–72.
+<a href="https://doi.org/10.1152/jn.00535.2009"
+class="uri">https://doi.org/10.1152/jn.00535.2009</a>.<a href="#fnref11"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Jones, Stephanie R., Dominique L. Pritchett, Michael A.
+Sikora, Steven M. Stufflebeam, Matti Hämäläinen, and Christopher I.
+Moore. 2009. “Quantitative Analysis and Biophysically Realistic Neural
+Modeling of the MEG Mu Rhythm: Rhythmogenesis and Modulation of
+Sensory-Evoked Responses.” Journal of Neurophysiology 102 (6): 3554–72.
+<a href="https://doi.org/10.1152/jn.00535.2009"
+class="uri">https://doi.org/10.1152/jn.00535.2009</a>.<a href="#fnref12"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Jones, Stephanie R., Dominique L. Pritchett, Michael A.
+Sikora, Steven M. Stufflebeam, Matti Hämäläinen, and Christopher I.
+Moore. 2009. “Quantitative Analysis and Biophysically Realistic Neural
+Modeling of the MEG Mu Rhythm: Rhythmogenesis and Modulation of
+Sensory-Evoked Responses.” Journal of Neurophysiology 102 (6): 3554–72.
+<a href="https://doi.org/10.1152/jn.00535.2009"
+class="uri">https://doi.org/10.1152/jn.00535.2009</a>.<a href="#fnref13"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>Sherman, Maxwell A., Shane Lee, Robert Law, Saskia
+Haegens, Catherine A. Thorn, Matti S. Hämäläinen, Christopher I. Moore,
+and Stephanie R. Jones. 2016. “Neural Mechanisms of Transient
+Neocortical Beta Rhythms: Converging Evidence from Humans, Computational
+Modeling, Monkeys, and Mice.” Proceedings of the National Academy of
+Sciences 113 (33): E4885–94. <a
+href="https://doi.org/10.1073/pnas.1604135113"
+class="uri">https://doi.org/10.1073/pnas.1604135113</a>.<a
+href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>Sherman, Maxwell A., Shane Lee, Robert Law, Saskia
+Haegens, Catherine A. Thorn, Matti S. Hämäläinen, Christopher I. Moore,
+and Stephanie R. Jones. 2016. “Neural Mechanisms of Transient
+Neocortical Beta Rhythms: Converging Evidence from Humans, Computational
+Modeling, Monkeys, and Mice.” Proceedings of the National Academy of
+Sciences 113 (33): E4885–94. <a
+href="https://doi.org/10.1073/pnas.1604135113"
+class="uri">https://doi.org/10.1073/pnas.1604135113</a>.<a
+href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+    </div> <!-- close content wrapper -->
+    </div> <!-- close content -->
+</div> <!-- close main -->
+
+<script>
+    let isSidebarOpen = true; // Sidebar is initially open
+
+    function toggleNav() {
+        const sidebar = document.getElementById("mySidebar");
+        const main = document.getElementById("main");
+
+        // Toggle sidebar state
+        if (isSidebarOpen) {
+            sidebar.style.width = "0";
+            main.style.marginLeft = "0";
+        } else {
+            sidebar.style.width = "350px";  // Adjust width as needed
+            main.style.marginLeft = "350px";  // Match margin to new width
+        }
+
+        // Toggle the sidebar state
+        isSidebarOpen = !isSidebarOpen;
+    }
+
+    // Open the sidebar on page load
+    window.onload = function() {
+        // Set initial styles for open state without animation
+        const sidebar = document.getElementById("mySidebar");
+        const main = document.getElementById("main");
+
+        sidebar.style.transition = "none";
+        main.style.transition = "none";
+        sidebar.style.width = "350px";
+        main.style.marginLeft = "350px";
+
+        // Re-enable transition for subsequent toggles
+        setTimeout(() => {
+            sidebar.style.transition = "width 0.5s";
+            main.style.transition = "margin-left 0.5s";
+        }, 10);
+    }
+
+    function increaseFontSize() {
+        event.stopPropagation();  // Prevent dropdown from closing
+        const content = document.getElementById("content");
+        const currentSize = window.getComputedStyle(content).fontSize;
+        content.style.fontSize = (parseFloat(currentSize) + 2) + "px";
+    }
+
+    function decreaseFontSize() {
+        event.stopPropagation();  // Prevent dropdown from closing
+        const content = document.getElementById("content");
+        const currentSize = window.getComputedStyle(content).fontSize;
+        content.style.fontSize = (parseFloat(currentSize) - 2) + "px";
+    }
+
+    // Dropdown for font buttons
+    function toggleDropdown() {
+        const dropdownContent = document.querySelector('.dropdown-content');
+        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Open/close dropdown on click of the button
+    document.getElementById('dropdownButton').onclick = function(event) {
+        event.stopPropagation();  // Prevent the click from triggering the window.onclick event
+        toggleDropdown();
+    };
+
+    // Close dropdown if clicking outside
+    window.onclick = function(event) {
+        const dropdownContent = document.querySelector('.dropdown-content');
+        if (!event.target.closest('.dropdown')) {  // Close if click outside the dropdown
+            dropdownContent.style.display = 'none';
+        }
+    };
+
+    function toggleSubmenu(event) {
+        const header = event.target.closest('#sidebar-header'); // Get the clicked header
+        const submenu = header.nextElementSibling; // Get the submenu
+        const toggleIcon = header.querySelector('.toggle-icon'); // Get the icon
+
+        if (submenu && submenu.classList.contains('submenu')) {
+            submenu.classList.toggle('open'); // Toggle the 'open' class to control visibility
+            toggleIcon.textContent = submenu.classList.contains('open') ? '-' : '+'; // Update icon
+        }
+    }
+
+    // This function will update the sidebar links when a page is loaded
+    // locally so that sidebar naivagation remains functional without the
+    // need for a server
+    // Note: This should work for Mac/Linux but may not on Windows
+    document.addEventListener("DOMContentLoaded", function() {
+        if (window.location.protocol === "file:") {
+            // get the current local directory path
+            const currentDir = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+
+            // get 'absolute' links with root of 'website_redesign'
+            const links = document.querySelectorAll("#mySidebar a");
+            links.forEach(link => {
+                const href = link.getAttribute("href");
+
+                if (href && href.startsWith("/")) {
+                    // extract the local root directory
+                    const rootPath = currentDir.split("/website_redesign/")[0];
+                    // prepend root path to link
+                    const resolvedHref = "file://" + rootPath + href;
+                    link.setAttribute("href", resolvedHref);
+                }
+            });
+
+            // Update image sources for icons
+            const images = document.querySelectorAll(".social-icons img, .menu-icons img");
+            images.forEach(img => {
+                const src = img.getAttribute("src");
+
+                if (src && src.startsWith("/")) {
+                    // extract the local root directory
+                    const rootPath = currentDir.split("/website_redesign/")[0];
+                    // prepend root path to image source
+                    const resolvedSrc = "file://" + rootPath + src;
+                    img.setAttribute("src", resolvedSrc);
+                }
+            });
+        }
+    });
+
+    // Toggle between light and dark themes
+    // ----------------------------------------
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.querySelector('.theme-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const sunSVG = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"></path>
+            </svg>
+        `;
+        const moonSVG = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                <path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"></path>
+            </svg>
+        `;
+
+        // Check the saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.classList.toggle('dark-mode', savedTheme === 'dark');
+            themeToggle.innerHTML = savedTheme === 'dark' ? moonSVG : sunSVG;
+            sidebar.classList.toggle('dark-mode', savedTheme === 'dark');
+        } else {
+            // Default to light theme if no saved preference
+            themeToggle.innerHTML = sunSVG;
+        }
+
+        // Add click event to toggle theme
+        themeToggle.addEventListener('click', () => {
+            const isDarkMode = document.body.classList.toggle('dark-mode');
+            themeToggle.innerHTML = isDarkMode ? moonSVG : sunSVG;
+            sidebar.classList.toggle('dark-mode', isDarkMode);
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        });
+    });
+
+    // -------------------------------
+    // Custom tooltips for the sidebar
+    // -------------------------------
+
+    // Flag to track tooltip visibility
+    let isTooltipVisible = false;
+
+    // Add text to the 'sidebar-tooltip' attribute for sidebar anchor tags
+    document.querySelectorAll('.sidebar a').forEach(anchor => {
+        const cleanedText = anchor.textContent.replace(/[+\-]/g, '').trim();
+        anchor.setAttribute('sidebar-tooltip', cleanedText);
+    });
+
+    // Handle sidebar tooltips
+    document.querySelectorAll('.sidebar a').forEach(function(link) {
+        link.addEventListener('mouseenter', function(event) {
+            const tooltipText = event.target.getAttribute('sidebar-tooltip');
+            
+            if (!tooltipText || isTooltipVisible) return; // Only show tooltip if none is visible
+
+            // Check if the text is overflowing
+            if (event.target.scrollWidth > event.target.offsetWidth) {
+                const delay = 500; // Set the delay time (in ms), adjust as needed
+
+                // Create the tooltip after the delay
+                setTimeout(function() {
+                    // Remove any existing tooltips
+                    const existingTooltip = document.querySelector('.sidebar-tooltip');
+                    if (existingTooltip) {
+                        existingTooltip.remove();
+                    }
+
+                    // Create the tooltip element dynamically
+                    const tooltip = document.createElement('div');
+                    tooltip.classList.add('sidebar-tooltip');  // Use the existing class
+                    tooltip.innerText = tooltipText;
+
+                    // Append the tooltip to the body (outside sidebar)
+                    document.body.appendChild(tooltip);
+
+                    // Get the position of the link
+                    const rect = event.target.getBoundingClientRect();
+                    
+                    // Position the tooltip based on the link's position
+                    tooltip.style.position = 'absolute';
+                    tooltip.style.left = `${rect.left + window.scrollX + 20}px`;
+                    tooltip.style.top = `${rect.bottom + window.scrollY}px`;  // Adjust with spacing
+
+                    // Make sure the tooltip is visible
+                    tooltip.style.opacity = '1';
+
+                    // Set the flag to true indicating that the tooltip is visible
+                    isTooltipVisible = true;
+                }, delay); // Delay the tooltip creation
+            }
+        });
+
+        link.addEventListener('mouseleave', function(event) {
+            // Remove the tooltip when the mouse leaves
+            const tooltip = document.querySelector('.sidebar-tooltip');
+            if (tooltip) {
+                tooltip.remove();
+            }
+
+            // Reset the flag to false when the tooltip is removed
+            isTooltipVisible = false;
+        });
+    });
+
+    // Function to close all open submenus in the navbar
+    // --------------------------------------------------
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to close all open submenus in the navbar
+        function closeAllSubmenus() {
+            const allSubmenus = document.querySelectorAll('.submenu.open'); // Select all open submenus
+            allSubmenus.forEach(submenu => {
+                submenu.classList.remove('open'); // Remove 'open' class to collapse
+                const toggleIcon = submenu.previousElementSibling.querySelector('.toggle-icon');
+                if (toggleIcon) {
+                    toggleIcon.textContent = '+'; // Reset icon to '+'
+                }
+            });
+        }
+
+        // Add functionality to collapse button (SVG icon)
+        const collapseIcon = document.querySelector('.collapse-icon');
+        if (collapseIcon) {
+            collapseIcon.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent event propagation to avoid unwanted behavior
+                closeAllSubmenus(); // Close all open submenus when the icon is clicked
+            });
+        }
+    });
+
+</script>
+
+<!------------------------ #
+# Code syntax highlighting #
+# ------------------------->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+
+<script>
+    // Remove the leading whitespace/newlines around code blocks 
+    // caused by the html structure used for readability
+    document.addEventListener("DOMContentLoaded", function() {
+        // Select all code blocks
+        const codeBlocks = document.querySelectorAll('.code-cell code.language-python');
+
+        codeBlocks.forEach(function(block) {
+            // Apply syntax highlighting to the code block
+            // Note: The below line is not needed with this setup
+            //  but may be useful in the case that the method
+            //  is later changed
+            // Prism.highlightElement(block);
+
+            // Get the code with highlighted classes
+            const highlightedHTML = block.innerHTML;
+
+            // Remove leading/trailing whitespace/newlines
+            block.innerHTML = highlightedHTML.trim();
+        });
+
+        // Select all output-code blocks
+        const outputBlocks = document.querySelectorAll('.output-cell .output-code');
+
+        outputBlocks.forEach(function(block) {
+            // Remove unwanted leading/trailing whitespace or newlines
+            block.textContent = block.textContent.trim();
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const currentPage = window.location.pathname.split("/").pop(); // Get current page filename
+
+        // Find the active link
+        const activeLink = document.querySelector(`#mySidebar a[href$='${currentPage}']`);
+        if (activeLink) {
+            activeLink.classList.add("active"); // Apply the active class
+
+            const submenu = activeLink.closest('.submenu'); // Find the closest submenu
+            if (submenu) {
+                submenu.classList.add('open'); // Keep the submenu open
+                const toggleIcon = submenu.previousElementSibling.querySelector('.toggle-icon');
+                if (toggleIcon) {
+                    toggleIcon.textContent = '-'; // Ensure the toggle icon reflects the open state
+                }
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

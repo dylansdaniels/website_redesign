@@ -54,7 +54,10 @@
     ],
     "06_alpha_beta": [
         "6. Simulating Alpha/Beta Rhythms",
-        {}
+        {
+            "01_gui.md": "6.1 GUI Tutorial of Alpha/Beta Rhythms",
+            "02_api.md": "6.2 API Tutorial of Alpha/Beta Rhythms"
+        }
     ],
     "07_gamma": [
         "7. Simulating Gamma Rhythms",

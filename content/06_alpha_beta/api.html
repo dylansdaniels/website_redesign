@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HNN Textbook</title>
+    <!-- <base href="/website_redesign/"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+	<div id="mySidebar" class="sidebar">
+		<div class="navbar-header">
+		<a>
+			Human Neocortical Neurosolver
+		</a>
+		<br>
+			<svg class="collapse-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+				<path d="M9 9H4v1h5V9z"/>
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M5 3l1-1h7l1 1v7l-1 1h-2v2l-1 1H3l-1-1V6l1-1h2V3zm1 2h4l1 1v4h2V3H6v2zm4 1H3v7h7V6z"/>
+			</svg>
+		</div>
+		<a href="/website_redesign/content/preface.html">Preface</a>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				1. Overview
+			</a>
+			<div class="submenu">
+				<a href="/website_redesign/content/01_overview/challange.html">1.1 Challenge in Connecting EEG MEG to Neural Circuits </a>
+				<a href="/website_redesign/content/01_overview/using_hnn.html">1.2 How HNN solve the Challenge by Bridging Scales</a>
+				<a href="/website_redesign/content/01_overview/sample_workflow.html">1.3 Overview of the Simulation Workflow</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				2. Background
+			</a>
+			<div class="submenu">
+				<a href="/website_redesign/content/02_background/biophysical_modeling.html">2.1 Challenge in Connecting EEG MEG to Neural Circuits </a>
+				<a href="/website_redesign/content/02_background/signal_origins.html">2.2 The Origins of Source Localize MEG/EEG Primary Currents</a>
+				<a href="/website_redesign/content/02_background/glossary.html">2.3 Glossary of Terms</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				3. Assumptions and Validation
+			</a>
+			<div class="submenu">
+				<a href="/website_redesign/content/03_assumptions/template_model.html">3.1 Template Model</a>
+				<a href="/website_redesign/content/03_assumptions/cortical_column_structure.html">3.2 Cortical Column Structure</a>
+				<a href="/website_redesign/content/03_assumptions/primary_electric_currents.html">3.3 Primary Electrical Currents</a>
+				<a href="/website_redesign/content/03_assumptions/neurons_morphology_and_physiology.html">3.4 Neurons: Morphology and Physiology</a>
+				<a href="/website_redesign/content/03_assumptions/synaptic_connectivity.html">3.5 Synaptic Connectivity</a>
+				<a href="/website_redesign/content/03_assumptions/evoked_and_rhythmic_driving_inputs.html">3.6 Evoked and Rhythmic Driving Inputs</a>
+				<a href="/website_redesign/content/03_assumptions/tonic_and_noisy_driving_inputs.html">3.7 Tonic and Noisy Driving Inputs</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				4. Using HNN
+			</a>
+			<div class="submenu">
+				<a href="/website_redesign/content/04_using_hnn/installation.html">4.1 Installation</a>
+				<a href="/website_redesign/content/04_using_hnn/network_parameters.html">4.2 Network Parameters</a>
+				<a href="/website_redesign/content/04_using_hnn/drive_parameters.html">4.3 Drive Parameters</a>
+				<a href="/website_redesign/content/04_using_hnn/loading_data.html">4.4 Loading Data</a>
+				<a href="/website_redesign/content/04_using_hnn/running_simulations.html">4.5 Running Simulations</a>
+				<a href="/website_redesign/content/04_using_hnn/plotting_firing_patterns.html">4.6 Plotting Firing Patterns</a>
+				<a href="/website_redesign/content/04_using_hnn/recording_lfp.html">4.7 Recording and Plotting LFP</a>
+				<a href="/website_redesign/content/04_using_hnn/animating_simulations.html">4.8 Animating Simulations</a>
+				<a href="/website_redesign/content/04_using_hnn/more_visualizations.html">4.9 Additional Visualizations</a>
+				<a href="/website_redesign/content/04_using_hnn/parallelizing.html">4.10 Running Parallel Simulations</a>
+				<a href="/website_redesign/content/04_using_hnn/optimization.html">4.11 Optimizing Evoked Responses and Rhythms</a>
+				<a href="/website_redesign/content/04_using_hnn/batch_simulation.html">4.12 Running Batch Simulations</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				5. Simulating ERPs
+			</a>
+			<div class="submenu">
+				<a href="/website_redesign/content/05_erps/overview_of_erps.html">2.1 Review of ERPs</a>
+				<a href="/website_redesign/content/05_erps/hnn_core.html">2.2 Simulating ERPs in hnn-core</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				6. Simulating Alpha/Beta Rhythms
+			</a>
+			<div class="submenu">
+				<a href="/website_redesign/content/06_alpha_beta/gui.html">6.1 GUI Tutorial of Alpha/Beta Rhythms</a>
+				<a href="/website_redesign/content/06_alpha_beta/api.html">6.2 API Tutorial of Alpha/Beta Rhythms</a>
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				7. Simulating Gamma Rhythms
+			</a>
+			<div class="submenu">
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				8. From Data to Simulation
+			</a>
+			<div class="submenu">
+			</div>
+		</div>
+		<div class="sidebar-list">
+			<a id="sidebar-header" onclick="toggleSubmenu(event)">
+		<span class="toggle-icon">+</span>
+				9. Feature Demos
+			</a>
+			<div class="submenu">
+			</div>
+		</div>
+	</div>
+
+<div id="main">
+    <div class="topbar">
+
+        <!-- Topbar menu -->
+        <div class="menu-container">
+            <div class="menu-icons">
+                <button class="openbtn" onclick="toggleNav()">
+                    ☰
+                </button>
+                <a href="" class="home-link">
+                    <div class="home-icon-container">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24" 
+                            height="24"
+                            viewBox="0 0 24 24" 
+                            class="home-icon">
+                            <path
+                                d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"
+                            />
+                        </svg>
+                    </div>
+                </a>
+                <button class="theme-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"></path>
+                    </svg>
+                </button>
+                <div class="dropdown">
+                    <button 
+                        id="dropdownButton" 
+                        class="dropdown-button">
+                            <img
+                                src="/website_redesign/content/assets/icons/fontsize.png"
+                                alt="fontsize"
+                            />
+                    </button>
+                    <div class="dropdown-content">
+                        <button 
+                            class="fontsize-btn" 
+                            onclick="decreaseFontSize()">
+                            <img
+                                src="/website_redesign/content/assets/icons/fontminus.png"
+                                alt="fontminus"
+                            />
+                        </button>
+                        <button 
+                            class="fontsize-btn" 
+                            onclick="increaseFontSize()">
+                            <img
+                                src="/website_redesign/content/assets/icons/fontplus.png"
+                                alt="fontplus"
+                            />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Topbar image -->
+        <img 
+            id="topbar-logo"
+            src="https://hnn.brown.edu/wp-content/uploads/hnn-medium.png"
+        />
+
+        <!-- Right side of topbar -->
+        <div class="socials-container">
+            <div class="social-icons">
+                <a 
+                    href="https://github.com/jonescompneurolab/hnn-core" 
+                    target="_blank" 
+                    aria-label="GitHub">
+                    <img 
+                        src="/website_redesign/content/assets/icons/github.png"
+                        alt="GitHub">
+                </a>
+                <a 
+                    href="https://bsky.app/profile/hnnsolver.bsky.social" 
+                    target="_blank"
+                    aria-label="BlueSky">
+                    <img 
+                        src="/website_redesign/content/assets/icons/bluesky.png"
+                        alt="BlueSky">
+                </a>
+                <a 
+                    href="https://www.linkedin.com/company/human-neocortical-neurosolver/" 
+                    target="_blank"
+                    aria-label="LinkedIn">
+                    <img 
+                        src="/website_redesign/content/assets/icons/linkedin.png"
+                        alt="LinkedIn">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="content-wrapper">
+    <div id="content">
+
+<!--
+# Title: 6.2 API Tutorial of Alpha/Beta Rhythms
+# Updated: 2025-02-04
+#
+# Contributors:
+    # Dylan Daniels
+    # Mainak Jas <mmjas@mgh.harvard.edu>
+    # Sam Neymotin <samnemo@gmail.com>
+    # Blake Caldwell <blake_caldwell@brown.edu>
+    # Christopher Bailey <cjb@cfin.au.dk>
+-->
+<p>[[api_alpha_beta.ipynb]]</p>
+    </div> <!-- close content wrapper -->
+    </div> <!-- close content -->
+</div> <!-- close main -->
+
+<script>
+    let isSidebarOpen = true; // Sidebar is initially open
+
+    function toggleNav() {
+        const sidebar = document.getElementById("mySidebar");
+        const main = document.getElementById("main");
+
+        // Toggle sidebar state
+        if (isSidebarOpen) {
+            sidebar.style.width = "0";
+            main.style.marginLeft = "0";
+        } else {
+            sidebar.style.width = "350px";  // Adjust width as needed
+            main.style.marginLeft = "350px";  // Match margin to new width
+        }
+
+        // Toggle the sidebar state
+        isSidebarOpen = !isSidebarOpen;
+    }
+
+    // Open the sidebar on page load
+    window.onload = function() {
+        // Set initial styles for open state without animation
+        const sidebar = document.getElementById("mySidebar");
+        const main = document.getElementById("main");
+
+        sidebar.style.transition = "none";
+        main.style.transition = "none";
+        sidebar.style.width = "350px";
+        main.style.marginLeft = "350px";
+
+        // Re-enable transition for subsequent toggles
+        setTimeout(() => {
+            sidebar.style.transition = "width 0.5s";
+            main.style.transition = "margin-left 0.5s";
+        }, 10);
+    }
+
+    function increaseFontSize() {
+        event.stopPropagation();  // Prevent dropdown from closing
+        const content = document.getElementById("content");
+        const currentSize = window.getComputedStyle(content).fontSize;
+        content.style.fontSize = (parseFloat(currentSize) + 2) + "px";
+    }
+
+    function decreaseFontSize() {
+        event.stopPropagation();  // Prevent dropdown from closing
+        const content = document.getElementById("content");
+        const currentSize = window.getComputedStyle(content).fontSize;
+        content.style.fontSize = (parseFloat(currentSize) - 2) + "px";
+    }
+
+    // Dropdown for font buttons
+    function toggleDropdown() {
+        const dropdownContent = document.querySelector('.dropdown-content');
+        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Open/close dropdown on click of the button
+    document.getElementById('dropdownButton').onclick = function(event) {
+        event.stopPropagation();  // Prevent the click from triggering the window.onclick event
+        toggleDropdown();
+    };
+
+    // Close dropdown if clicking outside
+    window.onclick = function(event) {
+        const dropdownContent = document.querySelector('.dropdown-content');
+        if (!event.target.closest('.dropdown')) {  // Close if click outside the dropdown
+            dropdownContent.style.display = 'none';
+        }
+    };
+
+    function toggleSubmenu(event) {
+        const header = event.target.closest('#sidebar-header'); // Get the clicked header
+        const submenu = header.nextElementSibling; // Get the submenu
+        const toggleIcon = header.querySelector('.toggle-icon'); // Get the icon
+
+        if (submenu && submenu.classList.contains('submenu')) {
+            submenu.classList.toggle('open'); // Toggle the 'open' class to control visibility
+            toggleIcon.textContent = submenu.classList.contains('open') ? '-' : '+'; // Update icon
+        }
+    }
+
+    // This function will update the sidebar links when a page is loaded
+    // locally so that sidebar naivagation remains functional without the
+    // need for a server
+    // Note: This should work for Mac/Linux but may not on Windows
+    document.addEventListener("DOMContentLoaded", function() {
+        if (window.location.protocol === "file:") {
+            // get the current local directory path
+            const currentDir = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+
+            // get 'absolute' links with root of 'website_redesign'
+            const links = document.querySelectorAll("#mySidebar a");
+            links.forEach(link => {
+                const href = link.getAttribute("href");
+
+                if (href && href.startsWith("/")) {
+                    // extract the local root directory
+                    const rootPath = currentDir.split("/website_redesign/")[0];
+                    // prepend root path to link
+                    const resolvedHref = "file://" + rootPath + href;
+                    link.setAttribute("href", resolvedHref);
+                }
+            });
+
+            // Update image sources for icons
+            const images = document.querySelectorAll(".social-icons img, .menu-icons img");
+            images.forEach(img => {
+                const src = img.getAttribute("src");
+
+                if (src && src.startsWith("/")) {
+                    // extract the local root directory
+                    const rootPath = currentDir.split("/website_redesign/")[0];
+                    // prepend root path to image source
+                    const resolvedSrc = "file://" + rootPath + src;
+                    img.setAttribute("src", resolvedSrc);
+                }
+            });
+        }
+    });
+
+    // Toggle between light and dark themes
+    // ----------------------------------------
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.querySelector('.theme-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const sunSVG = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"></path>
+            </svg>
+        `;
+        const moonSVG = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                <path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"></path>
+            </svg>
+        `;
+
+        // Check the saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.classList.toggle('dark-mode', savedTheme === 'dark');
+            themeToggle.innerHTML = savedTheme === 'dark' ? moonSVG : sunSVG;
+            sidebar.classList.toggle('dark-mode', savedTheme === 'dark');
+        } else {
+            // Default to light theme if no saved preference
+            themeToggle.innerHTML = sunSVG;
+        }
+
+        // Add click event to toggle theme
+        themeToggle.addEventListener('click', () => {
+            const isDarkMode = document.body.classList.toggle('dark-mode');
+            themeToggle.innerHTML = isDarkMode ? moonSVG : sunSVG;
+            sidebar.classList.toggle('dark-mode', isDarkMode);
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        });
+    });
+
+    // -------------------------------
+    // Custom tooltips for the sidebar
+    // -------------------------------
+
+    // Flag to track tooltip visibility
+    let isTooltipVisible = false;
+
+    // Add text to the 'sidebar-tooltip' attribute for sidebar anchor tags
+    document.querySelectorAll('.sidebar a').forEach(anchor => {
+        const cleanedText = anchor.textContent.replace(/[+\-]/g, '').trim();
+        anchor.setAttribute('sidebar-tooltip', cleanedText);
+    });
+
+    // Handle sidebar tooltips
+    document.querySelectorAll('.sidebar a').forEach(function(link) {
+        link.addEventListener('mouseenter', function(event) {
+            const tooltipText = event.target.getAttribute('sidebar-tooltip');
+            
+            if (!tooltipText || isTooltipVisible) return; // Only show tooltip if none is visible
+
+            // Check if the text is overflowing
+            if (event.target.scrollWidth > event.target.offsetWidth) {
+                const delay = 500; // Set the delay time (in ms), adjust as needed
+
+                // Create the tooltip after the delay
+                setTimeout(function() {
+                    // Remove any existing tooltips
+                    const existingTooltip = document.querySelector('.sidebar-tooltip');
+                    if (existingTooltip) {
+                        existingTooltip.remove();
+                    }
+
+                    // Create the tooltip element dynamically
+                    const tooltip = document.createElement('div');
+                    tooltip.classList.add('sidebar-tooltip');  // Use the existing class
+                    tooltip.innerText = tooltipText;
+
+                    // Append the tooltip to the body (outside sidebar)
+                    document.body.appendChild(tooltip);
+
+                    // Get the position of the link
+                    const rect = event.target.getBoundingClientRect();
+                    
+                    // Position the tooltip based on the link's position
+                    tooltip.style.position = 'absolute';
+                    tooltip.style.left = `${rect.left + window.scrollX + 20}px`;
+                    tooltip.style.top = `${rect.bottom + window.scrollY}px`;  // Adjust with spacing
+
+                    // Make sure the tooltip is visible
+                    tooltip.style.opacity = '1';
+
+                    // Set the flag to true indicating that the tooltip is visible
+                    isTooltipVisible = true;
+                }, delay); // Delay the tooltip creation
+            }
+        });
+
+        link.addEventListener('mouseleave', function(event) {
+            // Remove the tooltip when the mouse leaves
+            const tooltip = document.querySelector('.sidebar-tooltip');
+            if (tooltip) {
+                tooltip.remove();
+            }
+
+            // Reset the flag to false when the tooltip is removed
+            isTooltipVisible = false;
+        });
+    });
+
+    // Function to close all open submenus in the navbar
+    // --------------------------------------------------
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to close all open submenus in the navbar
+        function closeAllSubmenus() {
+            const allSubmenus = document.querySelectorAll('.submenu.open'); // Select all open submenus
+            allSubmenus.forEach(submenu => {
+                submenu.classList.remove('open'); // Remove 'open' class to collapse
+                const toggleIcon = submenu.previousElementSibling.querySelector('.toggle-icon');
+                if (toggleIcon) {
+                    toggleIcon.textContent = '+'; // Reset icon to '+'
+                }
+            });
+        }
+
+        // Add functionality to collapse button (SVG icon)
+        const collapseIcon = document.querySelector('.collapse-icon');
+        if (collapseIcon) {
+            collapseIcon.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent event propagation to avoid unwanted behavior
+                closeAllSubmenus(); // Close all open submenus when the icon is clicked
+            });
+        }
+    });
+
+</script>
+
+<!------------------------ #
+# Code syntax highlighting #
+# ------------------------->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+
+<script>
+    // Remove the leading whitespace/newlines around code blocks 
+    // caused by the html structure used for readability
+    document.addEventListener("DOMContentLoaded", function() {
+        // Select all code blocks
+        const codeBlocks = document.querySelectorAll('.code-cell code.language-python');
+
+        codeBlocks.forEach(function(block) {
+            // Apply syntax highlighting to the code block
+            // Note: The below line is not needed with this setup
+            //  but may be useful in the case that the method
+            //  is later changed
+            // Prism.highlightElement(block);
+
+            // Get the code with highlighted classes
+            const highlightedHTML = block.innerHTML;
+
+            // Remove leading/trailing whitespace/newlines
+            block.innerHTML = highlightedHTML.trim();
+        });
+
+        // Select all output-code blocks
+        const outputBlocks = document.querySelectorAll('.output-cell .output-code');
+
+        outputBlocks.forEach(function(block) {
+            // Remove unwanted leading/trailing whitespace or newlines
+            block.textContent = block.textContent.trim();
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const currentPage = window.location.pathname.split("/").pop(); // Get current page filename
+
+        // Find the active link
+        const activeLink = document.querySelector(`#mySidebar a[href$='${currentPage}']`);
+        if (activeLink) {
+            activeLink.classList.add("active"); // Apply the active class
+
+            const submenu = activeLink.closest('.submenu'); // Find the closest submenu
+            if (submenu) {
+                submenu.classList.add('open'); // Keep the submenu open
+                const toggleIcon = submenu.previousElementSibling.querySelector('.toggle-icon');
+                if (toggleIcon) {
+                    toggleIcon.textContent = '-'; // Ensure the toggle icon reflects the open state
+                }
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>
