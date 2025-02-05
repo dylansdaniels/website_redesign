@@ -9,19 +9,6 @@ import markdown
 from nbconvert.preprocessors import ExecutePreprocessor
 
 
-def execute_notebook(notebook_path):
-    """Executes a Jupyter notebook and returns the
-    executed notebook object."""
-    with open(notebook_path, "r", encoding="utf-8") as f:
-        notebook = nbformat.read(f, as_version=4)
-
-    ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
-    ep.preprocess(
-        notebook, {"metadata": {"path": os.path.dirname(notebook_path)}}
-    )
-    return notebook
-
-
 def save_plot_as_image(img_data, img_filename, output_dir):
     """Saves the plot image to the specified directory."""
     img_path = os.path.join(output_dir, img_filename)
@@ -311,25 +298,92 @@ def extract_html_from_notebook(
     return html_output
 
 
-def convert_notebooks_to_html(
-    input_folder,
-    # output_folder,
-    use_base64=False,
-    write_html=False,
-):
-    """Executes and converts .ipynb files in the input folder to HTML."""
-    # if not os.path.exists(output_folder):
-    #     os.makedirs(output_folder)
+def load_notebook_timestamps(timestamps_path):
+    """Load saved times for notebooks"""
+    if os.path.exists(timestamps_path):
+        with open(timestamps_path, "r") as f:
+            return json.load(f)
+    return {}
 
+
+def save_notebook_timestamps(
+        new_timestamps,
+        path_timestamps,
+        ):
+    """Save modification times after processing."""
+    with open(path_timestamps, "w") as f:
+        json.dump(new_timestamps, f, indent=4)
+
+
+def get_notebook(
+        notebook_path,
+        execute,
+        timeout=600,
+        ):
+    """Get a jupyter notebook object and optionally execute it"""
+    with open(notebook_path, "r", encoding="utf-8") as f:
+        notebook = nbformat.read(f, as_version=4)
+
+    if execute:
+        ep = ExecutePreprocessor(
+            timeout=timeout,
+            kernel_name="python3"
+        )
+        ep.preprocess(
+            notebook, {"metadata": {"path": os.path.dirname(notebook_path)}}
+        )
+
+    return notebook
+
+
+def convert_notebooks_to_html(
+        input_folder,
+        use_base64=False,
+        write_html=False,
+        timestamps_path="notebook_timestamps.json"
+        ):
+    """Executes and converts .ipynb files in the input folder to HTML."""
+
+    # get the last saved execution time for each notebook
+    timestamps = load_notebook_timestamps(timestamps_path)
+    # create a copy of the execution times to update and save
+    updated_timestamps = timestamps.copy()
+
+    # iterate through input directory and process notebooks
     for filename in os.listdir(input_folder):
-        path = os.path.join(input_folder, filename)
+        nb_path = os.path.join(input_folder, filename)
         if filename.endswith(".ipynb"):
             print(f"Processing notebook: {filename}")
-            executed_notebook = execute_notebook(path)
+
+            last_modified = int(os.path.getmtime(nb_path))
+
+            # skip execution if the notebook hasn't changed
+            if (filename in timestamps) and \
+                    (timestamps[filename] == last_modified):
+                print(
+                    f"Skipping execution on un-changed notebook: {filename}"
+                )
+                # get notebook without executing it
+                executed_notebook = get_notebook(
+                    nb_path,
+                    execute=False,
+                )
+            else:
+                print(
+                    "New or changed notebook detected. Executing "
+                    f"the notebook: {filename}"
+                )
+                # get and execute the notebook
+                executed_notebook = get_notebook(
+                    nb_path,
+                    execute=True,
+                )
+                # update the timestamp
+                updated_timestamps[filename] = last_modified
 
             html_content = extract_html_from_notebook(
                 executed_notebook,
-                input_folder,  # changed
+                input_folder,
                 filename,
                 use_base64
             )
@@ -362,6 +416,12 @@ def convert_notebooks_to_html(
                 json.dump(nb_html_json, f, indent=4)
 
             print(f"Successfully converted '{filename}'")
+
+    # Save updated timestamps
+    save_notebook_timestamps(
+        updated_timestamps,
+        timestamps_path,
+    )
 
 
 # %%
