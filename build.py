@@ -109,6 +109,7 @@ def generate_page_html(page_paths):
                 path,
                 to='html',
                 # format='md',
+                extra_args=["--mathml"],
             )
         except Exception as ex:
             # download Pandoc dependency if needed
