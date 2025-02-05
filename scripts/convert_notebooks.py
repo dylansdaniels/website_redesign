@@ -6,6 +6,7 @@ import re
 import json
 import nbformat
 import markdown
+import hashlib
 from nbconvert.preprocessors import ExecutePreprocessor
 
 
@@ -114,33 +115,23 @@ def structure_json(contents):
         seek = 'sub-sections'
 
         for k, v in list(sections.items()):
-            print('key:', k)
-            print('value:', v)
-            print('-' * 30)
 
             if isinstance(v, dict):
                 # check for 'sub-sections' key in dict
                 if seek in v:
-                    print('Subsections present:', (seek in v))
-                    print('Subsection value:', v[seek])
 
                     # delete empty sub-sections
                     if v[seek] == []:
-                        print('Blank section found')
                         del v[seek]
 
                     # Recursively check all sub-sections
                     else:
-                        print('Checking sub-sections recursively...')
                         for sub_section in v[seek]:
                             remove_blank_subsections(sub_section)
-
-                print('#' * 30)
 
             elif isinstance(v, list):
                 # if v is an empty list, delete it
                 if v == []:
-                    print('Blank section found in list')
                     del sections[k]
                 # if v is a list of dicts, iterate through the dicts
                 else:
@@ -298,21 +289,30 @@ def extract_html_from_notebook(
     return html_output
 
 
-def load_notebook_timestamps(timestamps_path):
-    """Load saved times for notebooks"""
-    if os.path.exists(timestamps_path):
-        with open(timestamps_path, "r") as f:
+def hash_notebook(notebook_path):
+    """Generate a SHA256 hash of the notebook"""
+    hasher = hashlib.sha256()
+    with open(notebook_path, "rb") as f:
+        while chunk := f.read(8192):
+            hasher.update(chunk)
+    return hasher.hexdigest()
+
+
+def load_notebook_hashes(hash_path):
+    """Load previously-recorded hashes notebook hashes"""
+    if os.path.exists(hash_path):
+        with open(hash_path, "r") as f:
             return json.load(f)
     return {}
 
 
-def save_notebook_timestamps(
-        new_timestamps,
-        path_timestamps,
+def save_notebook_hashes(
+        new_hashes,
+        hash_path
         ):
-    """Save modification times after processing."""
-    with open(path_timestamps, "w") as f:
-        json.dump(new_timestamps, f, indent=4)
+    """Save updated notebook hashes"""
+    with open(hash_path, "w") as f:
+        json.dump(new_hashes, f, indent=4)
 
 
 def get_notebook(
@@ -337,101 +337,102 @@ def get_notebook(
 
 
 def convert_notebooks_to_html(
-        input_folder,
+        input_folder=None,
         use_base64=False,
         write_html=False,
-        timestamps_path="notebook_timestamps.json"
+        hash_path="notebook_hashes.json",
         ):
     """Executes and converts .ipynb files in the input folder to HTML."""
 
-    # get the last saved execution time for each notebook
-    timestamps = load_notebook_timestamps(timestamps_path)
-    # create a copy of the execution times to update and save
-    updated_timestamps = timestamps.copy()
+    if not input_folder:
+        input_folder = os.getcwd().split('scripts')[0]
+        input_folder += 'content'
+
+    # load saved notebook hashes
+    notebook_hashes = load_notebook_hashes(hash_path)
+    # create a copy of the hashes to update and save
+    updated_hashes = notebook_hashes.copy()
 
     # iterate through input directory and process notebooks
-    for filename in os.listdir(input_folder):
-        nb_path = os.path.join(input_folder, filename)
-        if filename.endswith(".ipynb"):
-            print(f"Processing notebook: {filename}")
+    for root, list_folders, list_files in os.walk(input_folder):
+        for filename in list_files:
+            if filename.endswith(".ipynb"):
+                nb_path = os.path.join(root, filename)
+                print(f"Processing notebook: {filename}")
+                current_hash = hash_notebook(nb_path)
 
-            last_modified = int(os.path.getmtime(nb_path))
+                # skip execution if the notebook hasn't changed
+                if (filename in notebook_hashes) and \
+                        (notebook_hashes[filename] == current_hash):
+                    print(
+                        f"Skipping execution on unchanged notebook: {filename}"
+                    )
+                    # get notebook without executing it
+                    executed_notebook = get_notebook(
+                        nb_path,
+                        execute=False,
+                    )
+                else:
+                    print(
+                        "New or changed notebook detected. Executing "
+                        f"the notebook: {filename}"
+                    )
+                    # get and execute the notebook
+                    executed_notebook = get_notebook(
+                        nb_path,
+                        execute=True,
+                    )
+                    # update the hash
+                    updated_hashes[filename] = current_hash
 
-            # skip execution if the notebook hasn't changed
-            if (filename in timestamps) and \
-                    (timestamps[filename] == last_modified):
-                print(
-                    f"Skipping execution on un-changed notebook: {filename}"
+                html_content = extract_html_from_notebook(
+                    executed_notebook,
+                    input_folder,
+                    filename,
+                    use_base64
                 )
-                # get notebook without executing it
-                executed_notebook = get_notebook(
-                    nb_path,
-                    execute=False,
+
+                if write_html:
+                    output_file = os.path.join(
+                        input_folder, f"{os.path.splitext(filename)[0]}.html"
+                    )
+                    with open(output_file, "w", encoding="utf-8") as f:
+                        f.write("<html><body>\n")
+                        f.write(html_content)
+                        f.write("\n</body></html>")
+
+                # flat json
+                nb_html_json = html_to_json(
+                    html_content,
+                    filename,
                 )
-            else:
-                print(
-                    "New or changed notebook detected. Executing "
-                    f"the notebook: {filename}"
+
+                # nested json
+                nb_html_json = structure_json(
+                    nb_html_json
                 )
-                # get and execute the notebook
-                executed_notebook = get_notebook(
-                    nb_path,
-                    execute=True,
+
+                output_json = os.path.join(
+                    input_folder, f"{os.path.splitext(filename)[0]}.json"
                 )
-                # update the timestamp
-                updated_timestamps[filename] = last_modified
 
-            html_content = extract_html_from_notebook(
-                executed_notebook,
-                input_folder,
-                filename,
-                use_base64
-            )
+                with open(output_json, "w") as f:
+                    json.dump(nb_html_json, f, indent=4)
 
-            if write_html:
-                output_file = os.path.join(
-                    input_folder, f"{os.path.splitext(filename)[0]}.html"
-                )
-                with open(output_file, "w", encoding="utf-8") as f:
-                    f.write("<html><body>\n")
-                    f.write(html_content)
-                    f.write("\n</body></html>")
+                print(f"Successfully converted '{filename}'to html\n")
 
-            # flat json
-            nb_html_json = html_to_json(
-                html_content,
-                filename,
-            )
-
-            # nested json
-            nb_html_json = structure_json(
-                nb_html_json
-            )
-
-            output_json = os.path.join(
-                input_folder, f"{os.path.splitext(filename)[0]}.json"
-            )
-
-            with open(output_json, "w") as f:
-                json.dump(nb_html_json, f, indent=4)
-
-            print(f"Successfully converted '{filename}'")
-
-    # Save updated timestamps
-    save_notebook_timestamps(
-        updated_timestamps,
-        timestamps_path,
+    # save updated hashes
+    save_notebook_hashes(
+        updated_hashes,
+        hash_path
     )
 
 
 # %%
-def test_nb_conversion():
-
-    input_folder = "../tests"
-    input_folder = "../content/05_erps"
+def test_nb_conversion(input_folder=None):
 
     convert_notebooks_to_html(
-        input_folder,
+        input_folder=input_folder,
         use_base64=False,
         write_html=True,
     )
