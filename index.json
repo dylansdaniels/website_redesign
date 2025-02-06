@@ -3,17 +3,18 @@
     "01_overview": [
         "1. Overview",
         {
-            "01_challange.md": "1.1 Challenge in Connecting EEG MEG to Neural Circuits ",
-            "02_using_hnn.md": "1.2 How HNN solve the Challenge by Bridging Scales",
+            "01_challenge.md": "1.1 Challenge in Connecting EEG/MEG to Neural Circuits",
+            "02_hnn_solves_challenge.md": "1.2 How HNN solves the Challenge by Bridging Scales",
             "03_sample_workflow.md": "1.3 Overview of the Simulation Workflow"
         }
     ],
     "02_background": [
         "2. Background",
         {
-            "01_biophysical_modeling.md": "2.1 Challenge in Connecting EEG MEG to Neural Circuits ",
-            "02_signal_origins.md": "2.2 The Origins of Source Localize MEG/EEG Primary Currents",
-            "03_glossary.md": "2.3 Glossary of Terms"
+            "01_biophysical_modeling.md": "2.1 Biophysical Modeling",
+            "02_signal_origins.md": "2.2 The Origins of Source-Localized MEG/EEG Primary Currents",
+            "03_glossary.md": "2.3 Glossary of Terms",
+            "04_further_reading.md": "2.4 Further Reading"
         }
     ],
     "03_assumptions": [
@@ -29,27 +30,37 @@
         }
     ],
     "04_using_hnn": [
-        "4. Using HNN",
+        "5. Using HNN",
         {
-            "01_installation.md": "4.1 Installation",
-            "02_network_parameters.md": "4.2 Network Parameters",
-            "03_drive_parameters.md": "4.3 Drive Parameters",
-            "04_loading_data.md": "4.4 Loading Data",
-            "05_running_simulations.md": "4.5 Running Simulations",
-            "06_plotting_firing_patterns.md": "4.6 Plotting Firing Patterns",
-            "07_recording_lfp.md": "4.7 Recording and Plotting LFP",
-            "08_animating_simulations.md": "4.8 Animating Simulations",
-            "09_more_visualizations.md": "4.9 Additional Visualizations",
-            "10_parallelizing.md": "4.10 Running Parallel Simulations",
-            "11_optimization.md": "4.11 Optimizing Evoked Responses and Rhythms",
-            "12_batch_simulation.md": "4.12 Running Batch Simulations"
+            "01_installation_github.md": "4.1 Installation (GitHub)",
+            "02_high_level_overview_of_workflows.md": "4.2 High-level overview of workflows",
+            "03_network_parameters.md": "4.3 Network Parameters",
+            "04_drive_parameters.md": "4.4 Drive Parameters",
+            "05_loading_data.md": "4.5 Loading Data",
+            "06_running_simulations.md": "4.6 Running Simulations",
+            "07_plotting_dipoles.md": "4.7 Plotting Dipoles",
+            "08_plotting_firing_patterns.md": "4.8 Plotting Firing Patterns",
+            "09_recording_and_plotting_lfp.md": "4.9 Recording and Plotting LFP",
+            "10_animating_simulations.md": "4.10 Animating Simulations",
+            "11_more_visualizations.md": "4.11 More Visualizations",
+            "12_parallelism_mpi.md": "4.12 Parallelism: MPI",
+            "13_parallelism_joblib.md": "4.13 Parallelism: Joblib",
+            "14_optimization_evoked_responses.md": "4.14 Optimization: Evoked Responses",
+            "15_optimization_rhythmic_responses.md": "4.15 Optimization: Rhythmic Responses",
+            "16_running_batch_simulation.md": "4.16 Running Batch Simulations",
+            "17_code_api_documentation_github.md": "4.17 Code/API Documentation (GitHub)"
         }
     ],
     "05_erps": [
         "5. Simulating ERPs",
         {
+<<<<<<< HEAD
             "01_erps_in_gui.md": "2.1 GUI Tutorial of ERP Simulation",
             "02_hnn_core.md": "2.2 API Tutorial of ERP Simulation"
+=======
+            "01_overview_of_erps.md": "5.1 Review of ERPs",
+            "02_hnn_core.md": "5.2 Simulating ERPs in hnn-core"
+>>>>>>> 8485c1f (content: add notes and rearrange from notion page)
         }
     ],
     "06_alpha_beta": [
@@ -63,12 +74,16 @@
         "7. Simulating Gamma Rhythms",
         {}
     ],
-    "08_data_to_simulation": [
-        "8. From Data to Simulation",
+    "08_beta_modulated_erp": [
+        "8. Beta-modulated ERP",
         {}
     ],
-    "09_feature_demos": [
-        "9. Feature Demos",
+    "09_data_to_simulation": [
+        "9. From Data to Simulation",
+        {}
+    ],
+    "10_feature_demos": [
+        "10. Feature Demos",
         {}
     ]
 }

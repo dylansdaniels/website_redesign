@@ -1,5 +1,9 @@
 <!--
+<<<<<<< HEAD:content/05_erps/01_erps_in_gui.md
 # Title: 2.1 GUI Tutorial of ERP Simulation
+=======
+# Title: 5.1 Review of ERPs
+>>>>>>> 8485c1f (content: add notes and rearrange from notion page):content/05_erps/01_overview_of_erps.md
 # Updated: 2024-11-14
 #
 # Contributors:
