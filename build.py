@@ -152,7 +152,12 @@ def generate_page_html(page_paths):
             converted = pypandoc.convert_file(
                 path,
                 to='html',
-                extra_args=["--mathml"],
+                # format='md',
+                extra_args=[
+                    "--bibliography=textbook-bibliography.bib",
+                    "--citeproc",
+                    "--mathml",
+                ],
             )
         except Exception as ex:
             # download Pandoc dependency if needed
