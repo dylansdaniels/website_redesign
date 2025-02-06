@@ -1,5 +1,5 @@
 <!--
-# Title: 2.1 Challenge in Connecting EEG MEG to Neural Circuits 
+# Title: 2.1 Biophysical Modeling
 # Updated: 2024-01-16
 #
 # Contributors:
