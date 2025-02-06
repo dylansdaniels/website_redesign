@@ -1,13 +1,11 @@
 # %%
 import os
-# import re
 import pypandoc
-from create_page_index import update_page_index
-from create_navbar import generate_navbar_html
-# from bs4 import BeautifulSoup
+from scripts.create_page_index import update_page_index
+from scripts.create_navbar import generate_navbar_html
+from scripts.convert_notebooks import convert_notebooks_to_html
 
 
-# %% ######################################################################
 def compile_page_components():
     """Compile base html components for building webpage"""
 
@@ -26,11 +24,6 @@ def compile_page_components():
     return html_parts
 
 
-html_parts = compile_page_components()
-html_parts.keys()
-
-
-# %%
 def get_page_paths(path=None):
     """Get paths to all .md pages to be converted to html"""
 
@@ -50,10 +43,6 @@ def get_page_paths(path=None):
     return md_pages
 
 
-get_page_paths()
-
-
-# %%
 def generate_page_html(page_paths):
     html_parts = compile_page_components()
     order = [
@@ -66,6 +55,7 @@ def generate_page_html(page_paths):
 
     for page, path in page_paths.items():
         page_components = html_parts.copy()
+
         # get path only
         out_path = path.split(page)[0]
 
@@ -79,6 +69,7 @@ def generate_page_html(page_paths):
 
         # remove leading `##_` from page
         page = page.split("_", 1)[1]
+
         # change file extension for page
         page = page.split(".md")[0] + ".html"
 
@@ -108,7 +99,6 @@ def generate_page_html(page_paths):
             converted = pypandoc.convert_file(
                 path,
                 to='html',
-                # format='md',
                 extra_args=["--mathml"],
             )
         except Exception as ex:
@@ -119,12 +109,11 @@ def generate_page_html(page_paths):
                 converted = pypandoc.convert_file(
                     path,
                     to='html',
-                    # format='md',
+                    extra_args=["--mathml"],
                 )
             else:
                 raise ex
-        # format html for readability
-        # converted = BeautifulSoup(converted, 'html.parser').prettify()
+
         page_components['body'] = converted
 
         file_contents = ""
@@ -138,7 +127,13 @@ def generate_page_html(page_paths):
     return
 
 
+# %%
+content_path = os.path.join(os.getcwd(), "content")
+hash_path = os.path.join(os.getcwd(), "scripts", "notebook_hashes.json")
+
+_ = convert_notebooks_to_html(
+    input_folder=content_path,
+    hash_path=hash_path,
+)
 page_paths = get_page_paths()
 generate_page_html(page_paths)
-
-# %%

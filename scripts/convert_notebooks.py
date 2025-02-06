@@ -308,9 +308,11 @@ def load_notebook_hashes(hash_path):
 
 def save_notebook_hashes(
         new_hashes,
-        hash_path
+        hash_path,
         ):
     """Save updated notebook hashes"""
+
+    # print(f'Saving hashes to {hash_path}')
     with open(hash_path, "w") as f:
         json.dump(new_hashes, f, indent=4)
 
@@ -437,7 +439,7 @@ def convert_notebooks_to_html(
     # save updated hashes
     save_notebook_hashes(
         updated_hashes,
-        hash_path
+        hash_path,
     )
 
     return html
@@ -453,4 +455,4 @@ def test_nb_conversion(input_folder=None):
     )
 
 
-_ = test_nb_conversion()
+# _ = test_nb_conversion()
