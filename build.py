@@ -1,6 +1,8 @@
 # %%
 import os
+import re
 import pypandoc
+import json
 from scripts.create_page_index import update_page_index
 from scripts.create_navbar import generate_navbar_html
 from scripts.convert_notebooks import convert_notebooks_to_html
@@ -53,11 +55,11 @@ def generate_page_html(page_paths):
         'script',
     ]
 
-    for page, path in page_paths.items():
+    for md_page, path in page_paths.items():
         page_components = html_parts.copy()
 
         # get path only
-        out_path = path.split(page)[0]
+        out_path = path.split(md_page)[0]
 
         # ENHANCEMENT
         '''
@@ -68,10 +70,10 @@ def generate_page_html(page_paths):
         # out_path = re.sub(r"\d\d_", "", out_path)
 
         # remove leading `##_` from page
-        page = page.split("_", 1)[1]
+        html_page = md_page.split("_", 1)[1]
 
         # change file extension for page
-        page = page.split(".md")[0] + ".html"
+        html_page = html_page.split(".md")[0] + ".html"
 
         # get relative path to the stylesheet
         css_path = os.path.join(
@@ -86,13 +88,64 @@ def generate_page_html(page_paths):
         )
 
         # combine path and page
-        out_path = out_path + page
+        out_path = out_path + html_page
 
         # Update header with the relative stylesheet path
         page_components['header'] = page_components['header'].replace(
             '<link rel="stylesheet" href="styles.css">',
             f'<link rel="stylesheet" href="{relative_css_path}">'
         )
+
+        def get_html_from_json(
+                nb_name,
+                nb_path,
+                ):
+            """"""
+            html_output = []
+            json_path = nb_path.split('.ipynb')[0] + '.json'
+            with open(json_path, 'r') as file:
+                nb_outputs = json.load(file)
+                nb_outputs = nb_outputs.get(nb_name, {})
+                print(nb_outputs)
+                agg_html = ''
+                for section, content in nb_outputs.items():
+                    if isinstance(content, dict) and 'html' in content:
+                        agg_html += content['html']
+
+            for line in agg_html.splitlines():
+                html_output.append(line)
+
+            return html_output
+
+        def add_html_notebooks_to_markdown():
+            """Pending"""
+            # regex pattern match for "[[notebook_name.ipynb]" with only
+            # a single closing bracket, as additional parameters may be
+            # included in the notebook specification line
+            nb_match_pattern = re.compile(r"\[\[(.+?\.ipynb)\]")
+            # notebook specifications with additional arguments will
+            # match the exact pattern ".ipynb][" as defined below
+            nb_arguments_pattern = ".ipynb]["
+
+            with open(path, 'r') as file:
+                for line in file:
+                    match = nb_match_pattern.search(line)
+                    args = nb_arguments_pattern in line
+                    if match and args:
+                        print(f'nb with args found: {line}')
+                    elif match:
+                        notebook_name = match.group(1)
+                        nb_path = path.split(md_page)[0] + notebook_name
+                        new_lines = get_html_from_json(
+                            notebook_name,
+                            nb_path,
+                        )
+                        print(new_lines)
+                    else:
+                        continue
+            return
+
+        add_html_notebooks_to_markdown()
 
         # use pypandoc to convert md to html
         try:
@@ -124,7 +177,7 @@ def generate_page_html(page_paths):
         with open(out_path, 'w') as out:
             out.write(file_contents)
 
-    return
+    return converted
 
 
 # %%
@@ -134,6 +187,7 @@ hash_path = os.path.join(os.getcwd(), "scripts", "notebook_hashes.json")
 _ = convert_notebooks_to_html(
     input_folder=content_path,
     hash_path=hash_path,
+    write_html=True,
 )
 page_paths = get_page_paths()
-generate_page_html(page_paths)
+output = generate_page_html(page_paths)

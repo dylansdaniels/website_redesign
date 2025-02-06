@@ -147,7 +147,7 @@ def structure_json(contents):
 
 def extract_html_from_notebook(
         notebook,
-        input_dir,  # changed
+        input_dir,
         filename,
         use_base64=False
         ):
@@ -394,14 +394,14 @@ def convert_notebooks_to_html(
 
                 html_content = extract_html_from_notebook(
                     executed_notebook,
-                    input_folder,
+                    root,
                     filename,
-                    use_base64
+                    use_base64,
                 )
 
                 if write_html:
                     output_file = os.path.join(
-                        input_folder, f"{os.path.splitext(filename)[0]}.html"
+                        root, f"{os.path.splitext(filename)[0]}.html"
                     )
                     with open(output_file, "w", encoding="utf-8") as f:
                         f.write("<html><body>\n")
@@ -424,11 +424,11 @@ def convert_notebooks_to_html(
                     filename,
                 )
                 # nested json
-                nb_html_json = structure_json(
-                    nb_html_json
-                )
+                # nb_html_json = structure_json(
+                #     nb_html_json
+                # )
                 output_json = os.path.join(
-                    input_folder, f"{os.path.splitext(filename)[0]}.json"
+                    root, f"{os.path.splitext(filename)[0]}.json"
                 )
                 with open(output_json, "w") as f:
                     json.dump(nb_html_json, f, indent=4)

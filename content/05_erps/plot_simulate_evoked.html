@@ -23,7 +23,7 @@ to the recorded data.</p>
 import os.path as op
 import tempfile
 
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt 
 	</code>
 </div>
 <div class='markdown-cell'>
@@ -44,8 +44,28 @@ inside it.</p>
 	<code class='language-python'>
 		net = jones_2009_model()
 net.plot_cells()
-net.cell_types['L5_pyramidal'].plot_morphology()
+net.cell_types['L5_pyramidal'].plot_morphology();
 	</code>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		&lt;Figure size 640x480 with 1 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_plot_simulate_evoked/fig_01.png'/>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		&lt;Figure size 640x480 with 1 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_plot_simulate_evoked/fig_02.png'/>
 </div>
 <div class='markdown-cell'>
 	<p>The network of cells is now defined, to which we add external drives as
@@ -115,6 +135,55 @@ with JoblibBackend(n_jobs=2):
     dpls = simulate_dipole(net, tstop=170., n_trials=2)
 	</code>
 </div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		Joblib will run 2 trial(s) in parallel by distributing trials over 2 jobs.
+
+		Loading custom mechanism files from /opt/homebrew/Caskroom/miniconda/base/envs/website-redesign/lib/python3.12/site-packages/hnn_core/mod/arm64/.libs/libnrnmech.so
+Building the NEURON model
+Loading custom mechanism files from /opt/homebrew/Caskroom/miniconda/base/envs/website-redesign/lib/python3.12/site-packages/hnn_core/mod/arm64/.libs/libnrnmech.so
+Building the NEURON model
+[Done]
+[Done]
+Trial 1: 0.03 ms...
+Trial 2: 0.03 ms...
+Trial 1: 10.0 ms...
+Trial 2: 10.0 ms...
+Trial 1: 20.0 ms...
+Trial 2: 20.0 ms...
+Trial 1: 30.0 ms...
+Trial 2: 30.0 ms...
+Trial 1: 40.0 ms...
+Trial 2: 40.0 ms...
+Trial 1: 50.0 ms...
+Trial 2: 50.0 ms...
+Trial 1: 60.0 ms...
+Trial 2: 60.0 ms...
+Trial 1: 70.0 ms...
+Trial 2: 70.0 ms...
+Trial 1: 80.0 ms...
+Trial 2: 80.0 ms...
+Trial 1: 90.0 ms...
+Trial 2: 90.0 ms...
+Trial 1: 100.0 ms...
+Trial 2: 100.0 ms...
+Trial 1: 110.0 ms...
+Trial 2: 110.0 ms...
+Trial 1: 120.0 ms...
+Trial 2: 120.0 ms...
+Trial 1: 130.0 ms...
+Trial 2: 130.0 ms...
+Trial 1: 140.0 ms...
+Trial 2: 140.0 ms...
+Trial 1: 150.0 ms...
+Trial 2: 150.0 ms...
+Trial 1: 160.0 ms...
+Trial 2: 160.0 ms...
+
+	</div>
+</div>
 <div class='markdown-cell'>
 	<p>Rather than reading smoothing and scaling parameters from file, we recommend
 explicit use of the <code>~hnn_core.dipole.Dipole.smooth</code> and
@@ -141,6 +210,16 @@ net.cell_response.plot_spikes_hist(ax=axes[1],
                                    spike_types=['evprox', 'evdist']);
 	</code>
 </div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		&lt;Figure size 600x600 with 2 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_plot_simulate_evoked/fig_03.png'/>
+</div>
 <div class='markdown-cell'>
 	<p>If you want to analyze how the different cortical layers contribute to
 different net waveform features, then instead of passing <code>&amp;#x27;agg&amp;#x27;</code> to
@@ -151,6 +230,16 @@ a list of axes to <code>ax</code> to visualize the dipole moments separately.</p
 	<code class='language-python'>
 		plot_dipole(dpls, average=False, layer=['L2', 'L5', 'agg'], show=False);
 	</code>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		&lt;Figure size 640x480 with 3 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_plot_simulate_evoked/fig_04.png'/>
 </div>
 <div class='markdown-cell'>
 	<p>Now, let us try to make the exogenous driving inputs to the cells
@@ -188,6 +277,14 @@ net_sync.add_evoked_drive(
 		print(net_sync.external_drives['evdist1']['dynamics'])
 	</code>
 </div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		{&#x27;mu&#x27;: 63.53, &#x27;sigma&#x27;: 3.85, &#x27;numspikes&#x27;: 1}
+
+	</div>
+</div>
 <div class='markdown-cell'>
 	<p>Finally, let&#x27;s simulate this network. Rather than modifying the dipole
 object, this time we make a copy of it before smoothing and scaling.</p>
@@ -200,6 +297,48 @@ trial_idx = 0
 dpls_sync[trial_idx].copy().smooth(window_len).scale(scaling_factor).plot()
 net_sync.cell_response.plot_spikes_hist();
 	</code>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		Joblib will run 1 trial(s) in parallel by distributing trials over 1 jobs.
+Loading custom mechanism files from /opt/homebrew/Caskroom/miniconda/base/envs/website-redesign/lib/python3.12/site-packages/hnn_core/mod/arm64/.libs/libnrnmech.so
+Building the NEURON model
+[Done]
+Trial 1: 0.03 ms...
+Trial 1: 10.0 ms...
+Trial 1: 20.0 ms...
+Trial 1: 30.0 ms...
+Trial 1: 40.0 ms...
+Trial 1: 50.0 ms...
+Trial 1: 60.0 ms...
+Trial 1: 70.0 ms...
+Trial 1: 80.0 ms...
+Trial 1: 90.0 ms...
+Trial 1: 100.0 ms...
+Trial 1: 110.0 ms...
+Trial 1: 120.0 ms...
+Trial 1: 130.0 ms...
+Trial 1: 140.0 ms...
+Trial 1: 150.0 ms...
+Trial 1: 160.0 ms...
+
+		&lt;Figure size 640x480 with 1 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_plot_simulate_evoked/fig_05.png'/>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		&lt;Figure size 640x480 with 1 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_plot_simulate_evoked/fig_06.png'/>
 </div>
 <div class='markdown-cell'>
 	<p>&lt;h4&gt;Warning&lt;/h4&gt;</p>
