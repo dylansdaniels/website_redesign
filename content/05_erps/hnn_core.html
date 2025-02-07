@@ -230,10 +230,8 @@
 </div>
 <div class='markdown-cell'>
     <p>This example demonstrates how to simulate a threshold level tactile
-evoked response, as detailed in the <a
-href="https://jonescompneurolab.github.io/hnn-tutorials/erp/erp">HNN GUI
-ERP tutorial</a>, using HNN-core. We recommend you first review the GUI
-tutorial.</p>
+evoked response, as detailed in the <a href="">HNN GUI ERP tutorial</a>,
+using HNN-core. We recommend you first review the GUI tutorial.</p>
 <p>The workflow below recreates an example of the threshold level
 tactile evoked response, as observed in Jones et al. J. Neuroscience
 2007 [1]_ (e.g. Figure 7 in the GUI tutorial), albeit without a direct
@@ -246,8 +244,6 @@ comparison to the recorded data.</p>
 #          Sam Neymotin <samnemo@gmail.com>
 #          Blake Caldwell <blake_caldwell@brown.edu>
 #          Christopher Bailey <cjb@cfin.au.dk>
-
-# sphinx_gallery_thumbnail_number = 3
 
 import os.path as op
 import tempfile
@@ -305,9 +301,9 @@ receptors (receptors that are not used can be omitted or set to zero).
 The possible drive types include the following (click on the links for
 documentation):</p>
 <ul>
-<li>:meth:<code>hnn_core.Network.add_evoked_drive</code></li>
-<li>:meth:<code>hnn_core.Network.add_poisson_drive</code></li>
-<li>:meth:<code>hnn_core.Network.add_bursty_drive</code></li>
+<li><code>hnn_core.Network.add_evoked_drive</code></li>
+<li><code>hnn_core.Network.add_poisson_drive</code></li>
+<li><code>hnn_core.Network.add_bursty_drive</code></li>
 </ul>
 
 </div>
@@ -317,16 +313,33 @@ documentation):</p>
 </div>
 <div class='code-cell'>
     <code class='language-python'>
-        weights_ampa_d1 = {'L2_basket': 0.006562, 'L2_pyramidal': .000007,
-                   'L5_pyramidal': 0.142300}
-weights_nmda_d1 = {'L2_basket': 0.019482, 'L2_pyramidal': 0.004317,
-                   'L5_pyramidal': 0.080074}
-synaptic_delays_d1 = {'L2_basket': 0.1, 'L2_pyramidal': 0.1,
-                      'L5_pyramidal': 0.1}
+        weights_ampa_d1 = {
+    'L2_basket': 0.006562,
+    'L2_pyramidal': .000007,
+    'L5_pyramidal': 0.142300
+}
+weights_nmda_d1 = {
+    'L2_basket': 0.019482,
+    'L2_pyramidal': 0.004317,
+    'L5_pyramidal': 0.080074
+}
+synaptic_delays_d1 = {
+    'L2_basket': 0.1,
+    'L2_pyramidal': 0.1,
+    'L5_pyramidal': 0.1
+}
+
 net.add_evoked_drive(
-    'evdist1', mu=63.53, sigma=3.85, numspikes=1, weights_ampa=weights_ampa_d1,
-    weights_nmda=weights_nmda_d1, location='distal',
-    synaptic_delays=synaptic_delays_d1, event_seed=274)
+    'evdist1',
+    mu=63.53,
+    sigma=3.85,
+    numspikes=1,
+    weights_ampa=weights_ampa_d1,
+    weights_nmda=weights_nmda_d1,
+    location='distal',
+    synaptic_delays=synaptic_delays_d1,
+    event_seed=274
+)
     </code>
 </div>
 <div class='markdown-cell'>
@@ -335,24 +348,51 @@ net.add_evoked_drive(
 </div>
 <div class='code-cell'>
     <code class='language-python'>
-        weights_ampa_p1 = {'L2_basket': 0.08831, 'L2_pyramidal': 0.01525,
-                   'L5_basket': 0.19934, 'L5_pyramidal': 0.00865}
-synaptic_delays_prox = {'L2_basket': 0.1, 'L2_pyramidal': 0.1,
-                        'L5_basket': 1., 'L5_pyramidal': 1.}
+        weights_ampa_p1 = {
+    'L2_basket': 0.08831,
+    'L2_pyramidal': 0.01525,
+    'L5_basket': 0.19934,
+    'L5_pyramidal': 0.00865
+    }
+synaptic_delays_prox = {
+    'L2_basket': 0.1,
+    'L2_pyramidal': 0.1,
+    'L5_basket': 1.,
+    'L5_pyramidal': 1.
+    }
+
 # all NMDA weights are zero; pass None explicitly
 net.add_evoked_drive(
-    'evprox1', mu=26.61, sigma=2.47, numspikes=1, weights_ampa=weights_ampa_p1,
-    weights_nmda=None, location='proximal',
-    synaptic_delays=synaptic_delays_prox, event_seed=544)
+    'evprox1',
+    mu=26.61,
+    sigma=2.47,
+    numspikes=1,
+    weights_ampa=weights_ampa_p1,
+    weights_nmda=None,
+    location='proximal',
+    synaptic_delays=synaptic_delays_prox,
+    event_seed=544
+)
 
 # Second proximal evoked drive. NB: only AMPA weights differ from first
-weights_ampa_p2 = {'L2_basket': 0.000003, 'L2_pyramidal': 1.438840,
-                   'L5_basket': 0.008958, 'L5_pyramidal': 0.684013}
+weights_ampa_p2 = {
+    'L2_basket': 0.000003,
+    'L2_pyramidal': 1.438840,
+    'L5_basket': 0.008958,
+    'L5_pyramidal': 0.684013
+    }
+
 # all NMDA weights are zero; omit weights_nmda (defaults to None)
 net.add_evoked_drive(
-    'evprox2', mu=137.12, sigma=8.33, numspikes=1,
-    weights_ampa=weights_ampa_p2, location='proximal',
-    synaptic_delays=synaptic_delays_prox, event_seed=814)
+    'evprox2',
+    mu=137.12,
+    sigma=8.33,
+    numspikes=1,
+    weights_ampa=weights_ampa_p2,
+    location='proximal',
+    synaptic_delays=synaptic_delays_prox,
+    event_seed=814
+)
     </code>
 </div>
 <div class='markdown-cell'>
@@ -443,11 +483,25 @@ time</p>
 <div class='code-cell'>
     <code class='language-python'>
         import matplotlib.pyplot as plt
-fig, axes = plt.subplots(2, 1, sharex=True, figsize=(6, 6),
-                         constrained_layout=True)
-plot_dipole(dpls, ax=axes[0], layer='agg', show=False)
-net.cell_response.plot_spikes_hist(ax=axes[1],
-                                   spike_types=['evprox', 'evdist']);
+fig, axes = plt.subplots(
+    2,
+    1, 
+    sharex=True,
+    figsize=(6, 6),
+    constrained_layout=True
+)
+
+plot_dipole(
+    dpls,
+    ax=axes[0],
+    layer='agg',
+    show=False
+)
+
+net.cell_response.plot_spikes_hist(
+    ax=axes[1],
+    spike_types=['evprox', 'evdist']
+);
     </code>
 </div>
 <div class='output-cell'><div class='output-label'>
@@ -470,7 +524,12 @@ to <code>ax</code> to visualize the dipole moments separately.</p>
 </div>
 <div class='code-cell'>
     <code class='language-python'>
-        plot_dipole(dpls, average=False, layer=['L2', 'L5', 'agg'], show=False);
+        plot_dipole(
+    dpls,
+    average=False,
+    layer=['L2', 'L5', 'agg'],
+    show=False
+);
     </code>
 </div>
 <div class='output-cell'><div class='output-label'>
@@ -498,19 +557,45 @@ n_drive_cells=1
 cell_specific=False
 
 net_sync.add_evoked_drive(
-    'evdist1', mu=63.53, sigma=3.85, numspikes=1, weights_ampa=weights_ampa_d1,
-    weights_nmda=weights_nmda_d1, location='distal', n_drive_cells=n_drive_cells,
-    cell_specific=cell_specific, synaptic_delays=synaptic_delays_d1, event_seed=274)
+    'evdist1',
+    mu=63.53,
+    sigma=3.85,
+    numspikes=1,
+    weights_ampa=weights_ampa_d1,
+    weights_nmda=weights_nmda_d1,
+    location='distal',
+    n_drive_cells=n_drive_cells,
+    cell_specific=cell_specific,
+    synaptic_delays=synaptic_delays_d1,
+    event_seed=274
+)
 
 net_sync.add_evoked_drive(
-    'evprox1', mu=26.61, sigma=2.47, numspikes=1, weights_ampa=weights_ampa_p1,
-    weights_nmda=None, location='proximal', n_drive_cells=n_drive_cells,
-    cell_specific=cell_specific, synaptic_delays=synaptic_delays_prox, event_seed=544)
+    'evprox1',
+    mu=26.61,
+    sigma=2.47,
+    numspikes=1,
+    weights_ampa=weights_ampa_p1,
+    weights_nmda=None,
+    location='proximal',
+    n_drive_cells=n_drive_cells,
+    cell_specific=cell_specific,
+    synaptic_delays=synaptic_delays_prox,
+    event_seed=544
+)
 
 net_sync.add_evoked_drive(
-    'evprox2', mu=137.12, sigma=8.33, numspikes=1,
-    weights_ampa=weights_ampa_p2, location='proximal', n_drive_cells=n_drive_cells,
-    cell_specific=cell_specific, synaptic_delays=synaptic_delays_prox, event_seed=814)
+    'evprox2',
+    mu=137.12,
+    sigma=8.33,
+    numspikes=1,
+    weights_ampa=weights_ampa_p2,
+    location='proximal',
+    n_drive_cells=n_drive_cells,
+    cell_specific=cell_specific,
+    synaptic_delays=synaptic_delays_prox,
+    event_seed=814
+)
     </code>
 </div>
 <div class='markdown-cell'>
@@ -539,9 +624,14 @@ scaling.</p>
 </div>
 <div class='code-cell'>
     <code class='language-python'>
-        dpls_sync = simulate_dipole(net_sync, tstop=170., n_trials=1)
+        dpls_sync = simulate_dipole(
+    net_sync,
+    tstop=170.,
+    n_trials=1
+)
 
 trial_idx = 0
+
 dpls_sync[trial_idx].copy().smooth(window_len).scale(scaling_factor).plot()
 net_sync.cell_response.plot_spikes_hist();
     </code>
@@ -587,9 +677,8 @@ Trial 1: 160.0 ms...
 </div>
 <div class='output-cell'>
     <img src='output_nb_plot_simulate_evoked/fig_06.png'/>
-</div>
-<div class='markdown-cell'>
-    <p>&lt;h4&gt;Warning&lt;/h4&gt;</p>
+</div><div class='markdown-cell'>
+    <h4>Warning</h4>
 <ul>
 <li><p>Always look at dipoles in conjunction with raster plots and spike
 histogram to avoid misinterpretation.</p></li>
@@ -599,7 +688,7 @@ different drives seeds before drawing conclusions.</p></li>
 
 </div><div class='markdown-cell'>
     <h2>References</h2>
-<p>.. [1] Jones, Stephanie R., et al. "Neural correlates of tactile
+<p>[1] Jones, Stephanie R., et al. "Neural correlates of tactile
 detection: a combined magnetoencephalography and biophysically based
 computational modeling study." Journal of Neuroscience 27.40 (2007):
 10751-10764.</p>
