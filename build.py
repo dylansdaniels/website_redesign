@@ -106,7 +106,7 @@ def generate_page_html(page_paths):
             with open(json_path, 'r') as file:
                 nb_outputs = json.load(file)
                 nb_outputs = nb_outputs.get(nb_name, {})
-                print(nb_outputs)
+                # print(nb_outputs)
                 agg_html = ''
                 for section, content in nb_outputs.items():
                     if isinstance(content, dict) and 'html' in content:

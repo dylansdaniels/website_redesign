@@ -1,15 +1,19 @@
 <html><body>
 <div class='markdown-cell'>
 	<h1>01. Simulate Event Related Potentials (ERPs)</h1>
+
 </div>
 <div class='markdown-cell'>
 	<p>This example demonstrates how to simulate a threshold level tactile
-evoked response, as detailed in the <a href="https://jonescompneurolab.github.io/hnn-tutorials/erp/erp">HNN GUI ERP tutorial</a>,
-using HNN-core. We recommend you first review the GUI tutorial.</p>
-<p>The workflow below recreates an example of the threshold level tactile
-evoked response, as observed in Jones et al. J. Neuroscience 2007 [1]_
-(e.g. Figure 7 in the GUI tutorial), albeit without a direct comparison
-to the recorded data.</p>
+evoked response, as detailed in the <a
+href="https://jonescompneurolab.github.io/hnn-tutorials/erp/erp">HNN GUI
+ERP tutorial</a>, using HNN-core. We recommend you first review the GUI
+tutorial.</p>
+<p>The workflow below recreates an example of the threshold level
+tactile evoked response, as observed in Jones et al. J. Neuroscience
+2007 [1]_ (e.g. Figure 7 in the GUI tutorial), albeit without a direct
+comparison to the recorded data.</p>
+
 </div>
 <div class='code-cell'>
 	<code class='language-python'>
@@ -28,6 +32,7 @@ import matplotlib.pyplot as plt
 </div>
 <div class='markdown-cell'>
 	<p>Let us import hnn_core</p>
+
 </div>
 <div class='code-cell'>
 	<code class='language-python'>
@@ -39,6 +44,7 @@ from hnn_core.viz import plot_dipole
 <div class='markdown-cell'>
 	<p>Let us first create our default network and visualize the cells
 inside it.</p>
+
 </div>
 <div class='code-cell'>
 	<code class='language-python'>
@@ -68,18 +74,21 @@ net.cell_types['L5_pyramidal'].plot_morphology();
 	<img src='output_nb_plot_simulate_evoked/fig_02.png'/>
 </div>
 <div class='markdown-cell'>
-	<p>The network of cells is now defined, to which we add external drives as
-required. Weights are prescribed separately for AMPA and NMDA receptors
-(receptors that are not used can be omitted or set to zero). The possible
-drive types include the following (click on the links for documentation):</p>
+	<p>The network of cells is now defined, to which we add external drives
+as required. Weights are prescribed separately for AMPA and NMDA
+receptors (receptors that are not used can be omitted or set to zero).
+The possible drive types include the following (click on the links for
+documentation):</p>
 <ul>
 <li>:meth:<code>hnn_core.Network.add_evoked_drive</code></li>
 <li>:meth:<code>hnn_core.Network.add_poisson_drive</code></li>
 <li>:meth:<code>hnn_core.Network.add_bursty_drive</code></li>
 </ul>
+
 </div>
 <div class='markdown-cell'>
 	<p>First, we add a distal evoked drive</p>
+
 </div>
 <div class='code-cell'>
 	<code class='language-python'>
@@ -97,6 +106,7 @@ net.add_evoked_drive(
 </div>
 <div class='markdown-cell'>
 	<p>Then, we add two proximal drives</p>
+
 </div>
 <div class='code-cell'>
 	<code class='language-python'>
@@ -121,11 +131,12 @@ net.add_evoked_drive(
 	</code>
 </div>
 <div class='markdown-cell'>
-	<p>Now let&#x27;s simulate the dipole, running 2 trials with the
-<code>hnn_core.parallel_backends.Joblib</code> backend.
-To run them in parallel we could set <code>n_jobs</code> to equal the number of
-trials. The <code>Joblib</code> backend allows running the simulations in parallel
-across trials.</p>
+	<p>Now let's simulate the dipole, running 2 trials with the
+<code>hnn_core.parallel_backends.Joblib</code> backend. To run them in
+parallel we could set <code>n_jobs</code> to equal the number of trials.
+The <code>Joblib</code> backend allows running the simulations in
+parallel across trials.</p>
+
 </div>
 <div class='code-cell'>
 	<code class='language-python'>
@@ -185,10 +196,12 @@ Trial 2: 160.0 ms...
 	</div>
 </div>
 <div class='markdown-cell'>
-	<p>Rather than reading smoothing and scaling parameters from file, we recommend
-explicit use of the <code>~hnn_core.dipole.Dipole.smooth</code> and
-<code>~hnn_core.dipole.Dipole.scale</code> methods instead. Note that both methods
-operate in-place, i.e., the objects are modified.</p>
+	<p>Rather than reading smoothing and scaling parameters from file, we
+recommend explicit use of the
+<code>~hnn_core.dipole.Dipole.smooth</code> and
+<code>~hnn_core.dipole.Dipole.scale</code> methods instead. Note that
+both methods operate in-place, i.e., the objects are modified.</p>
+
 </div>
 <div class='code-cell'>
 	<code class='language-python'>
@@ -198,7 +211,9 @@ for dpl in dpls:
 	</code>
 </div>
 <div class='markdown-cell'>
-	<p>Plot the amplitudes of the simulated aggregate dipole moments over time</p>
+	<p>Plot the amplitudes of the simulated aggregate dipole moments over
+time</p>
+
 </div>
 <div class='code-cell'>
 	<code class='language-python'>
@@ -221,10 +236,12 @@ net.cell_response.plot_spikes_hist(ax=axes[1],
 	<img src='output_nb_plot_simulate_evoked/fig_03.png'/>
 </div>
 <div class='markdown-cell'>
-	<p>If you want to analyze how the different cortical layers contribute to
-different net waveform features, then instead of passing <code>&amp;#x27;agg&amp;#x27;</code> to
-<code>layer</code>, you can provide a list of layers to be visualized and optionally
-a list of axes to <code>ax</code> to visualize the dipole moments separately.</p>
+	<p>If you want to analyze how the different cortical layers contribute
+to different net waveform features, then instead of passing
+<code>&amp;#x27;agg&amp;#x27;</code> to <code>layer</code>, you can
+provide a list of layers to be visualized and optionally a list of axes
+to <code>ax</code> to visualize the dipole moments separately.</p>
+
 </div>
 <div class='code-cell'>
 	<code class='language-python'>
@@ -244,7 +261,9 @@ a list of axes to <code>ax</code> to visualize the dipole moments separately.</p
 <div class='markdown-cell'>
 	<p>Now, let us try to make the exogenous driving inputs to the cells
 synchronous and see what happens. This is achieved by setting
-<code>n_drive_cells=1</code> and <code>cell_specific=False</code> when adding each drive.</p>
+<code>n_drive_cells=1</code> and <code>cell_specific=False</code> when
+adding each drive.</p>
+
 </div>
 <div class='code-cell'>
 	<code class='language-python'>
@@ -270,7 +289,9 @@ net_sync.add_evoked_drive(
 	</code>
 </div>
 <div class='markdown-cell'>
-	<p>You may interrogate current values defining the spike event time dynamics by</p>
+	<p>You may interrogate current values defining the spike event time
+dynamics by</p>
+
 </div>
 <div class='code-cell'>
 	<code class='language-python'>
@@ -286,8 +307,10 @@ net_sync.add_evoked_drive(
 	</div>
 </div>
 <div class='markdown-cell'>
-	<p>Finally, let&#x27;s simulate this network. Rather than modifying the dipole
-object, this time we make a copy of it before smoothing and scaling.</p>
+	<p>Finally, let's simulate this network. Rather than modifying the
+dipole object, this time we make a copy of it before smoothing and
+scaling.</p>
+
 </div>
 <div class='code-cell'>
 	<code class='language-python'>
@@ -343,18 +366,19 @@ Trial 1: 160.0 ms...
 <div class='markdown-cell'>
 	<p>&lt;h4&gt;Warning&lt;/h4&gt;</p>
 <ul>
-<li>
-<p>Always look at dipoles in conjunction with raster plots and spike histogram to avoid misinterpretation.</p>
-</li>
-<li>
-<p>Run multiple trials of your simulation to get an average of different drives seeds before drawing conclusions.</p>
-</li>
+<li><p>Always look at dipoles in conjunction with raster plots and spike
+histogram to avoid misinterpretation.</p></li>
+<li><p>Run multiple trials of your simulation to get an average of
+different drives seeds before drawing conclusions.</p></li>
 </ul>
+
 </div>
 <div class='markdown-cell'>
 	<h2>References</h2>
-<p>.. [1] Jones, Stephanie R., et al. &quot;Neural correlates of tactile detection:
-       a combined magnetoencephalography and biophysically based computational
-       modeling study.&quot; Journal of Neuroscience 27.40 (2007): 10751-10764.</p>
+<p>.. [1] Jones, Stephanie R., et al. "Neural correlates of tactile
+detection: a combined magnetoencephalography and biophysically based
+computational modeling study." Journal of Neuroscience 27.40 (2007):
+10751-10764.</p>
+
 </div>
 </body></html>

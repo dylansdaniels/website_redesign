@@ -5,8 +5,9 @@ import html
 import re
 import json
 import nbformat
-import markdown
+# import markdown
 import hashlib
+import pypandoc
 from nbconvert.preprocessors import ExecutePreprocessor
 
 
@@ -282,7 +283,26 @@ def extract_html_from_notebook(
             # escape < and > characters
             markdown_content = html.escape(cell["source"])
 
-            html_content = markdown.markdown(markdown_content)
+            # html_content = markdown.markdown(markdown_content)
+
+            html_content = pypandoc.convert_text(
+                markdown_content,
+                format='md',
+                to='html',
+                extra_args=[
+                    "--mathml",
+                    # the "-f", "markdown-auto_identifiers" arguments below
+                    # disable the automatic ids added to header tags
+                    "-f",
+                    "markdown-auto_identifiers",
+                ],
+            )
+
+            # print(
+            #     "Markdown:", type(html_content), html_content[0:50],
+            #     '\n',
+            #     "Pandoc:", type(test), test[0:50]
+            # )
 
             html_output.append(
                 "<div class='markdown-cell'>"
