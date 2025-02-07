@@ -30,12 +30,18 @@ def html_to_json(html: str, filename: str):
     current_title = None
     current_level = None
 
-    # split html into lines while removing empty lines
-    lines = [line.strip() for line in html.splitlines() if line.strip()]
+    # split html into lines while replacing tabs with spaces
+    lines = [
+        line.replace("\t", "    ")
+        for line in html.splitlines()
+        if line.strip()
+    ]
 
     for i, line in enumerate(lines):
-        # identify lines with header tags
-        line_match = re.match(r'(<h[1-6]>)(.*?)(</h[1-6]>)', line)
+        # identify lines with header tag
+        # note: the match is performed on the line stripped of any
+        # spaces or newlines
+        line_match = re.match(r'(<h[1-6]>)(.*?)(</h[1-6]>)', line.strip())
 
         if line_match:
             # when a new header is found, save the previous section

@@ -101,7 +101,7 @@ def generate_page_html(page_paths):
                 nb_path,
                 ):
             """"""
-            html_output = []
+            # html_output = []
             json_path = nb_path.split('.ipynb')[0] + '.json'
             with open(json_path, 'r') as file:
                 nb_outputs = json.load(file)
@@ -112,45 +112,16 @@ def generate_page_html(page_paths):
                     if isinstance(content, dict) and 'html' in content:
                         agg_html += content['html']
 
-            for line in agg_html.splitlines():
-                html_output.append(line)
+            # for line in agg_html.splitlines():
+            #     html_output.append(line)
 
-            return html_output
-
-        def add_html_notebooks_to_markdown():
-            """Pending"""
-            # regex pattern match for "[[notebook_name.ipynb]" with only
-            # a single closing bracket, as additional parameters may be
-            # included in the notebook specification line
-            nb_match_pattern = re.compile(r"\[\[(.+?\.ipynb)\]")
-            # notebook specifications with additional arguments will
-            # match the exact pattern ".ipynb][" as defined below
-            nb_arguments_pattern = ".ipynb]["
-
-            with open(path, 'r') as file:
-                for line in file:
-                    match = nb_match_pattern.search(line)
-                    args = nb_arguments_pattern in line
-                    if match and args:
-                        print(f'nb with args found: {line}')
-                    elif match:
-                        notebook_name = match.group(1)
-                        nb_path = path.split(md_page)[0] + notebook_name
-                        new_lines = get_html_from_json(
-                            notebook_name,
-                            nb_path,
-                        )
-                        print(new_lines)
-                    else:
-                        continue
-            return
-
-        add_html_notebooks_to_markdown()
+            return agg_html
 
         # use pypandoc to convert md to html
         try:
-            converted = pypandoc.convert_file(
+            converted_html = pypandoc.convert_file(
                 path,
+                format='md',
                 to='html',
                 extra_args=["--mathml"],
             )
@@ -159,7 +130,7 @@ def generate_page_html(page_paths):
             if "No pandoc was found" in ex:
                 print("Downloading pandoc dependency")
                 pypandoc.download_pandoc()
-                converted = pypandoc.convert_file(
+                converted_html = pypandoc.convert_file(
                     path,
                     to='html',
                     extra_args=["--mathml"],
@@ -167,7 +138,46 @@ def generate_page_html(page_paths):
             else:
                 raise ex
 
-        page_components['body'] = converted
+        def add_notebook_to_html(converted_html):
+            """
+            Function to identify areas in a converted markdown page to insert
+            jupyter notebook html outputs
+            """
+            # regex pattern match for "[[notebook_name.ipynb]" with only
+            # a single closing bracket, as additional parameters may be
+            # included in the notebook specification line
+            nb_match_pattern = re.compile(r"\[\[(.+?\.ipynb)\]")
+            # notebook specifications with additional arguments will
+            # match the exact pattern ".ipynb][" as defined below
+            nb_arguments_pattern = ".ipynb]["
+
+            output_lines = []
+            for line in converted_html.splitlines():
+                match = nb_match_pattern.search(line)
+                args = nb_arguments_pattern in line
+
+                if match and args:
+                    notebook_name = match.group(1)
+                    nb_path = path.split(md_page)[0] + notebook_name
+                    print(f'nb with args found: {line}')
+                    print(
+                        'Argument handling will be added in a '
+                        'future update'
+                    )
+                    output_lines.append(line)
+                elif match:
+                    notebook_name = match.group(1)
+                    nb_path = path.split(md_page)[0] + notebook_name
+                    notebook_html = get_html_from_json(notebook_name, nb_path)
+                    output_lines.append(notebook_html)
+                else:
+                    output_lines.append(line)
+
+            combined_html = "".join(output_lines)
+            return combined_html
+
+        combined_html = add_notebook_to_html(converted_html)
+        page_components['body'] = combined_html
 
         file_contents = ""
         for section in order:
@@ -177,7 +187,7 @@ def generate_page_html(page_paths):
         with open(out_path, 'w') as out:
             out.write(file_contents)
 
-    return converted
+    return converted_html
 
 
 # %%
