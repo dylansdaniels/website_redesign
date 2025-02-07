@@ -35,7 +35,7 @@ def html_to_json(html: str, filename: str):
     lines = [
         line.replace("\t", "    ")
         for line in html.splitlines()
-        if line.strip()
+        # if line.strip()
     ]
 
     for i, line in enumerate(lines):
@@ -169,6 +169,9 @@ def extract_html_from_notebook(
     for cell in notebook["cells"]:
         if cell["cell_type"] == "code":
             # add code cell contents
+
+            # print(cell['source'])
+
             html_output.append(
                 "<div class='code-cell'>"
                 "\n\t<code class='language-python'>"
@@ -176,6 +179,20 @@ def extract_html_from_notebook(
                 "\n\t</code>"
                 "\n</div>"
             )
+
+            # print('-'*40)
+            # tmp = []
+            # tmp.append(
+            #     "<div class='code-cell'>"
+            #     "\n\t<code class='language-python'>"
+            #     f"\n\t\t{cell['source']}"
+            #     "\n\t</code>"
+            #     "\n</div>"
+            # )
+            # for e in tmp:
+            #     print(e)
+
+            # print('#'*40)
 
             # add code cell outputs
             for output in cell.get("outputs", []):

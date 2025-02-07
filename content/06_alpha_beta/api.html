@@ -233,6 +233,7 @@ interface. We'll begin with some background on the experimental data
 used in this tutorial, and then give you a quick introduction to the
 HNN-Core API. Finally, we'll show you how to adjust model parameters to
 test specific hypotheses using HNN simulations.</p>
+
 </div><div class='markdown-cell'>
     <h2>0. Scientific Background</h2>
 <p>In order to understand the workflow and initial parameter sets
@@ -359,13 +360,16 @@ Neurophysiol. 102, 3554–3572 (2009).<a href="#fnref1"
 class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
+
 </div><div class='markdown-cell'>
     <h2>0. Importing python libraries and loading data</h2>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
         import numpy as np
 import matplotlib.pyplot as plt
+
 import hnn_core
 from hnn_core import jones_2009_model, simulate_dipole, MPIBackend, JoblibBackend, read_dipole
 from hnn_core.viz import plot_dipole, plot_tfr_morlet, plot_psd
@@ -379,6 +383,7 @@ proximal and distal ~10Hz inputs. Here, we begin by describing theimpact of prox
 <p>Let's start with instantiating our network. We will give it the
 unique name <code>net_alpha_prox</code> so that we can compare it with
 simulation results later on.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
@@ -402,11 +407,13 @@ cells is 0.1 ms, with a slightly longer delay to the layer 5 cells of 1
 ms.</p>
 <p>Note that cells not specified in the dictionary will not recieve
 input from the drive.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
         weights_ampa_p = {'L2_pyramidal': 5.4e-5, 'L5_pyramidal': 5.4e-5}
 syn_delays_p = {'L2_pyramidal': 0.1, 'L5_pyramidal': 1.0}
+
 net_alpha_prox.add_bursty_drive(
     'alpha_prox', tstart=50.0, tstart_std=0.0, burst_rate=10, burst_std=20, numspikes=2,
     spike_isi=10, n_drive_cells=10, location='proximal',
@@ -437,9 +444,11 @@ for the entire population of rhythmic proximal inputs is set with
 <code>tstop</code> (here the parameter is not included which producesrepeating bursts throughout the simulation).</p>
 <h3>Figure 4</h3>
 <p><img src="images/prox-drive.png" /></p>
+
 </div>
 <div class='markdown-cell'>
     <p>We can check that the drives have been added by looking at</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
@@ -470,6 +479,7 @@ for the entire population of rhythmic proximal inputs is set with
 <p>Now, we simulate the dipole with just one trial for now. Note that we
 have set <code>tstop</code> to 710 ms giving us a sufficiently long
 simulation to visualize oscillatory activity.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
@@ -555,6 +565,7 @@ Trial 1: 670.0 ms...
 Trial 1: 680.0 ms...
 Trial 1: 690.0 ms...
 Trial 1: 700.0 ms...
+
     </div>
 </div>
 <div class='markdown-cell'>
@@ -564,18 +575,24 @@ might need to follow a few extra installation steps to install MPI
 dependencies if you wish to run <code>MPIBackend</code> on your machine
 (see <a
 href="https://jonescompneurolab.github.io/hnn-core/stable/parallel.html">here</a>).</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
         # simulate dipole with a specific parallel backend (1 trial)
 # we'll use MPIBackend for the remainder of this tutorial as it is the fastest
+
 n_procs = 8
+
 with MPIBackend(n_procs=n_procs):
     dpl_alpha_prox = simulate_dipole(net_alpha_prox, tstop=710.0, n_trials=1)
+    
 # If you don't have the OpenMPI and mpi4py installed on you machine,
 # you can alternatively use JoblibBackend (uncomment lines below) to 
+
 # with JoblibBackend(n_jobs=n_procs):
 #    dpls = simulate_dipole(net_alpha_prox, tstop=710.0, n_trials=1)
+
     </code>
 </div>
 <div class='output-cell'><div class='output-label'>
@@ -585,6 +602,7 @@ with MPIBackend(n_procs=n_procs):
         MPIBackend is set to use 1 core: tranferring the simulation to JoblibBackend....
 Joblib will run 1 trial(s) in parallel by distributing trials over 1 jobs.
 Building the NEURON model
+
         [Done]
 Trial 1: 0.03 ms...
 Trial 1: 10.0 ms...
@@ -657,6 +675,7 @@ Trial 1: 670.0 ms...
 Trial 1: 680.0 ms...
 Trial 1: 690.0 ms...
 Trial 1: 700.0 ms...
+
     </div>
 </div>
 <div class='markdown-cell'>
@@ -668,21 +687,26 @@ For now, we are going to utilize the <code>plot_spike_hist()</code>,
 <code>plot_dipole()</code>, and <code>plot_tfr_morlet()</code>
 functions. Let's package these into a function so that we can reuse to
 visualize simulation results later on.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
         def simulation_plots(net, dpl, xlim=[0, 710]):
     # Set up 3 panel figure
     fig, axes = plt.subplots(3, 1, sharex=True, figsize=(7, 7), constrained_layout=True)
+
     # Plot histogram of proximal and distal drive spike times
     net.cell_response.plot_spikes_hist(ax=axes[0], show=False)
     axes[0].set_title('Input Histogram')
+
     # Plot aggregate current dipole
     plot_dipole(dpl, ax=axes[1], layer='agg', show=False, tmin=xlim[0], tmax=xlim[1])
+    
     # Plot spectrogram with frequencies from 6 to 60 Hz in steps of 1 Hz
     freqs = np.arange(6.0, 30.0, 1.0)
     plot_tfr_morlet(dpl, freqs, n_cycles=7, ax=axes[2], tmin=xlim[0], tmax=xlim[1])
     axes[2].set_title('Spectrogram')
+
     return fig
     </code>
 </div>
@@ -690,6 +714,7 @@ visualize simulation results later on.</p>
     <p>From now on all we have to do is call the function
 <code>simulate_plots()</code> with the <code>Network</code> and
 <code>Dipole</code> objects to make our plots.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
@@ -745,6 +770,7 @@ produced by the circuit, several features of the waveform and
 spectrogram of the signal do not match the recorded data shown in
 Figures 1and 2. Next, we explore the impact of rhythmic distal inputs
 only (step 2), and then a combination of the two (step 3).</p>
+
 </div><div class='markdown-cell'>
     <h2>2. Simulating Rhythmic Distal Inputs: Alpha Only</h2>
 <p>Having seen that proximal inputs alone push the current flow only in
@@ -753,6 +779,7 @@ provide only rhythmic distal inputs, which drive current flow in the
 pyramidal neuron dendrites, and hence current dipole signal, in theopposite direction (negative).</p>
 <h3>2.1 Define network and drives</h3>
 <p>We begin again by instantiating the network.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
@@ -763,6 +790,7 @@ pyramidal neuron dendrites, and hence current dipole signal, in theopposite dire
     <code class='language-python'>
         weights_ampa_d = {'L2_pyramidal': 5.4e-5, 'L5_pyramidal': 5.4e-5}
 syn_delays_d = {'L2_pyramidal': 5.0, 'L5_pyramidal': 5.0}
+
 net_alpha_dist.add_bursty_drive(
     'alpha_dist', tstart=50.0, tstart_std=0.0, burst_rate=10, burst_std=20, numspikes=2,
     spike_isi=10, n_drive_cells=10, location='distal',
@@ -771,11 +799,13 @@ net_alpha_dist.add_bursty_drive(
 </div><div class='markdown-cell'>
     <h3>2.2 Run the simulation and visualize net current dipole</h3>
 <p>Now we simulate the dipole.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
         with MPIBackend(n_procs=n_procs):
     dpl_alpha_dist = simulate_dipole(net_alpha_dist, tstop=710.0, n_trials=1)
+
 # dpl_alpha_dist = simulate_dipole(net_alpha_dist, tstop=710.0, n_trials=1)
     </code>
 </div>
@@ -858,11 +888,13 @@ Trial 1: 670.0 ms...
 Trial 1: 680.0 ms...
 Trial 1: 690.0 ms...
 Trial 1: 700.0 ms...
+
     </div>
 </div>
 <div class='markdown-cell'>
     <p>We can use the in built plotting functions of hnn-core to visualize
 the simulated dipole.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
@@ -911,6 +943,7 @@ and spectral features that match the experimental data in Figures 1 and
 proximal and distal drives can produce an oscillation with many
 characteristic features of the spontaneous SI signal (Jones et al
 2009).</p>
+
 </div>
 <div class='markdown-cell'>
     <h2>3. Simulating Combined Rhythmic Proximal and Distal Inputs:
@@ -929,14 +962,17 @@ will be a slight delay. As will be described further below, thisstochasticity cr
 same functions as above. Note that the <code>event_seed</code> parameter
 must be changed, otherwise the spike times of the proximal and distal
 drive would be identical.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
         net_alpha_sync = jones_2009_model()
+
 net_alpha_sync.add_bursty_drive(
     'alpha_prox', tstart=50.0, tstart_std=0.0, burst_rate=10, burst_std=20, numspikes=2,
     spike_isi=10, n_drive_cells=10, location='proximal',
     weights_ampa=weights_ampa_p, synaptic_delays=syn_delays_p, event_seed=10)
+
 net_alpha_sync.add_bursty_drive(
     'alpha_dist', tstart=50.0, burst_rate=10, burst_std=20, numspikes=2,
     spike_isi=10, n_drive_cells=10, location='distal',
@@ -944,11 +980,13 @@ net_alpha_sync.add_bursty_drive(
     </code>
 </div><div class='markdown-cell'>
     <h3>3.2 Run the simulation and visualize net current dipole</h3>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
         with MPIBackend(n_procs=n_procs):
     dpl_alpha_sync = simulate_dipole(net_alpha_sync, tstop=710.0, n_trials=1)
+
 # dpl_alpha_sync = simulate_dipole(net_alpha_sync, tstop=710.0, n_trials=1)
     </code>
 </div>
@@ -1031,6 +1069,7 @@ Trial 1: 670.0 ms...
 Trial 1: 680.0 ms...
 Trial 1: 690.0 ms...
 Trial 1: 700.0 ms...
+
     </div>
 </div>
 <div class='code-cell'>
@@ -1095,6 +1134,7 @@ difficult to align recorded data and simulated results. However, a
 direct comparison can be made between time averaged recorded and
 simulated signals by comparing power spectral density waveforms. An
 example of comparison is shown in step 5 below.</p>
+
 </div>
 <div class='markdown-cell'>
     <h3>3.3 Simulating and averaging multiple trials with jittered start
@@ -1125,20 +1165,25 @@ and averaging across trials, we will use a drive configuration with
 rhythmic proximal and distal inputs provided at 10 Hz, with proximal and
 distal inputs in phase. These are the same parameters as Step 3.2 above,
 but now with 5 trials instead of 1.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
         net_alpha_trials = jones_2009_model()
+
 net_alpha_trials.add_bursty_drive(
     'alpha_prox', tstart=50.0, tstart_std=0.0, burst_rate=10, burst_std=20, numspikes=2,
     spike_isi=10, n_drive_cells=10, location='proximal',
     weights_ampa=weights_ampa_p, synaptic_delays=syn_delays_p, event_seed=10)
+
 net_alpha_trials.add_bursty_drive(
     'alpha_dist', tstart=50.0, tstart_std=0.0, burst_rate=10, burst_std=20, numspikes=2,
     spike_isi=10, n_drive_cells=10, location='distal',
     weights_ampa=weights_ampa_d, synaptic_delays=syn_delays_d, event_seed=15)
+    
 with MPIBackend(n_procs=n_procs):
     dpl_alpha_trials = simulate_dipole(net_alpha_trials, tstop=710.0, n_trials=5)
+
 # dpl_alpha_trials = simulate_dipole(net_alpha_trials, tstop=710.0, n_trials=5)
     </code>
 </div>
@@ -1156,6 +1201,7 @@ Cell [0;32mIn[1], line 1[0m
 [1;32m      9[0m     [38;5;124m'[39m[38;5;124malpha_dist[39m[38;5;124m'[39m, tstart[38;5;241m=[39m[38;5;241m50.0[39m, tstart_std[38;5;241m=[39m[38;5;241m0.0[39m, burst_rate[38;5;241m=[39m[38;5;241m10[39m, burst_std[38;5;241m=[39m[38;5;241m20[39m, numspikes[38;5;241m=[39m[38;5;241m2[39m,
 [1;32m     10[0m     spike_isi[38;5;241m=[39m[38;5;241m10[39m, n_drive_cells[38;5;241m=[39m[38;5;241m10[39m, location[38;5;241m=[39m[38;5;124m'[39m[38;5;124mdistal[39m[38;5;124m'[39m,
 [1;32m     11[0m     weights_ampa[38;5;241m=[39mweights_ampa_d, synaptic_delays[38;5;241m=[39msyn_delays_d, event_seed[38;5;241m=[39m[38;5;241m15[39m)
+
 [0;31mNameError[0m: name 'jones_2009_model' is not defined
     </pre>
 </div>
@@ -1194,20 +1240,25 @@ non-zero <code>burst_std</code>. This will add additional variability to
 the timing of the transient alpha and beta events on each trial, and
 hence produce even more continuous bands of activity in the averaged
 spectrogram.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
         net_alpha_jitter = jones_2009_model()
+
 net_alpha_jitter.add_bursty_drive(
     'alpha_prox', tstart=50.0, tstart_std=50.0, burst_rate=10, burst_std=20, numspikes=2,
     spike_isi=10, n_drive_cells=10, location='proximal',
     weights_ampa=weights_ampa_p, synaptic_delays=syn_delays_p, event_seed=10)
+
 net_alpha_jitter.add_bursty_drive(
     'alpha_dist', tstart=50.0, tstart_std=50.0, burst_rate=10, burst_std=20, numspikes=2,
     spike_isi=10, n_drive_cells=10, location='distal',
     weights_ampa=weights_ampa_d, synaptic_delays=syn_delays_d, event_seed=14)
+
 with MPIBackend(n_procs=n_procs):
     dpl_alpha_jitter = simulate_dipole(net_alpha_jitter, tstop=710.0, n_trials=5)
+
 # dpl_alpha_jitter = simulate_dipole(net_alpha_jitter, tstop=710.0, n_trials=5)
     </code>
 </div>
@@ -1231,17 +1282,21 @@ in Figure 1 left panel; n=100 trials) when the spectrograms from
 individual trials are averaged. Running more trials will further
 increase the continuous nature of alpha and beta activity across
 time.</p>
+
 </div><div class='markdown-cell'>
     <h3>3.4 Viewing network spiking activity</h3>
 <p>AES TODO</p>
+
 </div><div class='markdown-cell'>
     <h2>4. Calculating and Viewing Power Spectral Density (PSD)</h2>
+
 </div>
 <div class='markdown-cell'>
     <p>HNN provides a feature to calculate and view the power spectral
 density (PSD) of the simulated signal and imported data (Note: the PSD
 is calculated as the time average of the spectrogram, in the simulation
 examples).</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
@@ -1303,6 +1358,7 @@ between data and simulation results, as in Figure 2 above. See also Step
 6.4 below, where multiple trials of spontaneous SI data are simulated
 and averaged, producing more continuous bands of alpha and beta
 activity.</p>
+
 </div><div class='markdown-cell'>
     <h2>5. Adjusting parameters</h2>
 <p>Parameter adjustments will be key to developing and testing
@@ -1327,6 +1383,7 @@ the driving bursts (~50ms) (Jones et al. 2009; Sherman et al. 2016). The
 strength is controlled by the postsynaptic conductance set in the
 <code>weights_ampa</code> dictionary, and the synchrony is controlled by
 the <code>burst_std</code> parameter.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
@@ -1338,10 +1395,12 @@ the <code>burst_std</code> parameter.</p>
 20 Hz by setting <code>burst_rate</code>. Try other frequencies for the
 proximal and distal rhythmic drive. How do the rhythms change? See how
 changes in the Burst stdev effects the rhythms expressed.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
         # Your code here
+
     </code>
 </div>
 <div class='markdown-cell'>
@@ -1367,6 +1426,7 @@ to 40e-5
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">μ</mi><mi mathvariant="normal">S</mi></mrow><annotation encoding="application/x-tex">\mathrm{\mu S}</annotation></semantics></math>
 (a big change that will provide enough current to cause the cells to
 spike).</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
@@ -1389,6 +1449,7 @@ recordings.</p>
 <p>We can verify the increase in high-frequency activity more directly
 by viewing the simulation’s power spectral density (PSD) with the
 <code>plot_psd()</code> function.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
@@ -1401,6 +1462,7 @@ activity caused by neuronal spiking. We can verify that the neurons are
 spiking by looking at the spiking raster plots. This is done with a
 function associated with the <code>Network</code> object and can be run
 using <code>net.cell_response.plot_spikes_raster()</code>.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
@@ -1424,6 +1486,7 @@ population. This can be done with
 <code>plot_dipole(dpl, layer=&amp;#x27;L5&amp;#x27;)</code>. How do each
 contribute? Try also to change the proximal input parameters instead of
 the distal input parameters.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
@@ -1449,6 +1512,7 @@ mean is 100.0 ms, the input will, on average, arrive to the network a
 1/2 cycle out of phase (i.e., in antiphase, every 50 ms).</p>
 <p>Next, we will run the simulation to investigate the impact of this
 parameter change.</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
@@ -1472,6 +1536,7 @@ might be observed over occipital cortex during eyes closedconditions.</p>
 varying amounts. What happens to the rhythm expressed?</p>
 <p>Can you create a simulation where other frequencies are expressed?
 How is it created? Are the cells spiking or subthreshold?</p>
+
 </div>
 <div class='code-cell'>
     <code class='language-python'>
@@ -1481,8 +1546,11 @@ How is it created? Are the cells spiking or subthreshold?</p>
     <h2>6. Have fun exploring your own data!</h2>
 <p>Follow steps 1-5 above using your data and parameter adjustments
 based on your own hypotheses.</p>
+
 </div>
 <div class='markdown-cell'>
+    
+
 </div>    </div> <!-- close content wrapper -->
     </div> <!-- close content -->
 </div> <!-- close main -->
