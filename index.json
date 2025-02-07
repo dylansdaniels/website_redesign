@@ -48,8 +48,8 @@
     "05_erps": [
         "5. Simulating ERPs",
         {
-            "01_overview_of_erps.md": "2.1 Review of ERPs",
-            "02_hnn_core.md": "2.2 Simulating ERPs in hnn-core"
+            "01_erps_in_gui.md": "2.1 GUI Tutorial of ERP Simulation",
+            "02_hnn_core.md": "2.2 API Tutorial of ERP Simulation"
         }
     ],
     "06_alpha_beta": [

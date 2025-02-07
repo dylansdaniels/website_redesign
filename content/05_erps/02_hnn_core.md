@@ -1,5 +1,5 @@
 <!--
-# Title: 2.2 Simulating ERPs in hnn-core
+# Title: 2.2 API Tutorial of ERP Simulation
 # Updated: 2025-01-29
 #
 # Contributors:

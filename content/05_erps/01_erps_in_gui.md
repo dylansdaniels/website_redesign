@@ -1,5 +1,5 @@
 <!--
-# Title: 2.1 Review of ERPs
+# Title: 2.1 GUI Tutorial of ERP Simulation
 # Updated: 2024-11-14
 #
 # Contributors:

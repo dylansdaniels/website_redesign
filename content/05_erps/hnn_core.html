@@ -85,8 +85,8 @@
 				5. Simulating ERPs
 			</a>
 			<div class="submenu">
-				<a href="/website_redesign/content/05_erps/overview_of_erps.html">2.1 Review of ERPs</a>
-				<a href="/website_redesign/content/05_erps/hnn_core.html">2.2 Simulating ERPs in hnn-core</a>
+				<a href="/website_redesign/content/05_erps/erps_in_gui.html">2.1 GUI Tutorial of ERP Simulation</a>
+				<a href="/website_redesign/content/05_erps/hnn_core.html">2.2 API Tutorial of ERP Simulation</a>
 			</div>
 		</div>
 		<div class="sidebar-list">
@@ -224,7 +224,7 @@
     <div id="content-wrapper">
     <div id="content">
 
-<!--# Title: 2.2 Simulating ERPs in hnn-core# Updated: 2025-01-29## Contributors:    # Dylan Daniels    # Mainak Jas <mmjas@mgh.harvard.edu>    # Sam Neymotin <samnemo@gmail.com>    # Blake Caldwell <blake_caldwell@brown.edu>    # Christopher Bailey <cjb@cfin.au.dk>--><div class='markdown-cell'>
+<!--# Title: 2.2 API Tutorial of ERP Simulation# Updated: 2025-01-29## Contributors:    # Dylan Daniels    # Mainak Jas <mmjas@mgh.harvard.edu>    # Sam Neymotin <samnemo@gmail.com>    # Blake Caldwell <blake_caldwell@brown.edu>    # Christopher Bailey <cjb@cfin.au.dk>--><div class='markdown-cell'>
     <h1>01. Simulate Event Related Potentials (ERPs)</h1>
 
 </div>
@@ -234,8 +234,7 @@ evoked response, as detailed in the <a href="">HNN GUI ERP tutorial</a>,
 using HNN-core. We recommend you first review the GUI tutorial.</p>
 <p>The workflow below recreates an example of the threshold level
 tactile evoked response, as observed in Jones et al. J. Neuroscience
-2007 [1]_ (e.g. Figure 7 in the GUI tutorial), albeit without a direct
-comparison to the recorded data.</p>
+2007 [1], albeit without a direct comparison to the recorded data.</p>
 
 </div>
 <div class='code-cell'>
@@ -298,8 +297,7 @@ net.cell_types['L5_pyramidal'].plot_morphology();
     <p>The network of cells is now defined, to which we add external drives
 as required. Weights are prescribed separately for AMPA and NMDA
 receptors (receptors that are not used can be omitted or set to zero).
-The possible drive types include the following (click on the links for
-documentation):</p>
+The possible drive types include the following:</p>
 <ul>
 <li><code>hnn_core.Network.add_evoked_drive</code></li>
 <li><code>hnn_core.Network.add_poisson_drive</code></li>
