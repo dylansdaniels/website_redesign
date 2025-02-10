@@ -12,7 +12,7 @@ def compile_page_components():
     """Compile base html components for building webpage"""
 
     templates_folder = os.path.join(os.getcwd(), 'templates')
-    templates = ['header', 'topbar', 'script']
+    templates = ['header', 'topbar', 'footer', 'script']
     html_parts = {}
 
     for template in templates:
@@ -21,9 +21,10 @@ def compile_page_components():
             html_parts[template] = f.read()
 
     update_page_index()
-    html_parts['navbar'] = generate_navbar_html()
+    navbar_html, ordered_links = generate_navbar_html()
+    html_parts['navbar'] = navbar_html
 
-    return html_parts
+    return html_parts, ordered_links
 
 
 def get_page_paths(path=None):
@@ -46,12 +47,14 @@ def get_page_paths(path=None):
 
 
 def generate_page_html(page_paths):
-    html_parts = compile_page_components()
+    html_parts, ordered_links = compile_page_components()
+    print(ordered_links)
     order = [
         'header',
         'navbar',
         'topbar',
         'body',
+        'footer',
         'script',
     ]
 

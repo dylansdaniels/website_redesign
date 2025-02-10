@@ -585,6 +585,92 @@ body.dark-mode .dropdown-content::before {
 
 /* 
 # --------------------
+# Footer
+# -------------------- 
+*/
+
+.footer-area {
+    display: flex;
+    height: auto;
+    width: 100%;
+    font-size: 0.85em;
+    font-family: "Fira Sans", Helvetica, Arial;
+    /* color: #333; */
+    margin: 40px 0px;
+}
+
+.previous-area {
+    display: flex;
+    height: inherit;
+    margin: 0px;
+}
+
+.next-area {
+    display: flex;
+    height: inherit;
+    margin-left: auto;
+}
+
+.previous-area:hover, .next-area:hover {
+    cursor: pointer;
+}
+
+.previous-area:hover .previous-text a, .next-area:hover .next-text a {
+    color: var(--hnn-purple);
+}
+
+.previous-text, .next-text {
+    line-height: 1.1;
+    padding: 0px;
+    margin: 0px;
+}
+
+.previous-text p, .next-text p {
+    font-family: "Fira Sans", Helvetica, Arial !important;
+    padding: 0px;
+    margin: 0px;
+}
+
+.next-text p {
+    text-align: right;
+}
+
+.previous-text a, .next-text a {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.previous-icon {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+
+/* rotate icon on the horizontal axis */
+.next-icon {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    transform: scaleX(-1);
+}
+
+/* apply properties to svg path */
+.arrow-path {
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.footer-area .previous-icon svg, .footer-area .next-icon svg {
+    /* color: #ba83be; */
+    color: #5e5d5d
+}
+
+
+
+/* 
+# --------------------
 # Notebook html 
 # -------------------- 
 */

@@ -1,8 +1,25 @@
-    </div> <!-- close content wrapper -->
-    </div> <!-- close content -->
-</div> <!-- close main -->
 
 <script>
+    // ----------------------------------------
+    // Manage footer
+    // ----------------------------------------
+    // Hide the area if data-link is 'None'
+    document.querySelectorAll('.previous-area, .next-area').forEach(function(area) {
+        if (area.getAttribute('data-link') === 'None') {
+            area.style.display = 'none'; 
+        }
+    });
+
+    // Redirect to the specified link
+    document.querySelectorAll('.previous-area, .next-area').forEach(function(area) {
+        area.addEventListener('click', function() {
+            window.location.href = area.getAttribute('data-link');
+        });
+    });
+
+    // ----------------------------------------
+    // Manage sidebar
+    // ----------------------------------------
     let isSidebarOpen = true; // Sidebar is initially open
 
     function toggleNav() {
@@ -124,6 +141,7 @@
         }
     });
 
+    // ----------------------------------------
     // Toggle between light and dark themes
     // ----------------------------------------
     // Wait for the DOM to be fully loaded
