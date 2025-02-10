@@ -224,7 +224,64 @@
     <div id="content-wrapper">
     <div id="content">
 
-<!--# Title: 3.6 Evoked and Rhythmic Driving Inputs# Updated: 2024-01-16## Contributors:    # Dylan Daniels--><!-- compare original: https://jonescompneurolab.github.io/hnn-under_the_hood/04_evoked-rhythmic-inputs/04_evoked-rhythmic-inputs --><h1>3.6 Evoked and Rhythmic Driving Inputs</h1><h3>Proximal vs. Distal Inputs</h3><p>At rest, the default model does not generate activity. Instead, weuse exogenous inputs to drive network dynamics. We use the termsproximal and distal to refer both to the origin of the inputs as well asthe laminar target within the neocortical microcircuit. Proximal inputsrefers to inputs arriving from lemniscal thalamus, which primarilytarget the granular and infragranular layers while distal inputs arrivefrom non-lemniscal thalamus and cortico-cortical feedback, whichprimarily target the supragranular layers. These differences areillustrated below.</p><table style="border:none"><tr><td style="border:none; width=50%"><img src="./images/prox-drive.png" /></td><td style="border:none; width=50%; vertical-align:middle;"><img src="./images/dist-drive.png" /></td></tr></table><p>The left schematic here shows proximal inputs which target basaldendrites of layer 2/3 and layer 5 pyramidal neurons, and somata oflayer 2/3 and layer 5 interneurons. The red arrows indicate that theseproximal inputs push the current flow up the dendrites towardssupragranular layers. The right schematic shows distal inputs whichtarget the distal apical dendrites of layer 5 and layer 2/3 pyramidalneurons and the somata of layer 2/3 interneurons. The green arrowsindicate that these distal inputs push the current flow down towards theinfragranular layers.</p><h3>Exogenous Driving Inputs: Evoked</h3><p>Evoked response inputs are synaptic inputs that are used to modelevent related potentials (ERPs). These inputs are typicallysuper-threshold, meaning they cause neurons to fire action potentials.See Tour of the GUI for the full set of parameters modulating evokedinputs.</p><h3>Exogenous Driving Inputs: Rhythmic</h3><p>Rhythmic Inputs are synaptic inputs that are used to model ongoingrhythms, such as alpha, beta, and gamma (see illustration below and Tourof the GUI for full set of parameters).</p><div class="stylefig"><img src="./images/burst-desc.png" /><p style="text-align:justify;">Schematic illustration of exogenous 10 Hz burst drive through proximaland distal projection pathways. “Population bursts”, consisting of a setnumber of “burst units” (10, 2-spike bursts shown) drive post-synapticconductances in the local network with a set frequency (100ms ISI) andmean delay between proximal and distal.</p></div>    </div> <!-- close content wrapper -->
+<!--
+# Title: 3.6 Evoked and Rhythmic Driving Inputs
+# Updated: 2024-01-16
+#
+# Contributors:
+    # Dylan Daniels
+-->
+<!-- compare original: https://jonescompneurolab.github.io/hnn-under_the_hood/04_evoked-rhythmic-inputs/04_evoked-rhythmic-inputs -->
+<h1>3.6 Evoked and Rhythmic Driving Inputs</h1>
+<h3>Proximal vs. Distal Inputs</h3>
+<p>At rest, the default model does not generate activity. Instead, we
+use exogenous inputs to drive network dynamics. We use the terms
+proximal and distal to refer both to the origin of the inputs as well as
+the laminar target within the neocortical microcircuit. Proximal inputs
+refers to inputs arriving from lemniscal thalamus, which primarily
+target the granular and infragranular layers while distal inputs arrive
+from non-lemniscal thalamus and cortico-cortical feedback, which
+primarily target the supragranular layers. These differences are
+illustrated below.</p>
+<table style="border:none">
+<tr>
+<td style="border:none; width=50%">
+<img src="./images/prox-drive.png" />
+</td>
+<td style="border:none; width=50%; vertical-align:middle;">
+<img src="./images/dist-drive.png" />
+</td>
+</tr>
+</table>
+<p>The left schematic here shows proximal inputs which target basal
+dendrites of layer 2/3 and layer 5 pyramidal neurons, and somata of
+layer 2/3 and layer 5 interneurons. The red arrows indicate that these
+proximal inputs push the current flow up the dendrites towards
+supragranular layers. The right schematic shows distal inputs which
+target the distal apical dendrites of layer 5 and layer 2/3 pyramidal
+neurons and the somata of layer 2/3 interneurons. The green arrows
+indicate that these distal inputs push the current flow down towards the
+infragranular layers.</p>
+<h3>Exogenous Driving Inputs: Evoked</h3>
+<p>Evoked response inputs are synaptic inputs that are used to model
+event related potentials (ERPs). These inputs are typically
+super-threshold, meaning they cause neurons to fire action potentials.
+See Tour of the GUI for the full set of parameters modulating evoked
+inputs.</p>
+<h3>Exogenous Driving Inputs: Rhythmic</h3>
+<p>Rhythmic Inputs are synaptic inputs that are used to model ongoing
+rhythms, such as alpha, beta, and gamma (see illustration below and Tour
+of the GUI for full set of parameters).</p>
+<div class="stylefig">
+<img src="./images/burst-desc.png" />
+<p style="text-align:justify;">
+Schematic illustration of exogenous 10 Hz burst drive through proximal
+and distal projection pathways. “Population bursts”, consisting of a set
+number of “burst units” (10, 2-spike bursts shown) drive post-synaptic
+conductances in the local network with a set frequency (100ms ISI) and
+mean delay between proximal and distal.
+</p>
+</div>    </div> <!-- close content wrapper -->
     </div> <!-- close content -->
 </div> <!-- close main -->
 

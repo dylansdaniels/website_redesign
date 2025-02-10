@@ -177,7 +177,7 @@ def generate_page_html(page_paths):
                 else:
                     output_lines.append(line)
 
-            combined_html = "".join(output_lines)
+            combined_html = "\n".join(output_lines)
             return combined_html
 
         combined_html = add_notebook_to_html(converted_html)
