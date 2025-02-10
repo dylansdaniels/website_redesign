@@ -123,7 +123,11 @@ def generate_page_html(page_paths):
                 path,
                 format='md',
                 to='html',
-                extra_args=["--mathml"],
+                extra_args=[
+                    "--mathml",
+                    "-f",
+                    "markdown-auto_identifiers",
+                ],
             )
         except Exception as ex:
             # download Pandoc dependency if needed
