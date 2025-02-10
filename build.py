@@ -118,29 +118,16 @@ def generate_page_html(page_paths):
             return agg_html
 
         # use pypandoc to convert md to html
-        try:
-            converted_html = pypandoc.convert_file(
-                path,
-                format='md',
-                to='html',
-                extra_args=[
-                    "--mathml",
-                    "-f",
-                    "markdown-auto_identifiers",
-                ],
-            )
-        except Exception as ex:
-            # download Pandoc dependency if needed
-            if "No pandoc was found" in ex:
-                print("Downloading pandoc dependency")
-                pypandoc.download_pandoc()
-                converted_html = pypandoc.convert_file(
-                    path,
-                    to='html',
-                    extra_args=["--mathml"],
-                )
-            else:
-                raise ex
+        converted_html = pypandoc.convert_file(
+            path,
+            format='md',
+            to='html',
+            extra_args=[
+                "--mathml",
+                "-f",
+                "markdown-auto_identifiers",
+            ],
+        )
 
         def add_notebook_to_html(converted_html):
             """
