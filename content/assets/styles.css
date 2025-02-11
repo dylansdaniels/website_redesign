@@ -623,7 +623,7 @@ body.dark-mode .dropdown-content::before {
     line-height: 1.1;
     padding: 0px;
     margin: 0px;
-    max-width: 250px;
+    max-width: 250px !important;
 }
 
 .next-text {
