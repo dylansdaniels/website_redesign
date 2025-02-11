@@ -84,6 +84,7 @@ def generate_navbar_html():
         navbar_html = ''
         page_paths = get_absolute_paths()
         ordered_links = []
+        ordered_pages = []
         for section, contents in json_page_index.items():
             # For pages that are not nested in a toggle
             if isinstance(contents, str):
@@ -94,6 +95,7 @@ def generate_navbar_html():
                     indent,
                 )
                 ordered_links.append(page_paths[section])
+                ordered_pages.append(contents)
             # For pages that are nested in a toggle
             elif isinstance(contents, list):
                 toggle_label = contents[0]
@@ -109,9 +111,25 @@ def generate_navbar_html():
                         indent+indent,
                     )
                     ordered_links.append(page_paths[sub_page])
+                    ordered_pages.append(sub_name)
                 # Close toggle <div> sections
                 navbar_html += f'\n{indent}\t</div>'
                 navbar_html += f'\n{indent}</div>'
+
+            # save ordered page links
+            out_path = os.getcwd() + "/templates/ordered_page_links.json"
+            ordered_page_links = {}
+            ordered_page_links['links'] = ordered_links
+            ordered_page_links['titles'] = ordered_pages
+
+            with open(out_path, 'w', encoding='utf-8') as f:
+                json.dump(
+                    ordered_page_links,
+                    f,
+                    ensure_ascii=False,
+                    indent=4,
+                )
+
         return navbar_html, ordered_links
 
     navbar_html, ordered_links = build_navbar(json_page_index)

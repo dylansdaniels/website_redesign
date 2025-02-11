@@ -623,6 +623,13 @@ body.dark-mode .dropdown-content::before {
     line-height: 1.1;
     padding: 0px;
     margin: 0px;
+    max-width: 250px;
+}
+
+.next-text {
+    text-align: right;
+    /* display: flex; */
+    /* justify-content: flex-end; */
 }
 
 .previous-text p, .next-text p {
@@ -636,8 +643,17 @@ body.dark-mode .dropdown-content::before {
 }
 
 .previous-text a, .next-text a {
-    font-size: 1.1em;
+    font-size: 0.9em;
     font-weight: bold;
+    /* display: block; */
+    /* white-space: nowrap; */
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    max-height: 2.2em; 
 }
 
 .previous-icon {

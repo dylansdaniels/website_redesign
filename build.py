@@ -47,8 +47,13 @@ def get_page_paths(path=None):
 
 
 def generate_page_html(page_paths):
+    """
+    """
+
+    # get the .html templates for building pages
     html_parts, ordered_links = compile_page_components()
-    print(ordered_links)
+
+    # specify the order of components for assembling pages
     order = [
         'header',
         'navbar',
@@ -58,69 +63,97 @@ def generate_page_html(page_paths):
         'script',
     ]
 
+    # print(ordered_links)
+
     for md_page, path in page_paths.items():
         page_components = html_parts.copy()
 
-        # get path only
-        out_path = path.split(md_page)[0]
+        # get the directory containing the markdown file
+        out_directory = path.split(md_page)[0]
 
-        # ENHANCEMENT
-        '''
-        # remove instances of `##_` from out_path
-        # build html to separate `build` folder
-        # this will make the urls look neater
-        '''
-        # out_path = re.sub(r"\d\d_", "", out_path)
-
-        # remove leading `##_` from page
+        # remove leading `##_` from page and change extension to .html
         html_page = md_page.split("_", 1)[1]
-
-        # change file extension for page
         html_page = html_page.split(".md")[0] + ".html"
 
-        # get relative path to the stylesheet
+        # set the output path
+        out_path = out_directory + html_page
+
+        # update 'header' page_component with the relative stylesheet path
+        # ------------------------------------------------------------
+        # set the path from root directory to the stylesheet
         css_path = os.path.join(
             os.getcwd(),
             "content",
             "assets",
             "styles.css"
         )
+        # get the relative path
         relative_css_path = os.path.relpath(
             css_path,
-            start=out_path
+            start=out_directory
         )
-
-        # combine path and page
-        out_path = out_path + html_page
-
-        # Update header with the relative stylesheet path
+        # update the 'header' page_component with the correct path
         page_components['header'] = page_components['header'].replace(
             '<link rel="stylesheet" href="styles.css">',
             f'<link rel="stylesheet" href="{relative_css_path}">'
         )
 
-        def get_html_from_json(
-                nb_name,
-                nb_path,
-                ):
-            """"""
-            # html_output = []
-            json_path = nb_path.split('.ipynb')[0] + '.json'
-            with open(json_path, 'r') as file:
-                nb_outputs = json.load(file)
-                nb_outputs = nb_outputs.get(nb_name, {})
-                # print(nb_outputs)
-                agg_html = ''
-                for section, content in nb_outputs.items():
-                    if isinstance(content, dict) and 'html' in content:
-                        agg_html += content['html']
+        # update 'footer' page_component with the correct links
+        # ------------------------------------------------------------
+        footer_path = os.path.join(
+            os.getcwd(),
+            'templates',
+            'ordered_page_links.json'
+        )
 
-            # for line in agg_html.splitlines():
-            #     html_output.append(line)
+        with open(footer_path, 'r') as f:
+            ordered_page_links = json.load(f)
 
-            return agg_html
+        ordered_links = ordered_page_links['links']
+        ordered_titles = ordered_page_links['titles']
 
-        # use pypandoc to convert md to html
+        location = None
+        last_page = len(ordered_links)-1
+        for i, link in enumerate(ordered_links):
+            # print(f'{link} | {out_path}')
+            if link in out_path:
+                location = i
+        if location == 0:
+            prev_page = "None"
+            prev_title = ""
+            next_page = ordered_links[location+1]
+            next_title = ordered_titles[location+1]
+        elif location == last_page:
+            prev_page = ordered_links[location-1]
+            prev_title = ordered_titles[location-1]
+            next_page = "None"
+            next_title = "None"
+        else:
+            prev_page = ordered_links[location-1]
+            prev_title = ordered_titles[location-1]
+            next_page = ordered_links[location+1]
+            next_title = ordered_titles[location+1]
+
+        page_components['footer'] = page_components['footer'].replace(
+            '<div class="previous-area" data-link="None">',
+            f'<div class="previous-area" data-link="{prev_page}">'
+        )
+        page_components['footer'] = page_components['footer'].replace(
+            '<div class="next-area" data-link="None">',
+            f'<div class="next-area" data-link="{next_page}">'
+        )
+
+        page_components['footer'] = page_components['footer'].replace(
+            '<a>PreviousTitle</a>',
+            f'<a>{prev_title}</a>'
+        )
+        page_components['footer'] = page_components['footer'].replace(
+            '<a>NextTitle</a>',
+            f'<a>{next_title}</a>'
+        )
+
+        # convert markdown file to html with pypandoc
+        # ------------------------------------------------------------
         converted_html = pypandoc.convert_file(
             path,
             format='md',
@@ -132,10 +165,52 @@ def generate_page_html(page_paths):
             ],
         )
 
+        # optionally add Jupyter notebook ouptuts to converted html
+        # ------------------------------------------------------------
+
+        def get_html_from_json(
+                nb_name,
+                nb_path,
+                ):
+            """Get the structured .json output for a specified
+            .ipynb notebook, extract the relevent html components,
+            and return the aggregated html as a string.
+
+            Arguments
+            ---------
+            nb_name : str
+                Jupyter notebook file name
+                E.g., 'simulate_erps.ipynb'
+            nb_path : str
+                Path to notebook
+                E.g.: 'website/content/erps/simulate_erps.ipynb'
+
+            Returns
+            -------
+            agg_html : str
+            """
+            json_path = nb_path.split('.ipynb')[0] + '.json'
+            with open(json_path, 'r') as file:
+                nb_outputs = json.load(file)
+                nb_outputs = nb_outputs.get(nb_name, {})
+                agg_html = ''
+                for section, content in nb_outputs.items():
+                    if isinstance(content, dict) and 'html' in content:
+                        agg_html += content['html']
+            return agg_html
+
         def add_notebook_to_html(converted_html):
             """
-            Function to identify areas in a converted markdown page to insert
-            jupyter notebook html outputs
+            Function to insert Jupyter notebook html outputs into html
+            pages converted from markdown files
+
+            Arguments
+            ---------
+            converted_html : str
+
+            Returns
+            -------
+            combined_html : str
             """
             # regex pattern match for "[[notebook_name.ipynb]" with only
             # a single closing bracket, as additional parameters may be
@@ -171,6 +246,9 @@ def generate_page_html(page_paths):
             return combined_html
 
         combined_html = add_notebook_to_html(converted_html)
+
+        # Aggregate all page components and write output
+        # ------------------------------------------------------------
         page_components['body'] = combined_html
 
         file_contents = ""
@@ -181,7 +259,7 @@ def generate_page_html(page_paths):
         with open(out_path, 'w') as out:
             out.write(file_contents)
 
-    return converted_html
+    return
 
 
 # %%
@@ -194,4 +272,4 @@ _ = convert_notebooks_to_html(
     write_html=True,
 )
 page_paths = get_page_paths()
-output = generate_page_html(page_paths)
+generate_page_html(page_paths)

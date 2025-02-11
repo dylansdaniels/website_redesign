@@ -1566,7 +1566,7 @@ based on your own hypotheses.</p>
         <!-- footer area -->
         <!----------------->
         <div class="footer-area">
-            <div class="previous-area" data-link="None">
+            <div class="previous-area" data-link="/website_redesign/content/06_alpha_beta/gui.html">
                 <div class="previous-icon">
                     <svg class="svg-arrow" width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class="arrow-path" d="M15 5L9 12L15 19" />
@@ -1574,13 +1574,13 @@ based on your own hypotheses.</p>
                 </div>
                 <div class="previous-text">
                     <p>Previous</p>
-                    <a href="">PreviousTitle</a>
+                    <a>6.1 GUI Tutorial of Alpha/Beta Rhythms</a>
                 </div>
             </div>
             <div class="next-area" data-link="None">
                 <div class="next-text">
                     <p>Next</p>
-                    <a href="">NextTitle</a>
+                    <a>None</a>
                 </div>
                 <div class="next-icon">
                     <svg class="svg-arrow" width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1596,6 +1596,28 @@ based on your own hypotheses.</p>
     // ----------------------------------------
     // Manage footer
     // ----------------------------------------
+    // This function will update the footer links when a page is loaded
+    // locally so that naivagation remains functional without a server
+    // Note: this solution is specific to MacOS
+    document.addEventListener("DOMContentLoaded", function() {
+        if (window.location.protocol === "file:") {
+            // Get the current local directory path
+            const currentDir = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+
+            // Process both previous and next links
+            document.querySelectorAll('.previous-area, .next-area').forEach(function(area) {
+                const link = area.getAttribute('data-link');
+                
+                if (link && link.startsWith("/")) {
+                    // Extract the local root directory
+                    const rootPath = currentDir.split("/website_redesign/")[0];
+                    // Prepend root path to link
+                    const resolvedLink = "file://" + rootPath + link;
+                    area.setAttribute("data-link", resolvedLink);
+                }
+            });
+        }
+    });
     // Hide the area if data-link is 'None'
     document.querySelectorAll('.previous-area, .next-area').forEach(function(area) {
         if (area.getAttribute('data-link') === 'None') {
@@ -1696,9 +1718,8 @@ based on your own hypotheses.</p>
     }
 
     // This function will update the sidebar links when a page is loaded
-    // locally so that sidebar naivagation remains functional without the
-    // need for a server
-    // Note: This should work for Mac/Linux but may not on Windows
+    // locally so that sidebar naivagation remains functional without a server
+    // Note: this solution is specific to MacOS
     document.addEventListener("DOMContentLoaded", function() {
         if (window.location.protocol === "file:") {
             // get the current local directory path

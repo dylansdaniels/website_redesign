@@ -3,6 +3,28 @@
     // ----------------------------------------
     // Manage footer
     // ----------------------------------------
+    // This function will update the footer links when a page is loaded
+    // locally so that naivagation remains functional without a server
+    // Note: this solution is specific to MacOS
+    document.addEventListener("DOMContentLoaded", function() {
+        if (window.location.protocol === "file:") {
+            // Get the current local directory path
+            const currentDir = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+
+            // Process both previous and next links
+            document.querySelectorAll('.previous-area, .next-area').forEach(function(area) {
+                const link = area.getAttribute('data-link');
+                
+                if (link && link.startsWith("/")) {
+                    // Extract the local root directory
+                    const rootPath = currentDir.split("/website_redesign/")[0];
+                    // Prepend root path to link
+                    const resolvedLink = "file://" + rootPath + link;
+                    area.setAttribute("data-link", resolvedLink);
+                }
+            });
+        }
+    });
     // Hide the area if data-link is 'None'
     document.querySelectorAll('.previous-area, .next-area').forEach(function(area) {
         if (area.getAttribute('data-link') === 'None') {
@@ -103,9 +125,8 @@
     }
 
     // This function will update the sidebar links when a page is loaded
-    // locally so that sidebar naivagation remains functional without the
-    // need for a server
-    // Note: This should work for Mac/Linux but may not on Windows
+    // locally so that sidebar naivagation remains functional without a server
+    // Note: this solution is specific to MacOS
     document.addEventListener("DOMContentLoaded", function() {
         if (window.location.protocol === "file:") {
             // get the current local directory path
