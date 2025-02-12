@@ -13,7 +13,7 @@
 Neocortical circuits are organized with remarkably similar features across areas and species. These features include a common laminar structure with generalizable cell classes as well as similar local connectivity and input and output connectivity patterns. We have harnessed this generalization into HNN’s foundational neural model that is provided as a template circuit to work with.
 
 <div style="display:block; width:50%; margin: 0 auto;">
-![](./images/netpyne-schematic-tilted-colored.png)
+![](https://raw.githubusercontent.com/jonescompneurolab/jones-website/master/images/textbook/content/03_assumptions/images/netpyne-schematic-tilted-colored.png)
 </div>
 
 <p style="text-align:justify; display: block; margin: 0 auto;width: 90%; font-size: 1em;">

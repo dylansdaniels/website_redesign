@@ -36,16 +36,16 @@ Membrane voltages in each simulated compartment are calculated using the standar
     - L2/3 and L5 basket interneurons are identical but their synaptic parameters and local circuit connectivity differs.
 
 <div style="display:block; width:50%; margin: 0 auto;">
-![](./images/detailed-connectivity.png)
+![](https://raw.githubusercontent.com/jonescompneurolab/jones-website/master/images/textbook/content/03_assumptions/images/detailed-connectivity.png)
 </div>
 
 <table style="border:none">
   <tr>
     <td style="border:none" width=>
-    ![](./images/morph-params-01.png)
+    ![](https://raw.githubusercontent.com/jonescompneurolab/jones-website/master/images/textbook/content/03_assumptions/images/morph-params-01.png)
     </td>
     <td style="border:none; vertical-align:middle;">
-    ![](./images/morph-params-02.png)
+    ![](https://raw.githubusercontent.com/jonescompneurolab/jones-website/master/images/textbook/content/03_assumptions/images/morph-params-02.png)
     </td>
   </tr>
 </table>

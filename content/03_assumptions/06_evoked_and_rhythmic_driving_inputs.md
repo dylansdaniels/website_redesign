@@ -17,10 +17,10 @@ At rest, the default model does not generate activity. Instead, we use exogenous
 <table style="border:none">
   <tr>
     <td style="border:none; width=50%">
-    ![](./images/prox-drive.png)
+    ![](https://raw.githubusercontent.com/jonescompneurolab/jones-website/master/images/textbook/content/03_assumptions/images/prox-drive.png)
     </td>
     <td style="border:none; width=50%; vertical-align:middle;">
-    ![](./images/dist-drive.png)
+    ![](https://raw.githubusercontent.com/jonescompneurolab/jones-website/master/images/textbook/content/03_assumptions/images/dist-drive.png)
     </td>
   </tr>
 </table>
@@ -36,7 +36,7 @@ Evoked response inputs are synaptic inputs that are used to model event related 
 Rhythmic Inputs are synaptic inputs that are used to model ongoing rhythms, such as alpha, beta, and gamma (see illustration below and Tour of the GUI for full set of parameters).
 
 <div class="stylefig">
-  ![](./images/burst-desc.png)
+  ![](https://raw.githubusercontent.com/jonescompneurolab/jones-website/master/images/textbook/content/03_assumptions/images/burst-desc.png)
   <p style="text-align:justify;">
     Schematic illustration of exogenous 10 Hz burst drive through proximal and distal projection pathways.  “Population bursts”, consisting of a set number of “burst units” (10, 2-spike bursts shown)  drive post-synaptic conductances in the local network with a set frequency (100ms ISI) and mean delay between proximal and distal.
   </p>
