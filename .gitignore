@@ -17,3 +17,6 @@ env/
 venv/
 ENV/
 VENV/
+
+# all HTML files inside content/
+content/**/*.html
