@@ -159,6 +159,8 @@ def generate_page_html(page_paths):
             format='md',
             to='html',
             extra_args=[
+                "--bibliography=textbook-bibliography.bib",
+                "--citeproc",
                 "--mathml",
                 "-f",
                 "markdown-auto_identifiers",
