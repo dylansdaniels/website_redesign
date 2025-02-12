@@ -628,6 +628,11 @@ body.dark-mode .dropdown-content::before {
 
 .next-text {
     text-align: right;
+    /* the options below will fix an issue with the ellipses not */
+    /* rendering with text-align: right, though this solution */
+    /* would need to be implemented in a new div element that */
+    /* wraps the next-text <a>
+
     /* display: flex; */
     /* justify-content: flex-end; */
 }

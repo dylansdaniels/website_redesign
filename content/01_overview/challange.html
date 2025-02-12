@@ -304,6 +304,8 @@
     // Manage sidebar
     // ----------------------------------------
     let isSidebarOpen = true; // Sidebar is initially open
+    let isSidebarFullyOpen = true; // Sidebar is fully open
+    const maxWidth = '350px';
 
     function toggleNav() {
         const sidebar = document.getElementById("mySidebar");
@@ -313,14 +315,27 @@
         if (isSidebarOpen) {
             sidebar.style.width = "0";
             main.style.marginLeft = "0";
+            isSidebarFullyOpen = false;
         } else {
-            sidebar.style.width = "350px";  // Adjust width as needed
-            main.style.marginLeft = "350px";  // Match margin to new width
+            sidebar.style.width = maxWidth;
+            main.style.marginLeft = maxWidth;  // Match margin to new width
         }
 
         // Toggle the sidebar state
         isSidebarOpen = !isSidebarOpen;
     }
+
+    // Always listen for the transitionend on the sidebar
+    const sidebar = document.getElementById("mySidebar");
+    sidebar.addEventListener('transitionend', function() {
+        if (sidebar.style.width === maxWidth) {
+            // Sidebar has fully opened
+            isSidebarFullyOpen = true;
+        } else {
+            // Sidebar is not fully open
+            isSidebarFullyOpen = false;
+        }
+    });
 
     // Open the sidebar on page load
     window.onload = function() {
@@ -330,8 +345,8 @@
 
         sidebar.style.transition = "none";
         main.style.transition = "none";
-        sidebar.style.width = "350px";
-        main.style.marginLeft = "350px";
+        sidebar.style.width = maxWidth;
+        main.style.marginLeft = maxWidth;
 
         // Re-enable transition for subsequent toggles
         setTimeout(() => {
@@ -479,7 +494,7 @@
         link.addEventListener('mouseenter', function(event) {
             const tooltipText = event.target.getAttribute('sidebar-tooltip');
             
-            if (!tooltipText || isTooltipVisible) return; // Only show tooltip if none is visible
+            if (!tooltipText || isTooltipVisible || !isSidebarFullyOpen) return; // Only show tooltip if none is visible
 
             // Check if the text is overflowing
             if (event.target.scrollWidth > event.target.offsetWidth) {
