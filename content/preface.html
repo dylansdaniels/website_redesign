@@ -303,6 +303,53 @@ Dr. Stephanie Jones at Brown University</p>
         });
     });
 
+function adjustFooterPadding() {
+    const content = document.querySelector('#content'); // Select the content element
+    const footer = document.querySelector('.footer-area'); // Select the footer
+    const topbar = document.querySelector('.topbar'); // Select the topbar element
+
+    // Get the window height
+    const windowHeight = window.innerHeight;
+    console.log(`Window Height: ${windowHeight}px`);
+
+    // Get the current height of the topbar and content
+    const topbarHeight = topbar ? topbar.offsetHeight : 0; // Account for topbar height
+    console.log(`Topbar Height: ${topbarHeight}px`);
+
+    const contentHeight = content ? content.offsetHeight : 0; // Account for content height
+    console.log(`Content Height: ${contentHeight}px`);
+
+    // Calculate the available space (Window Height - Topbar Height)
+    const availableSpace = windowHeight - topbarHeight;
+    console.log(`Available Space (Window Height - Topbar Height): ${availableSpace}px`);
+
+    // If content height is less than available space, calculate unfilled space
+    let unfilledSpace = 0;
+    if (contentHeight < availableSpace) {
+        unfilledSpace = availableSpace - contentHeight;
+        console.log(`Unfilled Space: ${unfilledSpace}px`);
+
+        // Adjust padding top for the footer to fill the remaining space
+        footer.style.paddingTop = `${unfilledSpace}px`;
+        console.log(`Setting footer padding-top to: ${unfilledSpace}px`);
+    } else {
+        // If content height is enough to fill the space, reset the padding
+        footer.style.paddingTop = '0px';
+        console.log(`Content is enough to fill available space. Footer padding reset.`);
+    }
+}
+
+// Run on page load
+window.addEventListener('load', adjustFooterPadding);
+
+// Run on window resize, and throttle the event to avoid excessive calls
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(adjustFooterPadding, 100); // Adjust after 100ms of resizing
+});
+
+
     // ----------------------------------------
     // Manage sidebar
     // ----------------------------------------

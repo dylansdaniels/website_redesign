@@ -56,7 +56,6 @@ a:hover {
     padding: 10px;
     width: 100%;
     font-size: 20px;
-
 }
 
 #content p {
@@ -597,6 +596,16 @@ body.dark-mode .dropdown-content::before {
     font-family: "Fira Sans", Helvetica, Arial;
     /* color: #333; */
     margin: 40px 0px;
+    margin-top: auto;
+}
+
+.footer-wrapper {
+    position: relative; /* Ensure the wrapper stays inside content */
+    /* width: 100%; Full width within the content area */
+    height: 100%; /* Full height inside content */
+    display: flex;
+    justify-content: flex-end; /* Push footer to bottom of wrapper */
+    flex-direction: column;
 }
 
 .previous-area {
