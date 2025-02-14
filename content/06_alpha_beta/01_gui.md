@@ -6,13 +6,17 @@
     # Dylan Daniels
 -->
 
+---
+link-citations: true
+---
+
 DEBUG: this markdown file and images originally adapted from https://github.com/jonescompneurolab/hnn-tutorials/tree/core-gui/coregui_alpha_and_beta
 
 # Alpha (7-14 Hz) and Beta (15-29 Hz) Rhythms: The Mu-Complex
 
 ## Getting Started
 
-In order to understand the workflow and initial parameter sets provided with this tutorial, we must first briefly describe prior studies that led to the creation of the data you will aim to simulate. This tutorial is based on results from (Jones et al. 2009)[^1] where, using MEG, we recorded spontaneous (pre-stimulus) alpha (7-14 Hz) and beta (15-20 Hz) rhythms that arise as part of the mu-complex from the primary somatosensory cortex (S1)[^1]. ([Figure 1][]. See also [^2], [^3], [^4].)
+In order to understand the workflow and initial parameter sets provided with this tutorial, we must first briefly describe prior studies that led to the creation of the data you will aim to simulate. This tutorial is based on results from [@jones_quantitative_2009] where, using MEG, we recorded spontaneous (pre-stimulus) alpha (7-14 Hz) and beta (15-20 Hz) rhythms that arise as part of the mu-complex from the primary somatosensory cortex (S1) [@jones_quantitative_2009]. ([Figure 1][]. See also [@ziegler_transformations_2010], [@sherman_neural_2016], [@jones_when_2016].)
 
 <div class="stylefig">
 ### Figure 1
@@ -25,7 +29,7 @@ In order to understand the workflow and initial parameter sets provided with thi
 </p>
 </div>
 
-Our goal was to use our neocortical model to reproduce features of the waveform and spectrogram observed on single unaveraged trials ([Figure 2][] top panel, right) where the alpha and beta components emerge briefly and intermittently in time. On any individual trial (i.e., 1 second of spontaneous data), the presence of alpha and beta activity is not time locked and representative of so-called "induced" activity. Seemingly continuous bands of activity occur only when averaging the spectrograms across trials ([Figure 2][] top panel, left), and this is due to the fact that the spectrograms values are strictly positive and the alpha and beta events accumulate without cancellation [^4].
+Our goal was to use our neocortical model to reproduce features of the waveform and spectrogram observed on single unaveraged trials ([Figure 2][] top panel, right) where the alpha and beta components emerge briefly and intermittently in time. On any individual trial (i.e., 1 second of spontaneous data), the presence of alpha and beta activity is not time locked and representative of so-called "induced" activity. Seemingly continuous bands of activity occur only when averaging the spectrograms across trials ([Figure 2][] top panel, left), and this is due to the fact that the spectrograms values are strictly positive and the alpha and beta events accumulate without cancellation [@jones_when_2016].
 
 <div class="stylefig">
 ### Figure 2
@@ -35,7 +39,7 @@ Key features of the spontaneous non-average SI alpha/beta complex include, inter
 </p>
 </div>
 
-We found that a sequence of exogenous subthreshold excitatory synaptic drive could activate the network in a manner that reproduced important features of the SI rhythms in the model ([Figure 2][]). This drive consisted of two nearly-synchronous 10 Hz rhythmic drives that contacted the network through proximal and distal projection pathways ([Figure 3][]). The drives were simulated as population "bursts" of action potentials that contacted the network every 100ms with the mean delay between the proximal and distal burst of 0ms. Specifically, as shown schematically in [Figure 3][], the population bursts consisted of 10, 2-spike bursts Gaussian distributed in time. We presumed that during such spontaneous activity, these drives may be provided by leminscial and non-lemniscal thalamic nuclei, which contact proximal and distal pyramidal neurons respectively, and they are know to burst fire at ~10 Hz frequencies in spontaneous states [^5], [^6].
+We found that a sequence of exogenous subthreshold excitatory synaptic drive could activate the network in a manner that reproduced important features of the SI rhythms in the model ([Figure 2][]). This drive consisted of two nearly-synchronous 10 Hz rhythmic drives that contacted the network through proximal and distal projection pathways ([Figure 3][]). The drives were simulated as population "bursts" of action potentials that contacted the network every 100ms with the mean delay between the proximal and distal burst of 0ms. Specifically, as shown schematically in [Figure 3][], the population bursts consisted of 10, 2-spike bursts Gaussian distributed in time. We presumed that during such spontaneous activity, these drives may be provided by leminscial and non-lemniscal thalamic nuclei, which contact proximal and distal pyramidal neurons respectively, and they are know to burst fire at ~10 Hz frequencies in spontaneous states [@jones_thalamic_2001], [@hughes_thalamic_2005].
 
 <div class="stylefig">
 ### Figure 3
@@ -45,9 +49,9 @@ Schematic illustration of exogenous 10 Hz burst drive through proximal and dista
 </p>
 </div>
 
-We assumed that the macroscale rhythms generating the observed alpha and beta activity arose from subthreshold current flow in a large population of neurons, as opposed to being generated by local spiking interaction. As such, the effective strengths of the exogenous driving inputs were tuned so that the cells in the network remained subthreshold (all other parameters were tuned and fixed base on the morphology, physiology and connectivity within layered neocortical circuits, see (Jones et al. 2009)[^1] for details). The inputs drove subthreshold currents up and down the pyramidal neurons to reproduce accurate waveform and spectrogram features (see [Figure 3][]). A scaling factor of 3000 was multiplied by the model waveform to reproduce nAm units comparable to the recorded data, suggesting on the order 200 x 3000 = 600,000 pyramidal neurons contributed to this signal.
+We assumed that the macroscale rhythms generating the observed alpha and beta activity arose from subthreshold current flow in a large population of neurons, as opposed to being generated by local spiking interaction. As such, the effective strengths of the exogenous driving inputs were tuned so that the cells in the network remained subthreshold (all other parameters were tuned and fixed base on the morphology, physiology and connectivity within layered neocortical circuits (see [@jones_quantitative_2009] for details). The inputs drove subthreshold currents up and down the pyramidal neurons to reproduce accurate waveform and spectrogram features (see [Figure 3][]). A scaling factor of 3000 was multiplied by the model waveform to reproduce nAm units comparable to the recorded data, suggesting on the order 200 x 3000 = 600,000 pyramidal neurons contributed to this signal.
 
-We further found that decreasing the delay between the drives to ~50ms created a pure alpha oscillation, while applying an ~0ms delay caused beta events to emerge and increased the strength of the distal drive, creating stronger beta activity (data not shown; see parameter exploration below). This result led to the novel prediction that brief beta events emerge from a broad proximal drive disrupted by a simultaneous strong distal drive that lasted 50ms (i.e., one beta period). Support for this prediction was found invasively with laminar recordings in mice and monkeys [^3].
+We further found that decreasing the delay between the drives to ~50ms created a pure alpha oscillation, while applying an ~0ms delay caused beta events to emerge and increased the strength of the distal drive, creating stronger beta activity (data not shown; see parameter exploration below). This result led to the novel prediction that brief beta events emerge from a broad proximal drive disrupted by a simultaneous strong distal drive that lasted 50ms (i.e., one beta period). Support for this prediction was found invasively with laminar recordings in mice and monkeys [@sherman_neural_2016].
 
 In this tutorial, we will explore parameter changes that illustrate these results. We will walk you step-by-step through simulations with various combinations of rhythmic proximal and distal drives to describe how each contributes to the alpha and beta components of the SI alpha/beta complex rhythm. We will begin by simulating only rhythmic proximal alpha frequency inputs (Step 1), followed by simulating only distal alpha frequency inputs (Step 2), followed by various combinations of proximal and distal drive to generate alpha and beta rhythms. We’ll show you how HNN can plot waveforms, time-frequency spectrograms, and power spectral density plots of the simulated data, as well as for imported recorded data.
 
@@ -249,7 +253,7 @@ Once again we will create time-frequency spectrogram for this waveform by first 
 
 The bottom panel shows the corresponding time-frequency spectrogram for this waveform that exhibits a high power continuous 10 Hz signal. Importantly, in this example the strength of the distal input was also titrated to be subthreshold (i.e., cells do not spike) under the assumption that macroscale oscillations are generated primarily by subthreshold current flow across large populations of synchronous pyramidal neurons.
 
-While instructional, this simulation also does not produce waveform and spectral features that match the experimental data in [Figure 1][] and [Figure 2][]. In the next step (step 3), we describe how combining both the 10 Hz proximal and distal drives can produce an oscillation with many characteristic features of the spontaneous SI signal [^1].
+While instructional, this simulation also does not produce waveform and spectral features that match the experimental data in [Figure 1][] and [Figure 2][]. In the next step (step 3), we describe how combining both the 10 Hz proximal and distal drives can produce an oscillation with many characteristic features of the spontaneous SI signal [@jones_quantitative_2009].
 
 <a id="toc_three"></a>
 
@@ -311,7 +315,7 @@ Follow the steps in the previous sections to create a time-frequency spectrogram
 
 As shown in the green and red histogram in the top panel of the HNN GUI above, with this parameter set, bursts of both proximal and distal input spikes are provided to the network ~10 Hz (i.e., every 100 ms). Due to the stochastic nature of the inputs, there is some variability in the timing and duration of the input bursts such that sometimes they arrive at the same time and sometimes there is a slight offset between them. As a result, intermittent transient alpha and beta events emerge in the time-frequency spectrogram. Alpha events are produced when the inputs occur slightly out of phase and current flow is pushed alternately up and down the dendrites for ~50 ms duration each (set by the length of the bursts inputs). Beta events occur when the burst inputs arrive more synchronously and the upward current flow is disrupted by downward current flow for ~50 ms to effectively cut the oscillation period in half. As such, the relative alpha to beta expression can be controlled by the delay between the inputs and their relative burst strengths. We will detail this further below (see step 6 below).
 
-In contrast to the results from only proximal or distal input, since the current in the pyramidal neurons is pushed both upward and downward in this simulation, the current dipole signal oscillates above and below 0 nAm, which qualitatively matches the experimental data (see [Figure 1][] and [Figure 2][] in "Getting Started").  Additionally, this simulation reproduces the transient nature of the alpha and beta activity and several other features of the waveform and spectrogram can be quantified to show close agreement between model and experimental results (see [Figure 2][] above, and (Jones et al. 2009)[^1], for further details).
+In contrast to the results from only proximal or distal input, since the current in the pyramidal neurons is pushed both upward and downward in this simulation, the current dipole signal oscillates above and below 0 nAm, which qualitatively matches the experimental data (see [Figure 1][] and [Figure 2][] in "Getting Started").  Additionally, this simulation reproduces the transient nature of the alpha and beta activity and several other features of the waveform and spectrogram can be quantified to show close agreement between model and experimental results (see [Figure 2][] above, and [@jones_quantitative_2009] for further details).
 
 We note that here we do not directly compare the spontaneous current dipole waveform to recorded data, as was done in the ERP tutorial with a root mean squared error. This is due to the fact that the spontaneous SI signal we are simulating is not time locked to alpha or beta events on any given trial, and the stochastic nature of the driving inputs causes variability in the timing of the alpha or beta activity, making it difficult to align recorded data and simulated results. However, a direct comparison can be made between time averaged recorded and simulated signals by comparing power spectral density waveforms. An example of comparison is shown in step 5 below.
 
@@ -465,7 +469,7 @@ Here, we’ll walk through examples of how to adjust several "Rhythmic Proximal/
 
 We described above (Step 3) that the timing of proximal and distal inputs can lead to either alpha events (when the bursts arrive to the local network out of phase) or beta events (when the bursts arrive in phase).
 
-We have also found that other factors that contribute to the prevalence of beta activity are the strengthand synchrony of the distal inputs; beta activity is increased with stronger and more synchronous subthreshold drive, where the beta frequency is set by the duration of the driving bursts (~50ms) (Jones et al. 2009[^1], Sherman et al. 2016[^3]). The strength is controlled by the postsynaptic conductance, and the synchrony is controlled by the Burst stdev in the "Rhythmic Distal Inputs" dialog box. We will demonstrate this here.
+We have also found that other factors that contribute to the prevalence of beta activity are the strengthand synchrony of the distal inputs; beta activity is increased with stronger and more synchronous subthreshold drive, where the beta frequency is set by the duration of the driving bursts (~50ms) ([@jones_quantitative_2009] and [@sherman_neural_2016]). The strength is controlled by the postsynaptic conductance, and the synchrony is controlled by the Burst stdev in the "Rhythmic Distal Inputs" dialog box. We will demonstrate this here.
 
 Open the `External drives` tab and click on the dropdown menu
  ```
@@ -503,7 +507,7 @@ Next, we will test how these parameter changes affect the simulation. Select the
 ![](https://raw.githubusercontent.com/jonescompneurolab/jones-website/master/images/textbook/content/06_alpha_beta/images/sec6pt1-oldFig20-spect.png)
 </div>
 
-First, notice that the histogram profile of the distal input bursts (green) are narrower corresponding to more synchronous input than in the prior simulation (Step 3). Second, notice that the waveform of the oscillation is different with a sharper downward deflecting signal, due to to the stronger distal input. These deflections increased ~20 Hz beta activity, as seen in the corresponding spectrogram (compare to spectrogram in Step 3). The 20 Hz frequency is set by the duration of the downward current flow, which with this parameter set is approximately 50 ms (see Sherman et al. 2016[^3] for further details).
+First, notice that the histogram profile of the distal input bursts (green) are narrower corresponding to more synchronous input than in the prior simulation (Step 3). Second, notice that the waveform of the oscillation is different with a sharper downward deflecting signal, due to to the stronger distal input. These deflections increased ~20 Hz beta activity, as seen in the corresponding spectrogram (compare to spectrogram in Step 3). The 20 Hz frequency is set by the duration of the downward current flow, which with this parameter set is approximately 50 ms (see [@sherman_neural_2016] for further details).
 
 ### 5.1.1 Exercise for further exploration
 
@@ -594,15 +598,3 @@ Can you create a simulation where other frequencies are expressed? How is it cre
 Follow steps 1-5 above using your data and parameter adjustments based on your own hypotheses.
 
 ## References
-
-[^1]: Jones, Stephanie R., Dominique L. Pritchett, Michael A. Sikora, Steven M. Stufflebeam, Matti Hämäläinen, and Christopher I. Moore. 2009. "Quantitative Analysis and Biophysically Realistic Neural Modeling of the MEG Mu Rhythm: Rhythmogenesis and Modulation of Sensory-Evoked Responses." Journal of Neurophysiology 102 (6): 3554–72. <https://doi.org/10.1152/jn.00535.2009>.
-
-[^2]: Ziegler, David A., Dominique L. Pritchett, Paymon Hosseini-Varnamkhasti, Suzanne Corkin, Matti Hämäläinen, Christopher I. Moore, and Stephanie R. Jones. 2010. "Transformations in Oscillatory Activity and Evoked Responses in Primary Somatosensory Cortex in Middle Age: A Combined Computational Neural Modeling and MEG Study." NeuroImage 52 (3): 897–912. <https://doi.org/10.1016/j.neuroimage.2010.02.004>.
-
-[^3]: Sherman, Maxwell A., Shane Lee, Robert Law, Saskia Haegens, Catherine A. Thorn, Matti S. Hämäläinen, Christopher I. Moore, and Stephanie R. Jones. 2016. "Neural Mechanisms of Transient Neocortical Beta Rhythms: Converging Evidence from Humans, Computational Modeling, Monkeys, and Mice." Proceedings of the National Academy of Sciences 113 (33): E4885–94. <https://doi.org/10.1073/pnas.1604135113>.
-
-[^4]: Jones, Stephanie R. 2016. "When Brain Rhythms Aren't 'Rhythmic': Implication for Their Mechanisms and Meaning." Current Opinion in Neurobiology, Systems neuroscience, 40 (October):72–80. <https://doi.org/10.1016/j.conb.2016.06.010>.
-
-[^5]: Jones, Edward G. 2001. "The Thalamic Matrix and Thalamocortical Synchrony." Trends in Neurosciences 24 (10): 595–601. <https://doi.org/10.1016/S0166-2236(00)01922-6>.
-
-[^6]: Hughes, S. W., and Vincenzo Crunelli. 2005. "Thalamic Mechanisms of EEG Alpha Rhythms and Their Pathological Implications." The Neuroscientist 11 (4): 357–72. <https://doi.org/10.1177/1073858405277450>.

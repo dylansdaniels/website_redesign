@@ -6,6 +6,10 @@
     # Dylan Daniels
 -->
 
+---
+link-citations: true
+---
+
 <!-- compare original: https://jonescompneurolab.github.io/hnn-under_the_hood/03_architecture-connectivity/03_architecture-connectivity -->
 
 # 3.5 Synaptic Connectivity
@@ -52,8 +56,6 @@ Note that in the default model, within a layer, there is all-to-all connectivity
 ![](https://raw.githubusercontent.com/jonescompneurolab/jones-website/master/images/textbook/content/03_assumptions/images/weight-scaling.png)
 </div>
 
-In future versions of HNN, we will allow adjustments to the local circuit architecture and connection profiles. For more details of the default model see (Jones et al., 2009)[^1].
+In future versions of HNN, we will allow adjustments to the local circuit architecture and connection profiles. For more details of the default model see [@jones_quantitative_2009].
 
 ## Tutorial References
-
-[^1]: Jones, S. R. et al. Quantitative analysis and biophysically realistic neural modeling of the MEG mu rhythm: rhythmogenesis and modulation of sensory-evoked responses. J. Neurophysiol. 102, 3554–3572 (2009).
