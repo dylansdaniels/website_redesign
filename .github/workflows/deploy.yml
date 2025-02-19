@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,11 +16,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Create and activate conda environment
+      - name: Set Up Conda  
         uses: conda-incubator/setup-miniconda@v3
         with:
-          activate-environment: website-redesign
-          environment-file: environment.yml
+          auto-activate-base: false
+
+      - name: Create Conda Environment
+        run: make create-conda-env-mpi
 
       - name: Modify .gitignore
         run: |
@@ -28,9 +31,10 @@ jobs:
           cat .gitignore
 
       - name: Build Website
-        run: python build.py
+        run: conda run -n website-redesign-mpi python build.py
 
       - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
