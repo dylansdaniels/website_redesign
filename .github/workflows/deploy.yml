@@ -23,6 +23,15 @@ jobs:
 
       - name: Create Conda Environment With MPI
         run: make create-conda-env-mpi
+      
+      - name: Test MPI
+        run: |
+          conda run -n website-redesign-mpi \
+          mpiexec -np 2 nrniv -mpi -python -c '
+          from neuron import h;
+          from mpi4py import MPI;
+          print(f"Hello from proc {MPI.COMM_WORLD.Get_rank()}");
+          h.quit()'
 
       - name: Modify .gitignore
         run: |
@@ -31,7 +40,7 @@ jobs:
           cat .gitignore
 
       - name: Build Website
-        run: conda run -n website-redesign-mpi python build.py
+        run: conda run -n website-redesign-mpi env PYTHONUNBUFFERED=1 python build.py
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
