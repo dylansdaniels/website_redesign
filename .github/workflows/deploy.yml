@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
+      - make_conda_env_mpi
 
 jobs:
   build:
