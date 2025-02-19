@@ -21,7 +21,7 @@ jobs:
         with:
           auto-activate-base: false
 
-      - name: Create Conda Environment
+      - name: Create Conda Environment With MPI
         run: make create-conda-env-mpi
 
       - name: Modify .gitignore
