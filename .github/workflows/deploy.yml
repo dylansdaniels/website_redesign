@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - make_conda_env_mpi
 
 jobs:
   build:
@@ -16,14 +15,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Set Up Conda  
+      - name: Set Up Conda
         uses: conda-incubator/setup-miniconda@v3
         with:
           auto-activate-base: false
 
       - name: Create Conda Environment With MPI
         run: make create-conda-env-mpi
-      
+
       - name: Test MPI
         run: |
           conda run -n website-redesign-mpi \
