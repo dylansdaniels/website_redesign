@@ -14,7 +14,7 @@ clean:
 
 create-conda-env:
 	conda env create --yes --file environment.yml
-	conda run -n website-redesign-mpi pip install 'hnn_core[dev]==0.4rc4'
+	conda run -n website-redesign pip install 'hnn_core[dev]==0.4rc4'
 
 create-conda-env-mpi:
 	conda env create --yes --file environment.yml --name website-redesign-mpi
