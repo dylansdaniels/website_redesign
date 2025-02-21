@@ -2,7 +2,7 @@
     "skip_execution": [
         "api_alpha_beta.ipynb",
         "plot_hnn_animation.ipynb",
-        "plot_firing_pattern.ipynb",
+        "plot_firing_pattern_notebook.ipynb",
         "plot_connectivity.ipynb",
         "plot_batch_simulate.ipynb",
         "plot_record_extracellular_potentials.ipynb",

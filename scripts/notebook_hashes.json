@@ -3,9 +3,9 @@
     "api_alpha_beta.ipynb": "568ea1e5ada637addbcf73bd68bb1f47954994723eaf8cc9481c1730d0099428",
     "plot_simulate_gamma.ipynb": "2812c9e50f42cab94fc84b96995308852257c81ea04f0b2995ed45a8ff94fece",
     "plot_hnn_animation.ipynb": "69b82ec7578a5a695f20db3e52963e38abb3bdded75dfcba2ee59451b09c9387",
-    "plot_firing_pattern.ipynb": "556402ac8e234bc39d121795e5996b417257940d4b36f0de8e1f6f71102ef602",
     "plot_connectivity.ipynb": "2d9bcc19e1402ba61368425fb8900fb37645687e40614f32d4005ec89cd92565",
     "plot_batch_simulate.ipynb": "043a50dd8c4a15ea9b6542400718d2cbbb8d9014912aad87142400eca496b7b7",
     "plot_record_extracellular_potentials.ipynb": "9c28e89aabf1bec644fcddbd13ba346b96fe7c55c4a24faea131a05ca4c4b850",
-    "plot_simulate_beta.ipynb": "a53539c830adedd10456c229dff1cd7703650f06df6e9a6b68b0ab1c4cb9652b"
+    "plot_simulate_beta.ipynb": "a53539c830adedd10456c229dff1cd7703650f06df6e9a6b68b0ab1c4cb9652b",
+    "plot_firing_pattern_notebook.ipynb": "556402ac8e234bc39d121795e5996b417257940d4b36f0de8e1f6f71102ef602"
 }

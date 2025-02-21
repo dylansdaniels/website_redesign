@@ -6,4 +6,4 @@
     # Dylan Daniels
 -->
 
-[[plot_firing_pattern.ipynb]]
+[[plot_firing_pattern_notebook.ipynb]]
