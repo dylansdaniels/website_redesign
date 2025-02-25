@@ -6,4 +6,4 @@
     # Dylan Daniels
 -->
 
-[[plot_connectivity.ipynb]]
+[[modifying_local_connectivity_notebook.ipynb]]

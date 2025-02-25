@@ -6,4 +6,4 @@
     # Carolina Fernandez <cxf418@miami.edu>
 -->
 
-[[optimize_rhythmic_notebook.ipynb]]
+[[optimize_simulated_rhythmic_response_parameters_notebook.ipynb]]

@@ -80,10 +80,10 @@
             "03_modifying_local_connectivity.md": "9.3 Modifying Local Connectivity",
             "04_animating_hnn_simulations.md": "9.4 Animating HNN Simulations",
             "05_batch_simulation.md": "9.5 Batch Simulation",
-            "06_simulate_beta_modulated_erp.md": "9.6 Simulate beta-modulated ERP",
+            "06_simulate_beta_modulated_erp.md": "9.6 Simulate Beta-modulated ERP",
             "07_use_mpi_backend_for_parallelization.md": "9.7 Use MPI Backend for Parallelization",
-            "08_optimize_evoked.md": "9.8 Optimize simulated evoked response parameters",
-            "09_optimize_rhythmic.md": "9.9 Optimize simulated rhythmic response parameters"
+            "08_optimize_simulated_evoked_response_parameters.md": "9.8 Optimize simulated evoked response parameters",
+            "09_optimize_simulated_rhythmic_response_parameters.md": "9.9 Optimize simulated rhythmic response parameters"
         }
     ]
 }

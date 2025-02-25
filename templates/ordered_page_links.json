@@ -40,8 +40,8 @@
         "/website_redesign/content/09_feature_demos/batch_simulation.html",
         "/website_redesign/content/09_feature_demos/simulate_beta_modulated_erp.html",
         "/website_redesign/content/09_feature_demos/use_mpi_backend_for_parallelization.html",
-        "/website_redesign/content/09_feature_demos/optimize_evoked.html",
-        "/website_redesign/content/09_feature_demos/optimize_rhythmic.html"
+        "/website_redesign/content/09_feature_demos/optimize_simulated_evoked_response_parameters.html",
+        "/website_redesign/content/09_feature_demos/optimize_simulated_rhythmic_response_parameters.html"
     ],
     "titles": [
         "Preface",
@@ -82,7 +82,7 @@
         "9.3 Modifying Local Connectivity",
         "9.4 Animating HNN Simulations",
         "9.5 Batch Simulation",
-        "9.6 Simulate beta-modulated ERP",
+        "9.6 Simulate Beta-modulated ERP",
         "9.7 Use MPI Backend for Parallelization",
         "9.8 Optimize simulated evoked response parameters",
         "9.9 Optimize simulated rhythmic response parameters"

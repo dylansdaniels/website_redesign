@@ -6,4 +6,4 @@
     # Dylan Daniels
 -->
 
-[[plot_batch_simulate.ipynb]]
+[[batch_simulation_notebook.ipynb]]
