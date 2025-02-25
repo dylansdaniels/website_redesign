@@ -6,4 +6,4 @@
     # Dylan Daniels
 -->
 
-[[plot_record_extracellular_potentials.ipynb]]
+[[record_and_plot_extracellular_potentials_notebook.ipynb]]

@@ -1,9 +1,9 @@
 <!--
-# Title: 9.6 Simulate beta-modulated ERP
+# Title: 9.6 Simulate Beta-modulated ERP
 # Updated: 2025-02-04
 #
 # Contributors:
     # Dylan Daniels
 -->
 
-[[plot_simulate_beta.ipynb]]
+[[simulate_beta_modulated_erp_notebook.ipynb]]

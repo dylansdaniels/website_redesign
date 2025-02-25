@@ -10,4 +10,4 @@
     # Christopher Bailey <cjb@cfin.au.dk>
 -->
 
-[[optimize_evoked_notebook.ipynb]]
+[[optimize_simulated_evoked_response_parameters_notebook.ipynb]]

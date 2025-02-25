@@ -6,4 +6,4 @@
     # Dylan Daniels
 -->
 
-[[plot_hnn_animation.ipynb]]
+[[animating_hnn_simulations_notebook.ipynb]]
