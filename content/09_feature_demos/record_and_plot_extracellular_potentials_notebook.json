@@ -7,7 +7,7 @@
         },
         "References": {
             "level": 2,
-            "html": "<div class='markdown-cell'>\n    <h2>References</h2>\n<ul>\n<li><p>Jones, Stephanie R., Dominique L. Pritchett, Michael A. Sikora,\nSteven M. Stufflebeam, Matti H\u00e4m\u00e4l\u00e4inen, and Christopher I. Moore. 2009.\n\u201cQuantitative Analysis and Biophysically Realistic Neural Modeling of\nthe MEG Mu Rhythm: Rhythmogenesis and Modulation of Sensory-Evoked\nResponses.\u201d Journal of Neurophysiology 102 (6): 3554\u201372.\n&lt;https://doi.org/10.1152/jn.00535.2009&gt;.</p></li>\n<li><p>Kajikawa, Yoshinao, and Charles E. Schroeder. 2011. \u201cHow Local Is\nthe Local Field Potential?\u201d Neuron 72 (5): 847\u201358.\n&lt;https://doi.org/10.1016/j.neuron.2011.09.029&gt;.</p></li>\n</ul>\n\n</div>"
+            "html": "<div class='markdown-cell'>\n    <h2>References</h2>\n<ul>\n<li><p>Jones, Stephanie R., Dominique L. Pritchett, Michael A. Sikora,\nSteven M. Stufflebeam, Matti H\u00e4m\u00e4l\u00e4inen, and Christopher I. Moore. 2009.\n\u201cQuantitative Analysis and Biophysically Realistic Neural Modeling of\nthe MEG Mu Rhythm: Rhythmogenesis and Modulation of Sensory-Evoked\nResponses.\u201d Journal of Neurophysiology 102 (6): 3554\u201372. <a\nhref=\"https://doi.org/10.1152/jn.00535.2009\">https://doi.org/10.1152/jn.00535.2009</a>.</p></li>\n<li><p>Kajikawa, Yoshinao, and Charles E. Schroeder. 2011. \u201cHow Local Is\nthe Local Field Potential?\u201d Neuron 72 (5): 847\u201358. <a\nhref=\"https://doi.org/10.1016/j.neuron.2011.09.029\">https://doi.org/10.1016/j.neuron.2011.09.029</a>.</p></li>\n</ul>\n\n</div>"
         }
     }
 }
