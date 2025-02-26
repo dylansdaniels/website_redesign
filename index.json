@@ -28,23 +28,7 @@
             "07_tonic_and_noisy_driving_inputs.md": "3.7 Tonic and Noisy Driving Inputs"
         }
     ],
-    "04_using_hnn": [
-        "4. Using HNN",
-        {
-            "01_installation.md": "4.1 Installation",
-            "02_network_parameters.md": "4.2 Network Parameters",
-            "03_drive_parameters.md": "4.3 Drive Parameters",
-            "04_loading_data.md": "4.4 Loading Data",
-            "05_running_simulations.md": "4.5 Running Simulations",
-            "06_plotting_firing_patterns.md": "4.6 Plotting Firing Patterns",
-            "07_recording_lfp.md": "4.7 Recording and Plotting LFP",
-            "08_animating_simulations.md": "4.8 Animating Simulations",
-            "09_more_visualizations.md": "4.9 Additional Visualizations",
-            "10_parallelizing.md": "4.10 Running Parallel Simulations",
-            "11_optimization.md": "4.11 Optimizing Evoked Responses and Rhythms",
-            "12_batch_simulation.md": "4.12 Running Batch Simulations"
-        }
-    ],
+    "04_hnn_installation.md": "4. Installation (🡥 GitHub)",
     "05_erps": [
         "5. Simulating ERPs",
         {
