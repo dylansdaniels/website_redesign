@@ -1,12 +1,12 @@
 <!--
-# Title: 7.1 GUI Tutorial of Gamma Rhythms
+# Title: 5.1 GUI Tutorial of Gamma Rhythms
 # Updated: 2025-02-14
 #
 # Contributors:
     # Dylan Daniels
 -->
 
-# Gamma Rhythms (30-80 Hz)
+# 5.1 GUI Tutorial of Gamma Rhythms
 
 ## Getting Started.
 

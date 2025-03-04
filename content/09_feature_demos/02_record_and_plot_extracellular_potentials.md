@@ -1,5 +1,5 @@
 <!--
-# Title: 9.2 Record & Plot Extracellular Potentials
+# Title: 7.2 Record & Plot Extracellular Potentials
 # Updated: 2025-02-04
 #
 # Contributors:

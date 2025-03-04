@@ -1,5 +1,5 @@
 <!--
-# Title: 9.7 Use MPI Backend for Parallelization
+# Title: 7.7 Use MPI Backend for Parallelization
 # Updated: 2025-02-04
 #
 # Contributors:

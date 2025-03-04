@@ -1,14 +1,14 @@
 <!--
-# Title: 6.1 GUI Tutorial of Alpha/Beta Rhythms
+# Title: 4.1 GUI Tutorial of Alpha/Beta Rhythms
 # Updated: 2025-02-04
 #
 # Contributors:
     # Dylan Daniels
 -->
 
-DEBUG: this markdown file and images originally adapted from https://github.com/jonescompneurolab/hnn-tutorials/tree/core-gui/coregui_alpha_and_beta
+<!-- this markdown file and images originally adapted from https://github.com/jonescompneurolab/hnn-tutorials/tree/core-gui/coregui_alpha_and_beta -->
 
-# Alpha (7-14 Hz) and Beta (15-29 Hz) Rhythms: The Mu-Complex
+# 4.1 GUI Tutorial of Alpha/Beta Rhythms
 
 ## Getting Started
 

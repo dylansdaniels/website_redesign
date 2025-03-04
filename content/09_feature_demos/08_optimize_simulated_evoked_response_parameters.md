@@ -1,5 +1,5 @@
 <!--
-# Title: 9.8 Optimize simulated evoked response parameters
+# Title: 7.8 Optimize simulated evoked response parameters
 # Updated: 2025-02-04
 #
 # Contributors:

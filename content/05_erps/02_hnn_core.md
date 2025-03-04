@@ -1,5 +1,5 @@
 <!--
-# Title: 2.2 API Tutorial of ERP Simulation
+# Title: 3.2 API Tutorial of ERPs Simulation
 # Updated: 2025-01-29
 #
 # Contributors:
