@@ -1,7 +1,7 @@
 {
     "links": [
         "/website_redesign/content/preface.html",
-        "/website_redesign/content/01_getting_started/challange.html",
+        "/website_redesign/content/01_getting_started/challenge.html",
         "/website_redesign/content/01_getting_started/template_model.html",
         "/website_redesign/content/03_model_assumptions/cortical_column_structure.html",
         "/website_redesign/content/03_model_assumptions/primary_electric_currents.html",
@@ -28,7 +28,7 @@
     ],
     "titles": [
         "Preface",
-        "1.1 Challenge in Connecting EEG MEG to Neural Circuits ",
+        "1.1 Introducing the Human Neocortical Neurosolver",
         "1.2 Template Model",
         "2.1 Cortical Column Structure",
         "2.2 Primary Electrical Currents",

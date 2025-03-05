@@ -3,7 +3,7 @@
     "01_getting_started": [
         "1. Getting Started",
         {
-            "01_challange.md": "1.1 Challenge in Connecting EEG MEG to Neural Circuits ",
+            "01_challenge.md": "1.1 Introducing the Human Neocortical Neurosolver",
             "02_template_model.md": "1.2 Template Model"
         }
     ],
