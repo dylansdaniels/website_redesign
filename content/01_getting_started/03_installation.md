@@ -10,9 +10,12 @@
 
 # 1.3 Installation
 
+### Local Installation
+For instructions on how to install HNN locally, please visit the [Install page of our API Documentation](https://jonescompneurolab.github.io/hnn-core/stable/index.html).
+
 ### Google CoLab
 
-We have created Google CoLab notebooks that allows you to run HNN out of your browser, with access to your local filesystem.
+As an alternative to installing HNN locally, we have created Google CoLab notebooks that allow you to run HNN out of your browser, with access to your local filesystem.
 
 - [GUI Colab Notebook](https://colab.research.google.com/drive/1yyjuEBimIu_f7_0Nf3YLwUiVOO7ZrKK3?usp=sharing)
 - [API Colab Notebook](https://colab.research.google.com/drive/1FcNhHatsuxl-pACIFn7V6H5J4GPfZ1t8)
@@ -26,7 +29,3 @@ You can directly [download the hnn-data folder](https://github.com/jonescompneur
 ```bash
 git clone https://github.com/jonescompneurolab/hnn-data.git
 ```
-
-### Local Installation
-For instructions on how to install HNN locally, please visit the [Install page of our API Documentation](https://jonescompneurolab.github.io/hnn-core/stable/index.html).
-
