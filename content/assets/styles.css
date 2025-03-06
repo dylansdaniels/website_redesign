@@ -206,7 +206,7 @@ body.dark-mode #content-wrapper a {
 }
 
 body.dark-mode #content-wrapper a:hover {
-    color: var(--hnn-violet);
+    color: #ba83be;
 }
 
 body.dark-mode code {
