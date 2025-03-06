@@ -1,9 +1,10 @@
 <!--
 # Title: 1.3 Installation
-# Updated: 2025-03-05
+# Updated: 2025-03-06
 #
 # Contributors:
     # Joyce Gao
+
 -->
 
 
@@ -13,8 +14,8 @@
 
 We have created Google CoLab notebooks that allows you to run HNN out of your browser, with access to your local filesystem.
 
--  [GUI Colab Notebook](https://colab.research.google.com/drive/1yyjuEBimIu_f7_0Nf3YLwUiVOO7ZrKK3?usp=sharing)
-- [Python Colab Notebook](https://colab.research.google.com/drive/1CvNTB_puonJiVvHmFhKhrr_CjmrfbgVB?usp=sharing)
+- [GUI Colab Notebook](https://colab.research.google.com/drive/1yyjuEBimIu_f7_0Nf3YLwUiVOO7ZrKK3?usp=sharing)
+- [API Colab Notebook](https://colab.research.google.com/drive/1FcNhHatsuxl-pACIFn7V6H5J4GPfZ1t8#scrollTo=-gk80uqrZBEb)
 
 This is the quickest way to get up and running with HNN, though it does require a Google Account. If you do not have a Google account, you can either create one for free to run the notebook, or try one of the other installation methods listed below.
 
