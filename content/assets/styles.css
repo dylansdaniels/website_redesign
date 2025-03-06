@@ -395,7 +395,7 @@ body.dark-mode #content img {
     color: #555555;
     font-weight: bold;
     padding: 3px 6px;
-    border-radius: 4px;
+    border-radius: 10px;
     font-size: 13px;
     opacity: 0;
     pointer-events: none;
@@ -405,15 +405,25 @@ body.dark-mode #content img {
     word-wrap: break-word;
 }
 
+body.dark-mode .sidebar-tooltip {
+    background: #313438;
+    color: #fff;
+    border: 2px solid #ba83be;
+}
+
 /*  
     Element: .sidebar-tooltip::before
     Description: styles the inner tooltip triangle
 */
 .sidebar-tooltip::before {
     background: #fff;
-    top: -6px;
+    top: -5px;
     width: 12px;
     height: 6px;
+}
+
+body.dark-mode .sidebar-tooltip::before {
+    background: #313438;
 }
 
 /*  
@@ -426,6 +436,10 @@ body.dark-mode #content img {
     width: 14px;
     height: 7px;
     z-index: -1;
+}
+
+body.dark-mode .sidebar-tooltip::after {
+    background: #ba83be
 }
 
 /*  
@@ -666,8 +680,18 @@ body.dark-mode #content img {
 .dropdown-button:hover {
     color: #444;
 }
-  
+
+/*
+    Element: .dropdown-content
+    Description: 
+        Style for the dropdown menu that appears when clicking the
+            'change font-size' button
+    Notes:
+        'will-change: transform;' ensure the child elements are rendered
+            together
+*/
 .dropdown-content {
+    will-change: transform;
     display: none;
     position: absolute;
     width: auto;
@@ -696,7 +720,7 @@ body.dark-mode .dropdown-content {
     content: "";
     position: absolute;
     top: -5px;
-    left: 15%;
+    left: 0.8em;
     width: 12px;
     height: 6px;
     background-color: #fff;
@@ -722,7 +746,7 @@ body.dark-mode .dropdown-content::before {
     content: "";
     position: absolute;
     top: -9px; 
-    left: 12.5%;
+    left: 0.7em;
     width: 16px;
     height: 8px;
     background-color: #ba83be;
