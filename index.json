@@ -3,7 +3,7 @@
     "01_getting_started": [
         "1. Getting Started",
         {
-            "01_challenge.md": "1.1 Introducing the Human Neocortical Neurosolver",
+            "01_challenge.md": "1.1 Introducing HNN",
             "02_template_model.md": "1.2 Template Model",
             "03_installation.md": "1.3 Installation"
         }
