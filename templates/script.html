@@ -81,6 +81,17 @@
 
     // Open the sidebar on page load
     // -----------------------------
+
+    // Apply sidebar state before the page renders
+    // Added to help with initial page "flicker" as the position is
+    // calculated and applied
+    const savedState = localStorage.getItem("sidebarState");
+    if (savedState === "closed") {
+        document.body.classList.add("sidebar-closed");
+    } else {
+        document.body.classList.add("sidebar-open");
+    }
+
     window.onload = function() {
         const sidebar = document.getElementById("mySidebar");
         const main = document.getElementById("main");

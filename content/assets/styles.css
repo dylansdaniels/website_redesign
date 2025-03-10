@@ -251,6 +251,32 @@ body.dark-mode #content img {
     border-right: 2px solid #d3d3d3 !important;
 }
 
+/* 
+    Elements: .sidebar
+    Description: 
+        If the sidebar is closed, margin-left for main should be 0. If the
+            sidebar is opened, margin-left should be 350px
+*/
+body.sidebar-open .sidebar {
+    width: 350px;
+}
+body.sidebar-closed .sidebar {
+    width: 0;
+}
+
+/* 
+    Elements: #main
+    Description: 
+        If the sidebar is closed, margin-left for main should be 0. If the
+            sidebar is opened, margin-left should be 350px
+*/
+body.sidebar-open #main {
+    margin-left: 350px;
+}
+body.sidebar-closed #main {
+    margin-left: 0;
+}
+
 /*
     Element: .sidebar::-webkit-scrollbar
     Description: Hides scrollbar for WebKit browsers
