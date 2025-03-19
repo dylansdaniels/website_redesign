@@ -22,15 +22,34 @@ h1, h2, h3, h4, h5, h6 {
     color: #88548c;
     font-family: "Fira Sans", Helvetica, Arial, sans-serif;
     font-weight: normal;
-    margin-bottom: 15px;
 }
 
 h1 {
     font-size: 1.6em;
+    margin-bottom: 15px;
 }
 
 h2, h3 {
     font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+h4 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+h5 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+h6 {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 /*
@@ -120,6 +139,10 @@ code {
     font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; 
     font-weight: normal;
     border: 2px solid #e1e4e8;
+}
+
+.callout code{
+    background: #fff;
 }
   
 /*
@@ -212,6 +235,10 @@ body.dark-mode #content-wrapper a:hover {
 body.dark-mode code {
     color: #ba83be;
     border: solid 2px #ba83be;
+}
+
+body.dark-mode .callout code{
+    background: inherit;
 }
 
 body.dark-mode pre code {
