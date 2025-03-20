@@ -265,7 +265,7 @@
         <code id="block">
             conda create --name hnn_core_gui python=3.11 --no-default-packages <br>
             conda activate hnn_core_gui <br>
-            pip install --pre hnn-core[gui]
+            !pip --quiet install "hnn_core[dev] @ git+https://github.com/jonescompneurolab/hnn-core.git"
         </code>
         <p>
             You can additionally install MPI for running parallel simulations by running the commands below
