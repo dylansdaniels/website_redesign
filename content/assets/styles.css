@@ -141,6 +141,11 @@ code {
     border: 2px solid #e1e4e8;
 }
 
+#block {
+    display: block;
+    padding: 20px 40px;
+}
+
 .callout code{
     background: #fff;
 }

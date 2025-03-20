@@ -259,7 +259,23 @@
         <p>
             Alternatively, if you would like to install the HNN GUI locally, please see the <a href="https://jonescompneurolab.github.io/hnn-core/stable/index.html#installation">Installation Page</a> of our HNN documentation.
         </p>
-
+        <p>
+            If you have conda installed and are using a MacOS or Linux machine, you can quickly create a new environment with HNN by running the following commands in your terminal:
+        </p>
+        <code id="block">
+            conda create --name hnn_core_gui python=3.11 --no-default-packages <br>
+            conda activate hnn_core_gui <br>
+            pip install --pre hnn-core[gui]
+        </code>
+        <p>
+            You can additionally install MPI for running parallel simulations by running the commands below
+        </p>
+        <code id="block">
+            conda install -y openmpi mpi4py <br>
+            pip install psutil<br><br>
+            # Additionally, for MacOS, run the command below<br>
+            export DYLD_FALLBACK_LIBRARY_PATH=${CONDA_PREFIX}/lib
+        </code>
         <h3>
             Downloading Workshop Materials
         </h3>
