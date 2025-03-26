@@ -142,6 +142,7 @@ code {
 }
 
 #block {
+    color: #333;
     display: block;
     padding: 20px 40px;
 }
@@ -240,6 +241,10 @@ body.dark-mode #content-wrapper a:hover {
 body.dark-mode code {
     color: #ba83be;
     border: solid 2px #ba83be;
+}
+
+body.dark-mode #block {
+    color: #d3d3d3;
 }
 
 body.dark-mode .callout code{
@@ -832,9 +837,18 @@ body.dark-mode .dropdown-content::before {
 */
 
 .callout {
-    background-color: #fedfdf;
-    padding: 2px;
+    background-color: #f5f5f5;
     border-radius: 5px;
+    border: 2px solid var(--hnn-yellow);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 1.2em 0;
+}
+
+body.dark-mode .callout {
+    background-color: #313438;
+    border-radius: 5px;
+    border: 2px solid var(--hnn-yellow);
     padding: 10px;
     margin: 1.2em 0;
 }
@@ -843,13 +857,30 @@ body.dark-mode .dropdown-content::before {
     border: 2px solid #ba83be;
 }
 
-body.dark-mode .callout {
-    background-color: #313438;
-    padding: 2px;
-    border-radius: 5px;
-    border: 2px solid #ff7777;
-    padding: 10px;
-    margin: 1.2em 0;
+/*
+    Element: .exclamation-icon
+    Description: Style for exclamation icon
+*/
+.exclamation-icon {
+    margin-top: 5px;
+    fill: #ff7777;
+    width: 22px;
+    height: 22px;
+}
+
+/*
+    Element: .lightbulb-icon
+    Description: Style for lightbulb icon
+*/
+.lightbulb-icon{
+    margin-top: 5px;
+    fill: var(--hnn-yellow);
+    width: 22px;
+    height: 22px;
+}
+
+body.dark-mode .exclamation-icon {
+    fill: #ff7777;
 }
 
 /* 
@@ -868,13 +899,14 @@ body.dark-mode .callout {
     width: 5px; 
     vertical-align: top !important; 
     text-align: justify !important;
+    padding-left: 10px;
     padding-right: 20px;
 }
 
 .text-cell {
     vertical-align: top !important;
     text-align: justify !important;
-    padding-right: 20px;
+
 }  
 
 /* 
