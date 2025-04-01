@@ -1153,6 +1153,34 @@ body.dark-mode .code-cell code .token.operator {
 body.dark-mode .code-cell code .token.punctuation {
     color: #ba83be;
 }
+
+/* */
+.schedule-table {
+    border-collapse: collapse;
+    margin: 0px 0px 20px 0px;
+    font-size: 18px;
+}
+
+.schedule-table td {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.schedule-table .title-row {
+    font-weight: bold;
+    text-align: left;
+}
+
+.schedule-table td:nth-child(1) {
+    width: 24%; /* Adjust as needed */
+    word-wrap: break-word; /* Ensures text wraps naturally */
+}
+
+.schedule-table td:nth-child(3) {
+    width: 35%; /* Adjust as needed */
+    word-wrap: break-word; /* Ensures text wraps naturally */
+}
     
 /* 
 # ------------------------------------------------------------
