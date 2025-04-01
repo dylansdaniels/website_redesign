@@ -117,10 +117,16 @@ In our loaded configuration file, all synaptic connections within the network ar
 
 Note also that the inhibitory conductances within layers are stronger than the excitatory conductances, and there are also strong inhibitory-to-inhibitory (i.e., basket-to-basket) connections. This strong autonomous inhibition will cause synchrony among the basket cells, and hence strong inhibition onto the pyramidal neurons (note: this synapse was not depicted in Figure 1).
 
-<div class="callout">
+<div class="callout callout-warning">
   <table class="callout-table">
     <tr>
-      <td class="emoji-cell">&#10071;</td>
+      <td class="emoji-cell">
+        <svg class="exclamation-icon" viewBox="0 0 16 16" width="20" height="20">
+            <path d="M15.35 12.81 9 2.08a1.22 1.22 0 0 0-2 0L.65 12.81a1.14 1.14 0 0 0 1 1.69h12.66a1.14 1.14 0 0 0 1.04-1.69zm-13.66.55L8 2.64l6.31 10.72z"/>
+            <path d="M7.32 5.45h1.25V10H7.32z"/>
+            <ellipse cx="7.95" cy="11.9" rx=".67" ry=".7"/>
+        </svg>
+      </td>
       <td class="text-cell">
         Keep in mind that because Layer 2/3 and Layer 5 are not connected, this is not a biologically realistic network. We use this configuration as a starting point for illustrative purposes only, as it will prevent pyramidal-to-pyramidal interactions from disrupting the gamma rhythm.
     </td>
@@ -133,10 +139,16 @@ Note also that the inhibitory conductances within layers are stronger than the e
 
 Now that we have set our Simulation parameters and loaded in both our external drives and our network configuration, we are ready to run our simulation. To do so, click the `Run` button.
 
-<div class="callout">
+<div class="callout callout-warning">
   <table class="callout-table">
     <tr>
-      <td class="emoji-cell">&#10071;</td>
+            <td class="emoji-cell">
+        <svg class="exclamation-icon" viewBox="0 0 16 16" width="20" height="20">
+            <path d="M15.35 12.81 9 2.08a1.22 1.22 0 0 0-2 0L.65 12.81a1.14 1.14 0 0 0 1 1.69h12.66a1.14 1.14 0 0 0 1.04-1.69zm-13.66.55L8 2.64l6.31 10.72z"/>
+            <path d="M7.32 5.45h1.25V10H7.32z"/>
+            <ellipse cx="7.95" cy="11.9" rx=".67" ry=".7"/>
+        </svg>
+      </td>
       <td class="text-cell">
         Note that each new simulation you run will require a unique simulation <code>Name</code> as indicated in the <code>Simulation</code> tab. If you have run a simulation under the same name previously, you will get an error message stating that the simulation has failed.
     </td>
@@ -394,10 +406,16 @@ Next, select the `Cell parameters` section of the `Network` tab. Set the `Cell t
 ![](images/gamma_fig_15.png)
 
 </div>
-<div class="callout">
+<div class="callout callout-warning">
   <table class="callout-table">
     <tr>
-      <td class="emoji-cell">&#10071;</td>
+            <td class="emoji-cell">
+        <svg class="exclamation-icon" viewBox="0 0 16 16" width="20" height="20">
+            <path d="M15.35 12.81 9 2.08a1.22 1.22 0 0 0-2 0L.65 12.81a1.14 1.14 0 0 0 1 1.69h12.66a1.14 1.14 0 0 0 1.04-1.69zm-13.66.55L8 2.64l6.31 10.72z"/>
+            <path d="M7.32 5.45h1.25V10H7.32z"/>
+            <ellipse cx="7.95" cy="11.9" rx=".67" ry=".7"/>
+        </svg>
+      </td>
       <td class="text-cell">
         Note in these simulations the weights of the GABAB synapses are all set to zero
     </td>
@@ -444,10 +462,16 @@ Next, we will add a tonic input to the pyramidal neurons in Layer 2/3 and Layer 
 
 From the `External drives` tab, set the `Drive` parameter to `Tonic` and click the `Add drive` button. A new `Tonic0` dropdown will appear. From the dropdown, set `L2_pyramidal` to 4, and set `L5_pyramidal` to 6, as shown in Figure 17 below.
 
-<div class="callout">
+<div class="callout callout-warning">
   <table class="callout-table">
     <tr>
-      <td class="emoji-cell">&#10071;</td>
+            <td class="emoji-cell">
+        <svg class="exclamation-icon" viewBox="0 0 16 16" width="20" height="20">
+            <path d="M15.35 12.81 9 2.08a1.22 1.22 0 0 0-2 0L.65 12.81a1.14 1.14 0 0 0 1 1.69h12.66a1.14 1.14 0 0 0 1.04-1.69zm-13.66.55L8 2.64l6.31 10.72z"/>
+            <path d="M7.32 5.45h1.25V10H7.32z"/>
+            <ellipse cx="7.95" cy="11.9" rx=".67" ry=".7"/>
+        </svg>
+      </td>
       <td class="text-cell">
         Note that only the pyramidal neurons are set to receive depolarizing current injections (i.e., our tonic inputs)
     </td>
@@ -492,10 +516,16 @@ Let's further explore this simulation by looking at the layer-specific dipoles a
 
 When looked at together, the spectrogram (Figure 18) and the PSD (Figure 19) illustrate that the dipole signal contains strong oscillatory components in the gamma range in the net dipole, which is being driven by the strong Layer 5 activity. Layer 2/3 is oscillating at higher frequency with a lower amplitude (note the scaling of the y-axes in the layer-specific dipoles).
 
-<div class="callout">
+<div class="callout callout-warning">
   <table class="callout-table">
     <tr>
-      <td class="emoji-cell">&#10071;</td>
+            <td class="emoji-cell">
+        <svg class="exclamation-icon" viewBox="0 0 16 16" width="20" height="20">
+            <path d="M15.35 12.81 9 2.08a1.22 1.22 0 0 0-2 0L.65 12.81a1.14 1.14 0 0 0 1 1.69h12.66a1.14 1.14 0 0 0 1.04-1.69zm-13.66.55L8 2.64l6.31 10.72z"/>
+            <path d="M7.32 5.45h1.25V10H7.32z"/>
+            <ellipse cx="7.95" cy="11.9" rx=".67" ry=".7"/>
+        </svg>
+      </td>
       <td class="text-cell">
         Keep in mind that Layer 2/3 and Layer 5 are not synaptically connected to each other in this simulation
     </td>
@@ -519,10 +549,16 @@ The PING mechanism is seen in each layer where the pyramidal neurons fire, causi
 
 In each layer, the inhibitory neurons are firing synchronously and causing strong somatic inhibition on the pyramidal neurons, resulting in fast downward current flow that creates the sharp dipole deflections seen in the dipole waveforms above. 
 
-<div class="callout">
+<div class="callout callout-warning">
   <table class="callout-table">
     <tr>
-      <td class="emoji-cell">&#10071;</td>
+            <td class="emoji-cell">
+        <svg class="exclamation-icon" viewBox="0 0 16 16" width="20" height="20">
+            <path d="M15.35 12.81 9 2.08a1.22 1.22 0 0 0-2 0L.65 12.81a1.14 1.14 0 0 0 1 1.69h12.66a1.14 1.14 0 0 0 1.04-1.69zm-13.66.55L8 2.64l6.31 10.72z"/>
+            <path d="M7.32 5.45h1.25V10H7.32z"/>
+            <ellipse cx="7.95" cy="11.9" rx=".67" ry=".7"/>
+        </svg>
+      </td>
       <td class="text-cell">
         While not shown in the figures above, there is an additional higher-frequency component near 80 Hz in Layer 5 that can be seen in the layer-specific PSD. The higher-frequency activity in Layer 5 comes from the sharp deflections in the dipole waveform along with a small-amplitude peak that together create high power at 80 Hz in the frequency domain. These deflections are driven by the strong depolarizing current on the pyramidal neurons that causes their voltage to rise quickly even before the inhibitory neurons fire. 
     </td>
@@ -543,10 +579,16 @@ First, navigate to the `Network` tab and load the `gamma_rhythmic_drive` configu
 
 In this example, the pyramidal neurons receive inputs, and the interneurons do not. The proximal and distal inputs start at 50.0 and 55.0 ms, respectively, and are slightly out of phase to allow synaptic inputs to effectively push current flow up the dendrites, followed 5 ms later by current flow down the dendrites. Additionally, the input frequency (as indicated by the `burst rate` parameter) for both proximal and distal inputs is set to a 50 Hz, representing “bursts” of excitatory synaptic input. The driving burst has an inter-burst-interval of 20 ms, with minimal noise within each driving burst (as indicated by the `Burst std dev` of 2.5 ms). 
 
-<div class="callout">
+<div class="callout callout-warning">
   <table class="callout-table">
     <tr>
-      <td class="emoji-cell">&#10071;</td>
+            <td class="emoji-cell">
+        <svg class="exclamation-icon" viewBox="0 0 16 16" width="20" height="20">
+            <path d="M15.35 12.81 9 2.08a1.22 1.22 0 0 0-2 0L.65 12.81a1.14 1.14 0 0 0 1 1.69h12.66a1.14 1.14 0 0 0 1.04-1.69zm-13.66.55L8 2.64l6.31 10.72z"/>
+            <path d="M7.32 5.45h1.25V10H7.32z"/>
+            <ellipse cx="7.95" cy="11.9" rx=".67" ry=".7"/>
+        </svg>
+      </td>
       <td class="text-cell">
         For a detailed description of the driving bursts, please review the Alpha/Beta tutorial.
     </td>

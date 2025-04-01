@@ -268,7 +268,8 @@ body.dark-mode #content img {
 */
 
 .sidebar {
-    font-family: "Lato", sans-serif;
+    /* font-family: "Lato", sans-serif; */
+    font-family: "Fira Sans", Helvetica, Arial;
     height: 100%;
     width: 0;
     position: fixed;
@@ -839,7 +840,6 @@ body.dark-mode .dropdown-content::before {
 .callout {
     background-color: #f5f5f5;
     border-radius: 5px;
-    border: 2px solid var(--hnn-yellow);
     border-radius: 5px;
     padding: 10px;
     margin: 1.2em 0;
@@ -848,9 +848,16 @@ body.dark-mode .dropdown-content::before {
 body.dark-mode .callout {
     background-color: #313438;
     border-radius: 5px;
-    border: 2px solid var(--hnn-yellow);
     padding: 10px;
     margin: 1.2em 0;
+}
+
+.callout-note {
+    border: 2px solid var(--hnn-yellow);
+}
+
+.callout-warning {
+    border: 2px solid #ff7777;
 }
 
 .callout code {
