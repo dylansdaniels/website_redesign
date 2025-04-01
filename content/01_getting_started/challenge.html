@@ -217,32 +217,36 @@
 <h2>Introducing the Human Neocortical Neurosolver (HNN)</h2>
 <p>HNN is an open-source software for developing and testing hypotheses
 on the cellular and circuit-level mechanisms of electro- and
-magneto-encephalography (EEG/MEG) signals. EEG/MEG are among the most
-powerful technologies to non-invasively record human brain activity with
-millisecond resolution, and they provide reliable markers of healthy
-brain function and disease states. The foundation of HNN is a
-biophysically-principled neocortical column model that simulates the
-electrical activity of the neocortical cells and circuits that generate
-the primary electrical currents underlying EEG/MEG recordings. To learn
+magneto-encephalography (EEG/MEG) signals from a localized neocortical
+area. The foundation of HNN is a biophysically-principled neocortical
+column model that simulates the electrical activity of the neocortical
+cells and circuits that generate the primary electrical currents
+underlying EEG/MEG recordings. It is designed around workflows to
+activate the neocortical model via thalamic and cortical inputs to
+examine the multi-scale generators of ERPs and brain rhythms. To learn
 more about the HNN model, see the <a href="template_model.html">Template
 Model</a> section of the Textbook.</p>
 <h2>Addressing The Challenge in Human Neuroscience</h2>
-<p>A major limitation of EEG/MEG is that it can be difficult to connect
-the macroscopic signals to the underlying neural generators. This
-difficulty limits the translation of EEG/MEG studies into novel
-principles of information processing and also into new treatment
-modalities for neural pathologies.</p>
+<p>EEG/MEG are among the most powerful technologies to non-invasively
+record human brain activity with millisecond resolution, and they
+provide reliable markers of healthy brain function and disease states. A
+major limitation of EEG/MEG is that it can be difficult to connect the
+macroscopic signals to the underlying neural generators. This difficulty
+limits the translation of EEG/MEG studies into novel principles of
+information processing and also into new treatment modalities for neural
+pathologies.</p>
 <p>HNN provides a novel solution to this challenge by giving researchers
-and clinicians the ability to develop hypotheses on the circuit
-mechanism underlying their EEG/MEG data. The multi-scale simulation
+and clinicians the ability to develop hypotheses on the cell and circuit
+mechanism underlying their EEG/MEG data, using a previously developed
+and tuned neocortical Template Model. The multi-scale simulation
 possible with HNN (e.g., layer- and cell-specific spiking, LFP, CSD)
-allows for the testing of model-derived predictions across multiple
-recordings scales and species. As such, HNN is a bidirectional
-hypothesis testing and development tool aimed to bridge macroscale human
-EEG/MEG signals to the underlying micro/meso scale activity. Once you’ve
-used HNN to developed biophysically-principled hypotheses on the origins
-of your signal, your hypotheses can then be validated through invasive
-animal recordings.</p>
+allows for the empirical validation of model-derived predictions across
+multiple recordings scales and species. As such, HNN is a bidirectional
+hypothesis testing and development tool aimed to bridge macro-scale
+human EEG/MEG signals to the underlying micro/meso scale activity. Once
+you’ve used HNN to developed biophysically-principled hypotheses on the
+origins of your signal, your hypotheses can then be validated through
+invasive animal recordings.</p>
 <p>Our goal is not to promote singular theories on the origin of any
 particular signal. Rather, our goal is to provide a tool based on known
 biophysics, and the knowledge to use the tool, so that researchers can

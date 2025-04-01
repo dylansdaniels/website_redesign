@@ -222,9 +222,9 @@
             Welcome to our Online HNN Workshop for spring 2025. In this interactive workshop, we will explore [blurb text here].
         </p>
         <h3>
-            Table of contents
+            Table of Contents
         </h3>
-        <ul>
+        <ol>
             <li>
                 <a style="color: inherit;" href="https://dylansdaniels.github.io/website_redesign/tests/workshop.html#workshop-schedule">
                     Workshop Schedule
@@ -243,7 +243,7 @@
             <li>
                 <a style="color: inherit;" href="https://dylansdaniels.github.io/website_redesign/tests/workshop.html#erp-tutorial-with-hnn-gui">ERP Tutorial with HNN GUI</a>
             </li>
-        </ul>
+        </ol>
         </span>
         <h3>
             Workshop Schedule
@@ -365,8 +365,11 @@
             Exercise 1.1
         </h5>
         <p>
-            Adjust the <code>Dipole Smooth Window (ms)</code> in the "ax1" tab of "Figure 2". Try the following values: 
-            <code> 0, 15, 60, and 90 </code>
+            From the <code>Visualization</code> tab, adjust the "Dipole Smooth Window (ms)" in the dipole plot produced by your simulation. If you're following from the "Starting Point" outlined above, this would correspond to the "ax1" tab of "Figure 2".
+            <br><br>
+            Try the following values: 
+            <code> 0, 15, 60, and 90 </code>.
+            After updating the value of the Dipole Smooth Window, click "Add plot" to overlay the new dipole on the old dipole. Alternatively, you can first click "Clear axis" and then "Add plot" if you do not want to overlay the dipoles.
         </p>
         <p>
             <b>Discussion Question:</b>
@@ -384,7 +387,7 @@
         </h5>
         <p>
             Reset the <code>Dipole Smooth Window (ms)</code> to its default value of <code>30</code>. Adjust the <code>Simulation Dipole Scaling</code> in the "ax1" tab of "Figure 2". Try the following values: 
-            <code> 1500, 5000, 7500, 10000 </code>.
+            <code> 1500, 5000, 7500, 10000</code>.
             Be sure to click "Clear axis" and then "Add plot" after each adjustment to get the updated RMSE.
         </p>
         <p>
@@ -417,7 +420,7 @@
             <b>Discussion Questions:</b> 
             <ul>
                 <li>
-                    What differences do you observe in the input histograms and the dipople waveform for the two simulations?
+                    What differences do you observe in the input histograms and the dipole waveform for the two simulations?
                 </li>
                 <li>
                     Which simulation yields a lower RMSE? Which simulation yields a dipole that more closely matches the shape of the experimental data?
@@ -476,7 +479,7 @@
                 Click the <code>Visualization</code> tab. This should bring you to the tab "ax1" of "Figure 2", corresponding to the lower subplot of Figure 2. 
             </li>
             <li>
-                Under the "ax1" tab, click on the downdown box next to <code>Data to compare</code> and select "experimental_S1_SupraT". 
+                Under the "ax1" tab, click on the dropdown box next to <code>Data to compare</code> and select "experimental_S1_SupraT".
             </li>
             <li>
                 Click the <code>Clear axis</code> button at the bottom of the "ax1" tab
@@ -525,7 +528,7 @@
             You can do this by selecting any previously-generated figure and adding your new simulations to the dipole plot. For example, if you're working from the 'Starting Point' outlined above:
             <ul>
                 <li>
-                    Select "ax1" of "Figure 2" from the <code>Visualization</code> tab. Note that ax1 corresponds to the lower subplot of Figure 2 and has a "Type" of "current dipole".
+                    Select "ax1" of "Figure 2" from the <code>Visualization</code> tab. Note that "ax1" refers to the lower subplot of Figure 2 and has a "Type" of "current dipole".
                 </li>
                 <li>
                     Click the "Simulation Data" dropdown and select your new simulation.
@@ -559,13 +562,30 @@
             </table>
         </div>
         <p>
+            Next, compare and contrast the dipoles and the spiking profiles for the initial simulation (before changing the AMPA/NMDA weights) and your "best" simulation (after changing the AMPA/NMDA weights). Note that you should choose your "best" simulation based on which one most closely matches the "M25" peak. You can create a raster plot with the layer-specific dipoles overlaid by following the steps below:
+        </p>
+        <ul>
+            <li>
+                Select "Dipole Layers-Spikes (1x1)" from the "Layout template" dropdown menu in the <code>Visualization</code> tab.
+            </li>
+            <li>
+                Doing so will trigger the "Dataset" dropdown box to appear below the "Layout template" dropdown. 
+            </li>
+            <li>
+                From the "Dataset" dropdown box, select your simulation and then click <code>Make figure</code>.
+            </li>
+            <li>
+                Repeat these steps for each simulation you want to visualize
+            </li>
+        </ul>
+        <p>
             <b>Discussion Question:</b>
             <ul>
                 <li>
                     How do the AMPA weights relate to current flow in our simulation? Refer to <a href="https://dylansdaniels.github.io/website_redesign/tests/workshop.html#figure-a">Figure A</a> above for a visual representation of the network and drives.
                 </li>
                 <li>
-                    Which simulation yields the best fit to the "M25" peak of the experimental data? Which simulation has the lowest RMSE? How does the fit relate to the RMSE in this case?
+                    What differences do you observe in the layer-specific dipoles and the spiking profiles between the initial simulation and the "best" simulation?
                 </li>
             </ul>
         </p>
@@ -579,12 +599,20 @@
             Next, try setting the Layer 2/3 basket cell (listed as 'L2_basket') AMPA and NMDA weights to <code>0</code>.
         </p>
         <p>
-            Once you've run the above simulation, compare the spiking and the layer-specific dipoles for the new simulation with the best simulation from Exercise 2.1. Follow the steps below to generate a new figure that displays a raster plot with the layer-specific dipoles overlayed on the plot.  
+            Once you've run the above simulation, compare the spiking and the layer-specific dipoles for the new simulation with the best simulation from Exercise 2.1. You can create a raster plot with the layer-specific dipoles overlaid by following the steps below:
             <ul>
-                <li>Select "Dipole Layers-Spike (1x1)" from the "Layout template" dropdown menu in the <code>Visualization</code> tab.</li>
-                <li>Doing so will trigger the "Dataset" dropdown box to appear below the "Layout template" dropdown.</li>
-                <li>From the "Dataset" dropdown box, select your simulation and then click <code>Make figure</code>.</li>
-                <li>Repeat these steps for each simulation you want to compare</li>
+                <li>
+                    Select "Dipole Layers-Spike (1x1)" from the "Layout template" dropdown menu in the <code>Visualization</code> tab.
+                </li>
+                <li>
+                    Doing so will trigger the "Dataset" dropdown box to appear below the "Layout template" dropdown.
+                </li>
+                <li>
+                    From the "Dataset" dropdown box, select your simulation and then click <code>Make figure</code>.
+                </li>
+                <li>
+                    Repeat these steps for each simulation you want to visualize
+                </li>
             </ul>
         </p>
         <p>
@@ -594,7 +622,7 @@
                     What happens to the Layer 2/3 and Layer 5 dipoles when you set the Layer 2/3 basket AMPA/NMDA weights to <code>0</code>?
                 </li>
                 <li>
-                    How might differences in the spiking related to the observed differences in the dipole across these simulations? You may want to refer to the <a href="https://dylansdaniels.github.io/website_redesign/tests/workshop.html#figure-a">schematic</a> above. 
+                    How do differences in the spiking profiles relate to the observed differences in the dipole across these simulations? You may want to refer to the <a href="https://dylansdaniels.github.io/website_redesign/tests/workshop.html#figure-a">schematic</a> above. 
                 </li>
             </ul>
         </p>
@@ -646,7 +674,7 @@
             From the <code>External Drives</code> tab, adjust the value of the Standard Deviation about the mean arrival time (labelled "Std dev time") for the first distal drive (labelled "evdist1"). Try the following values: <code>13.81, 3.81</code>
         </p>
         <p>
-            Compare the layer-specific dipole plots and the spiking plots for each simulation, as done in <a href="https://dylansdaniels.github.io/website_redesign/tests/workshop.html#exercise-22">Exercise 2.2</a> above. 
+            Compare the layer-specific dipoles and the spiking profiles for each simulation, as done in <a href="https://dylansdaniels.github.io/website_redesign/tests/workshop.html#exercise-22">Exercise 2.2</a> above. 
         </p>
         <p>
             <b>Discussion Questions:</b> 
@@ -655,7 +683,7 @@
                     How does increasing / decreasing the standard deviation of the distal drive's arrival time affect the amplitude of the "M70" trough"?
                 </li>
                 <li>
-                    What differences do you observe in the spike plots for the different simulations? How do the differences in the spike plots relate to the differences observed in the layer-specific dipoles?
+                    What differences do you observe in the raster plots for the different simulations? How do the differences in spiking relate to the differences observed in the layer-specific dipoles?
                 </li>
             </ul>
         </p>
@@ -665,7 +693,7 @@
         <p>
             In this exercise, we will hand tune the parameters for the second proximal drive, with the goal of continuing to improve the fit of the simulated waveform to the experimental data. 
             <br><br>
-            Note that we will simulate a single peak that fits the overall shape of both the "M100" and "M135" peaks shown in <a href="https://dylansdaniels.github.io/website_redesign/tests/workshop.html#figure-b">Figure B</a>. Capturing the nuanced dynamics that yield the two distinct "M100" and "M135" peaks requires simulating many trials, as we do in our published work. So we simplify the exercise here for illustrative purposes and to make it feasible to run the exercises in a short amount of  time. 
+            Note that we will simulate a single peak that fits the overall shape of both the "M100" and "M135" peaks shown in <a href="https://dylansdaniels.github.io/website_redesign/tests/workshop.html#figure-b">Figure B</a>. Capturing the nuanced dynamics that yield the two distinct "M100" and "M135" peaks requires simulating many trials, as we do in our published work. So we simplify the exercise here for illustrative purposes and to make it feasible to run the exercises in a short amount of time. 
         </p>
         <h5>
             Starting Point
@@ -724,7 +752,7 @@
             Interactive Exercise 5
         </h4>
         <p>
-            Now that you have simulated all three drives, you may notice that there are still some discrepancies between the simulated data and the experimental data. What additional paramaters might you adjust to continue to improve the fit? Try to adjust the timing and strength of any of the external drives and see if you can get a RMSE value less than 18.5.
+            Now that you have simulated all three drives, you may notice that there are still some discrepancies between the simulated data and the experimental data. What additional parameters might you adjust to continue to improve the fit? Try to adjust the timing and strength of any of the external drives and see if you can get a RMSE value less than 18.5.
         </p>
         <p>
             Note that some features of the waveform will be difficult to capture when we're only simulating one trial due to the lack of stochasticity. In practice, we would simulate a large number of trials and tune to the average waveform. However, there is still room for improvement even when simulating only one trial.
@@ -752,7 +780,7 @@
     // Manage footer
     // ----------------------------------------
     // This function will update the footer links when a page is loaded
-    // locally so that naivagation remains functional without a server
+    // locally so that navigation remains functional without a server
     // Note: this solution is specific to MacOS
     document.addEventListener("DOMContentLoaded", function() {
         if (window.location.protocol === "file:") {
@@ -883,7 +911,7 @@
     // Resolve sidebar links for local development
     // -------------------------------------------
     // This function will update the sidebar links when a page is loaded
-    // locally so that sidebar naivagation remains functional without a server
+    // locally so that sidebar navigation remains functional without a server
     // Note: this solution is specific to MacOS
     document.addEventListener("DOMContentLoaded", function() {
         if (window.location.protocol === "file:") {
