@@ -11,7 +11,7 @@
 
 body {
     font-family: 'Merriweather', Georgia, serif;
-    color: #333;
+    color: var(--text-light);
     line-height: 1.6;
     transition: margin-left .5s;
     margin: 0px;
@@ -19,7 +19,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #88548c;
+    color: var(--sidebar-purple);
     font-family: "Fira Sans", Helvetica, Arial, sans-serif;
     font-weight: normal;
 }
@@ -60,7 +60,7 @@ h1::after, h2::after {
     content: "";
     display: block; 
     height: 2px;
-    background: #88548c;
+    background: var(--sidebar-purple);
     margin-top: 10px;
 }
 
@@ -138,13 +138,18 @@ code {
     font-size: 85%;
     font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; 
     font-weight: normal;
-    border: 2px solid #e1e4e8;
+    border: 2px solid var(--lighter-gray);
 }
 
 #block {
-    color: #333;
+    color: var(--text-light);
     display: block;
     padding: 20px 40px;
+}
+
+body.dark-mode #block {
+    color: #fff !important;
+    background-color: var(--sidebar-gray);
 }
 
 .callout code{
@@ -156,14 +161,14 @@ code {
     Description: Style for block code (triple backticks in .md)
 */
 pre code {
-    color: #24292e;
+    color: var(--text-light);
     background-color: none;
     display: block;
     padding: 16px;
     overflow-x: auto;
     border-radius: 6px;
     font-family: 'Courier New', monospace;
-    border: solid 2px #ba83be;
+    border: solid 2px var(--light-purple);
     border-radius: 5px;
     word-wrap: break-word;
     overflow: hidden;
@@ -171,7 +176,7 @@ pre code {
 
 /*
     Element: .csl-entry
-    Desription: adjust spacing in the automatically-generated bibliography
+    Description: adjust spacing in the automatically-generated bibliography
 */
 .csl-entry {
     line-height: 1.4;
@@ -217,17 +222,17 @@ body.dark-mode h6:hover .headerlink {
 */
 
 body.dark-mode {
-    background-color: #14181e;
-    color: #d3d3d3;
+    background-color: var(--content-gray);
+    color: var(--light-gray);
 }
 
 body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4,
 body.dark-mode h5, body.dark-mode h6 {
-    color: #d3d3d3;
+    color: var(--light-gray);
 }
 
 body.dark-mode h1::after, body.dark-mode h2::after {
-    background: #d3d3d3;
+    background: var(--light-gray);
 }
 
 body.dark-mode #content-wrapper a {
@@ -235,16 +240,16 @@ body.dark-mode #content-wrapper a {
 }
 
 body.dark-mode #content-wrapper a:hover {
-    color: #ba83be;
+    color: var(--light-purple);
 }
 
 body.dark-mode code {
-    color: #ba83be;
-    border: solid 2px #ba83be;
+    color: var(--light-purple);
+    border: solid 2px var(--light-purple);
 }
 
 body.dark-mode #block {
-    color: #d3d3d3;
+    color: var(--light-gray);
 }
 
 body.dark-mode .callout code{
@@ -252,7 +257,7 @@ body.dark-mode .callout code{
 }
 
 body.dark-mode pre code {
-    background-color: #313438;
+    background-color: var(--sidebar-gray);
     color: #fff;
     text-shadow: none;
 }
@@ -276,7 +281,7 @@ body.dark-mode #content img {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #88548c;
+    background-color: var(--sidebar-purple);
     scrollbar-width: none;
     -ms-overflow-style: none;
     overflow-x: hidden; 
@@ -285,8 +290,8 @@ body.dark-mode #content img {
 }
 
 .sidebar.dark-mode {
-    background-color: #313438;
-    border-right: 2px solid #d3d3d3 !important;
+    background-color: var(--sidebar-gray);
+    border-right: 2px solid var(--light-gray) !important;
 }
 
 /* 
@@ -337,7 +342,7 @@ body.sidebar-closed #main {
     margin: 8px 0px;
     text-decoration: none;
     font-size: 17px;
-    color: #ffffff;
+    color: #fff;
     display: block;
     transition: 0.3s;
     white-space: nowrap;
@@ -455,8 +460,8 @@ body.sidebar-closed #main {
     will-change: transform;
     font-family: "Lato", sans-serif;;
     background: #fff;
-    border: 2px solid #555555;
-    color: #555555;
+    border: 2px solid var(--tooltip-gray);
+    color: var(--tooltip-gray);
     font-weight: bold;
     padding: 3px 6px;
     border-radius: 10px;
@@ -470,9 +475,9 @@ body.sidebar-closed #main {
 }
 
 body.dark-mode .sidebar-tooltip {
-    background: #313438;
+    background: var(--sidebar-gray);
     color: #fff;
-    border: 2px solid #ba83be;
+    border: 2px solid var(--light-purple);
 }
 
 /*  
@@ -487,7 +492,7 @@ body.dark-mode .sidebar-tooltip {
 }
 
 body.dark-mode .sidebar-tooltip::before {
-    background: #313438;
+    background: var(--sidebar-gray);
 }
 
 /*  
@@ -495,7 +500,7 @@ body.dark-mode .sidebar-tooltip::before {
     Description: styles the outer tooltip triangle
 */
 .sidebar-tooltip::after {
-    background: #555;
+    background: var(--tooltip-gray);
     top: -8px;
     width: 14px;
     height: 7px;
@@ -503,7 +508,7 @@ body.dark-mode .sidebar-tooltip::before {
 }
 
 body.dark-mode .sidebar-tooltip::after {
-    background: #ba83be
+    background: var(--light-purple)
 }
 
 /*  
@@ -538,7 +543,7 @@ body.dark-mode .sidebar-tooltip::after {
     display: flex;
     align-items: center;
     padding: 0 0px;
-    border-bottom: 2.5px solid lightgrey;
+    border-bottom: 2.5px solid var(--light-gray);
     width: 100%;
     position: relative; 
 }
@@ -636,7 +641,7 @@ body.dark-mode .sidebar-tooltip::after {
     font-size: 25px;
     cursor: pointer;
     background: none;
-    color: #bababa;
+    color: var(--icon-base);
     padding: 0px 0px 3px 0px;
     border: none;
     height: inherit;
@@ -645,7 +650,7 @@ body.dark-mode .sidebar-tooltip::after {
 
 .openbtn:hover {
     transform: scale(1.1);
-    color: #444;
+    color: var(--icon-hover);
 }
 
 /*
@@ -669,7 +674,7 @@ body.dark-mode .sidebar-tooltip::after {
 }
 
 .home-icon {
-    fill: #bababa;
+    fill: var(--icon-base);
     height: 22px;
     width: auto;
     transition: transform 0.2s ease;
@@ -677,7 +682,7 @@ body.dark-mode .sidebar-tooltip::after {
 
 .home-icon:hover {
     transform: scale(1.15);
-    fill: #444;
+    fill: var(--icon-hover);
 }
 
 /*
@@ -700,13 +705,13 @@ body.dark-mode .sidebar-tooltip::after {
 .theme-toggle svg {
     width: 20px; 
     height: 19px;
-    fill: #bababa; 
+    fill: var(--icon-base); 
     transition: transform 0.2s ease;
 }
 
 .theme-toggle svg:hover {
     transform: scale(1.1);
-    fill: #444; 
+    fill: var(--icon-hover); 
 }
 
 
@@ -742,7 +747,7 @@ body.dark-mode .sidebar-tooltip::after {
 }
 
 .dropdown-button:hover {
-    color: #444;
+    color: var(--icon-hover);
 }
 
 /*
@@ -766,11 +771,11 @@ body.dark-mode .sidebar-tooltip::after {
     background-color: #ffffff;
     box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
     padding: 5px 5px;
-    border: 3px solid #ba83be;
+    border: 3px solid var(--light-purple);
 }
 
 body.dark-mode .dropdown-content {
-    background-color: #313438;
+    background-color: var(--sidebar-gray);
 }
 
 /* 
@@ -796,7 +801,7 @@ body.dark-mode .dropdown-content {
     Description: change background of inner triangle in dark mode
 */
 body.dark-mode .dropdown-content::before {
-    background-color: #313438;
+    background-color: var(--sidebar-gray);
 }
 
 /*
@@ -813,7 +818,7 @@ body.dark-mode .dropdown-content::before {
     left: 0.7em;
     width: 16px;
     height: 8px;
-    background-color: #ba83be;
+    background-color: var(--light-purple);
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
     z-index: -1;
 }
@@ -828,7 +833,7 @@ body.dark-mode .dropdown-content::before {
 }
 
 .fontsize-btn:hover {
-    color: #444;
+    color: var(--icon-hover);
 }
 
 /* 
@@ -846,7 +851,7 @@ body.dark-mode .dropdown-content::before {
 }
 
 body.dark-mode .callout {
-    background-color: #313438;
+    background-color: var(--sidebar-gray);
     border-radius: 5px;
     padding: 10px;
     margin: 1.2em 0;
@@ -857,11 +862,11 @@ body.dark-mode .callout {
 }
 
 .callout-warning {
-    border: 2px solid #ff7777;
+    border: 2px solid var(--gentle-red);
 }
 
 .callout code {
-    border: 2px solid #ba83be;
+    border: 2px solid var(--light-purple);
 }
 
 /*
@@ -870,7 +875,7 @@ body.dark-mode .callout {
 */
 .exclamation-icon {
     margin-top: 5px;
-    fill: #ff7777;
+    fill: var(--gentle-red);
     width: 22px;
     height: 22px;
 }
@@ -887,7 +892,7 @@ body.dark-mode .callout {
 }
 
 body.dark-mode .exclamation-icon {
-    fill: #ff7777;
+    fill: var(--gentle-red);
 }
 
 /* 
@@ -1047,7 +1052,7 @@ body.dark-mode .exclamation-icon {
     margin: 10px 0;
     padding: 0px;
     border-radius: 5px;
-    border: solid 2px #ba83be;
+    border: solid 2px var(--light-purple);
     overflow: hidden;
 }
 
@@ -1063,7 +1068,7 @@ body.dark-mode .exclamation-icon {
 }
 
 body.dark-mode .code-cell code.language-python{
-    background-color: #313438;
+    background-color: var(--sidebar-gray);
     color: #fff;
     text-shadow: none;
 }
@@ -1081,7 +1086,7 @@ body.dark-mode .code-cell code.language-python{
 
 .output-label {
     font-family: 'Courier New', monospace;
-    color: #fe6565;
+    color: var(--gentle-red);
     font-size: 0.9em;
 }
 
@@ -1105,7 +1110,7 @@ body.dark-mode .output-label {
     max-height: calc(1em * 10);
     flex-grow: 1; 
     white-space: pre-line;
-    color: #333 !important;
+    color: var(--text-light) !important;
     margin: 0px 10px;
     margin-top: 0px;
     padding: 0px 10px;
@@ -1151,25 +1156,43 @@ body.dark-mode .code-cell code .token.operator {
 }
 
 body.dark-mode .code-cell code .token.punctuation {
-    color: #ba83be;
+    color: var(--light-purple);
 }
 
-/* */
+/* 
+# ------------------------------------------------------------
+# Workshop page
+# ------------------------------------------------------------ 
+*/
+
+/*
+# Schedule table
+# ------------------------------------------------------------ 
+*/
+
 .schedule-table {
     border-collapse: collapse;
     margin: 0px 0px 20px 0px;
     font-size: 18px;
 }
 
+body.dark-mode .schedule-table {
+    background: var(--sidebar-gray);
+}
+
 .schedule-table td {
     padding: 5px 10px;
-    border: 1px solid #ddd;
+    border: 2px solid var(--light-gray);
     text-align: center;
 }
 
 .schedule-table .title-row {
     font-weight: bold;
     text-align: left;
+}
+
+body.dark-mode .schedule-table .title-row {
+    color: #fff;
 }
 
 .schedule-table td:nth-child(1) {
@@ -1214,4 +1237,16 @@ body.dark-mode .code-cell code .token.punctuation {
     --hnn-purple: #474095;
     --hnn-violet: #812A89;
     --hnn-yellow: #e5a734;
+    --light-purple: #ba83be;
+    --light-gray: #d3d3d3;
+    --gentle-red: #ff7777;
+    --text-light: #333; 
+    --icon-base: #bababa;
+    --icon-hover: #444;
+    --sidebar-purple: #88548c;
+    --sidebar-gray: #313438;
+    --content-gray: #14181e;
+    --tooltip-gray: #555;
+    --lighter-gray: #e1e4e8;
 }
+
