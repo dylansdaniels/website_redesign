@@ -106,9 +106,9 @@
 	<div style='height: 30px;'></div>
 	</div>
 
-<div id="main">
-    <div class="topbar">
 
+    <div class="topbar">
+        
         <!-- Topbar menu -->
         <div class="menu-container">
             <div class="menu-icons">
@@ -204,6 +204,7 @@
         </div>
     </div>
 
+    <div id="main">
     <div id="content-wrapper">
     <div id="content">
 
@@ -360,15 +361,22 @@ Discussions page</a>.</p>
     function toggleNav() {
         const sidebar = document.getElementById("mySidebar");
         const main = document.getElementById("main");
+        const topbar = document.querySelector(".topbar");
 
         // Toggle sidebar state
         if (isSidebarOpen) {
             sidebar.style.width = "0";
             main.style.marginLeft = "0";
+            topbar.style.marginLeft = "0";
+            topbar.style.width = "100%";
             isSidebarFullyOpen = false;
         } else {
             sidebar.style.width = maxWidth;
-            main.style.marginLeft = maxWidth;  // Match margin to new width
+            main.style.marginLeft = maxWidth;
+                // match margin to new width
+            topbar.style.marginLeft = maxWidth;
+            topbar.style.width = `calc(100% - ${maxWidth})`;
+                // adjust topbar width
         }
 
         // Toggle the sidebar state
@@ -406,6 +414,7 @@ Discussions page</a>.</p>
     window.onload = function() {
         const sidebar = document.getElementById("mySidebar");
         const main = document.getElementById("main");
+        const topbar = document.querySelector(".topbar");
 
         // Retrieve stored state
         const savedState = localStorage.getItem("sidebarState");
@@ -414,11 +423,15 @@ Discussions page</a>.</p>
         if (savedState === "closed") {
             sidebar.style.width = "0";
             main.style.marginLeft = "0";
+            topbar.style.marginLeft = "0";
+            topbar.style.width = "100%";
             isSidebarOpen = false;
             isSidebarFullyOpen = false;
         } else {
             sidebar.style.width = maxWidth;
             main.style.marginLeft = maxWidth;
+            topbar.style.marginLeft = maxWidth;
+            topbar.style.width = `calc(100% - ${maxWidth})`;
             isSidebarOpen = true;
             isSidebarFullyOpen = true;
         }
@@ -426,22 +439,29 @@ Discussions page</a>.</p>
         // Disable transition for the initial state
         sidebar.style.transition = "none";
         main.style.transition = "none";
+        topbar.style.transition = "none";
 
         // Re-enable transition for subsequent toggles
         setTimeout(() => {
             sidebar.style.transition = "width 0.5s";
             main.style.transition = "margin-left 0.5s";
+            topbar.style.transition = "margin-left 0.5s, width 0.5s";
         }, 10);
     }
 
     function toggleSubmenu(event) {
-        const header = event.target.closest('#sidebar-header'); // Get the clicked header
-        const submenu = header.nextElementSibling; // Get the submenu
-        const toggleIcon = header.querySelector('.toggle-icon'); // Get the icon
+        const header = event.target.closest('#sidebar-header');
+            // Get the clicked header
+        const submenu = header.nextElementSibling;
+            // Get the submenu
+        const toggleIcon = header.querySelector('.toggle-icon');
+            // Get the icon
 
         if (submenu && submenu.classList.contains('submenu')) {
-            submenu.classList.toggle('open'); // Toggle the 'open' class to control visibility
-            toggleIcon.textContent = submenu.classList.contains('open') ? '-' : '+'; // Update icon
+            submenu.classList.toggle('open'); 
+                // Toggle the 'open' class to control visibility
+            toggleIcon.textContent = submenu.classList.contains('open') ? '-' : '+'; 
+                // Update icon
         }
     }
 

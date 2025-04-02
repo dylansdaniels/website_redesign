@@ -91,6 +91,7 @@ a:hover {
 
 #content-wrapper {
     width: 100%;
+    margin-top: 50px;
     max-width: 920px;
     padding: 0 40px;
     box-sizing: border-box;
@@ -545,7 +546,13 @@ body.dark-mode .sidebar-tooltip::after {
     padding: 0 0px;
     border-bottom: 2.5px solid var(--light-gray);
     width: 100%;
-    position: relative; 
+    position: fixed; 
+    background: white;
+    transition: margin-left 0.5s, width 0.5s;
+}
+
+body.dark-mode .topbar {
+    background: #14181e;
 }
 
 .topbar-logo-container {
