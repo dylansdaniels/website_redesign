@@ -1188,7 +1188,7 @@ body.dark-mode .schedule-table {
 }
 
 .schedule-table td {
-    padding: 5px 10px;
+    padding: 5px 9px;
     border: 2px solid var(--light-gray);
     text-align: center;
 }
@@ -1203,7 +1203,12 @@ body.dark-mode .schedule-table .title-row {
 }
 
 .schedule-table td:nth-child(1) {
-    width: 24%; /* Adjust as needed */
+    width: 23%; /* Adjust as needed */
+    word-wrap: break-word; /* Ensures text wraps naturally */
+}
+
+.schedule-table td:nth-child(2) {
+    width: 13%; /* Adjust as needed */
     word-wrap: break-word; /* Ensures text wraps naturally */
 }
 

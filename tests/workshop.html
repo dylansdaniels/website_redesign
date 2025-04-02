@@ -250,7 +250,7 @@
         </h3>
             <table class="schedule-table">
                 <tr>
-                    <td colspan=4 class="title-row">
+                    <td colspan=5 class="title-row">
                         Morning
                     </td>
                 </tr>
@@ -267,6 +267,11 @@
                     <td>
                         Dr. Stephanie Jones
                     </td>
+                    <td>
+                        <a href="">
+                            Link
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -281,6 +286,11 @@
                     <td>
                         Dylan Daniels
                     </td>
+                    <td>
+                        <a href="">
+                            Link
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -290,14 +300,15 @@
                         Break
                     </td>
                     <td>
-                        Lunch break and general office hours
+                        Lunch break and office hours
                     </td>
                     <td>
                         
                     </td>
+                    <td/>
                 </tr>
                 <tr>
-                    <td colspan=4 class="title-row">
+                    <td colspan=5 class="title-row">
                         Afternoon Path 1: Oscillations in HNN GUI
                     </td>
                 </tr>
@@ -314,6 +325,11 @@
                     <td>
                         Dr. Stephanie Jones
                     </td>
+                    <td>
+                        <a href="https://brown.zoom.us/s/97539625885">
+                            Link
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -323,14 +339,19 @@
                         Hands-On
                     </td>
                     <td>
-                        Simulating oscillations in<br>HNN GUI
+                        Simulating oscillations in the HNN GUI
                     </td>
                     <td>
                         Dr. Austin Soplata
                     </td>
+                    <td>
+                        <a href="https://brown.zoom.us/s/97539625885">
+                            Link
+                        </a>
+                    </td>
                 </tr>
                 <tr>
-                    <td colspan=4 class="title-row">
+                    <td colspan=5 class="title-row">
                         Afternoon Path 2: ERP and Optimization in the HNN CLI
                     </td>
                 </tr>
@@ -342,10 +363,15 @@
                         Hands-On
                     </td>
                     <td>
-                        Simulating an ERP in the HNN CLI
+                        Simulating an Event-Related Potential (ERP) in the HNN CLI
                     </td>
                     <td>
                         Dr. Carolina Fernandez
+                    </td>
+                    <td>
+                        <a href="2v8No5hPv84zmr5aSGyJlzWcAe4_7YHw4zqEH2czECFS2WBNW">
+                            Link
+                        </a>
                     </td>
                 </tr>
             </table>
@@ -354,23 +380,14 @@
             Installing and Running HNN
         </h3>
         <p>
-            We recommend that you run the HNN GUI through Google CoLab for this workshop. You can access our CoLab notebook for running HNN GUI by clicking <a href="https://colab.research.google.com/drive/1yyjuEBimIu_f7_0Nf3YLwUiVOO7ZrKK3?usp=sharing">here</a>.
-        </p>
-        <p>
-            This is the quickest way to get up and running with HNN, though it does require a Google account. If you do not have a Google account, you can create one for free to run the notebooks. Note that there is no charge associated with using Google CoLab.
-        </p>
-        <p>
-            Alternatively, if you would like to install the HNN GUI locally, please see the <a href="https://jonescompneurolab.github.io/hnn-core/stable/index.html#installation">Installation Page</a> of our HNN documentation.
-        </p>
-        <p>
-            If you have conda installed and are using a MacOS or Linux machine, you can quickly create a new environment with HNN by running the following commands in your terminal:
+            If you have conda installed and are using a MacOS or Linux machine, you can quickly create a new conda environment with HNN by running the following commands in a terminal:
         </p>
         <code id="block">
-            conda create --name hnn_core_gui python=3.11 --no-default-packages <br>
+            conda create --name hnn_core_gui python=3.12 --no-default-packages <br>
             conda activate hnn_core_gui <br>
-            !pip --quiet install "hnn_core[dev] @ git+https://github.com/jonescompneurolab/hnn-core.git"
+            pip install "hnn_core[gui]"
         </code>
-        <p>
+        <!-- <p>
             You can additionally install MPI for running parallel simulations by running the commands below
         </p>
         <code id="block">
@@ -378,7 +395,16 @@
             pip install psutil<br><br>
             # Additionally, for MacOS, run the command below<br>
             export DYLD_FALLBACK_LIBRARY_PATH=${CONDA_PREFIX}/lib
-        </code>
+        </code> -->
+        <p>
+            If you do not have conda or are using a Windows machine, we recommend that you follow our <a href="https://jonescompneurolab.github.io/hnn-core/stable/install.html#graphical-user-interface-gui-installation">GUI Installation Guide</a> to quickly get started with HNN GUI. The "basic" GUI installation process is fairly quick and will allow you to run simulations at a reasonable speeds. 
+        </p>
+        <p>
+            For faster simulation using parallelism (<i><b>recommended</b></i> but not required for this workshop), see our <a href="https://jonescompneurolab.github.io/hnn-core/stable/install.html#parallelism-mpi-installation">MPI Installation Guide</a>. (Note that we do not currently support the use of HNN with MPI on Windows machines.)
+        </p>
+        <p>
+            For users who do not wish to install HNN locally, you can run the HNN GUI through Google CoLab for this workshop, though simulations will take notably longer. You can access our CoLab notebook for running HNN GUI by clicking <a href="https://colab.research.google.com/drive/1yyjuEBimIu_f7_0Nf3YLwUiVOO7ZrKK3?usp=sharing">here</a>. This method does require a Google account, though Google provide free resources that will allow you to run HNN GUI at no charge.
+        </p>
         <h3>
             Downloading Workshop Materials
         </h3>
