@@ -410,7 +410,7 @@
                    </code>
                 </li>
                 <li>
-                  Close the Terminal window, and restart your computer.
+                  Close the Terminal window. If the command says "Command line tools are already installed", move to the next step. If the command takes the time to install itself (approximately 10 minutes), then <b>make sure you restart your computer</b>.
                 </li>
                 <li>
                   After restart, open a <b>new</b> Terminal window. The following commands will remove any existing Conda environments named "hnn-core-env", but it will install HNN with <b>Parallelism/MPI</b> support, which is the fastest version of HNN. Copy, paste, and run the following text:
@@ -433,12 +433,14 @@
                 <li>
                   Run the following command, which will print a number to the window. Write down this number somewhere, and later <b>you can enter this number in the "Cores" textbox of the HNN GUI for significant speedup!</b>
                    <code id="block">
+                       conda activate hnn-core-env<br>
                        python -c "import psutil ; print(psutil.cpu_count(logical=False)-1)"
                    </code>
                 </li>
                 <li>
                   HNN should now be installed! You should be able to start the GUI by then running the following command in the Terminal window:
                    <code id="block">
+                       conda activate hnn-core-env<br>
                        hnn-gui
                    </code>
                 </li>
@@ -482,12 +484,14 @@
                 <li>
                   Run the following command, which will print a number to the window. Write down this number somewhere, and later <b>you can enter this number in the "Cores" textbox of the HNN GUI for significant speedup!</b>
                    <code id="block">
+                       conda activate hnn-core-env<br>
                        python -c "import psutil ; print(psutil.cpu_count(logical=False)-1)"
                    </code>
                 </li>
                 <li>
                   HNN should now be installed! You should be able to start the GUI by then running the following command in the terminal window:
                    <code id="block">
+                       conda activate hnn-core-env<br>
                        hnn-gui
                    </code>
                 </li>
