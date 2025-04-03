@@ -431,6 +431,12 @@
                    </code>
                 </li>
                 <li>
+                  Run the following command, which will print a number to the window. Write down this number somewhere, and later <b>you can enter this number in the "Cores" textbox of the HNN GUI for significant speedup!</b>
+                   <code id="block">
+                       python -c "import psutil ; print(psutil.cpu_count(logical=False)-1)"
+                   </code>
+                </li>
+                <li>
                   HNN should now be installed! You should be able to start the GUI by then running the following command in the Terminal window:
                    <code id="block">
                        hnn-gui
@@ -471,6 +477,12 @@
                        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${CONDA_PREFIX}/lib <br>
                        conda install -y -q "openmpi>5" mpi4py -c conda-forge <br>
                        pip install "hnn-core[gui,opt,parallel]" <br>
+                   </code>
+                </li>
+                <li>
+                  Run the following command, which will print a number to the window. Write down this number somewhere, and later <b>you can enter this number in the "Cores" textbox of the HNN GUI for significant speedup!</b>
+                   <code id="block">
+                       python -c "import psutil ; print(psutil.cpu_count(logical=False)-1)"
                    </code>
                 </li>
                 <li>
