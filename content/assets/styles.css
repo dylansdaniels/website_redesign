@@ -1175,6 +1175,69 @@ body.dark-mode .code-cell code .token.punctuation {
 */
 
 /*
+# Collapsible Toggles
+# ------------------------------------------------------------ 
+*/
+
+.collapsible-section.active {
+    border: 2px solid var(--light-purple);
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 0px 15px;
+}
+
+body.dark-mode .collapsible-section.active {
+    background: var(--sidebar-gray);
+    border: 2px solid var(--light-gray);
+}
+
+.collapsible-header {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #fff;
+    padding: 15px;
+    margin: 0;
+    border: 2px solid var(--light-purple);
+    border-radius: 5px;
+}
+
+body.dark-mode .collapsible-header{
+    border: 2px solid var(--light-gray);
+    background: var(--sidebar-gray);
+}
+
+.collapsible-header.active, body.dark-mode .collapsible-header.active {
+    border: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+}
+
+.collapsible-header:after {
+    content: '\002B'; /* Plus sign */
+    font-weight: bold;
+    float: right;
+}
+
+.collapsible-header.active:after {
+    content: "\2212"; /* Minus sign */
+}
+
+.collapsible-content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+body.dark-mode .collapsible-content {
+    border-bottom: 0px;
+    background: var(--sidebar-gray);
+    border-radius: 5px;
+}
+
+/*
 # Schedule table
 # ------------------------------------------------------------ 
 */

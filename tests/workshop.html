@@ -376,168 +376,192 @@
                 </tr>
             </table>
 
-        <h3>
+        <h2>
             Installing and Running HNN
-        </h3>
+        </h2>
 
         <h5>
-            Google CoLab (in the browser)
+            Running HNN GUI in the Cloud (Google CoLab)
         </h5>
 
             <p>
-                We offer many methods to use HNN. To use the HNN GUI without installing it locally, you can use our <a href="https://colab.research.google.com/drive/1yyjuEBimIu_f7_0Nf3YLwUiVOO7ZrKK3?usp=sharing">Google CoLab notebook by clicking here.</a> This is the simplest way to use HNN, but the simulations will take notably longer. This method does require a Google account, but the resources are <b>free</b> and allow you to run HNN GUI at no charge. To run the notebook, click "Runtime" then "Run all", and follow the instructions.
+                We offer many methods to use HNN. To use the HNN GUI without installing it locally, you can use our <a href="https://colab.research.google.com/drive/1yyjuEBimIu_f7_0Nf3YLwUiVOO7ZrKK3?usp=sharing">click here to open our Google CoLab notebook.</a> This is the simplest way to use HNN, but the simulations will take notably longer. This method does require a Google account, but the resources are <b>free</b> and allow you to run HNN GUI at no charge. To run the notebook, click "Runtime" then "Run all", and follow the instructions.
             </p>
-
-            <p>
-                If you have any problems installing HNN locally using the instructions below, use the Google CoLab notebook.
-            </p>
-
+        
         <h5>
-            MacOS
-        </h5>
-            <p>
-              If you are new to HNN and biophysical simulations with NEURON, we recommend you do the following to locally install the fastest version of HNN on your Mac computer:
-            </p>
-
-            <ol>
-                <li>
-                  Download and install the <a href="https://www.anaconda.com/download/success">Anaconda Python distribution here</a>, using the default settings.
-                </li>
-                <li>
-                  Open a "Terminal" application and install "Xcode Command-Line Tools" by running the following command:
-                   <code id="block">
-                       xcode-select --install
-                   </code>
-                </li>
-                <li>
-                  Close the Terminal window. If the command says "Command line tools are already installed", move to the next step. If the command takes the time to install itself (approximately 10 minutes), then <b>make sure you restart your computer</b>.
-                </li>
-                <li>
-                  After restart, open a <b>new</b> Terminal window. The following commands will remove any existing Conda environments named "hnn-core-env", but it will install HNN with <b>Parallelism/MPI</b> support, which is the fastest version of HNN. Copy, paste, and run the following text:
-                   <code id="block">
-                       conda activate base <br>
-                       conda env remove -y -n hnn-core-env <br>
-                       conda create -y -q -n hnn-core-env python=3.12 <br>
-                       conda activate hnn-core-env <br>
-                       mkdir -p $CONDA_PREFIX/etc/conda/activate.d $CONDA_PREFIX/etc/conda/deactivate.d <br>
-                       echo "export OLD_DYLD_FALLBACK_LIBRARY_PATH=\$DYLD_FALLBACK_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh <br>
-                       echo "export DYLD_FALLBACK_LIBRARY_PATH=\$DYLD_FALLBACK_LIBRARY_PATH:\${CONDA_PREFIX}/lib" >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh <br>
-                       echo "export DYLD_FALLBACK_LIBRARY_PATH=\$OLD_DYLD_FALLBACK_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh <br>
-                       echo "unset OLD_DYLD_FALLBACK_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh <br>
-                       export OLD_DYLD_FALLBACK_LIBRARY_PATH=$DYLD_FALLBACK_LIBRARY_PATH <br>
-                       export DYLD_FALLBACK_LIBRARY_PATH=$LD_LIBRARY_PATH:${CONDA_PREFIX}/lib <br>
-                       conda install -y -q "openmpi>5" mpi4py -c conda-forge <br>
-                       pip install "hnn-core[gui,opt,parallel]" <br>
-                   </code>
-                </li>
-                <li>
-                  Run the following command, which will print a number to the window. Write down this number somewhere, and later <b>you can enter this number in the "Cores" textbox of the HNN GUI for significant speedup!</b>
-                   <code id="block">
-                       conda activate hnn-core-env<br>
-                       python -c "import psutil ; print(psutil.cpu_count(logical=False)-1)"
-                   </code>
-                </li>
-                <li>
-                  HNN should now be installed! You should be able to start the GUI by then running the following command in the Terminal window:
-                   <code id="block">
-                       conda activate hnn-core-env<br>
-                       hnn-gui
-                   </code>
-                </li>
-                <li>
-                  Troubleshooting: If you run into any errors, you may still be able to install HNN locally, but without Parallelism/MPI speedup, by running the following command in the Terminal. If you still cannot run the GUI after running the following command, we recommend you use the Google CoLab method mentioned above. You can also follow our full <a href="https://jonescompneurolab.github.io/hnn-core/stable/install.html">Installation Guide here</a> and ask us for help with installation after the workshop.
-                   <code id="block">
-                       pip install "hnn-core[gui,opt]"
-                   </code>
-                </li>
-            </ol>
-
-        <h5>
-            Linux
-        </h5>
-            <p>
-              If you are new to HNN and biophysical simulations with NEURON, we recommend you do the following to locally install the fastest version of HNN on your personal Linux computer. If you have installed NEURON previously, we recommend you uninstall any system-wide package installations of it.
-            </p>
-
-            <ol>
-                <li>
-                  Download and install the <a href="https://www.anaconda.com/download/success">Anaconda Python distribution here</a>, using the default settings.
-                </li>
-                <li>
-                  Open a <b>new</b> terminal emulator window. The following commands will remove any existing Conda environments named "hnn-core-env", but it will install HNN with <b>Parallelism/MPI</b> support, which is the fastest version of HNN. Copy, paste, and run the following text:
-                   <code id="block">
-                       conda activate base <br>
-                       conda env remove -y -n hnn-core-env <br>
-                       conda create -y -q -n hnn-core-env python=3.12 <br>
-                       conda activate hnn-core-env <br>
-                       mkdir -p $CONDA_PREFIX/etc/conda/activate.d $CONDA_PREFIX/etc/conda/deactivate.d <br>
-                       echo "export OLD_LD_LIBRARY_PATH=\$LD_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh <br>
-                       echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:\${CONDA_PREFIX}/lib" >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh <br>
-                       echo "export LD_LIBRARY_PATH=\$OLD_LD_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh <br>
-                       echo "unset OLD_LD_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh <br>
-                       export OLD_LD_LIBRARY_PATH=$LD_LIBRARY_PATH <br>
-                       export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${CONDA_PREFIX}/lib <br>
-                       conda install -y -q "openmpi>5" mpi4py -c conda-forge <br>
-                       pip install "hnn-core[gui,opt,parallel]" <br>
-                   </code>
-                </li>
-                <li>
-                  Run the following command, which will print a number to the window. Write down this number somewhere, and later <b>you can enter this number in the "Cores" textbox of the HNN GUI for significant speedup!</b>
-                   <code id="block">
-                       conda activate hnn-core-env<br>
-                       python -c "import psutil ; print(psutil.cpu_count(logical=False)-1)"
-                   </code>
-                </li>
-                <li>
-                  HNN should now be installed! You should be able to start the GUI by then running the following command in the terminal window:
-                   <code id="block">
-                       conda activate hnn-core-env<br>
-                       hnn-gui
-                   </code>
-                </li>
-                <li>
-                  Troubleshooting: If you run into any errors, you may still be able to install HNN locally, but without Parallelism/MPI speedup, by running the following command in the terminal. If you still cannot run the GUI after running the following command, we recommend you use the Google CoLab method mentioned above. You can also follow our full <a href="https://jonescompneurolab.github.io/hnn-core/stable/install.html">Installation Guide here</a> and ask us for help with installation after the workshop.
-                   <code id="block">
-                       pip install "hnn-core[gui,opt]"
-                   </code>
-                </li>
-            </ol>
-
-        <h5>
-            Windows
+            Installing and Running HNN GUI on Your Machine
         </h5>
 
-            <p>
-               If you are using a Windows machine, we strongly recommend you use the Google CoLab method above, since HNN runs slower on Windows, and we currently do not support Parallelism/MPI on Windows. If you still want to install HNN locally on Windows, follow these directions:
-            </p>
+        <p>
+            Click on the section below that matches your operating instructions to view the local installation instructions. If you have any problems installing HNN locally using the instructions below, please use the Google CoLab notebook per the instructions above.
+        </p>
 
-            <ol>
-                <li>
-                  Download and install the <a href="https://www.anaconda.com/download/success">Anaconda Python distribution here</a>, using the default settings.
-                </li>
-                <li>
-                  Download and install the <a href="https://github.com/neuronsimulator/nrn/releases/download/8.2.6/nrn-8.2.6.w64-mingw-py-38-39-310-311-312-setup.exe">Windows-specific NEURON binaries here</a>, using the default settings.
-                </li>
-                <li>
-                  Open the application "Anaconda Navigator" and create a new Python environment with Python version 3.12 or below.
-                </li>
-                <li>
-                  Open a Terminal in the new Python environment and run the following command:
-                   <code id="block">
-                       pip install "hnn-core[gui,opt]"
-                   </code>
-                </li>
-                <li>
-                  HNN should now be installed! You should be able to start the GUI by then running the following command in the terminal window:
-                   <code id="block">
-                       hnn-gui
-                   </code>
-                </li>
-                <li>
-                  Troubleshooting: If you run into any errors, then please use the Google CoLab method above.
-                </li>
-            </ol>
+        <div class="collapsible-section">
+            <h5 class="collapsible-header">
+                MacOS
+            </h5>
 
+            <div class="collapsible-content">
+                <p>
+                If you are new to HNN and biophysical simulations with NEURON, we recommend you do the following to locally install the fastest version of HNN on your Mac computer:
+                </p>
+
+                <ol>
+                    <li>
+                    Download and install the <a href="https://www.anaconda.com/download/success">Anaconda Python distribution here</a>, using the default settings.
+                    </li>
+                    <li>
+                    Open a "Terminal" application and install "Xcode Command-Line Tools" by running the following command:
+                    <code id="block">
+                        xcode-select --install
+                    </code>
+                    </li>
+                    <li>
+                    Close the Terminal window. If the command says "Command line tools are already installed", move to the next step. If the command takes the time to install itself (approximately 10 minutes), then <b>make sure you restart your computer</b>.
+                    </li>
+                    <li>
+                    After restart, open a <b>new</b> Terminal window. The following commands will remove any existing Conda environments named "hnn-core-env", but it will install HNN with <b>Parallelism/MPI</b> support, which is the fastest version of HNN. Copy, paste, and run the following text:
+                    <code id="block">
+                        conda activate base <br>
+                        conda env remove -y -n hnn-core-env <br>
+                        conda create -y -q -n hnn-core-env python=3.12 <br>
+                        conda activate hnn-core-env <br>
+                        mkdir -p $CONDA_PREFIX/etc/conda/activate.d $CONDA_PREFIX/etc/conda/deactivate.d <br>
+                        echo "export OLD_DYLD_FALLBACK_LIBRARY_PATH=\$DYLD_FALLBACK_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh <br>
+                        echo "export DYLD_FALLBACK_LIBRARY_PATH=\$DYLD_FALLBACK_LIBRARY_PATH:\${CONDA_PREFIX}/lib" >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh <br>
+                        echo "export DYLD_FALLBACK_LIBRARY_PATH=\$OLD_DYLD_FALLBACK_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh <br>
+                        echo "unset OLD_DYLD_FALLBACK_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh <br>
+                        export OLD_DYLD_FALLBACK_LIBRARY_PATH=$DYLD_FALLBACK_LIBRARY_PATH <br>
+                        export DYLD_FALLBACK_LIBRARY_PATH=$LD_LIBRARY_PATH:${CONDA_PREFIX}/lib <br>
+                        conda install -y -q "openmpi>5" mpi4py -c conda-forge <br>
+                        pip install "hnn-core[gui,opt,parallel]" <br>
+                    </code>
+                    </li>
+                    <li>
+                    Run the following command, which will print a number to the window. Write down this number somewhere, and later <b>you can enter this number in the "Cores" textbox of the HNN GUI for significant speedup!</b>
+                    <code id="block">
+                        conda activate hnn-core-env<br>
+                        python -c "import psutil ; print(psutil.cpu_count(logical=False)-1)"
+                    </code>
+                    </li>
+                    <li>
+                    HNN should now be installed! You should be able to start the GUI by then running the following command in the Terminal window:
+                    <code id="block">
+                        conda activate hnn-core-env<br>
+                        hnn-gui
+                    </code>
+                    </li>
+                    <li>
+                    Troubleshooting: If you run into any errors, you may still be able to install HNN locally, but without Parallelism/MPI speedup, by running the following command in the Terminal. If you still cannot run the GUI after running the following command, we recommend you use the Google CoLab method mentioned above. You can also follow our full <a href="https://jonescompneurolab.github.io/hnn-core/stable/install.html">Installation Guide here</a> and ask us for help with installation after the workshop.
+                    <code id="block">
+                        pip install "hnn-core[gui,opt]"
+                    </code>
+                    </li>
+                </ol>
+        
+            </div>
+        </div>
+
+        <br>
+        
+        <div class="collapsible-section">
+            <h5 class="collapsible-header">
+                Linux
+            </h5>
+
+            <div class="collapsible-content">
+                <p>
+                If you are new to HNN and biophysical simulations with NEURON, we recommend you do the following to locally install the fastest version of HNN on your personal Linux computer. If you have installed NEURON previously, we recommend you uninstall any system-wide package installations of it.
+                </p>
+
+                <ol>
+                    <li>
+                    Download and install the <a href="https://www.anaconda.com/download/success">Anaconda Python distribution here</a>, using the default settings.
+                    </li>
+                    <li>
+                    Open a <b>new</b> terminal emulator window. The following commands will remove any existing Conda environments named "hnn-core-env", but it will install HNN with <b>Parallelism/MPI</b> support, which is the fastest version of HNN. Copy, paste, and run the following text:
+                    <code id="block">
+                        conda activate base <br>
+                        conda env remove -y -n hnn-core-env <br>
+                        conda create -y -q -n hnn-core-env python=3.12 <br>
+                        conda activate hnn-core-env <br>
+                        mkdir -p $CONDA_PREFIX/etc/conda/activate.d $CONDA_PREFIX/etc/conda/deactivate.d <br>
+                        echo "export OLD_LD_LIBRARY_PATH=\$LD_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh <br>
+                        echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:\${CONDA_PREFIX}/lib" >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh <br>
+                        echo "export LD_LIBRARY_PATH=\$OLD_LD_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh <br>
+                        echo "unset OLD_LD_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh <br>
+                        export OLD_LD_LIBRARY_PATH=$LD_LIBRARY_PATH <br>
+                        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${CONDA_PREFIX}/lib <br>
+                        conda install -y -q "openmpi>5" mpi4py -c conda-forge <br>
+                        pip install "hnn-core[gui,opt,parallel]" <br>
+                    </code>
+                    </li>
+                    <li>
+                    Run the following command, which will print a number to the window. Write down this number somewhere, and later <b>you can enter this number in the "Cores" textbox of the HNN GUI for significant speedup!</b>
+                    <code id="block">
+                        conda activate hnn-core-env<br>
+                        python -c "import psutil ; print(psutil.cpu_count(logical=False)-1)"
+                    </code>
+                    </li>
+                    <li>
+                    HNN should now be installed! You should be able to start the GUI by then running the following command in the terminal window:
+                    <code id="block">
+                        conda activate hnn-core-env<br>
+                        hnn-gui
+                    </code>
+                    </li>
+                    <li>
+                    Troubleshooting: If you run into any errors, you may still be able to install HNN locally, but without Parallelism/MPI speedup, by running the following command in the terminal. If you still cannot run the GUI after running the following command, we recommend you use the Google CoLab method mentioned above. You can also follow our full <a href="https://jonescompneurolab.github.io/hnn-core/stable/install.html">Installation Guide here</a> and ask us for help with installation after the workshop.
+                    <code id="block">
+                        pip install "hnn-core[gui,opt]"
+                    </code>
+                    </li>
+                </ol>
+
+            </div>
+        </div>
+
+        <br>
+        
+        <div class="collapsible-section">
+            <h5 class="collapsible-header">
+                Windows
+            </h5>
+
+            <div class="collapsible-content">
+
+                <p>
+                    If you are using a Windows machine, we strongly recommend you use the Google CoLab method above, since HNN runs slower on Windows, and we currently do not support Parallelism/MPI on Windows. If you still want to install HNN locally on Windows, follow these directions:
+                </p>
+
+                <ol>
+                    <li>
+                        Download and install the <a href="https://www.anaconda.com/download/success">Anaconda Python distribution here</a>, using the default settings.
+                    </li>
+                    <li>
+                        Download and install the <a href="https://github.com/neuronsimulator/nrn/releases/download/8.2.6/nrn-8.2.6.w64-mingw-py-38-39-310-311-312-setup.exe">Windows-specific NEURON binaries here</a>, using the default settings.
+                    </li>
+                    <li>
+                        Open the application "Anaconda Navigator" and create a new Python environment with Python version 3.12 or below.
+                    </li>
+                    <li>
+                        Open a Terminal in the new Python environment and run the following command:
+                        <code id="block">
+                            pip install "hnn-core[gui,opt]"
+                        </code>
+                    </li>
+                    <li>
+                        HNN should now be installed! You should be able to start the GUI by then running the following command in the terminal window:
+                        <code id="block">
+                            hnn-gui
+                        </code>
+                    </li>
+                    <li>
+                        Troubleshooting: If you run into any errors, then please use the Google CoLab method above.
+                    </li>
+                </ol>
+            </div>
+        </div>
         <h3>
             Downloading Workshop Materials
         </h3>
@@ -575,44 +599,58 @@
         <p>
             Remember that "scaling" in this case refers to a scaling factor applied to our simulated waveform. You can think of the scaling factor as a measure of the number of cells contributing to the simulated signal. "Smoothing" is also related to the number of cells contributing to the signal, and can be thought of as the effect of averaging across a large population of cells.
         </p>
-        <h5>
-            Starting Point
-        </h5>
-        <ul>
-        <li>
-            Refresh the HNN GUI to restore the default state.
-        </li>
-        <li>
-            Click <code>Load data</code>. From the "workshops/erp_gui_walkthrough" directory of the "hnn-data" folder, select the "experimental_S1_SupraT.txt" data file. 
-        </li>
-        <li>
-            Click <code>Run</code> to run the "default" simulation
-        </li>
-        <li>
-            Click the <code>Visualization</code> tab. This should bring you to the tab "ax1" of "Figure 2", corresponding to the lower subplot of Figure 2. 
-        </li>
-        <li>
-            Under the "ax1" tab, click on the downdown box next to <code>Data to compare</code> and select "experimental_S1_SupraT". 
-        </li>
-        <li>
-            Click the <code>Clear axis</code> button at the bottom of the "ax1" tab
-        </li>
-        <li>
-            Click the <code>Add plot</code> button
-        </li>
-        </ul>
-        <h5>
-            Exercise 1.1
-        </h5>
-        <p>
-            From the <code>Visualization</code> tab, adjust the "Dipole Smooth Window (ms)" in the dipole plot produced by your simulation. If you're following from the "Starting Point" outlined above, this would correspond to the "ax1" tab of "Figure 2".
-            <br><br>
-            Try the following values: 
-            <code> 0, 15, 60, and 90 </code>.
-            After updating the value of the Dipole Smooth Window, click "Add plot" to overlay the new dipole on the old dipole. Alternatively, you can first click "Clear axis" and then "Add plot" if you do not want to overlay the dipoles.
-        </p>
-        <p>
-            <b>Discussion Question:</b>
+        <div class="collapsible-section">
+            <h5 class="collapsible-header">
+                Starting Point
+            </h5>
+
+            <div class="collapsible-content">
+                <ul>
+                <li>
+                    Refresh the HNN GUI to restore the default state.
+                </li>
+                <li>
+                    Click <code>Load data</code>. From the "workshops/erp_gui_walkthrough" directory of the "hnn-data" folder, select the "experimental_S1_SupraT.txt" data file. 
+                </li>
+                <li>
+                    Click <code>Run</code> to run the "default" simulation
+                </li>
+                <li>
+                    Click the <code>Visualization</code> tab. This should bring you to the tab "ax1" of "Figure 2", corresponding to the lower subplot of Figure 2. 
+                </li>
+                <li>
+                    Under the "ax1" tab, click on the downdown box next to <code>Data to compare</code> and select "experimental_S1_SupraT". 
+                </li>
+                <li>
+                    Click the <code>Clear axis</code> button at the bottom of the "ax1" tab
+                </li>
+                <li>
+                    Click the <code>Add plot</code> button
+                </li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <div class="collapsible-section">
+            <h5 class="collapsible-header">
+                Exercise 1.1
+            </h5>
+
+            <div class="collapsible-content">
+                <ul>
+                    <li>
+                        From the <code>Visualization</code> tab, adjust the "Dipole Smooth Window (ms)" in the dipole plot produced by your simulation. If you're following from the "Starting Point" outlined above, this would correspond to the "ax1" tab of "Figure 2".
+                    </li>
+                    <li>
+                        Try the following values: 
+                        <code> 0, 15, 60, and 90</code>.
+                    <li>
+                        After updating the value of the Dipole Smooth Window, click "Add plot" to overlay the new dipole on the old dipole. Alternatively, you can first click "Clear axis" and then "Add plot" if you do not want to overlay the dipoles.
+                    </li>
+            </div>
+        </div>
+            <p>
+            <b>Discussion Questions:</b>
             <ul>
                 <li>
                     What is the effect of increasing the smoothing window on the waveform shape?
@@ -622,14 +660,29 @@
                 </li>
             </ul>
         </p>
-        <h5>
-            Exercise 1.2
-        </h5>
-        <p>
-            Reset the <code>Dipole Smooth Window (ms)</code> to its default value of <code>30</code>. Adjust the <code>Simulation Dipole Scaling</code> in the "ax1" tab of "Figure 2". Try the following values: 
-            <code> 1500, 5000, 7500, 10000</code>.
-            Be sure to click "Clear axis" and then "Add plot" after each adjustment to get the updated RMSE.
-        </p>
+        <div class="collapsible-section">
+            <h5 class="collapsible-header">
+                Exercise 1.2
+            </h5>
+
+            <div class="collapsible-content">
+                <ul>
+                    <li>
+                        Reset the <code>Dipole Smooth Window (ms)</code> to its default value of <code>30</code>
+                    </li>
+                    <li>
+                        Adjust the <code>Simulation Dipole Scaling</code> in the "ax1" tab of "Figure 2".
+                    </li>
+                    <li>
+                        Try the following values: 
+                        <code> 1500, 5000, 7500, 10000</code>.
+                    </li>
+                    <li>
+                        Be sure to click "Clear axis" and then "Add plot" after each adjustment to get the updated RMSE.
+                    </li>
+                </ul>
+            </div>
+        </div>
         <p>
             <b>Discussion Questions:</b> 
             <ul>
@@ -641,21 +694,33 @@
                 </li>
             </ul>
         </p>
-        <h5>
-            Exercise 1.3
-        </h5>
-        <p>
-            Reset the <code>Simulation Dipole Scaling</code> to its default value of <code>3000</code>. 
-            <br><br>
-            Let's now load a different set of evoked drives that was tuned for the suprathreshold experimental condition and compare the new simulation to the default simulation. 
-            <ul>
-            <li>Select the <code>External Drives</code> tab and then click the <code>Load external drives</code> button.
-            </li>
-            <li>From the "workshops/erp_gui_walkthrough" directory of the "hnn-data" folder, select the "ERPSupraT_All_Drives.json" parameter file.</li>
-            <li>Change the name of the simulation to something informative, and then click <code>Run</code>.</li>
-            <li>Follow the steps outlined above to overlay the experimental data on the new dipole plot.</li>
-            </ul>
-        </p>
+        <div class="collapsible-section">
+            <h5 class="collapsible-header">
+                Exercise 1.3
+            </h5>
+
+            <div class="collapsible-content">
+                <p>
+                    Reset the <code>Simulation Dipole Scaling</code> to its default value of <code>3000</code>. 
+                    <br><br>
+                    Let's now load a different set of evoked drives that was tuned for the suprathreshold experimental condition and compare the new simulation to the default simulation. 
+                </p>
+                <ul>
+                    <li>
+                        Select the <code>External Drives</code> tab and then click the <code>Load external drives</code> button.
+                    </li>
+                    <li>
+                        From the "workshops/erp_gui_walkthrough" directory of the "hnn-data" folder, select the "ERPSupraT_All_Drives.json" parameter file.
+                    </li>
+                    <li>
+                        Change the name of the simulation to something informative, and then click <code>Run</code>.
+                    </li>
+                    <li>
+                        Follow the steps outlined above to overlay the experimental data on the new dipole plot.
+                    </li>
+                </ul>
+            </div>
+        </div>
         <p>
             <b>Discussion Questions:</b> 
             <ul>
@@ -1490,6 +1555,37 @@
         });
     });
 
+</script>
+
+
+
+<!-- <script>
+    var coll = document.getElementsByClassName("collapsible-header");
+    for (var i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script> -->
+
+<!-- JavaScript for Collapsible Functionality -->
+<script>
+    document.querySelectorAll(".collapsible-header").forEach(header => {
+        header.addEventListener("click", function () {
+            const section = this.closest(".collapsible-section"); // Get parent section
+            section.classList.toggle("active");
+            this.classList.toggle("active"); // Keep this for toggling the plus/minus sign
+
+            const content = section.querySelector(".collapsible-content");
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        });
+    });
 </script>
 
 
