@@ -375,36 +375,153 @@
                     </td>
                 </tr>
             </table>
-        
+
         <h3>
             Installing and Running HNN
         </h3>
-        <p>
-            If you have conda installed and are using a MacOS or Linux machine, you can quickly create a new conda environment with HNN by running the following commands in a terminal:
-        </p>
-        <code id="block">
-            conda create --name hnn_core_gui python=3.12 --no-default-packages <br>
-            conda activate hnn_core_gui <br>
-            pip install "hnn_core[gui]"
-        </code>
-        <!-- <p>
-            You can additionally install MPI for running parallel simulations by running the commands below
-        </p>
-        <code id="block">
-            conda install -y openmpi mpi4py <br>
-            pip install psutil<br><br>
-            # Additionally, for MacOS, run the command below<br>
-            export DYLD_FALLBACK_LIBRARY_PATH=${CONDA_PREFIX}/lib
-        </code> -->
-        <p>
-            If you do not have conda or are using a Windows machine, we recommend that you follow our <a href="https://jonescompneurolab.github.io/hnn-core/stable/install.html#graphical-user-interface-gui-installation">GUI Installation Guide</a> to quickly get started with HNN GUI. The "basic" GUI installation process is fairly quick and will allow you to run simulations at a reasonable speeds. 
-        </p>
-        <p>
-            For faster simulation using parallelism (<i><b>recommended</b></i> but not required for this workshop), see our <a href="https://jonescompneurolab.github.io/hnn-core/stable/install.html#parallelism-mpi-installation">MPI Installation Guide</a>. (Note that we do not currently support the use of HNN with MPI on Windows machines.)
-        </p>
-        <p>
-            For users who do not wish to install HNN locally, you can run the HNN GUI through Google CoLab for this workshop, though simulations will take notably longer. You can access our CoLab notebook for running HNN GUI by clicking <a href="https://colab.research.google.com/drive/1yyjuEBimIu_f7_0Nf3YLwUiVOO7ZrKK3?usp=sharing">here</a>. This method does require a Google account, though Google provide free resources that will allow you to run HNN GUI at no charge.
-        </p>
+
+        <h5>
+            Google CoLab (in the browser)
+        </h5>
+
+            <p>
+                We offer many methods to use HNN. To use the HNN GUI without installing it locally, you can use our <a href="https://colab.research.google.com/drive/1yyjuEBimIu_f7_0Nf3YLwUiVOO7ZrKK3?usp=sharing">Google CoLab notebook by clicking here.</a> This is the simplest way to use HNN, but the simulations will take notably longer. This method does require a Google account, but the resources are <b>free</b> and allow you to run HNN GUI at no charge. To run the notebook, click "Runtime" then "Run all", and follow the instructions.
+            </p>
+
+            <p>
+                If you have any problems installing HNN locally using the instructions below, use the Google CoLab notebook.
+            </p>
+
+        <h5>
+            MacOS
+        </h5>
+            <p>
+              If you are new to HNN and biophysical simulations with NEURON, we recommend you do the following to locally install the fastest version of HNN on your Mac computer:
+            </p>
+
+            <ol>
+                <li>
+                  Download and install the <a href="https://www.anaconda.com/download/success">Anaconda Python distribution here</a>, using the default settings.
+                </li>
+                <li>
+                  Open a "Terminal" application and install "Xcode Command-Line Tools" by running the following command:
+                   <code id="block">
+                       xcode-select --install
+                   </code>
+                </li>
+                <li>
+                  Close the Terminal window, and restart your computer.
+                </li>
+                <li>
+                  After restart, open a <b>new</b> Terminal window. The following commands will remove any existing Conda environments named "hnn-core-env", but it will install HNN with <b>Parallelism/MPI</b> support, which is the fastest version of HNN. Copy, paste, and run the following text:
+                   <code id="block">
+                       conda activate base <br>
+                       conda env remove -y -n hnn-core-env <br>
+                       conda create -y -q -n hnn-core-env python=3.12 <br>
+                       conda activate hnn-core-env <br>
+                       mkdir -p $CONDA_PREFIX/etc/conda/activate.d $CONDA_PREFIX/etc/conda/deactivate.d <br>
+                       echo "export OLD_DYLD_FALLBACK_LIBRARY_PATH=\$DYLD_FALLBACK_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh <br>
+                       echo "export DYLD_FALLBACK_LIBRARY_PATH=\$DYLD_FALLBACK_LIBRARY_PATH:\${CONDA_PREFIX}/lib" >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh <br>
+                       echo "export DYLD_FALLBACK_LIBRARY_PATH=\$OLD_DYLD_FALLBACK_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh <br>
+                       echo "unset OLD_DYLD_FALLBACK_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh <br>
+                       export OLD_DYLD_FALLBACK_LIBRARY_PATH=$DYLD_FALLBACK_LIBRARY_PATH <br>
+                       export DYLD_FALLBACK_LIBRARY_PATH=$LD_LIBRARY_PATH:${CONDA_PREFIX}/lib <br>
+                       conda install -y -q "openmpi>5" mpi4py -c conda-forge <br>
+                       pip install "hnn-core[gui,opt,parallel]" <br>
+                   </code>
+                </li>
+                <li>
+                  HNN should now be installed! You should be able to start the GUI by then running the following command in the Terminal window:
+                   <code id="block">
+                       hnn-gui
+                   </code>
+                </li>
+                <li>
+                  Troubleshooting: If you run into any errors, you may still be able to install HNN locally, but without Parallelism/MPI speedup, by running the following command in the Terminal. If you still cannot run the GUI after running the following command, we recommend you use the Google CoLab method mentioned above. You can also follow our full <a href="https://jonescompneurolab.github.io/hnn-core/stable/install.html">Installation Guide here</a> and ask us for help with installation after the workshop.
+                   <code id="block">
+                       pip install "hnn-core[gui,opt]"
+                   </code>
+                </li>
+            </ol>
+
+        <h5>
+            Linux
+        </h5>
+            <p>
+              If you are new to HNN and biophysical simulations with NEURON, we recommend you do the following to locally install the fastest version of HNN on your personal Linux computer. If you have installed NEURON previously, we recommend you uninstall any system-wide package installations of it.
+            </p>
+
+            <ol>
+                <li>
+                  Download and install the <a href="https://www.anaconda.com/download/success">Anaconda Python distribution here</a>, using the default settings.
+                </li>
+                <li>
+                  Open a <b>new</b> terminal emulator window. The following commands will remove any existing Conda environments named "hnn-core-env", but it will install HNN with <b>Parallelism/MPI</b> support, which is the fastest version of HNN. Copy, paste, and run the following text:
+                   <code id="block">
+                       conda activate base <br>
+                       conda env remove -y -n hnn-core-env <br>
+                       conda create -y -q -n hnn-core-env python=3.12 <br>
+                       conda activate hnn-core-env <br>
+                       mkdir -p $CONDA_PREFIX/etc/conda/activate.d $CONDA_PREFIX/etc/conda/deactivate.d <br>
+                       echo "export OLD_LD_LIBRARY_PATH=\$LD_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh <br>
+                       echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:\${CONDA_PREFIX}/lib" >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh <br>
+                       echo "export LD_LIBRARY_PATH=\$OLD_LD_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh <br>
+                       echo "unset OLD_LD_LIBRARY_PATH" >> $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh <br>
+                       export OLD_LD_LIBRARY_PATH=$LD_LIBRARY_PATH <br>
+                       export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${CONDA_PREFIX}/lib <br>
+                       conda install -y -q "openmpi>5" mpi4py -c conda-forge <br>
+                       pip install "hnn-core[gui,opt,parallel]" <br>
+                   </code>
+                </li>
+                <li>
+                  HNN should now be installed! You should be able to start the GUI by then running the following command in the terminal window:
+                   <code id="block">
+                       hnn-gui
+                   </code>
+                </li>
+                <li>
+                  Troubleshooting: If you run into any errors, you may still be able to install HNN locally, but without Parallelism/MPI speedup, by running the following command in the terminal. If you still cannot run the GUI after running the following command, we recommend you use the Google CoLab method mentioned above. You can also follow our full <a href="https://jonescompneurolab.github.io/hnn-core/stable/install.html">Installation Guide here</a> and ask us for help with installation after the workshop.
+                   <code id="block">
+                       pip install "hnn-core[gui,opt]"
+                   </code>
+                </li>
+            </ol>
+
+        <h5>
+            Windows
+        </h5>
+
+            <p>
+               If you are using a Windows machine, we strongly recommend you use the Google CoLab method above, since HNN runs slower on Windows, and we currently do not support Parallelism/MPI on Windows. If you still want to install HNN locally on Windows, follow these directions:
+            </p>
+
+            <ol>
+                <li>
+                  Download and install the <a href="https://www.anaconda.com/download/success">Anaconda Python distribution here</a>, using the default settings.
+                </li>
+                <li>
+                  Download and install the <a href="https://github.com/neuronsimulator/nrn/releases/download/8.2.6/nrn-8.2.6.w64-mingw-py-38-39-310-311-312-setup.exe">Windows-specific NEURON binaries here</a>, using the default settings.
+                </li>
+                <li>
+                  Open the application "Anaconda Navigator" and create a new Python environment with Python version 3.12 or below.
+                </li>
+                <li>
+                  Open a Terminal in the new Python environment and run the following command:
+                   <code id="block">
+                       pip install "hnn-core[gui,opt]"
+                   </code>
+                </li>
+                <li>
+                  HNN should now be installed! You should be able to start the GUI by then running the following command in the terminal window:
+                   <code id="block">
+                       hnn-gui
+                   </code>
+                </li>
+                <li>
+                  Troubleshooting: If you run into any errors, then please use the Google CoLab method above.
+                </li>
+            </ol>
+
         <h3>
             Downloading Workshop Materials
         </h3>
