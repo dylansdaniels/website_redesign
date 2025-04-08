@@ -1277,8 +1277,8 @@ body.dark-mode .schedule-table .title-row {
     word-wrap: break-word; /* Ensures text wraps naturally */
 }
 
-.schedule-table td:nth-child(3) {
-    width: 35%; /* Adjust as needed */
+.schedule-table td:nth-child(4) {
+    width: 23%; /* Adjust as needed */
     word-wrap: break-word; /* Ensures text wraps naturally */
 }
     
