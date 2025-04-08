@@ -1281,7 +1281,29 @@ body.dark-mode .schedule-table .title-row {
     width: 23%; /* Adjust as needed */
     word-wrap: break-word; /* Ensures text wraps naturally */
 }
-    
+
+code.workshop-button {
+    color: #fff;
+    border-color: #fff;
+    font-family: "Fira Sans", Helvetica, Arial;
+    font-size: 17px;
+}
+
+body.dark-mode code.workshop-button {
+    color: var(--hnn-yellow);
+    border-color: var(--hnn-yellow);    
+}
+
+code.workshop-button:hover {
+    color: var(--hnn-yellow);
+    border-color: var(--hnn-yellow);
+}
+
+body.dark-mode code.workshop-button:hover {
+    color: #fff;
+    border-color: #fff;
+}
+
 /* 
 # ------------------------------------------------------------
 # Responsiveness
