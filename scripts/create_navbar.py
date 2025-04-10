@@ -34,12 +34,16 @@ def generate_navbar_html():
         f'\n\t{indent}Human Neocortical Neurosolver' + \
         f'\n{indent}</a>\n{indent}<br>' + \
         collapse_button + \
-        f'\n{indent}</div>' + \
+        f'\n{indent}</div>'
+    
+    workshop_link = \
         f'\n{indent}<a href="https://dylansdaniels.github.io/website_redesign/tests/workshop.html">' + \
         f'\n{indent}<div>' + \
-        f'\n{indent}\t<code class="workshop-button">April 9th Workshop Page</code>' + \
+        f'\n{indent}\t<code class="workshop-button">Workshop Page</code>' + \
         f'\n{indent}</div>' + \
-        f'\n{indent}</a>'
+        f'\n{indent}</a>'  # noqa: F841 # this is to ignore the unused variable in ruff
+    
+    # html += workshop_link
 
     # load page index .json file
     index_path = os.getcwd() + "/index.json"
