@@ -17,7 +17,7 @@ clean:
 
 create-conda-env:
 	conda env create --yes --file environment.yml
-	conda run -n website-redesign pip install 'hnn_core[dev]==0.4rc4'
+	conda run -n website-redesign pip install 'hnn_core[dev]==0.4.1'
 
 create-conda-env-mpi:
 	conda env create --yes --file environment.yml --name website-redesign-mpi
@@ -36,5 +36,5 @@ create-conda-env-mpi:
 		echo "export LD_LIBRARY_PATH=\$$OLD_LD_LIBRARY_PATH" >> "$$CONDA_ENV_PATH/etc/conda/deactivate.d/env_vars.sh"; \
 		echo "unset OLD_LD_LIBRARY_PATH" >> "$$CONDA_ENV_PATH/etc/conda/deactivate.d/env_vars.sh"; \
 	fi; \
-	conda run -n website-redesign-mpi pip install 'hnn_core[dev]==0.4rc4'; \
+	conda run -n website-redesign-mpi pip install 'hnn_core[dev]==0.4.1'; \
 	echo "Conda environment 'website-redesign-mpi' successfully created."
