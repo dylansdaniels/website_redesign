@@ -8,56 +8,60 @@
             "03_installation.md": "1.3 Installation"
         }
     ],
+    "02_background": [
+        "2. Background",
+        {}
+    ],
     "03_model_assumptions": [
-        "2. Model Assumptions",
+        "3. Model Assumptions",
         {
-            "01_cortical_column_structure.md": "2.1 Cortical Column Structure",
-            "02_primary_electric_currents.md": "2.2 Primary Electrical Currents",
-            "03_neurons_morphology_and_physiology.md": "2.3 Neurons: Morphology and Physiology",
-            "04_synaptic_connectivity.md": "2.4 Synaptic Connectivity",
-            "05_evoked_and_rhythmic_driving_inputs.md": "2.5 Evoked and Rhythmic Driving Inputs",
-            "06_tonic_and_noisy_driving_inputs.md": "2.6 Tonic and Noisy Driving Inputs"
+            "01_cortical_column_structure.md": "3.1 Cortical Column Structure",
+            "02_primary_electric_currents.md": "3.2 Primary Electrical Currents",
+            "03_neurons_morphology_and_physiology.md": "3.3 Neurons: Morphology and Physiology",
+            "04_synaptic_connectivity.md": "3.4 Synaptic Connectivity",
+            "05_evoked_and_rhythmic_driving_inputs.md": "3.5 Evoked and Rhythmic Driving Inputs",
+            "06_tonic_and_noisy_driving_inputs.md": "3.6 Tonic and Noisy Driving Inputs"
+        }
+    ],
+    "04_using_hnn": [
+        "4. Feature Demos",
+        {
+            "01_plot_firing_pattern.md": "4.1 Plot Firing Pattern",
+            "02_record_and_plot_extracellular_potentials.md": "4.2 Record & Plot Extracellular Potentials",
+            "03_modifying_local_connectivity.md": "4.3 Modifying Local Connectivity",
+            "04_animating_hnn_simulations.md": "4.4 Animating HNN Simulations",
+            "05_batch_simulation.md": "4.5 Batch Simulation",
+            "06_simulate_beta_modulated_erp.md": "4.6 Simulate Beta-modulated ERP",
+            "07_use_mpi_backend_for_parallelization.md": "4.7 Use MPI Backend for Parallelization",
+            "08_optimize_simulated_evoked_response_parameters.md": "4.8 Optimize simulated evoked response parameters",
+            "09_optimize_simulated_rhythmic_response_parameters.md": "4.9 Optimize simulated rhythmic response parameters"
         }
     ],
     "05_erps": [
-        "3. Simulating ERPs",
+        "5. Simulating ERPs",
         {
-            "01_erps_in_gui.md": "3.1 GUI Tutorial of ERPs Simulation",
-            "02_hnn_core.md": "3.2 API Tutorial of ERPs Simulation"
+            "01_erps_in_gui.md": "5.1 GUI Tutorial of ERPs Simulation",
+            "02_hnn_core.md": "5.2 API Tutorial of ERPs Simulation"
         }
     ],
     "06_alpha_beta": [
-        "4. Simulating Alpha/Beta Rhythms",
+        "6. Simulating Alpha/Beta Rhythms",
         {
-            "01_gui.md": "4.1 GUI Tutorial of Alpha/Beta Rhythms",
-            "02_api.md": "4.2 API Tutorial of Alpha/Beta Rhythms"
+            "01_gui.md": "6.1 GUI Tutorial of Alpha/Beta Rhythms",
+            "02_api.md": "6.2 API Tutorial of Alpha/Beta Rhythms"
         }
     ],
     "07_gamma": [
-        "5. Simulating Gamma Rhythms",
+        "7. Simulating Gamma Rhythms",
         {
-            "01_gamma_in_gui.md": "5.1 GUI Tutorial of Gamma Rhythms",
-            "02_gamma_in_api.md": "5.2 API Tutorial of Gamma Rhythms"
+            "01_gamma_in_gui.md": "7.1 GUI Tutorial of Gamma Rhythms",
+            "02_gamma_in_api.md": "7.2 API Tutorial of Gamma Rhythms"
         }
     ],
     "08_data_to_simulation": [
-        "6. From Data to Simulation",
+        "8. From Data to Simulation",
         {
-            "01_from_meg_to_hnn.md": "6.1 From MEG sensor-space data to HNN simulation"
-        }
-    ],
-    "09_feature_demos": [
-        "7. Feature Demos",
-        {
-            "01_plot_firing_pattern.md": "7.1 Plot Firing Pattern",
-            "02_record_and_plot_extracellular_potentials.md": "7.2 Record & Plot Extracellular Potentials",
-            "03_modifying_local_connectivity.md": "7.3 Modifying Local Connectivity",
-            "04_animating_hnn_simulations.md": "7.4 Animating HNN Simulations",
-            "05_batch_simulation.md": "7.5 Batch Simulation",
-            "06_simulate_beta_modulated_erp.md": "7.6 Simulate Beta-modulated ERP",
-            "07_use_mpi_backend_for_parallelization.md": "7.7 Use MPI Backend for Parallelization",
-            "08_optimize_simulated_evoked_response_parameters.md": "7.8 Optimize simulated evoked response parameters",
-            "09_optimize_simulated_rhythmic_response_parameters.md": "7.9 Optimize simulated rhythmic response parameters"
+            "01_from_meg_to_hnn.md": "8.1 From MEG sensor-space data to HNN simulation"
         }
     ]
 }
