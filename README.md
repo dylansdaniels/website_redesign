@@ -13,23 +13,16 @@ Click here: https://dylansdaniels.github.io/website_redesign/content/preface.htm
 
 3. Git push step: At this point, you should be ready to push! Make a PR from your fork so we can then merge your changes.
 
-## Install environment
+## Install environment (Mac or Linux)
 
-1. If you have `make` installed (which you can check by running `which make`), and also have Anaconda installed, then this is super easy. You can create a new conda environment simply by running `make create-conda-env`.
-   - This will create a conda environment named `website-redesign` which you can use to run all the python code in this repository without needing to install anything else (including Pandoc).
-   - If you use this method, then you can run the "build" step simply by typing `make` in the main directory. This is equivalent to running `python build.py`.
-   - If you get an error about not having `make` and want to use it, then you can install Xcode Command-Line Tools simply by running the command `xcode-select --install`.
+1. Ensure that Anaconda is installed.
+2. Ensure that `make` is installed. You can test if `make` is installed by running the command `which make` which should then return a filename. If it returns nothing, then you need to install it.
+   - (MacOS) If you don't have `make`, then you can install it via installing "Xcode Command-Line Tools", which is needed for HNN. To do this, simply run the command `xcode-select --install` and select all the default options. Make sure you restart your computer after installing this
+   - (Linux) If you don't have `make` on Linux, then you should install whatever the "basic software building tools" package your distribution uses. As an example, on Ubuntu, this is `build-essential`. So, in the case of Ubuntu, you could install this using the following command: `sudo apt install build-essential`.
+3. Once you have the above dependencies, you can easily create a new conda environment using the following command:
 
-2. If you only have Anaconda installed but not `make`, then you can create the same environment by simply running the following command:
-
-```{bash}
-conda env create --yes --file environment.yml
+```
+make create-conda-env-mpi
 ```
 
-3. If you don't use Anaconda, you can use the `requirements.txt` file to install the necessary Python packages, such as by running:
-
-```{bash}
-pip install -r requirements.txt
-```
-
-- Note that you may have to additionally install Pandoc in this case, such as by running `python -c 'import pypandoc ; pypandoc.download()'` or something similar.
+The above will create a new Conda environment named `website-redesign-mpi` which you should use for building the HTML output in this repo.
