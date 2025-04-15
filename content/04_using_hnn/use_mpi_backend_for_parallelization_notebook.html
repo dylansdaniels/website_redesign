@@ -1,0 +1,78 @@
+<html><body>
+<div class='markdown-cell'>
+	<h1>4.7: Use MPI backend for Parallelization</h1>
+<p>This example demonstrates how to use the MPI backend for simulating
+dipoles using HNN-core.</p>
+<p>The MPI backend allows running the simulation in parallel across
+neurons in the network even with a single trial. For this, you will need
+the <a
+href="https://github.com/jonescompneurolab/hnn-core?tab=readme-ov-file#installation">MPI
+related software</a> installed. Note that if you want to simulate in
+parallel across trials, the Joblib backend allows this without the need
+to install and configure MPI.</p>
+
+</div>
+<div class='code-cell'>
+	<code class='language-python'>
+		# Authors: Mainak Jas <mjas@mgh.harvard.edu>
+#          Blake Caldwell <blake_caldwell@brown.edu>
+	</code>
+</div>
+<div class='markdown-cell'>
+	<p>Let us import <code>hnn_core</code></p>
+
+</div>
+<div class='code-cell'>
+	<code class='language-python'>
+		import os.path as op
+
+import matplotlib.pyplot as plt
+
+import hnn_core
+from hnn_core import simulate_dipole, jones_2009_model
+	</code>
+</div>
+<div class='markdown-cell'>
+	<p>Following our <a
+href="https://dylansdaniels.github.io/website_redesign/content/06_alpha_beta/api.html">Alpha
+example</a>, we add a ~10 Hz "bursty" drive starting at 50 ms and
+continuing to the end of the simulation. Each burst consists of a pair
+(2) of spikes, spaced 10 ms apart. The occurrence of each burst is
+jittered by a random, normally distributed amount (20 ms standard
+deviation). We repeat the burst train 10 times, each time with unique
+randomization.</p>
+
+</div>
+<div class='code-cell'>
+	<code class='language-python'>
+		net = jones_2009_model()
+
+weights_ampa = {'L2_pyramidal': 5.4e-5, 'L5_pyramidal': 5.4e-5}
+net.add_bursty_drive(
+    'bursty', tstart=50., burst_rate=10, burst_std=20., numspikes=2,
+    spike_isi=10, n_drive_cells=10, location='distal',
+    weights_ampa=weights_ampa, event_seed=278)
+	</code>
+</div>
+<div class='markdown-cell'>
+	<p>Finally, to simulate we use the <a
+href="https://jonescompneurolab.github.io/hnn-core/stable/generated/hnn_core.parallel_backends.MPIBackend.html#hnn_core.parallel_backends.MPIBackend">MPIBackend</a>
+class. This will start the simulation across the number of processors
+(cores) specified by <code>n_procs</code> using MPI. The
+<code>mpiexec</code> launcher is used from <code>openmpi</code>, which
+must be installed on the system.</p>
+
+</div>
+<div class='code-cell'>
+	<code class='language-python'>
+		from hnn_core import MPIBackend
+
+with MPIBackend(n_procs=2, mpi_cmd='mpiexec'):
+    dpls = simulate_dipole(net, tstop=310., n_trials=1)
+
+trial_idx = 0
+dpls[trial_idx].plot(show=False)
+plt.show()
+	</code>
+</div>
+</body></html>

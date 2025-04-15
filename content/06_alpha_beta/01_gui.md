@@ -1,5 +1,5 @@
 <!--
-# Title: 4.1 GUI Tutorial of Alpha/Beta Rhythms
+# Title: 6.1 GUI Tutorial of Alpha/Beta Rhythms
 # Updated: 2025-02-04
 #
 # Contributors:
@@ -9,7 +9,7 @@
 
 <!-- this markdown file and images originally adapted from https://github.com/jonescompneurolab/hnn-tutorials/tree/core-gui/coregui_alpha_and_beta -->
 
-# 4.1 GUI Tutorial of Alpha/Beta Rhythms
+# 6.1 GUI Tutorial of Alpha/Beta Rhythms
 
 ## Tutorial Table of Contents
 

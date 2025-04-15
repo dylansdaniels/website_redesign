@@ -1,12 +1,12 @@
 <!--
-# Title: 3.1 GUI Tutorial of ERPs Simulation
+# Title: 5.1 GUI Tutorial of ERPs Simulation
 # Updated: 2024-11-14
 #
 # Contributors:
     # Dylan Daniels
 -->
 
-# 3.1 GUI Tutorial of Event Related Potentials (ERPs) Simulation
+# 5.1 GUI Tutorial of Event Related Potentials (ERPs) Simulation
 
 ## Getting Started
 
