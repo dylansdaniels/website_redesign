@@ -4,7 +4,7 @@
     "plot_simulate_gamma.ipynb": "f7c973c67e6cd3185589f5301e07291b262a26767b2704a9cd4dc411a4313ae6",
     "api_alpha_beta_short.ipynb": "92d40c6aa959190b0851c466468583da76835bf407f626dc24553b1b4210e4fd",
     "from_meg_to_hnn_notebook.ipynb": "1ffeb90422dca2828ff5b82babc67b7c7d34877df800228368ef395780bcfc78",
-    "record_and_plot_extracellular_potentials_notebook.ipynb": "82a17f967937068c2f5afa25c9c7bb74ea0d67e53a597aa8b573e6bd362e8d95",
+    "record_and_plot_extracellular_potentials_notebook.ipynb": "99d6892aed67f4cac2c306121fe6ae6842f22ae4f9a50cbde369ef2b77c93382",
     "optimize_simulated_rhythmic_response_parameters_notebook.ipynb": "f6babc58f36320ba044f331ab0eb97c8ff61df647a614d05e30ca6c746fd43f2",
     "use_mpi_backend_for_parallelization_notebook.ipynb": "4cb1832abc7f4849bd61c81b86d7fe20010002704166835fcf64fe5be99bc5a2",
     "animating_hnn_simulations_notebook.ipynb": "2df8dcea18b1b1c093ec8c6db4f9f651a9010fa0759c25d9be095e5dea023248",
