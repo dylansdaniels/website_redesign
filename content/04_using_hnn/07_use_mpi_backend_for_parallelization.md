@@ -1,5 +1,5 @@
 <!--
-# Title: 7.8 Optimize simulated evoked response parameters
+# Title: 4.7 Use MPI Backend for Parallelization
 # Updated: 2025-02-04
 #
 # Contributors:
@@ -10,4 +10,5 @@
     # Christopher Bailey <cjb@cfin.au.dk>
 -->
 
-[[optimize_simulated_evoked_response_parameters_notebook.ipynb]]
+[[use_mpi_backend_for_parallelization_notebook.ipynb]]
+
