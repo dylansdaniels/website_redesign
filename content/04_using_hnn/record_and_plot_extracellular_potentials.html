@@ -279,6 +279,16 @@ placement of each electrode.</p>
 plt.show()
     </code>
 </div>
+<div class='output-cell'><div class='output-label'>
+    Out:
+</div>
+    <div class='output-code'>
+        &lt;Figure size 640x480 with 1 Axes&gt;
+    </div>
+</div>
+<div class='output-cell'>
+    <img src='output_nb_record_and_plot_extracellular_potentials_notebook/fig_01.png'/>
+</div>
 <div class='markdown-cell'>
     <p>The default network consists of 2 layers (L2 and L5), within which
 the cell somas are arranged in a regular grid, and apical dendrites are
@@ -322,6 +332,46 @@ plt.show()
 
 dpl = simulate_dipole(net, tstop=170)
     </code>
+</div>
+<div class='output-cell'><div class='output-label'>
+    Out:
+</div>
+    <div class='output-code'>
+        {&#x27;shank1&#x27;: &lt;ExtracellularArray | 25 electrodes, conductivity=0.3, method=psa (no data recorded yet)&gt;}
+
+        &lt;Figure size 640x480 with 1 Axes&gt;
+    </div>
+</div>
+<div class='output-cell'>
+    <img src='output_nb_record_and_plot_extracellular_potentials_notebook/fig_02.png'/>
+</div>
+<div class='output-cell'><div class='output-label'>
+    Out:
+</div>
+    <div class='output-code'>
+        Joblib will run 1 trial(s) in parallel by distributing trials over 1 jobs.
+Loading custom mechanism files from /Users/austinsoplata/rep/brn/hnn-core/hnn_core/mod/arm64/.libs/libnrnmech.so
+Building the NEURON model
+[Done]
+Trial 1: 0.03 ms...
+Trial 1: 10.0 ms...
+Trial 1: 20.0 ms...
+Trial 1: 30.0 ms...
+Trial 1: 40.0 ms...
+Trial 1: 50.0 ms...
+Trial 1: 60.0 ms...
+Trial 1: 70.0 ms...
+Trial 1: 80.0 ms...
+Trial 1: 90.0 ms...
+Trial 1: 100.0 ms...
+Trial 1: 110.0 ms...
+Trial 1: 120.0 ms...
+Trial 1: 130.0 ms...
+Trial 1: 140.0 ms...
+Trial 1: 150.0 ms...
+Trial 1: 160.0 ms...
+
+    </div>
 </div>
 <div class='markdown-cell'>
     <p>For plotting both aggregate dipole moment and LFP traces, we'll use a
@@ -375,6 +425,16 @@ axs[3].set_title('CSD Plot')
 plt.tight_layout()
 plt.show()
     </code>
+</div>
+<div class='output-cell'><div class='output-label'>
+    Out:
+</div>
+    <div class='output-code'>
+        &lt;Figure size 600x800 with 4 Axes&gt;
+    </div>
+</div>
+<div class='output-cell'>
+    <img src='output_nb_record_and_plot_extracellular_potentials_notebook/fig_03.png'/>
 </div><div class='markdown-cell'>
     <h2>References</h2>
 <ul>

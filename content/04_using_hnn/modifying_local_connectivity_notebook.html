@@ -54,7 +54,7 @@ We can search for specific connections using
 </div>
 <div class='code-cell'>
 	<code class='language-python'>
-		from hnn_core.viz import plot_connectivity_matrix, plot_cell_connectivity
+		from hnn_core.viz import plot_connectivity_matrix, plot_cell_connectivity, plot_drive_strength
 from hnn_core.network import pick_connection
 
 print(len(net_erp.connectivity))
@@ -73,6 +73,34 @@ fig = plot_cell_connectivity(net_erp, conn_idx, src_gid, show=False)
 plt.show()
 	</code>
 </div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		38
+L5_basket -&gt; L5_pyramidal
+cell counts: 35 srcs, 100 targets
+connection probability: 1.0 
+loc: &#x27;soma&#x27;; receptor: &#x27;gabaa&#x27;
+weight: 0.025; delay: 1.0; lamtha: 70.0
+ 
+
+		&lt;Figure size 640x480 with 2 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_modifying_local_connectivity_notebook/fig_01.png'/>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		&lt;Figure size 640x480 with 3 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_modifying_local_connectivity_notebook/fig_02.png'/>
+</div>
 <div class='markdown-cell'>
 	<p>Data recorded during simulations are stored under <a
 href="https://jonescompneurolab.github.io/hnn-core/stable/generated/hnn_core.CellResponse.html#hnn_core.CellResponse">CellResponse</a>.
@@ -86,6 +114,38 @@ href="https://jonescompneurolab.github.io/hnn-core/stable/generated/hnn_core.Cel
 net_erp.cell_response.plot_spikes_raster(show=False)
 plt.show()
 	</code>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		Joblib will run 1 trial(s) in parallel by distributing trials over 1 jobs.
+Loading custom mechanism files from /Users/austinsoplata/rep/brn/hnn-core/hnn_core/mod/arm64/.libs/libnrnmech.so
+Building the NEURON model
+[Done]
+Trial 1: 0.03 ms...
+Trial 1: 10.0 ms...
+Trial 1: 20.0 ms...
+Trial 1: 30.0 ms...
+Trial 1: 40.0 ms...
+Trial 1: 50.0 ms...
+Trial 1: 60.0 ms...
+Trial 1: 70.0 ms...
+Trial 1: 80.0 ms...
+Trial 1: 90.0 ms...
+Trial 1: 100.0 ms...
+Trial 1: 110.0 ms...
+Trial 1: 120.0 ms...
+Trial 1: 130.0 ms...
+Trial 1: 140.0 ms...
+Trial 1: 150.0 ms...
+Trial 1: 160.0 ms...
+
+		&lt;Figure size 640x480 with 1 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_modifying_local_connectivity_notebook/fig_03.png'/>
 </div>
 <div class='markdown-cell'>
 	<p>We can also define our own connections to test the effect of
@@ -133,6 +193,33 @@ net_all = get_network()
 dpl_all = simulate_dipole(net_all, tstop=170., n_trials=1)
 	</code>
 </div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		Joblib will run 1 trial(s) in parallel by distributing trials over 1 jobs.
+Building the NEURON model
+[Done]
+Trial 1: 0.03 ms...
+Trial 1: 10.0 ms...
+Trial 1: 20.0 ms...
+Trial 1: 30.0 ms...
+Trial 1: 40.0 ms...
+Trial 1: 50.0 ms...
+Trial 1: 60.0 ms...
+Trial 1: 70.0 ms...
+Trial 1: 80.0 ms...
+Trial 1: 90.0 ms...
+Trial 1: 100.0 ms...
+Trial 1: 110.0 ms...
+Trial 1: 120.0 ms...
+Trial 1: 130.0 ms...
+Trial 1: 140.0 ms...
+Trial 1: 150.0 ms...
+Trial 1: 160.0 ms...
+
+	</div>
+</div>
 <div class='markdown-cell'>
 	<p>We can additionally use the <code>probability</code> argument to
 create a sparse connectivity pattern instead of all-to-all. Let's try
@@ -145,6 +232,33 @@ other.</p>
 		net_sparse = get_network(probability=0.1)
 dpl_sparse = simulate_dipole(net_sparse, tstop=170., n_trials=1)
 	</code>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		Joblib will run 1 trial(s) in parallel by distributing trials over 1 jobs.
+Building the NEURON model
+[Done]
+Trial 1: 0.03 ms...
+Trial 1: 10.0 ms...
+Trial 1: 20.0 ms...
+Trial 1: 30.0 ms...
+Trial 1: 40.0 ms...
+Trial 1: 50.0 ms...
+Trial 1: 60.0 ms...
+Trial 1: 70.0 ms...
+Trial 1: 80.0 ms...
+Trial 1: 90.0 ms...
+Trial 1: 100.0 ms...
+Trial 1: 110.0 ms...
+Trial 1: 120.0 ms...
+Trial 1: 130.0 ms...
+Trial 1: 140.0 ms...
+Trial 1: 150.0 ms...
+Trial 1: 160.0 ms...
+
+	</div>
 </div>
 <div class='markdown-cell'>
 	<p>With the previous connection pattern there appears to be synchronous
@@ -160,6 +274,26 @@ more spiking in the L5 pyramidal cells.</p>
 net_sparse.cell_response.plot_spikes_raster(show=False)
 plt.show()
 	</code>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		&lt;Figure size 640x480 with 1 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_modifying_local_connectivity_notebook/fig_04.png'/>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		&lt;Figure size 640x480 with 1 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_modifying_local_connectivity_notebook/fig_05.png'/>
 </div>
 <div class='markdown-cell'>
 	<p>We can plot the sparse connectivity pattern between cell
@@ -177,6 +311,16 @@ plot_connectivity_matrix(net_sparse, conn_idx, show=False)
 plt.show()
 	</code>
 </div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		&lt;Figure size 640x480 with 2 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_modifying_local_connectivity_notebook/fig_06.png'/>
+</div>
 <div class='markdown-cell'>
 	<p>Note that the sparsity is in addition to the weight decay with
 distance from the source cell.</p>
@@ -188,6 +332,52 @@ distance from the source cell.</p>
 plot_cell_connectivity(net_sparse, conn_idx, src_gid=src_gid, show=False)
 plt.show()
 	</code>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		&lt;Figure size 640x480 with 3 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_modifying_local_connectivity_notebook/fig_07.png'/>
+</div>
+<div class='markdown-cell'>
+	<p>We can plot the strengths of each external drive across each cell
+types.</p>
+
+</div>
+<div class='code-cell'>
+	<code class='language-python'>
+		# This can be done in a relative way, enabling you to compare the proportion
+# coming from each drive:
+plot_drive_strength(net_erp, show=False)
+
+# Alternatively, you can compare the total amount of each drive in conductance:
+plot_drive_strength(net_erp, normalize=False, show=False)
+plt.show()
+	</code>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		&lt;Figure size 1200x600 with 2 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_modifying_local_connectivity_notebook/fig_08.png'/>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		&lt;Figure size 1200x600 with 2 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_modifying_local_connectivity_notebook/fig_09.png'/>
 </div>
 <div class='markdown-cell'>
 	<p>In the sparse network, there still appears to be some rhythmicity
@@ -214,5 +404,15 @@ net_erp.cell_response.plot_spikes_hist(
     ax=axes[1], spike_types=['evprox', 'evdist'], show=False)
 plt.show()
 	</code>
+</div>
+<div class='output-cell'><div class='output-label'>
+	Out:
+</div>
+	<div class='output-code'>
+		&lt;Figure size 600x600 with 2 Axes&gt;
+	</div>
+</div>
+<div class='output-cell'>
+	<img src='output_nb_modifying_local_connectivity_notebook/fig_010.png'/>
 </div>
 </body></html>
