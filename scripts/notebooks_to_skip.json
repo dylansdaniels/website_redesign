@@ -1,17 +1,7 @@
 {
     "skip_execution": [
-        "animating_hnn_simulations_notebook.ipynb",
         "api_alpha_beta.ipynb",
-        "batch_simulation_notebook.ipynb",
-        "from_meg_to_hnn_notebook.ipynb",
-        "modifying_local_connectivity_notebook.ipynb",
-        "optimize_evoked_notebook.ipynb",
-        "optimize_rhythmic_notebook.ipynb",
         "optimize_simulated_evoked_response_parameters_notebook.ipynb",
-        "optimize_simulated_rhythmic_response_parameters_notebook.ipynb",
-        "plot_firing_pattern_notebook.ipynb",
-        "record_and_plot_extracellular_potentials_notebook.ipynb",
-        "simulate_beta_modulated_erp_notebook.ipynb",
-        "use_mpi_backend_for_parallelization_notebook.ipynb"
+        "optimize_simulated_rhythmic_response_parameters_notebook.ipynb"
     ]
 }
