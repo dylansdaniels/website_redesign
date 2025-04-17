@@ -24,7 +24,7 @@
         }
     ],
     "04_using_hnn": [
-        "4. Feature Demos",
+        "4. Using HNN",
         {
             "01_plot_firing_pattern.md": "4.1 Plot Firing Pattern",
             "02_record_and_plot_extracellular_potentials.md": "4.2 Record & Plot Extracellular Potentials",
