@@ -12,6 +12,8 @@
 
 ### Proximal vs. Distal Inputs
 
+All simulation experiments consist of activating the cortical template model with exogenous proximal or distal input, or noise, depending on the experimental conditions you are studying.
+
 At rest, the default model does not generate activity. Instead, we use exogenous inputs to drive network dynamics. We use the terms proximal and distal to refer both to the origin of the inputs as well as the laminar target within the neocortical microcircuit. Proximal inputs refers to inputs arriving from lemniscal thalamus, which primarily target the granular and infragranular layers while distal inputs arrive from non-lemniscal thalamus and cortico-cortical feedback, which primarily target the supragranular layers. These differences are illustrated below.
 
 <table style="border:none">
