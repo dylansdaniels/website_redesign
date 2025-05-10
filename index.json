@@ -20,7 +20,8 @@
             "03_neurons_morphology_and_physiology.md": "3.3 Neurons: Morphology and Physiology",
             "04_synaptic_connectivity.md": "3.4 Synaptic Connectivity",
             "05_evoked_and_rhythmic_driving_inputs.md": "3.5 Evoked and Rhythmic Driving Inputs",
-            "06_tonic_and_noisy_driving_inputs.md": "3.6 Tonic and Noisy Driving Inputs"
+            "06_tonic_and_noisy_driving_inputs.md": "3.6 Tonic and Noisy Driving Inputs",
+            "07_what_hnn_is_not.md": "3.7 Caveats: What HNN is NOT"
         }
     ],
     "04_using_hnn": [
