@@ -5,12 +5,13 @@
     "api_alpha_beta_short.ipynb": "4ac6afcf066304732da67c8683c80368a311a56d23c0c958103aa40182272324",
     "from_meg_to_hnn_notebook.ipynb": "2e56c47dbfe0581fd7da8f7beee055b3dd995d9e643fcb835303b07879b06cc0",
     "record_and_plot_extracellular_potentials_notebook.ipynb": "79d8e6078fd5475b46954b154146ebadb28ab1069126a8d92110ce4e13969947",
-    "optimize_simulated_rhythmic_response_parameters_notebook.ipynb": "0230e7c0fe91db96ef6db2a6b22f344e606b112b8c909307191115655aeaffd6",
-    "use_mpi_backend_for_parallelization_notebook.ipynb": "5d12d6f348fac698848376d45f0a7a993abcd9fe0390a4db0c2d99c894b23401",
+    "optimize_simulated_rhythmic_response_parameters_notebook.ipynb": "912fbf5ee656dd6617a9a59f3ee21d1889e8d45e0f9f4ba2e1498242a3b30a08",
     "animating_hnn_simulations_notebook.ipynb": "2607783ecb3de6358792037284202be4468f513033d5fa75d941650d25ecef04",
     "simulate_beta_modulated_erp_notebook.ipynb": "a96cd9a3c84985a23191acc43d9295fe5ec741b3e9331eba833b1b23a8ed70c8",
     "batch_simulation_notebook.ipynb": "56e7861755edd3e3be911909ed459a2385c065c08682cd3c075898085b6d3335",
-    "optimize_simulated_evoked_response_parameters_notebook.ipynb": "b5eeeb576c9f2d8dc29e4e788313afa877dece33b1b36d23e64bd137491bbb9a",
+    "optimize_simulated_evoked_response_parameters_notebook.ipynb": "b329a6ac34a7fe1361c4c2e906b7aab0260618b4869573405449ce117062afb7",
     "modifying_local_connectivity_notebook.ipynb": "1572a1d72e47229572b7f92b23c62bd486c42d1844fbcf16069d2824278c4e09",
-    "plot_firing_pattern_notebook.ipynb": "938e950573a41dd0d2dcec46b87f4c4ded47ad95108aa6f0aedeb4dd641e6c9a"
+    "plot_firing_pattern_notebook.ipynb": "938e950573a41dd0d2dcec46b87f4c4ded47ad95108aa6f0aedeb4dd641e6c9a",
+    "parallelism_mpi_notebook.ipynb": "2032682237fd84d8dd14174c341899128b8990cb708aa137872f62eb701b14e2",
+    "parallelism_joblib_notebook.ipynb": "c4620ac9666bc4afc7aac87f2661d69cf1b9cc1a96791e3394c26591d8cec510"
 }

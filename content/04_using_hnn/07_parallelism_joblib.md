@@ -1,5 +1,5 @@
 <!--
-# Title: 4.7 Use MPI Backend for Parallelization
+# Title: 4.7 Parallelism: Joblib
 # Updated: 2025-02-04
 #
 # Contributors:
@@ -10,5 +10,5 @@
     # Christopher Bailey <cjb@cfin.au.dk>
 -->
 
-[[use_mpi_backend_for_parallelization_notebook.ipynb]]
+[[parallelism_joblib_notebook.ipynb]]
 
