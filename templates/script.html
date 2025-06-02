@@ -17,7 +17,7 @@
                 
                 if (link && link.startsWith("/")) {
                     // Extract the local root directory
-                    const rootPath = currentDir.split("/website_redesign/")[0];
+                    const rootPath = currentDir.split("/textbook/")[0];
                     // Prepend root path to link
                     const resolvedLink = "file://" + rootPath + link;
                     area.setAttribute("data-link", resolvedLink);
@@ -163,14 +163,14 @@
             // get the current local directory path
             const currentDir = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
 
-            // get 'absolute' links with root of 'website_redesign'
+            // get 'absolute' links with root of 'textbook'
             const links = document.querySelectorAll("#mySidebar a");
             links.forEach(link => {
                 const href = link.getAttribute("href");
 
                 if (href && href.startsWith("/")) {
                     // extract the local root directory
-                    const rootPath = currentDir.split("/website_redesign/")[0];
+                    const rootPath = currentDir.split("/textbook/")[0];
                     // prepend root path to link
                     const resolvedHref = "file://" + rootPath + href;
                     link.setAttribute("href", resolvedHref);
@@ -184,7 +184,7 @@
 
                 if (src && src.startsWith("/")) {
                     // extract the local root directory
-                    const rootPath = currentDir.split("/website_redesign/")[0];
+                    const rootPath = currentDir.split("/textbook/")[0];
                     // prepend root path to image source
                     const resolvedSrc = "file://" + rootPath + src;
                     img.setAttribute("src", resolvedSrc);

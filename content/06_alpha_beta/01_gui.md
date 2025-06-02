@@ -626,5 +626,5 @@ Adjust one of the parameters regulating the local network connections. What happ
 ## References
 
 
-[Figure A on the Workshop page]: https://dylansdaniels.github.io/website_redesign/tests/workshop.html#figure-a
+[Figure A on the Workshop page]: https://jonescompneurolab.github.io/textbook/tests/workshop.html#figure-a
 [Workshop page]: https://tinyurl.com/hnn-workshop-25
