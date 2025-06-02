@@ -4,14 +4,14 @@
     "plot_simulate_gamma.ipynb": "b5a2594d9d233ff9342233f6fbdede6860b9fed35d9c046a8581222b93ed1ef2",
     "api_alpha_beta_short.ipynb": "4ac6afcf066304732da67c8683c80368a311a56d23c0c958103aa40182272324",
     "from_meg_to_hnn_notebook.ipynb": "2e56c47dbfe0581fd7da8f7beee055b3dd995d9e643fcb835303b07879b06cc0",
-    "record_and_plot_extracellular_potentials_notebook.ipynb": "79d8e6078fd5475b46954b154146ebadb28ab1069126a8d92110ce4e13969947",
+    "record_and_plot_extracellular_potentials_notebook.ipynb": "7e59b93dc5983f17da2bcee17ee8f553d255ded76223e35dba54f9207e64361f",
     "optimize_simulated_rhythmic_response_parameters_notebook.ipynb": "912fbf5ee656dd6617a9a59f3ee21d1889e8d45e0f9f4ba2e1498242a3b30a08",
-    "animating_hnn_simulations_notebook.ipynb": "2607783ecb3de6358792037284202be4468f513033d5fa75d941650d25ecef04",
-    "simulate_beta_modulated_erp_notebook.ipynb": "a96cd9a3c84985a23191acc43d9295fe5ec741b3e9331eba833b1b23a8ed70c8",
+    "animating_hnn_simulations_notebook.ipynb": "db8d251c57ad164abe42e7e7a3ad831aecc80734129671a630058e7188b516ce",
+    "simulate_beta_modulated_erp_notebook.ipynb": "5e8bba5153930242002ba3e42e3a0d7bb30bedb2a5978ed353478f06fcd2fde8",
     "batch_simulation_notebook.ipynb": "56e7861755edd3e3be911909ed459a2385c065c08682cd3c075898085b6d3335",
     "optimize_simulated_evoked_response_parameters_notebook.ipynb": "b329a6ac34a7fe1361c4c2e906b7aab0260618b4869573405449ce117062afb7",
-    "modifying_local_connectivity_notebook.ipynb": "1572a1d72e47229572b7f92b23c62bd486c42d1844fbcf16069d2824278c4e09",
-    "plot_firing_pattern_notebook.ipynb": "938e950573a41dd0d2dcec46b87f4c4ded47ad95108aa6f0aedeb4dd641e6c9a",
-    "parallelism_mpi_notebook.ipynb": "2032682237fd84d8dd14174c341899128b8990cb708aa137872f62eb701b14e2",
-    "parallelism_joblib_notebook.ipynb": "c4620ac9666bc4afc7aac87f2661d69cf1b9cc1a96791e3394c26591d8cec510"
+    "modifying_local_connectivity_notebook.ipynb": "a1b1986ade985cd52460e4169c1dbb57922c08dbbe03bc979fd3ada8f129649e",
+    "plot_firing_pattern_notebook.ipynb": "f58aeba03e5aaa7d659705415fdbec3cf5f4d84d0231cd4c8f13cd5e8f97f0cc",
+    "parallelism_mpi_notebook.ipynb": "08fc3675d8e3df8ec37a3e966187a7525fc6cf0b85456dd7c4e3a1b228879d39",
+    "parallelism_joblib_notebook.ipynb": "a7156b4029feb26cbe765b28f34cb6e2b64b6c27dd45158f1a9ec9b14bfdc79f"
 }
