@@ -2,7 +2,7 @@
 
 ## Where to access the deployed verison of this website?
 
-Click here: https://dylansdaniels.github.io/website_redesign/content/preface.html
+Click here: <https://jonescompneurolab.github.io/textbook/content/preface.html>
 
 ## How to use this repository
 
