@@ -37,7 +37,7 @@ def generate_navbar_html():
         f'\n{indent}</div>'
     
     workshop_link = \
-        f'\n{indent}<a href="https://dylansdaniels.github.io/website_redesign/tests/workshop.html">' + \
+        f'\n{indent}<a href="https://jonescompneurolab.github.io/textbook/tests/workshop.html">' + \
         f'\n{indent}<div>' + \
         f'\n{indent}\t<code class="workshop-button">Workshop Page</code>' + \
         f'\n{indent}</div>' + \
@@ -72,7 +72,7 @@ def generate_navbar_html():
                     page = item.split("_", 1)[1]
                     page = page.split(".md")[0] + ".html"
 
-                    md_pages[item] = '/website_redesign/' + location + page
+                    md_pages[item] = '/textbook/' + location + page
         return md_pages
 
     def create_page_link(file, label, page_paths, indent):
