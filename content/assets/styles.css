@@ -290,6 +290,7 @@ body.dark-mode #content img {
     overflow-x: hidden; 
     transition: 0.3s;
     padding-top: 10px;
+    z-index: 9998;
 }
 
 .sidebar.dark-mode {
@@ -551,7 +552,7 @@ body.dark-mode .sidebar-tooltip::after {
     position: fixed; 
     background: white;
     transition: margin-left 0.5s, width 0.5s;
-    z-index: 9999;
+    z-index: 9997;
 }
 
 body.dark-mode .topbar {
