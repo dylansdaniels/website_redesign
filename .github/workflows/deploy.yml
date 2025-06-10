@@ -1,4 +1,4 @@
-name: Build and Deploy Check
+name: Build and Deploy
 
 on:
   push:
