@@ -6,7 +6,6 @@ on:
 
 jobs:
   build:
-    if: github.repository == 'jonescompneurolab/textbook' && github.ref == 'refs/heads/main' || github.repository != 'jonescompneurolab/textbook'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -42,7 +41,7 @@ jobs:
         run: conda run -n website-redesign-mpi env PYTHONUNBUFFERED=1 python build.py --execute-notebooks
 
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main'
+        if: github.repository != 'jonescompneurolab/textbook' || github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
