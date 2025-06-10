@@ -2,11 +2,11 @@ name: Build and Deploy
 
 on:
   push:
-    branches:
-      - main
+    branches: [ '**' ]
 
 jobs:
   build:
+    if: github.repository == 'jonescompneurolab/textbook' && github.ref == 'refs/heads/main' || github.repository != 'jonescompneurolab/textbook'
     runs-on: ubuntu-latest
     defaults:
       run:
