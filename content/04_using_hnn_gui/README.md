@@ -1,5 +1,5 @@
 <!--
-# Title: 6. Simulating Gamma Rhythms
+# Title: 3. Using the HNN GUI
 # Updated: 2024-01-16
 #
 # Contributors:

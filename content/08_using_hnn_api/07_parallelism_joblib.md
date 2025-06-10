@@ -1,6 +1,6 @@
 <!--
-# Title: 4.2 API Tutorial of ERPs Simulation
-# Updated: 2025-01-29
+# Title: 7.7 Parallelism: Joblib
+# Updated: 2025-02-04
 #
 # Contributors:
     # Dylan Daniels
@@ -10,4 +10,5 @@
     # Christopher Bailey <cjb@cfin.au.dk>
 -->
 
-[[plot_simulate_evoked.ipynb]]
+[[parallelism_joblib_notebook.ipynb]]
+
