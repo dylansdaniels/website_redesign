@@ -244,6 +244,15 @@ def generate_page_html(page_paths):
             # match the exact pattern ".ipynb][" as defined below
             nb_arguments_pattern = ".ipynb]["
 
+            nb_button="""
+        <div>
+            <a href='notebook_name'>
+                <button class='notebook-download'></button>
+            </a>
+        </div>
+
+    """
+
             output_lines = []
             for line in converted_html.splitlines():
                 match = nb_match_pattern.search(line)
@@ -261,6 +270,15 @@ def generate_page_html(page_paths):
                 elif match:
                     notebook_name = match.group(1)
                     nb_path = path.split(md_page)[0] + notebook_name
+
+                    # specify notebook button with correct file
+                    nb_button = nb_button.replace(
+                        'notebook_name',
+                        notebook_name,
+                    )
+                    output_lines.append(nb_button,)
+
+                    # generate and append the notebook html output
                     notebook_html = get_html_from_json(notebook_name, nb_path)
                     output_lines.append(notebook_html)
                 else:
