@@ -1,12 +1,12 @@
 <!--
-# Title: 7.1 GUI Tutorial of Gamma Rhythms
+# Title: 6.1 GUI Tutorial of Gamma Rhythms
 # Updated: 2025-02-14
 #
 # Contributors:
     # Dylan Daniels
 -->
 
-# 7.1 GUI Tutorial of Gamma Rhythms
+# 6.1 GUI Tutorial of Gamma Rhythms
 
 ## Tutorial Table of Contents
 
