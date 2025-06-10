@@ -499,7 +499,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // copy text and add click effects
         button.addEventListener('click', () => {
-            const code = cell.innerText;
+            // const code = cell.innerText;
+            const code = cell.querySelector('code').innerText;
             navigator.clipboard.writeText(code).then(() => {
                 button.querySelector('span').textContent = 'Copied!';
                 setTimeout(() => {
