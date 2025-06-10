@@ -225,6 +225,24 @@
 # Contributors:
     # Dylan Daniels
 -->
+
+        <div class="notebook-download-wrapper">
+            <a href='modifying_local_connectivity_notebook.ipynb' download>
+                <button class="notebook-download">
+                    <svg xmlns="http://www.w3.org/2000/svg" 
+                        width="20" height="20" viewBox="0 0 24 24" fill="none" 
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    <span style="width: 8px"></span>
+                    <span>Download Notebook</span>
+                </button>
+            </a>
+        </div>
+
+    
 <div class='markdown-cell'>
     <h1>7.3: Modifying local connectivity</h1>
 <p>This example demonstrates how to modify the network connectivity.</p>
@@ -1145,6 +1163,44 @@ plt.show()
             block.textContent = block.textContent.trim();
         });
     });
+</script>
+
+<!------------------------- #
+# Copy button on code cells #
+# -------------------------->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.code-cell').forEach(cell => {
+        // Avoid inserting the button multiple times
+        if (cell.querySelector('.copy-button')) return;
+
+        const button = document.createElement('button');
+        button.className = 'copy-button';
+
+        // Define copy icon and text
+        button.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.25em;">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copy</span>
+        `;
+
+        // copy text and add click effects
+        button.addEventListener('click', () => {
+            // const code = cell.innerText;
+            const code = cell.querySelector('code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                button.querySelector('span').textContent = 'Copied!';
+                setTimeout(() => {
+                    button.querySelector('span').textContent = 'Copy';
+                }, 1000);
+            });
+        });
+
+        cell.appendChild(button);
+    });
+});
 
 </script>
 

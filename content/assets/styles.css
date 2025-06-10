@@ -551,6 +551,7 @@ body.dark-mode .sidebar-tooltip::after {
     position: fixed; 
     background: white;
     transition: margin-left 0.5s, width 0.5s;
+    z-index: 9999;
 }
 
 body.dark-mode .topbar {
@@ -1050,6 +1051,54 @@ body.dark-mode .exclamation-icon {
 # ------------------------------------------------------------ 
 */
 
+.notebook-download-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.notebook-download {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--light-purple);
+    color: white;
+    padding: 7px 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.notebook-download:hover {
+    background-color: var(--sidebar-purple);
+}
+
+.notebook-download svg {
+    vertical-align: middle;
+}
+
+.copy-button {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8em;
+    padding: 6px 8px;
+    color: var(--light-purple);
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.copy-button svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    stroke: currentColor; /* ensures icon color matches text */
+}
+
 .markdown-cell {
     margin: 10px 0px;
     padding: 0px;
@@ -1063,6 +1112,7 @@ body.dark-mode .exclamation-icon {
     border-radius: 5px;
     border: solid 2px var(--light-purple);
     overflow: hidden;
+    position: relative;
 }
 
 .code-cell code.language-python {
@@ -1085,22 +1135,34 @@ body.dark-mode .code-cell code.language-python{
 /* 
     Element: .output-cell
     Description: Styling for the jupyter notebook output cell
+    Notes: 
+        .output-cell:has(> .output-label) adds a left border 
+        *only* when .output-cell is followed by .output-label
 */
 .output-cell {
     display: flex;
     align-items: flex-start;
     font-family: 'Courier New', monospace;
-    margin: 10px 0;
+    margin: 20px 0;
+    border-radius: 2px;
+}
+
+
+.output-cell:has(> .output-label) {
+    border-left: 4px solid var(--gentle-red);
+    background: #f4dcdc85;
 }
 
 .output-label {
     font-family: 'Courier New', monospace;
     color: var(--gentle-red);
     font-size: 0.9em;
+    padding: 10px 10px 0px 20px;
+    font-weight: bold;
 }
 
-body.dark-mode .output-label {
-    font-weight: bold;
+body.dark-mode .output-cell:has(> .output-label) {
+    background: #fcc0c036;
 }
 
 /*
@@ -1120,10 +1182,15 @@ body.dark-mode .output-label {
     flex-grow: 1; 
     white-space: pre-line;
     color: var(--text-light) !important;
-    margin: 0px 10px;
+    margin: 0px 0px 0px 10px;
     margin-top: 0px;
-    padding: 0px 10px;
+    padding: 10px 10px 10px 0px;
     font-size: 0.9em;
+    scrollbar-gutter: stable;
+}
+
+.output-code::-webkit-scrollbar {
+    display: always; 
 }
 
 body.dark-mode .output-code {
@@ -1135,7 +1202,7 @@ body.dark-mode .output-code {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
-    padding: 20px;
+    padding: 10px;
 
 }
 
