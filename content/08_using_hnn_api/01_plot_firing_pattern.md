@@ -1,5 +1,5 @@
 <!--
-# Title: 4.1 Plot Firing Pattern
+# Title: 7.1 Plot Firing Pattern
 # Updated: 2025-02-04
 #
 # Contributors:
