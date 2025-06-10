@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - api_cell_updates
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   build:
