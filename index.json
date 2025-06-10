@@ -21,7 +21,9 @@
     ],
     "04_using_hnn_gui": [
         "3. Using the HNN GUI",
-        {}
+        {
+            "01_gui_quickstart.md": "3.1 GUI Quickstart"
+        }
     ],
     "05_erps": [
         "4. Simulating ERPs",
