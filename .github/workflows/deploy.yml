@@ -2,8 +2,7 @@ name: Build and Deploy
 
 on:
   push:
-    branches:
-      - api_cell_updates
+    branches: [ '**' ]
 
 jobs:
   build:
@@ -42,7 +41,14 @@ jobs:
         run: conda run -n website-redesign-mpi env PYTHONUNBUFFERED=1 python build.py --execute-notebooks
 
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/api_cell_updates'
+        if: github.repository == 'jonescompneurolab/textbook' && github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+
+      - name: Deploy to GitHub Pages (Fork)
+        if: github.repository != 'jonescompneurolab/textbook'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
